@@ -24,11 +24,19 @@
     30,
     45
   ],
+<<<<<<< HEAD
   "new_api_requests": 25,
+=======
+  "new_api_requests": 4,
+>>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
   "data_contract_primary_key": [
     "tx_hash",
     "log_index"
   ],
+<<<<<<< HEAD
   "created_at_utc": "2026-10-18T15:11:14.019575+00:00",
+=======
+  "created_at_utc": "2026-10-17T14:25:02.589559+00:00",
+>>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
   "caveat": "USD totals only cover events with two valid token quotes; reference market prices, NOT Aave oracle."
 }

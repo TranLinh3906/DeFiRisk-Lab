@@ -1,0 +1,31 @@
+{
+  "events_total": 42,
+  "events_fact_ready": 37,
+  "usd_coverage_pct": 88.1,
+  "missing_debt_usd": 3,
+  "missing_collateral_usd": 3,
+  "debt_quote_status_counts": {
+    "ok": 39,
+    "future_price_rejected": 3
+  },
+  "collateral_quote_status_counts": {
+    "ok": 39,
+    "future_price_rejected": 3
+  },
+  "total_repaid_usd_on_priced_events_only": 684436.6235705054,
+  "total_seized_usd_on_priced_events_only": 727638.6751883703,
+  "source_event_logs": "/Users/thylnh.iu/Downloads/N3_Aave_Day17_Two_Scripts/data/staging/n3_liquidations_etherscan.parquet",
+  "source_price_usd": "DefiLlama historical token market-price reference (not Aave oracle)",
+  "price_lookup": "https://coins.llama.fi/prices/historical/{timestamp}/{ethereum:token_addresses}",
+  "bucket_minutes": 5,
+  "max_lag_minutes": 60,
+  "allow_forward_minutes": 0,
+  "price_search_width": "1h",
+  "new_api_requests": 10,
+  "data_contract_primary_key": [
+    "tx_hash",
+    "log_index"
+  ],
+  "created_at_utc": "2026-10-17T14:23:22.562110+00:00",
+  "caveat": "USD totals only cover events with two valid token quotes; reference market prices, NOT Aave oracle."
+}

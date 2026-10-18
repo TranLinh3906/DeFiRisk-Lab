@@ -101,7 +101,6 @@ không nội suy hoặc forward-fill.
 Giá CoinGecko là giá thị trường tham chiếu, không phải Aave Oracle. Tỷ lệ giá
 USD không thay thế tỷ lệ chuyển đổi on-chain của Lido hoặc giá execution-specific.
 
-<<<<<<< HEAD
 ## 6. Chuẩn hóa liquidation và tạo chuỗi giá thống nhất
 
 Sau khi đã có file `n3_liquidations_priced.parquet`, chạy:
@@ -157,50 +156,27 @@ lượng trong `outputs/tables/n3_descriptive_quality.json`. Tương quan chỉ 
 tính mô tả, không chứng minh quan hệ nhân quả.
 
 ## 8. Kiểm tra kết quả
-=======
-## 6. Kiểm tra kết quả
->>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
 
 ```bash
 ./.venv/bin/python - <<'PY'
 import pandas as pd
 
-<<<<<<< HEAD
 events = pd.read_parquet("data/staging/n3_liquidations.parquet")
 priced = pd.read_parquet("data/staging/n3_liquidations_priced.parquet")
 fact = pd.read_parquet("data/staging/n3_liquidations_for_fact.parquet")
 prices = pd.read_parquet("data/staging/n3_price_timeseries.parquet")
-=======
-events = pd.read_parquet("data/staging/n3_liquidations_etherscan.parquet")
-priced = pd.read_parquet("data/staging/n3_liquidations_priced.parquet")
-fact = pd.read_parquet("data/staging/n3_liquidations_for_fact.parquet")
-prices = pd.read_parquet("data/processed/market/price_history.parquet")
-ratios = pd.read_parquet("data/staging/n3_market_ratios.parquet")
->>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
 
 print("EVENTS:", events.shape, events.event_timestamp.min(), events.event_timestamp.max())
 print("DUPLICATE EVENT KEYS:", events.duplicated(["tx_hash", "log_index"]).sum())
 print("PRICED:", priced.shape, "FACT READY:", fact.shape)
-<<<<<<< HEAD
 print("PRICE TYPES:", prices.price_type.value_counts().to_dict())
-=======
-print("PRICE ASSETS:", prices.asset.value_counts().to_dict())
-print("RATIO ROWS:", ratios.shape)
-print("RATIO NON-NULL:", ratios[
-    ["steth_eth_market_ratio", "wsteth_eth_market_ratio", "wsteth_steth_market_ratio"]
-].notna().sum().to_dict())
->>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
 PY
 ```
 
 Chỉ tích hợp batch fact-ready sau khi kiểm tra schema, khóa duy nhất và chất lượng
 giá. Không ghi trực tiếp các kết quả staging vào bảng canonical của dự án.
 
-<<<<<<< HEAD
 ## 9. Giới hạn và diễn giải
-=======
-## 7. Giới hạn và diễn giải
->>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9
 
 - Sự kiện liquidation lịch sử không đồng nghĩa với mô phỏng bad debt.
 - DefiLlama và CoinGecko cung cấp giá market reference; để kết luận theo Oracle
@@ -211,8 +187,5 @@ giá. Không ghi trực tiếp các kết quả staging vào bảng canonical c�
   không có dữ liệu DEX và độ trượt giá.
 - Event thiếu giá vẫn phải giữ trong staging và được báo cáo; không thay bằng 0
   hoặc loại bỏ âm thầm.
-<<<<<<< HEAD
 - Snapshot A/B, mẫu ví và pool DEX chưa được xem là chính thức nếu N1/N2 chưa xác
   nhận. Mọi coverage hiện tại phải được mô tả đúng là coverage của batch/mẫu.
-=======
->>>>>>> 9abfbebd792b60ce43a5cb5a5e99c7bcdfd822a9

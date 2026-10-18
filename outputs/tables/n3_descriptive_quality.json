@@ -1,0 +1,41 @@
+{
+  "method": "Observed descriptive association; same-hour contemporaneous correlations not predictive or causal",
+  "event_rows": 42,
+  "unique_transactions": 38,
+  "unique_borrowers": 42,
+  "debt_repaid_usd_total": 4190879.8515807292,
+  "collateral_seized_usd_total": 4392171.927269707,
+  "hourly_bins_including_zero": 96,
+  "zero_event_hours": 79,
+  "event_eth_price_quote_matched": 42,
+  "event_steth_eth_ratio_matched": 42,
+  "max_market_quote_age_min": 90,
+  "window": {
+    "start_inclusive_utc": "2026-10-12T00:00:00+00:00",
+    "end_exclusive_utc": "2026-10-16T00:00:00+00:00"
+  },
+  "correlations": {
+    "hourly_debt_vs_eth_return": {
+      "n": 95,
+      "pearson": -0.11342690104378127,
+      "spearman": -0.22168654152534403
+    },
+    "hourly_debt_vs_steth_discount": {
+      "n": 96,
+      "pearson": 0.11743981641718253,
+      "spearman": -0.16904080611972275
+    },
+    "hourly_count_vs_steth_discount": {
+      "n": 96,
+      "pearson": -0.09002111696545839,
+      "spearman": -0.18746549255580905
+    }
+  },
+  "caveats": [
+    "CoinGecko/market observations are reference quotes, not on-chain execution prices or Chainlink state",
+    "Hourly comparison is descriptive, cannot demonstrate depeg causes liquidations",
+    "Token USD amounts value repaid debt vs seized collateral, not realized execution proceeds",
+    "Snapshot B crisis-window choice requires Research Lead approval"
+  ],
+  "created_at_utc": "2026-10-18T16:10:26.698539+00:00"
+}

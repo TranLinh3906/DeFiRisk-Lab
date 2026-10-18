@@ -22,3 +22,6 @@ __pycache__/
 *.parquet.bak_*
 *.json.bak_*
 outputs_backup_*/
+
+*.bak_mergefix_*
+*.backup

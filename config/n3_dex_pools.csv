@@ -1,0 +1,5 @@
+dex,token_in,token_out,fee,curve_index_in,curve_index_out,pool_address
+curve,STETH,ETH,,1,0,0xDC24316b9AE028F1497c275EB9192a3Ea0f67022
+uniswap_v3,WSTETH,WETH,100,,,
+uniswap_v3,WETH,USDC,500,,,
+uniswap_v3,WBTC,WETH,3000,,,

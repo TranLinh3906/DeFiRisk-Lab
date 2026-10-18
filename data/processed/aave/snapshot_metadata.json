@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-10-18T12:59:08.917890+00:00",
+  "chain_id": 1,
+  "protocol_id": "aave_v3_ethereum",
+  "pool_address": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+  "rpc_provider": "Alchemy (Ethereum mainnet); URL khong luu trong repo",
+  "snapshots": {
+    "A": {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "snapshot_timestamp_utc": "2026-10-12T23:59:59+00:00",
+      "target_timestamp_utc": "2026-10-13T00:00:00+00:00",
+      "block_hash": "0x40c731f68bcd8152ad12433f4be57783e731fcf1546575ab51aa894054244ac3",
+      "block_hash_verified_on_chain": true,
+      "role": "calibration / counterfactual stress test",
+      "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
+      "pool_data_provider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
+      "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
+      "n_reserves": 67
+    },
+    "B": {
+      "snapshot_id": "B",
+      "snapshot_block": 26194188,
+      "snapshot_timestamp_utc": "2026-10-14T23:59:59+00:00",
+      "target_timestamp_utc": "2026-10-15T00:00:00+00:00",
+      "block_hash": "0xf12bcb7db5631cc69f0aaa392df0855f2a2ff3c18a9b9bcbb3a25981cac9daed",
+      "block_hash_verified_on_chain": true,
+      "role": "out-of-sample validation",
+      "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
+      "pool_data_provider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
+      "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
+      "n_reserves": 67
+    }
+  },
+  "validation_window_rule": "Snapshot B: chi dung LiquidationCall co event_block > snapshot_block B va event_timestamp < 2026-10-16T00:00:00Z.",
+  "status": {
+    "archive_eth_call_verified": true,
+    "oracle_prices_exported": true,
+    "reserve_config_exported": true,
+    "positions_exported": false,
+    "hf_validated": false
+  },
+  "limitations": [
+    "Cap nhat cac muc 'status' va 'limitations' khi hoan thanh tung buoc.",
+    "Chua kiem dinh HF toan mau; khong ghi la toan bo Aave neu chi lay mot phan nguoi vay."
+  ]
+}

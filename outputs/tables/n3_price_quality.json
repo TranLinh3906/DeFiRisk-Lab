@@ -1,0 +1,35 @@
+{
+  "source": "CoinGecko Demo market chart / range",
+  "price_type": "market_reference_NOT_Aave_oracle",
+  "window_utc": {
+    "start_inclusive": "2026-10-12 00:00:00+00:00",
+    "end_exclusive": "2026-10-16 00:00:00+00:00"
+  },
+  "requested_assets": [
+    "ETH",
+    "STETH",
+    "WSTETH",
+    "BTC",
+    "USDC",
+    "USDT"
+  ],
+  "raw_quote_counts": {
+    "BTC": 96,
+    "ETH": 96,
+    "STETH": 96,
+    "USDC": 96,
+    "USDT": 96,
+    "WSTETH": 96
+  },
+  "daily_counts": {
+    "BTC": 4,
+    "ETH": 4,
+    "STETH": 4,
+    "USDC": 4,
+    "USDT": 4,
+    "WSTETH": 4
+  },
+  "ratio_rows_nonempty": 96,
+  "ratio_rule": "prices within same UTC hour; otherwise NA; not oracle and not Lido contract conversion rate",
+  "created_at_utc": "2026-10-18T15:10:09.346261+00:00"
+}

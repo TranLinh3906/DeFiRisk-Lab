@@ -1,0 +1,302 @@
+{
+  "1791796500|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997545692727408,
+    "price_timestamp": 1791796500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791796500|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9992942568281882,
+    "price_timestamp": 1791796500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791811500|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.999301484456501,
+    "price_timestamp": 1791811500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791826500|0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+    "price": 82315.29006756509,
+    "price_timestamp": 1791826500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791826500|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997041214379814,
+    "price_timestamp": 1791826500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791849900|0x6b175474e89094c44da98b954eedeac495271d0f": {
+    "price": 1.000072622062127,
+    "price_timestamp": 1791849900,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791849900|0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "price": 3047.958051309796,
+    "price_timestamp": 1791849180,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791849900|0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+    "price": 156.22181139264242,
+    "price_timestamp": 1791849900,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791849900|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997176094004766,
+    "price_timestamp": 1791849900,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791859800|0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+    "price": 0.999409017457,
+    "price_timestamp": 1791859317,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791870900|0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "price": 3147.876567053047,
+    "price_timestamp": 1791870780,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791870900|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.999804322532896,
+    "price_timestamp": 1791870900,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791972300|0x1abaea1f7c830bd89acc67ec4af516284b1bc33c": {
+    "price": 1.1187643514257697,
+    "price_timestamp": 1791971817,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791972300|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2490.852511709363,
+    "price_timestamp": 1791972300,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791981300|0x68749665ff8d2d112fa859aa293f07a622782f38": {
+    "price": 4118.0163387360635,
+    "price_timestamp": 1791981300,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1791981300|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997204633331179,
+    "price_timestamp": 1791981300,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792015800|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9996599525101527,
+    "price_timestamp": 1792015800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792015800|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2411.249201786741,
+    "price_timestamp": 1792015800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792015800|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9990682693273011,
+    "price_timestamp": 1792015800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792018200|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2415.377534303944,
+    "price_timestamp": 1792018200,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792018200|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9990518480022378,
+    "price_timestamp": 1792018200,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792030800|0x514910771af9ca656af840dff83e8264ecf986ca": {
+    "price": 12.325551873068745,
+    "price_timestamp": 1792030800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792030800|0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "price": 3004.275047369999,
+    "price_timestamp": 1792030983,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792030800|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997161760231734,
+    "price_timestamp": 1792030800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792030800|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2408.3649470638115,
+    "price_timestamp": 1792030800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792030800|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9990903913305278,
+    "price_timestamp": 1792030800,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792031100|0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "price": 3004.275047369999,
+    "price_timestamp": 1792030983,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792031100|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9997623386730085,
+    "price_timestamp": 1792031100,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792031100|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2379.571309978665,
+    "price_timestamp": 1792031100,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792031100|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9991574781471166,
+    "price_timestamp": 1792031100,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792037400|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2362.1948300226068,
+    "price_timestamp": 1792037400,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792037400|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9991050110106525,
+    "price_timestamp": 1792037400,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792038600|0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f": {
+    "price": 0.998060950594342,
+    "price_timestamp": 1792038184,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792038600|0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+    "price": 151.64323909161934,
+    "price_timestamp": 1792038600,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792046700|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.999689046719391,
+    "price_timestamp": 1792046700,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792046700|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2359.152914756632,
+    "price_timestamp": 1792046700,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792067400|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2365.08906574281,
+    "price_timestamp": 1792067400,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792067400|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9991190128055394,
+    "price_timestamp": 1792067400,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792070700|0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+    "price": 80237.52664394693,
+    "price_timestamp": 1792070700,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792070700|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9990997936576292,
+    "price_timestamp": 1792070700,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792072200|0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "price": 2926.573650353076,
+    "price_timestamp": 1792071723,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792072200|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9996451684558162,
+    "price_timestamp": 1792072200,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792072200|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2341.792350114256,
+    "price_timestamp": 1792072200,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792072200|0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "price": 0.9990835156528004,
+    "price_timestamp": 1792072200,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792075200|0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+    "price": 1.2522613866152432,
+    "price_timestamp": 1792075166,
+    "confidence": 1,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792075200|0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+    "price": 0.9990981144952806,
+    "price_timestamp": 1792074184,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792083300|0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "price": 0.9995773742967179,
+    "price_timestamp": 1792083300,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792083300|0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "price": 2431.1379996723986,
+    "price_timestamp": 1792083300,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792084500|0x514910771af9ca656af840dff83e8264ecf986ca": {
+    "price": 12.464799377509516,
+    "price_timestamp": 1792084500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  },
+  "1792084500|0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
+    "price": 1.0000477238675864,
+    "price_timestamp": 1792084500,
+    "confidence": 0.99,
+    "source": "DefiLlama historical token market-price reference (not Aave oracle)"
+  }
+}

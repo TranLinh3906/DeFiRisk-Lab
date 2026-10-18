@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-10-18T15:16:20.933965+00:00",
+  "protocol_id": "aave_v3_ethereum",
+  "chain_id": 1,
+  "snapshot_block_by_id": {
+    "A": 26179841,
+    "B": 26194188
+  },
+  "market_ratio_definitions": {
+    "STETH/ETH": "indicative stETH/USD divided by ETH/USD market references; not oracle",
+    "WSTETH/STETH": "market reference ratio only; not Lido stEthPerToken",
+    "lido_conversion": "stEthPerToken() from Lido at exact snapshot block"
+  },
+  "rows_by_price_type": {
+    "aave_oracle": 134,
+    "lido_contract_conversion": 2,
+    "market_ratio": 288,
+    "market_reference": 576
+  },
+  "market_reference_freshness_by_snapshot": {
+    "A": {
+      "ETH": {
+        "quote_utc": "2026-10-12T23:00:00+00:00",
+        "price_usd": 2468.524541953589,
+        "age_seconds": 3599.0
+      },
+      "STETH": {
+        "quote_utc": "2026-10-12T23:00:00+00:00",
+        "price_usd": 2468.842091689342,
+        "age_seconds": 3599.0
+      },
+      "WSTETH": {
+        "quote_utc": "2026-10-12T23:00:00+00:00",
+        "price_usd": 3083.806531176908,
+        "age_seconds": 3599.0
+      },
+      "steth_eth_market_ratio_asof": 1.0001286394890372
+    },
+    "B": {
+      "ETH": {
+        "quote_utc": "2026-10-14T23:00:00+00:00",
+        "price_usd": 2416.8708123767005,
+        "age_seconds": 3599.0
+      },
+      "STETH": {
+        "quote_utc": "2026-10-14T23:00:00+00:00",
+        "price_usd": 2415.9628376226246,
+        "age_seconds": 3599.0
+      },
+      "WSTETH": {
+        "quote_utc": "2026-10-14T23:00:00+00:00",
+        "price_usd": 3012.942402554829,
+        "age_seconds": 3599.0
+      },
+      "steth_eth_market_ratio_asof": 0.9996243180440485
+    }
+  },
+  "n2_oracle_audit": {
+    "oracle_rows": 134,
+    "oracle_by_snapshot": {
+      "A": 67,
+      "B": 67
+    },
+    "oracle_feed_timestamp_missing": 106,
+    "oracle_feed_gt_24h_count_where_known": 0,
+    "oracle_raw_usd_max_relative_error": 0.0
+  },
+  "missing_feed_timestamp_rule": "NULL reference_timestamp/staleness for oracle adapters without feed updatedAt; never assign age zero",
+  "not_present": [
+    "Historical Chainlink feed rounds independently queried",
+    "Oracle prices at each liquidation event_block",
+    "DEX liquidity/tick-level order depth"
+  ],
+  "research_note": "Snapshot B role must be approved by N1, and historical liquidation validation window must be checked independently.",
+  "validation_passed": true
+}

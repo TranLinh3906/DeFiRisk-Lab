@@ -249,12 +249,115 @@ def build(events: pd.DataFrame, prices: pd.DataFrame, registry: pd.DataFrame | N
             "debt": debt_break, "quality": quality}
 
 
+
+def export_m5_deliverables(result: dict, overwrite: bool) -> None:
+    """Create the three required M5 delivery files."""
+    daily = result["daily"].sort_values("date_utc").copy()
+    hourly = result["hourly"].copy()
+    q = result["quality"]
+
+    if daily.empty or daily["date_utc"].duplicated().any():
+        raise ValueError("M5 QA: empty or duplicated daily data")
+
+    for label, df in [("daily", daily), ("hourly", hourly)]:
+        if int(df["liquidation_events"].sum()) != int(q["event_rows"]):
+            raise ValueError(f"M5 QA: event count mismatch in {label}")
+
+        for col, key in [
+            ("debt_repaid_usd", "debt_repaid_usd_total"),
+            ("collateral_seized_usd", "collateral_seized_usd_total"),
+        ]:
+            if not math.isclose(
+                float(df[col].sum()),
+                float(q[key]),
+                rel_tol=1e-9,
+                abs_tol=0.01,
+            ):
+                raise ValueError(f"M5 QA: {col} mismatch in {label}")
+
+    peak = daily.loc[daily["debt_repaid_usd"].idxmax()]
+    peak_date = pd.Timestamp(peak["date_utc"]).strftime("%Y-%m-%d")
+    debt_total = float(q["debt_repaid_usd_total"])
+    peak_debt = float(peak["debt_repaid_usd"])
+
+    summary = dict(q)
+    summary.update({
+        "schema_version": "m5_descriptive_v1",
+        "daily_observations": int(len(daily)),
+        "peak_liquidation_date_utc": peak_date,
+        "peak_daily_debt_repaid_usd": peak_debt,
+        "peak_day_share_pct": (
+            100 * peak_debt / debt_total if debt_total > 0 else None
+        ),
+    })
+
+    rows = [
+        ("liquidation_events", q["event_rows"], "events"),
+        ("unique_transactions", q["unique_transactions"], "transactions"),
+        ("unique_borrowers", q["unique_borrowers"], "wallets"),
+        ("debt_repaid_usd_total", debt_total, "USD"),
+        ("collateral_seized_usd_total",
+         q["collateral_seized_usd_total"], "USD"),
+        ("daily_observations", len(daily), "days"),
+        ("hourly_observations", len(hourly), "hours"),
+        ("zero_event_hours", q["zero_event_hours"], "hours"),
+        ("average_daily_debt_usd",
+         float(daily["debt_repaid_usd"].mean()), "USD"),
+        ("median_daily_debt_usd",
+         float(daily["debt_repaid_usd"].median()), "USD"),
+        ("peak_liquidation_date_utc", peak_date, "UTC date"),
+        ("peak_daily_debt_usd", peak_debt, "USD"),
+        ("peak_day_share_pct", summary["peak_day_share_pct"], "percent"),
+    ]
+
+    for name, values in q["correlations"].items():
+        for field in ("n", "pearson", "spearman"):
+            rows.append(
+                (f"{name}_{field}", values.get(field), field)
+            )
+
+    statistics = pd.DataFrame(
+        rows, columns=["metric", "value", "unit"]
+    )
+
+    marts = ROOT / "data" / "marts"
+
+    safe_write(
+        marts / "historical_daily.parquet",
+        lambda path: daily.to_parquet(path, index=False),
+        overwrite,
+    )
+    safe_write(
+        marts / "descriptive_summary.json",
+        lambda path: path.write_text(
+            json.dumps(
+                summary, ensure_ascii=False,
+                indent=2, allow_nan=False
+            ),
+            encoding="utf-8",
+        ),
+        overwrite,
+    )
+    safe_write(
+        OUT_TABLES / "descriptive_statistics.csv",
+        lambda path: statistics.to_csv(path, index=False),
+        overwrite,
+    )
+
+    print("[M5] CREATED historical_daily.parquet")
+    print("[M5] CREATED descriptive_summary.json")
+    print("[M5] CREATED descriptive_statistics.csv")
+    print("[M5 QA] Daily and hourly totals MATCH")
+
+
 def plot_results(data: dict, overwrite: bool) -> None:
     daily, timeline = data["daily"], data["timeline"]
     plt.rcParams.update({"font.size": 10})
 
     fig, ax = plt.subplots(figsize=(11, 4.6))
     ax.bar(daily.date_utc.dt.strftime("%Y-%m-%d"), daily.debt_repaid_usd)
+    ax.set_yscale("symlog", linthresh=1000)
+    ax.set_ylabel("Debt repaid (USD, symlog scale)")
     ax.set(title="Aave V3 Ethereum — Debt repaid by day (USD)", ylabel="USD (historical market reference)", xlabel="UTC day")
     ax.tick_params(axis="x", rotation=30)
     fig.tight_layout()
@@ -281,7 +384,12 @@ def plot_results(data: dict, overwrite: bool) -> None:
         safe_write(OUT_FIGS / "n3_steth_eth_depeg_timeline.png", lambda path: fig.savefig(path, format="png", dpi=160), overwrite)
         plt.close(fig)
 
-    breakdown = data["collateral"].head(8).iloc[::-1]
+    breakdown = (
+    data["collateral"]
+    .sort_values("collateral_seized_usd", ascending=False)
+    .head(8)
+    .iloc[::-1]
+)
     fig, ax = plt.subplots(figsize=(10, 4.5))
     names = breakdown["token_symbol"].fillna(breakdown["collateral_token_address"].str.slice(0, 10))
     ax.barh(names.astype(str), breakdown.collateral_seized_usd)
@@ -328,6 +436,7 @@ def main() -> None:
     safe_write(OUT_TABLES / "n3_descriptive_quality.json",
                lambda path: path.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8"),
                args.overwrite)
+    export_m5_deliverables(result, args.overwrite)
     plot_results(result, args.overwrite)
     print("[SAVED] outputs/tables/n3_* and outputs/figures/n3_*png")
     print("[NOTICE] Correlation is descriptive, NOT evidence of causality.")

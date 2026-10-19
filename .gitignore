@@ -25,3 +25,52 @@ outputs_backup_*/
 
 *.bak_mergefix_*
 *.backup
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Backups and temporary files
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+.DS_Store
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Backups and temporary files
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+.DS_Store
+
+# Large raw Aave data
+/data/raw/aave/borrow_events_raw.jsonl
+
+# Local secrets and backups
+.env
+.env.*
+!.env.example
+.venv/
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+__pycache__/
+*.pyc

@@ -1,0 +1,23 @@
+metric,value,unit
+liquidation_events,42,events
+unique_transactions,38,transactions
+unique_borrowers,42,wallets
+debt_repaid_usd_total,4190879.8515807292,USD
+collateral_seized_usd_total,4392171.927269707,USD
+daily_observations,4,days
+hourly_observations,96,hours
+zero_event_hours,79,hours
+average_daily_debt_usd,1047719.9628951822,USD
+median_daily_debt_usd,6118.339573572943,USD
+peak_liquidation_date_utc,2026-10-15,UTC date
+peak_daily_debt_usd,4177795.7825480024,USD
+peak_day_share_pct,99.6877966084427,percent
+hourly_debt_vs_eth_return_n,95,n
+hourly_debt_vs_eth_return_pearson,-0.11342690104378127,pearson
+hourly_debt_vs_eth_return_spearman,-0.22168654152534403,spearman
+hourly_debt_vs_steth_discount_n,96,n
+hourly_debt_vs_steth_discount_pearson,0.11743981641718253,pearson
+hourly_debt_vs_steth_discount_spearman,-0.16904080611972275,spearman
+hourly_count_vs_steth_discount_n,96,n
+hourly_count_vs_steth_discount_pearson,-0.09002111696545839,pearson
+hourly_count_vs_steth_discount_spearman,-0.18746549255580905,spearman

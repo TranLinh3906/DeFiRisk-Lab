@@ -1,0 +1,2332 @@
+{
+  "A": {
+    "working_functions": [
+      "getEModeCategoryCollateralConfig",
+      "getEModeCategoryData"
+    ],
+    "categories": {
+      "1": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ETH correlated"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "ETH correlated",
+          "collateral_bitmap_set_bits": [
+            0,
+            1,
+            7,
+            9,
+            28,
+            29,
+            31
+          ],
+          "borrowable_bitmap_set_bits": [
+            0
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "2": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "sUSDe Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "label": "sUSDe Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            32
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "3": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "rsETH__ETH_wstETH_ETHx"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "rsETH__ETH_wstETH_ETHx",
+          "collateral_bitmap_set_bits": [
+            36
+          ],
+          "borrowable_bitmap_set_bits": [
+            0,
+            1,
+            31
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "4": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_WBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "5": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_cbBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_cbBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            34
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "6": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_tBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_tBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            33
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "7": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8300,
+          "lt_bps": 8500,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "eBTC/WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8300,
+          "lt_bps": 8500,
+          "bonus_raw_bps": 10300,
+          "label": "eBTC/WBTC",
+          "collateral_bitmap_set_bits": [
+            38
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "8": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins Jul 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "label": "PT-sUSDe Stablecoins Jul 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            41
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "9": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe Stablecoins May 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "label": "PT-eUSDe Stablecoins May 2025",
+          "collateral_bitmap_set_bits": [
+            40,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "10": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins July 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "label": "PT-USDe Stablecoins July 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "11": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "USDe Stablecoin"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "USDe Stablecoin",
+          "collateral_bitmap_set_bits": [
+            30
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "12": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe July 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "label": "PT-USDe USDe July 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "13": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe Stablecoins August 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-eUSDe Stablecoins August 2025",
+          "collateral_bitmap_set_bits": [
+            44,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "14": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe USDe August 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PT-eUSDe USDe August 2025",
+          "collateral_bitmap_set_bits": [
+            44,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "15": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "eUSDe_Stablecoin"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "eUSDe_Stablecoin",
+          "collateral_bitmap_set_bits": [
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "16": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "FBTC/WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "FBTC/WBTC",
+          "collateral_bitmap_set_bits": [
+            46
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "17": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "label": "PT-sUSDe Stablecoins September 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            41,
+            48
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "18": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe USDe September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "label": "PT-sUSDe USDe September 2025",
+          "collateral_bitmap_set_bits": [
+            48
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "19": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-USDe Stablecoins September 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43,
+            44,
+            49
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "20": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "label": "PT-USDe USDe September 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43,
+            44,
+            49
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "21": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7200,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "tETH/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7200,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10750,
+          "label": "tETH/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            50
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "22": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ezETH/wstETH"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "ezETH/wstETH",
+          "collateral_bitmap_set_bits": [
+            51
+          ],
+          "borrowable_bitmap_set_bits": [
+            1
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "23": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ezETH/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "label": "ezETH/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            51
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "24": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "label": "PT-sUSDe Stablecoins Nov 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            48,
+            53
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "25": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe USDe Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "label": "PT-sUSDe USDe Nov 2025",
+          "collateral_bitmap_set_bits": [
+            48,
+            53
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "26": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "weETH/wstETH ETH Correlated"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "weETH/wstETH ETH Correlated",
+          "collateral_bitmap_set_bits": [
+            28
+          ],
+          "borrowable_bitmap_set_bits": [
+            0,
+            1
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "27": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-USDe Stablecoins Nov 2025",
+          "collateral_bitmap_set_bits": [
+            49,
+            54
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "28": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PT-USDe USDe Nov 2025",
+          "collateral_bitmap_set_bits": [
+            49,
+            54
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "29": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTUSDe5FEB/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PTUSDe5FEB/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            54,
+            55
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "30": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTUSDe5FEB/USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PTUSDe5FEB/USDe",
+          "collateral_bitmap_set_bits": [
+            30,
+            54,
+            55
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "31": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTsUSDe5FEB/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "label": "PTsUSDe5FEB/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            53,
+            56
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "32": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTsUSDe5FEB/USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10200,
+          "label": "PTsUSDe5FEB/USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            53,
+            56
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "33": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "syrupUSDT Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "label": "syrupUSDT Stablecoins",
+          "collateral_bitmap_set_bits": [
+            58
+          ],
+          "borrowable_bitmap_set_bits": [
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "34": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10270,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDe_7MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10270,
+          "label": "PT_USDe_7MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            55,
+            60
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "35": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10170,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDe_7MAY2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10170,
+          "label": "PT_USDe_7MAY2026__USDe",
+          "collateral_bitmap_set_bits": [
+            30,
+            55,
+            60
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "36": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_sUSDe_7MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "label": "PT_sUSDe_7MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            56,
+            61
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "37": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10320,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_sUSDe_7MAY2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10320,
+          "label": "PT_sUSDe_7MAY2026__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            56,
+            61
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "38": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10330,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDT_USDe_USDC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10330,
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDT_USDe_USDC",
+          "collateral_bitmap_set_bits": [
+            32,
+            62
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "39": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10130,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10130,
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            62
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "40": {
+        "getEModeCategoryData": {
+          "ltv_bps": 6600,
+          "lt_bps": 7100,
+          "bonus_raw_bps": 10700,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LINK__USDC_USDT"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 6600,
+          "lt_bps": 7100,
+          "bonus_raw_bps": 10700,
+          "label": "LINK__USDC_USDT",
+          "collateral_bitmap_set_bits": [
+            5
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "41": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10500,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "EURC__USDC_USDT_GHO"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10500,
+          "label": "EURC__USDC_USDT_GHO",
+          "collateral_bitmap_set_bits": [
+            47
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "42": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "rsETH__USDC_USDT"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "label": "rsETH__USDC_USDT",
+          "collateral_bitmap_set_bits": [
+            36
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "43": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7000,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10600,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "XAUt__USDC_USDT_GHO"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7000,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10600,
+          "label": "XAUt__USDC_USDT_GHO",
+          "collateral_bitmap_set_bits": [
+            52
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "44": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10410,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_25JUN2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10410,
+          "label": "PT_srUSDe_25JUN2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            62,
+            64
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "45": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9160,
+          "lt_bps": 9360,
+          "bonus_raw_bps": 10130,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_25JUN2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9160,
+          "lt_bps": 9360,
+          "bonus_raw_bps": 10130,
+          "label": "PT_srUSDe_25JUN2026__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            62,
+            64
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "46": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9380,
+          "lt_bps": 9580,
+          "bonus_raw_bps": 10150,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDG_28MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9380,
+          "lt_bps": 9580,
+          "bonus_raw_bps": 10150,
+          "label": "PT_USDG_28MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            65
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            59
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "47": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-srUSDe Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "label": "PT-srUSDe Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            66
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "48": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10120,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-srUSDe USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10120,
+          "label": "PT-srUSDe USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            66
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      }
+    }
+  },
+  "B": {
+    "working_functions": [
+      "getEModeCategoryCollateralConfig",
+      "getEModeCategoryData"
+    ],
+    "categories": {
+      "1": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ETH correlated"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "ETH correlated",
+          "collateral_bitmap_set_bits": [
+            0,
+            1,
+            7,
+            9,
+            28,
+            29,
+            31
+          ],
+          "borrowable_bitmap_set_bits": [
+            0
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "2": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "sUSDe Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "label": "sUSDe Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            32
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "3": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "rsETH__ETH_wstETH_ETHx"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "rsETH__ETH_wstETH_ETHx",
+          "collateral_bitmap_set_bits": [
+            36
+          ],
+          "borrowable_bitmap_set_bits": [
+            0,
+            1,
+            31
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "4": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_WBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "5": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_cbBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_cbBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            34
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "6": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LBTC_tBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "LBTC_tBTC",
+          "collateral_bitmap_set_bits": [
+            37
+          ],
+          "borrowable_bitmap_set_bits": [
+            33
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "7": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8300,
+          "lt_bps": 8500,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "eBTC/WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8300,
+          "lt_bps": 8500,
+          "bonus_raw_bps": 10300,
+          "label": "eBTC/WBTC",
+          "collateral_bitmap_set_bits": [
+            38
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "8": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins Jul 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "label": "PT-sUSDe Stablecoins Jul 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            41
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "9": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe Stablecoins May 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "label": "PT-eUSDe Stablecoins May 2025",
+          "collateral_bitmap_set_bits": [
+            40,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "10": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins July 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10210,
+          "label": "PT-USDe Stablecoins July 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "11": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "USDe Stablecoin"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "USDe Stablecoin",
+          "collateral_bitmap_set_bits": [
+            30
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "12": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe July 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "label": "PT-USDe USDe July 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "13": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe Stablecoins August 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-eUSDe Stablecoins August 2025",
+          "collateral_bitmap_set_bits": [
+            44,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "14": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-eUSDe USDe August 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PT-eUSDe USDe August 2025",
+          "collateral_bitmap_set_bits": [
+            44,
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "15": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "eUSDe_Stablecoin"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "eUSDe_Stablecoin",
+          "collateral_bitmap_set_bits": [
+            45
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "16": {
+        "getEModeCategoryData": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "FBTC/WBTC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 8400,
+          "lt_bps": 8600,
+          "bonus_raw_bps": 10300,
+          "label": "FBTC/WBTC",
+          "collateral_bitmap_set_bits": [
+            46
+          ],
+          "borrowable_bitmap_set_bits": [
+            2
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "17": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "label": "PT-sUSDe Stablecoins September 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            41,
+            48
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "18": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe USDe September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "label": "PT-sUSDe USDe September 2025",
+          "collateral_bitmap_set_bits": [
+            48
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "19": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-USDe Stablecoins September 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43,
+            44,
+            49
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "20": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe September 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10110,
+          "label": "PT-USDe USDe September 2025",
+          "collateral_bitmap_set_bits": [
+            30,
+            43,
+            44,
+            49
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "21": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7200,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "tETH/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7200,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10750,
+          "label": "tETH/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            50
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "22": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ezETH/wstETH"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "ezETH/wstETH",
+          "collateral_bitmap_set_bits": [
+            51
+          ],
+          "borrowable_bitmap_set_bits": [
+            1
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "23": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "ezETH/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "label": "ezETH/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            51
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "24": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe Stablecoins Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10310,
+          "label": "PT-sUSDe Stablecoins Nov 2025",
+          "collateral_bitmap_set_bits": [
+            32,
+            48,
+            53
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "25": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-sUSDe USDe Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10110,
+          "label": "PT-sUSDe USDe Nov 2025",
+          "collateral_bitmap_set_bits": [
+            48,
+            53
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "26": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "weETH/wstETH ETH Correlated"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9300,
+          "lt_bps": 9500,
+          "bonus_raw_bps": 10100,
+          "label": "weETH/wstETH ETH Correlated",
+          "collateral_bitmap_set_bits": [
+            28
+          ],
+          "borrowable_bitmap_set_bits": [
+            0,
+            1
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "27": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe Stablecoins Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PT-USDe Stablecoins Nov 2025",
+          "collateral_bitmap_set_bits": [
+            49,
+            54
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "28": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-USDe USDe Nov 2025"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PT-USDe USDe Nov 2025",
+          "collateral_bitmap_set_bits": [
+            49,
+            54
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "29": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTUSDe5FEB/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10200,
+          "label": "PTUSDe5FEB/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            54,
+            55
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "30": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTUSDe5FEB/USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10100,
+          "label": "PTUSDe5FEB/USDe",
+          "collateral_bitmap_set_bits": [
+            30,
+            54,
+            55
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "31": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTsUSDe5FEB/Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10300,
+          "label": "PTsUSDe5FEB/Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            53,
+            56
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "32": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10200,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PTsUSDe5FEB/USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10200,
+          "label": "PTsUSDe5FEB/USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            53,
+            56
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "33": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "syrupUSDT Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10400,
+          "label": "syrupUSDT Stablecoins",
+          "collateral_bitmap_set_bits": [
+            58
+          ],
+          "borrowable_bitmap_set_bits": [
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "34": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10270,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDe_7MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9100,
+          "lt_bps": 9300,
+          "bonus_raw_bps": 10270,
+          "label": "PT_USDe_7MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            30,
+            55,
+            60
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "35": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10170,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDe_7MAY2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9400,
+          "lt_bps": 9600,
+          "bonus_raw_bps": 10170,
+          "label": "PT_USDe_7MAY2026__USDe",
+          "collateral_bitmap_set_bits": [
+            30,
+            55,
+            60
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "36": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_sUSDe_7MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10420,
+          "label": "PT_sUSDe_7MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            56,
+            61
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            42
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "37": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10320,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_sUSDe_7MAY2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10320,
+          "label": "PT_sUSDe_7MAY2026__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            56,
+            61
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "38": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10330,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDT_USDe_USDC"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10330,
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDT_USDe_USDC",
+          "collateral_bitmap_set_bits": [
+            32,
+            62
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "39": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10130,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10130,
+          "label": "PT_srUSDe_2APR2026_sUSDe__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            62
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "40": {
+        "getEModeCategoryData": {
+          "ltv_bps": 6600,
+          "lt_bps": 7100,
+          "bonus_raw_bps": 10700,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "LINK__USDC_USDT"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 6600,
+          "lt_bps": 7100,
+          "bonus_raw_bps": 10700,
+          "label": "LINK__USDC_USDT",
+          "collateral_bitmap_set_bits": [
+            5
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "41": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10500,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "EURC__USDC_USDT_GHO"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10500,
+          "label": "EURC__USDC_USDT_GHO",
+          "collateral_bitmap_set_bits": [
+            47
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "42": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "rsETH__USDC_USDT"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7500,
+          "lt_bps": 7800,
+          "bonus_raw_bps": 10750,
+          "label": "rsETH__USDC_USDT",
+          "collateral_bitmap_set_bits": [
+            36
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "43": {
+        "getEModeCategoryData": {
+          "ltv_bps": 7000,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10600,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "XAUt__USDC_USDT_GHO"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 7000,
+          "lt_bps": 7500,
+          "bonus_raw_bps": 10600,
+          "label": "XAUt__USDC_USDT_GHO",
+          "collateral_bitmap_set_bits": [
+            52
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            20
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "44": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10410,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_25JUN2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10410,
+          "label": "PT_srUSDe_25JUN2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            62,
+            64
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "45": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9160,
+          "lt_bps": 9360,
+          "bonus_raw_bps": 10130,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_srUSDe_25JUN2026__USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9160,
+          "lt_bps": 9360,
+          "bonus_raw_bps": 10130,
+          "label": "PT_srUSDe_25JUN2026__USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            62,
+            64
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "46": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9380,
+          "lt_bps": 9580,
+          "bonus_raw_bps": 10150,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT_USDG_28MAY2026__Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9380,
+          "lt_bps": 9580,
+          "bonus_raw_bps": 10150,
+          "label": "PT_USDG_28MAY2026__Stablecoins",
+          "collateral_bitmap_set_bits": [
+            65
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30,
+            59
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "47": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10414,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-srUSDe Stablecoins"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9000,
+          "lt_bps": 9200,
+          "bonus_raw_bps": 10414,
+          "label": "PT-srUSDe Stablecoins",
+          "collateral_bitmap_set_bits": [
+            32,
+            66
+          ],
+          "borrowable_bitmap_set_bits": [
+            3,
+            8,
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      },
+      "48": {
+        "getEModeCategoryData": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10114,
+          "price_source": "0x0000000000000000000000000000000000000000",
+          "label": "PT-srUSDe USDe"
+        },
+        "getEModeCategoryCollateralConfig": {
+          "ltv_bps": 9200,
+          "lt_bps": 9400,
+          "bonus_raw_bps": 10114,
+          "label": "PT-srUSDe USDe",
+          "collateral_bitmap_set_bits": [
+            32,
+            66
+          ],
+          "borrowable_bitmap_set_bits": [
+            30
+          ],
+          "note": "bit i = reserve id; xac nhan reserve id <-> token truoc khi dung"
+        }
+      }
+    }
+  }
+}

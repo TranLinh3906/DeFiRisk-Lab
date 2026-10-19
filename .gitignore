@@ -74,3 +74,21 @@ __pycache__/
 *.backup_*
 __pycache__/
 *.pyc
+
+# Large files
+/data/raw/aave/borrow_events_raw.jsonl
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+
+# Backup files
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+.DS_Store

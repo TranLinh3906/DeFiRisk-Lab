@@ -37,11 +37,21 @@
     "archive_eth_call_verified": true,
     "oracle_prices_exported": true,
     "reserve_config_exported": true,
-    "positions_exported": false,
-    "hf_validated": false
+    "positions_exported": true,
+    "hf_validated": true
   },
   "limitations": [
-    "Cap nhat cac muc 'status' va 'limitations' khi hoan thanh tung buoc.",
-    "Chua kiem dinh HF toan mau; khong ghi la toan bo Aave neu chi lay mot phan nguoi vay."
+  "Phạm vi: Aave V3 Ethereum Core Market (Pool 0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2). Không gồm các market Aave khác (ví dụ Prime, EtherFi) và các chain khác.",
+  "Tập ví: lập từ sự kiện Borrow (quét từ block 16,200,000 đến block Snapshot B; Borrow đầu tiên ở block 16,496,939): 87,286 ví (A) và 87,388 ví (B); sau khi lọc bằng getUserAccountData còn 28,493 ví còn nợ (A) và 28,545 ví (B). Ví chỉ gửi tiền, không vay, nằm ngoài phạm vi.",
+  "Độ phủ nợ: tổng nợ của tập ví so với tổng totalSupply debt token on-chain là 100.0000% ở cả A và B (lệch khoảng 1 USD trên khoảng 9.4 tỷ USD). Chỉ đo cho nợ, tại hai snapshot này, trong Core Market; không có tiêu chí tương đương cho collateral/TVL vì aToken gồm cả người chỉ gửi tiền.",
+  "Phương pháp lập tập ví không bắt trực tiếp nợ mở bằng flash loan (interestRateMode khác 0) hay cơ chế không qua sự kiện Borrow. Độ phủ đo được là khoảng 100% ở hai snapshot nhưng không đảm bảo cho block khác.",
+  "Đối chiếu HF: HF tự tính so với HF Aave báo trên toàn bộ ví còn nợ trong tập ứng viên; sai số tuyệt đối trung vị 0.000000, p99 cho ví HF<=10 là 0.0043 (A) và 0.0043 (B), sai số tương đối trung vị khoảng 3e-12. Đây là kiểm tra nội bộ của N2; kiểm định độc lập thuộc N5.",
+  "Sai lệch từ 1% trở lên: 220 (A) và 229 (B) ví lệch nợ; 30 (A) và 35 (B) ví lệch collateral; 1 ví (A) và 2 ví (B) lệch ngưỡng HF<1. Các ví này có giá trị rất nhỏ (nợ Aave trung vị làm tròn 0.0 USD; nợ của ví lệch ngưỡng HF<1 tối đa khoảng 2.3e-5 USD). Nguyên nhân dự đoán là làm tròn đơn vị USD 8 chữ số của Aave, chưa kiểm tra từng ví.",
+  "Ví HF<1: 449 (A) và 460 (B), tổng nợ khoảng 53 USD, tức là vị thế rất nhỏ. Ngưỡng nợ bụi do N1/N4 quyết định; dữ liệu giữ nguyên, chưa gắn cờ dust.",
+  "E-Mode: category 47 và 48 đổi liquidation bonus giữa A và B (10420 thành 10414; 10120 thành 10114); cấu hình theo token không đổi giữa A và B. Dùng giá trị theo từng snapshot. Cột effective_liq_bonus chưa điền, chờ quy tắc từ N1/N4.",
+  "Isolation mode và siloed borrowing chưa được mô hình hóa riêng; chỉ có cờ is_isolated_collateral suy từ debt ceiling khác 0.",
+  "Giá dùng để tính HF là giá oracle Aave tại block (AaveOracle 0x54586bE62E3c3580375aE3723C145253060Ca0C2, USD 8 chữ số), không phải giá thị trường CoinGecko của N3.",
+  "Snapshot: timestamp là của block cuối cùng có thời điểm không muộn hơn mốc mục tiêu (sớm hơn khoảng 1 giây). Snapshot B chờ N1 duyệt; ETH giảm khoảng 1.4% từ A đến B, và trong 24 giờ sau B có lúc thấp hơn khoảng 3.3% so với lúc chụp rồi hồi lại; N3 ghi nhận 30 sự kiện thanh lý trong cửa sổ đó, nên kiểm định ngoài mẫu có độ mạnh thống kê thấp. Chưa có bằng chứng riêng cho việc Snapshot A là giai đoạn bình thường.",
+  "borrower_positions.parquet là bảng staging, chưa phải bảng canonical của nhóm."
   ]
 }

@@ -1,0 +1,24 @@
+scenarios:
+  eth_drop_10: {eth_shock: -0.10}
+  eth_drop_20: {eth_shock: -0.20}
+  eth_drop_30: {eth_shock: -0.30}
+  eth_drop_40: {eth_shock: -0.40}
+  eth_drop_50: {eth_shock: -0.50}
+  btc_drop_10: {btc_shock: -0.10}
+  btc_drop_20: {btc_shock: -0.20}
+  btc_drop_30: {btc_shock: -0.30}
+  stablecoin_drop_2: {stablecoin_shock: -0.02}
+  stablecoin_drop_5: {stablecoin_shock: -0.05}
+  depeg_1: {depeg_shock: -0.01}
+  depeg_2: {depeg_shock: -0.02}
+  depeg_3: {depeg_shock: -0.03}
+  depeg_4: {depeg_shock: -0.04}
+  depeg_5: {depeg_shock: -0.05}
+  depeg_7: {depeg_shock: -0.07}
+  depeg_10: {depeg_shock: -0.10}
+  combined_eth20_depeg5: {eth_shock: -0.20, depeg_shock: -0.05}
+  combined_extreme: {eth_shock: -0.30, depeg_shock: -0.10, btc_shock: -0.20}
+
+heatmap:
+  eth_steps: [0.0, -0.10, -0.20, -0.30, -0.40, -0.50]
+  depeg_steps: [0.0, -0.01, -0.03, -0.05, -0.10]

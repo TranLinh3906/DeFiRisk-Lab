@@ -241,7 +241,9 @@ def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
     if not baseline_path.exists():
         raise FileNotFoundError(f"Missing baseline risk mart: {baseline_path}")
     baseline = _normalize_keys(pd.read_parquet(baseline_path))
-    baseline_cols = WALLET_KEYS + [c for c in ("health_factor", "is_recursive_loop") if c in baseline]
+    baseline_cols = WALLET_KEYS + [
+        c for c in ("health_factor", "is_recursive_loop", "total_debt_usd") if c in baseline
+    ]
     baseline = baseline[baseline_cols].drop_duplicates(subset=WALLET_KEYS, keep="first")
     positions = positions.drop(columns=[c for c in ("health_factor", "is_recursive_loop") if c in positions], errors="ignore")
     positions = positions.merge(baseline, on=WALLET_KEYS, how="left")

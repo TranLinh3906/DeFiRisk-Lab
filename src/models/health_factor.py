@@ -69,14 +69,30 @@ def _as_bool(series: pd.Series) -> pd.Series:
 
 
 def calculate_health_factor(
-    positions_df: pd.DataFrame, config_df: pd.DataFrame, prices_df: pd.DataFrame
+    positions_df: pd.DataFrame,
+    reserve_config: pd.DataFrame,
+    prices_df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Calculate wallet risk metrics using normalized Data Contract keys.
 
     LTs can be fractions (``lt_std``/``lt_emode``) or basis points
     (``lt_bps``/``emode_lt_bps``). Missing amounts/prices/LTs are safely zeroed.
     """
-    pos, cfg, px = (normalize_input(frame) for frame in (positions_df, config_df, prices_df))
+    pos = normalize_input(positions_df)
+    cfg = normalize_input(reserve_config)
+    if prices_df is None:
+        # Dashboard callers may pass two frames when prices are already carried
+        # by the position mart or reserve config.
+        if "price_usd" in pos:
+            px = pos.copy()
+        elif "price_usd_t0" in pos:
+            px = pos.rename(columns={"price_usd_t0": "price_usd"}).copy()
+        elif "price_usd" in cfg:
+            px = cfg.copy()
+        else:
+            raise ValueError("prices_df is required unless positions/config contain price_usd")
+    else:
+        px = normalize_input(prices_df)
     pos = pos.rename(columns={"wallet_address": "wallet_address"})
     if "wallet_address" not in pos:
         raise ValueError("positions_df requires wallet_address (or wallet alias)")

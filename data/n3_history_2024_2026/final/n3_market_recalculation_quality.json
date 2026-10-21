@@ -1,0 +1,10 @@
+{
+  "market_daily_rows": 2048,
+  "token_rows": 4096,
+  "token_missing_or_invalid_asof_prices": 0,
+  "daily_depeg_rows_with_both_prices": 1024,
+  "method": "Continuous within each token/pair across year boundaries; gap days blank",
+  "no_lookahead": true,
+  "not_all_market_volume": true,
+  "ratio_warning": "Daily reference; do not use as event-time/stress oracle price"
+}

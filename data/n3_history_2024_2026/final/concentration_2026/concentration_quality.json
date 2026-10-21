@@ -1,0 +1,36 @@
+{
+  "scope": "Aave V3 positions at N2 supplied 2026 snapshots only",
+  "source": "/Users/thylnh.iu/Downloads/N3_Aave_Day17_Two_Scripts/data/processed/aave/positions_long.parquet",
+  "snapshots": [
+    {
+      "snapshot_id": "A",
+      "wallets_in_positions": 28493,
+      "wallets_with_debt": 28493,
+      "debt_usd_total": 9427484969.034636,
+      "top_1_wallet_debt_pct": 10.661488432168028,
+      "top_5_wallet_debt_pct": 27.65698248612044,
+      "top_10_wallet_debt_pct": 36.45153374157533
+    },
+    {
+      "snapshot_id": "B",
+      "wallets_in_positions": 28545,
+      "wallets_with_debt": 28545,
+      "debt_usd_total": 9336947229.16934,
+      "top_1_wallet_debt_pct": 10.617463442145763,
+      "top_5_wallet_debt_pct": 27.309151662535893,
+      "top_10_wallet_debt_pct": 36.07976730510671
+    }
+  ],
+  "counted_collateral_filter_applied": true,
+  "no_historical_positions_2024_2025_inferred": true,
+  "hf_distribution": {
+    "source": "/Users/thylnh.iu/Downloads/N3_Aave_Day17_Two_Scripts/data/processed/aave/hf_reconciliation.parquet",
+    "snapshots": [
+      "A",
+      "B"
+    ],
+    "missing_reported_hf": 0,
+    "note": "N2 supplied report HF; calibration and wallet sample coverage not inferred."
+  },
+  "caveat": "These are positions in N2 sample; do not infer Compound network or global Aave coverage."
+}

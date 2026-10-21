@@ -92,3 +92,30 @@ __pycache__/
 *.backup
 *.backup_*
 .DS_Store
+
+# Local Python environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Backups and temporary files
+*backup*/
+*Backup*/
+*BACKUP*/
+*.bak
+*.bak_*
+*.tmp
+*checkpoint*
+_archive_old_liquidation_runs/
+
+# Export archives
+*.zip
+*.7z
+*.rar

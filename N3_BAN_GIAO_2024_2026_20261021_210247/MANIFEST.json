@@ -1,0 +1,159 @@
+{
+  "created_at": "20261021_210247",
+  "files": [
+    {
+      "file": "data/n3_history_2024_2026/final/market_daily_continuous.parquet",
+      "bytes": 202908,
+      "sha256": "1b491981ba31b89c2c48e94d900e8d97f3e5598a443939bd0d7c6a2bdc968692"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/market_crashes_hourly.parquet",
+      "bytes": 44404,
+      "sha256": "4168f1ace1972168b106fe3a7d6cf730316b94ed5fb52b24bb232d2c60040a78"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/token_prices_continuous.parquet",
+      "bytes": 241915,
+      "sha256": "2c9fa24bb46fdca2db8b3cce742637d01439da6eceeda2233e6cca39ee9b2a56"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_daily_steth_eth_reference.csv",
+      "bytes": 262818,
+      "sha256": "28812df405da5102962649d651ccbde4cd183e17c8741b6c00208b397b88ea13"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/market_quality_summary.json",
+      "bytes": 368,
+      "sha256": "aea245f3317fb39221a4e87bf2f9c8bdf366ea200ce69ee1ed1d627f7b71f8b9"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_market_recalculation_quality.json",
+      "bytes": 372,
+      "sha256": "ddc2eb98ca371e43f5e42dab76c3ea84bd018bb970edccc3cd6868654e1d4f76"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "sha256": "20d67d570585df11755c62d91262da01efe8c692c62c51b7506e4934ea453f07"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidations_quality.json",
+      "bytes": 4036,
+      "sha256": "0adb75c89271e4fa0dd5ea45eaf18d02128dbdf53c3e105b02ad5c7177c00c8a"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidations_daily.csv",
+      "bytes": 936,
+      "sha256": "771e642667369b4155082ded3fd15f1855ef245e198a4136d50075e77592065c"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidations_hourly.csv",
+      "bytes": 27413,
+      "sha256": "7c814eea17a50c2e1cc73dd9786ff84a775f7a0e2c09bf3292f54d52199bfbd4"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidation_asset_breakdown.csv",
+      "bytes": 5087,
+      "sha256": "69256db69089b19ab1967b495881864a98361351942eafd644b90f1d8b6bfae2"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/n3_liquidation_market_daily.csv",
+      "bytes": 2063,
+      "sha256": "3d671ece29adfd817ec55762f3180ccbad04aa9f2a4a98e03377dbd00e35761b"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_wallet.parquet",
+      "bytes": 3358606,
+      "sha256": "a2e9cafca18687a3d8b1cc9f5378d6e00d134323ef6969963d1bdffcc3acf733"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_asset.parquet",
+      "bytes": 7734,
+      "sha256": "c6175c9fda200f1a50dd7fd231a749a7ea1ce0edffaab535a8421b83ba7b4937"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/concentration_2026/hf_risk_distribution.parquet",
+      "bytes": 2647,
+      "sha256": "ffb2fb44a98aa3b913d39d6b1e8c3f6922b0f8452749879b67d555edc43da6d3"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/concentration_2026/concentration_quality.json",
+      "bytes": 1323,
+      "sha256": "b25f980a7083f8cece8a4fcee1f0adea5fac37a0086a1943f10451a18228aec8"
+    },
+    {
+      "file": "data/staging/n3_dex_liquidity.parquet",
+      "bytes": 23549,
+      "sha256": "4df89b27490883852ff039428a6ab32576450c806d217960db2ae655a7f63535"
+    },
+    {
+      "file": "outputs/tables/n3_dex_liquidity_quality.json",
+      "bytes": 1494,
+      "sha256": "6c7f1d26b7046bca34779298cef55be1df400f95b4b6f03a8466c36778bc16d2"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 301525,
+      "sha256": "c976072c9c3d8aa40241bfa3538b0ab48ade0ac82449cc11027495d550e4506d"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 374254,
+      "sha256": "71ea2e2754721f4b4fcab8a08112b6247d59cc8add0e2e90b8e5a51a7bfdf0de"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 223607,
+      "sha256": "f2318506a4e340d48445b1bb7aa7a7fd1997fdc50e96344c5b56b120b5ce6162"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 794,
+      "sha256": "788d77c291ce1a186350f230d30d96a2b65c3affdb17a8fa2024f9df60fa70d1"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1249,
+      "sha256": "28d2635342c76bc340738b4c1de9813e4c87cffb969549fb02909b8ddc8965e9"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2024_08/n3_period_manifest.json",
+      "bytes": 304,
+      "sha256": "f722329327d565e4aa70850ff9726e1b095e6771cf60a13bd7b4e03eb0a98a95"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 148547,
+      "sha256": "697902db6d2c5dde7f880f4ea6e0f6ffa928cfabf0fcff357fefba4398cc30bf"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 182979,
+      "sha256": "3647714680f13f3b7bbe1e12bb8c7b6f002b178a74ad034be02411f57a96538a"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 113583,
+      "sha256": "59b6faeb071116c94a11f100a238d7df5c72d9d60fd1b3faea7dbff036937f8c"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 792,
+      "sha256": "23b2665d09c6b3a77e08f3a158dcbb11d40fbff5b3a3613c3a99585979b4ae0e"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1188,
+      "sha256": "4cd1a6f95c5b95ee2e3f368aeadc81cd2bad09be79e18281acdc18e231f34006"
+    },
+    {
+      "file": "data/n3_history_2024_2026/liquidations/crash_2025_10/n3_period_manifest.json",
+      "bytes": 304,
+      "sha256": "97cd045809407d0aeff797c8ea9d269cd1cef68427c2060a0f4d13bd2ba73595"
+    }
+  ],
+  "missing_optional_or_expected": [
+    "data/n3_history_2024_2026/liquidations/crash_2024_08/n3_priced_manifest.json",
+    "data/n3_history_2024_2026/liquidations/crash_2025_10/n3_priced_manifest.json"
+  ]
+}

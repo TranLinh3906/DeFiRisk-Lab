@@ -119,3 +119,6 @@ _archive_old_liquidation_runs/
 *.zip
 *.7z
 *.rar
+
+# Large local raw export
+/borrow_events_raw.jsonl

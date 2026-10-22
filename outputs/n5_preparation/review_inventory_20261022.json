@@ -1,0 +1,4004 @@
+{
+  "scope": "Project source, documents and data; excludes git internals, dependency environments, caches and secret configuration contents. Parquet metadata inspected, not every data cell independently validated.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1359
+    },
+    {
+      "path": "borrow_events_raw.jsonl",
+      "bytes": 291112884
+    },
+    {
+      "path": "DATA_CONTRACT.docx",
+      "bytes": 53325
+    },
+    {
+      "path": "DeFi_Network_Contagion_Research_and_Data_Specification.docx",
+      "bytes": 250942
+    },
+    {
+      "path": "kpi_dictionary nhưng dễ đọc hơn.docx",
+      "bytes": 214449
+    },
+    {
+      "path": "kpi_dictionary.csv",
+      "bytes": 8544
+    },
+    {
+      "path": "literature_review.xlsx",
+      "bytes": 17117
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 6749
+    },
+    {
+      "path": "README.md",
+      "bytes": 14
+    },
+    {
+      "path": "README_N3_HANDOFF.md",
+      "bytes": 678
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 410
+    },
+    {
+      "path": "research_design.md",
+      "bytes": 16870
+    },
+    {
+      "path": "schema_storage_safe.py",
+      "bytes": 42061
+    },
+    {
+      "path": "STORAGE_SAFETY_GUIDE_VI (1).md",
+      "bytes": 7363
+    },
+    {
+      "path": "tmp_check.py",
+      "bytes": 608
+    },
+    {
+      "path": "tmp_emode.py",
+      "bytes": 881
+    },
+    {
+      "path": "tmp_hf.py",
+      "bytes": 460
+    },
+    {
+      "path": ".vscode/launch.json",
+      "bytes": 369
+    },
+    {
+      "path": ".vscode/settings.json",
+      "bytes": 524
+    },
+    {
+      "path": "config/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "config/n3_dex_pools.csv",
+      "bytes": 227
+    },
+    {
+      "path": "config/scenarios.yaml",
+      "bytes": 880
+    },
+    {
+      "path": "dashboard/pages/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "dashboard/services/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/marts/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/marts/borrower_risk.parquet",
+      "bytes": 3954931,
+      "rows": 57038,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "health_factor",
+        "risk_category",
+        "is_recursive_loop",
+        "emode_category"
+      ]
+    },
+    {
+      "path": "data/marts/cliff_curve.parquet",
+      "bytes": 11474,
+      "rows": 61,
+      "columns": [
+        "eth_shock",
+        "eth_drop_pct",
+        "debt_at_risk_usd",
+        "positions_at_risk",
+        "total_protocol_debt_usd",
+        "marginal_debt_at_risk_usd_per_pct",
+        "marginal_multiple_vs_median",
+        "is_cliff",
+        "debt_at_risk_pct",
+        "baseline_mart_debt_at_risk_usd",
+        "baseline_mart_debt_delta_usd"
+      ]
+    },
+    {
+      "path": "data/marts/descriptive_summary.json",
+      "bytes": 1717
+    },
+    {
+      "path": "data/marts/historical_daily.parquet",
+      "bytes": 5358,
+      "rows": 4,
+      "columns": [
+        "date_utc",
+        "liquidation_events",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "eth_usd_close",
+        "steth_eth_close",
+        "steth_discount_pct_close"
+      ]
+    },
+    {
+      "path": "data/marts/historical_daily.parquet.as.json",
+      "bytes": 1044
+    },
+    {
+      "path": "data/marts/overview_metrics.json",
+      "bytes": 238
+    },
+    {
+      "path": "data/marts/stress_heatmap.parquet",
+      "bytes": 3629,
+      "rows": 30,
+      "columns": [
+        "eth_shock",
+        "depeg_shock",
+        "debt_at_risk_usd",
+        "positions_at_risk_count"
+      ]
+    },
+    {
+      "path": "data/marts/stress_positions.parquet",
+      "bytes": 60763500,
+      "rows": 1083722,
+      "columns": [
+        "scenario_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet",
+        "hf_before",
+        "hf_after",
+        "debt_usd",
+        "debt_at_risk_usd",
+        "is_recursive_loop"
+      ]
+    },
+    {
+      "path": "data/marts/stress_summary.parquet",
+      "bytes": 6337,
+      "rows": 19,
+      "columns": [
+        "scenario_id",
+        "eth_shock",
+        "btc_shock",
+        "depeg_shock",
+        "positions_at_risk",
+        "debt_at_risk_usd",
+        "debt_at_risk_pct",
+        "looping_debt_at_risk_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/market_crashes_hourly.parquet",
+      "bytes": 44404,
+      "rows": 480,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/market_daily_continuous.parquet",
+      "bytes": 202908,
+      "rows": 2048,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file",
+        "log_return_continuous",
+        "realized_vol_30d_continuous_annualized"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/market_quality_summary.json",
+      "bytes": 385
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_daily_steth_eth_reference.csv",
+      "bytes": 263843
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_daily.csv",
+      "bytes": 947
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_hourly.csv",
+      "bytes": 27654
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "rows": 3107,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "period_tag",
+        "has_valid_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_quality.json",
+      "bytes": 4137
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidation_asset_breakdown.csv",
+      "bytes": 5143
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidation_market_daily.csv",
+      "bytes": 2074
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_market_recalculation_quality.json",
+      "bytes": 381
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/token_prices_continuous.parquet",
+      "bytes": 241915,
+      "rows": 4096,
+      "columns": [
+        "date",
+        "timestamp_utc",
+        "asset",
+        "price_usd",
+        "volume_usd",
+        "quote_timestamp_utc",
+        "status",
+        "source",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "repair_method",
+        "repair_status",
+        "source_file",
+        "valid_asof_quote",
+        "log_return_continuous",
+        "realized_vol_30d_continuous_annualized"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_asset.parquet",
+      "bytes": 7734,
+      "rows": 130,
+      "columns": [
+        "snapshot_id",
+        "token_address",
+        "debt_usd",
+        "collateral_usd_counted"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_wallet.parquet",
+      "bytes": 3358606,
+      "rows": 57038,
+      "columns": [
+        "snapshot_id",
+        "wallet_address",
+        "debt_usd",
+        "collateral_usd_counted"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_quality.json",
+      "bytes": 1358
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/hf_risk_distribution.parquet",
+      "bytes": 2647,
+      "rows": 12,
+      "columns": [
+        "snapshot_id",
+        "hf_risk_bucket",
+        "wallet_count"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/n3_period_manifest.json",
+      "bytes": 312
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 301525,
+      "rows": 2178,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 223607,
+      "rows": 2139,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 374254,
+      "rows": 2178,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 813
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1284
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/n3_period_manifest.json",
+      "bytes": 312
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 148547,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 113583,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 182979,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 811
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1221
+    },
+    {
+      "path": "data/processed/dim_asset_config.parquet",
+      "bytes": 3476,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "snapshot_timestamp",
+        "protocol_id",
+        "token_address",
+        "token_symbol",
+        "asset_class",
+        "decimals",
+        "price_usd_t0",
+        "price_eth_t0",
+        "ltv_std",
+        "lt_std",
+        "liq_bonus_std",
+        "lt_emode",
+        "liq_bonus_emode",
+        "dex_depth_2pct_usd",
+        "lambda_impact",
+        "gamma_exponent"
+      ]
+    },
+    {
+      "path": "data/processed/fact_historical_liquidations.parquet",
+      "bytes": 3157,
+      "rows": 0,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/processed/fact_wallet_positions.parquet",
+      "bytes": 3380,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "token_address",
+        "is_collateral_enabled",
+        "emode_category",
+        "is_isolated_collateral",
+        "collateral_amount_norm",
+        "collateral_usd_t0",
+        "debt_amount_norm",
+        "debt_usd_t0",
+        "effective_lt",
+        "effective_liq_bonus"
+      ]
+    },
+    {
+      "path": "data/processed/fact_wallet_summary.parquet",
+      "bytes": 4213,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "emode_category",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "weighted_collateral_lt_usd",
+        "net_equity_usd",
+        "equity_bucket",
+        "effective_leverage",
+        "hf_calculated_t0",
+        "hf_reported_t0",
+        "dist_to_liq_pct",
+        "dominant_collateral_symbol",
+        "dominant_debt_symbol",
+        "is_recursive_loop",
+        "is_multi_collateral",
+        "is_cross_protocol"
+      ]
+    },
+    {
+      "path": "data/processed/graph_network_edges.parquet",
+      "bytes": 2260,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "edge_id",
+        "source_node_id",
+        "source_layer",
+        "target_node_id",
+        "target_layer",
+        "edge_type",
+        "protocol_id",
+        "weight_usd_t0",
+        "effective_lt"
+      ]
+    },
+    {
+      "path": "data/processed/aave/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/processed/aave/account_reference.parquet",
+      "bytes": 10038679,
+      "rows": 174674,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "call_ok",
+        "total_collateral_base_usd",
+        "total_debt_base_usd",
+        "available_borrows_base_usd",
+        "weighted_lt_bps",
+        "weighted_ltv_bps",
+        "health_factor_reported",
+        "emode_category_user",
+        "has_debt"
+      ]
+    },
+    {
+      "path": "data/processed/aave/borrower_candidates.parquet",
+      "bytes": 4711848,
+      "rows": 87388,
+      "columns": [
+        "wallet_address",
+        "first_borrow_block",
+        "last_borrow_block",
+        "n_borrow_events",
+        "in_candidate_A",
+        "in_candidate_B"
+      ]
+    },
+    {
+      "path": "data/processed/aave/borrower_positions.parquet",
+      "bytes": 9206655,
+      "rows": 147431,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "token_address",
+        "token_symbol",
+        "supplied_amount_norm",
+        "collateral_amount",
+        "debt_amount",
+        "variable_debt_amount_norm",
+        "stable_debt_amount_norm",
+        "collateral_enabled",
+        "emode_category",
+        "price_usd_t0",
+        "supplied_usd_t0",
+        "collateral_usd_t0",
+        "debt_usd_t0",
+        "lt_std",
+        "effective_lt",
+        "counted_as_collateral",
+        "reserve_debt_ceiling_raw_2dec",
+        "is_isolated_collateral",
+        "effective_liq_bonus"
+      ]
+    },
+    {
+      "path": "data/processed/aave/coverage_report.md",
+      "bytes": 5847
+    },
+    {
+      "path": "data/processed/aave/emode_membership.parquet",
+      "bytes": 14938,
+      "rows": 378,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "emode_category",
+        "emode_label",
+        "reserve_id",
+        "token_address",
+        "symbol",
+        "is_collateral",
+        "is_borrowable",
+        "emode_ltv_bps",
+        "emode_lt_bps",
+        "emode_bonus_raw_bps",
+        "emode_bonus_premium"
+      ]
+    },
+    {
+      "path": "data/processed/aave/hf_reconciliation.parquet",
+      "bytes": 8219566,
+      "rows": 57038,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet",
+        "collateral_usd_calc",
+        "debt_usd_calc",
+        "coll_x_lt",
+        "total_collateral_base_usd",
+        "total_debt_base_usd",
+        "health_factor_reported",
+        "emode_category_user",
+        "hf_calc",
+        "hf_abs_err",
+        "hf_rel_err",
+        "debt_rel_err",
+        "coll_rel_err"
+      ]
+    },
+    {
+      "path": "data/processed/aave/lido_ratios.parquet",
+      "bytes": 4589,
+      "rows": 2,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "wsteth_address",
+        "steth_per_wsteth",
+        "source"
+      ]
+    },
+    {
+      "path": "data/processed/aave/normalization_quality.json",
+      "bytes": 365
+    },
+    {
+      "path": "data/processed/aave/oracle_prices.parquet",
+      "bytes": 20212,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "token_address",
+        "token_symbol",
+        "decimals",
+        "oracle_price_raw",
+        "price_usd",
+        "base_currency_unit",
+        "aave_oracle",
+        "price_source",
+        "feed_description",
+        "aggregator_impl",
+        "feed_updated_at_utc",
+        "feed_staleness_sec"
+      ]
+    },
+    {
+      "path": "data/processed/aave/positions_long.parquet",
+      "bytes": 8971791,
+      "rows": 147431,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "token_address",
+        "symbol",
+        "decimals",
+        "a_balance_raw",
+        "stable_debt_raw",
+        "variable_debt_raw",
+        "coll_flag",
+        "collateral_amount",
+        "debt_amount",
+        "price_usd",
+        "collateral_usd",
+        "debt_usd",
+        "user_emode",
+        "lt_std",
+        "lt_eff",
+        "counted_collateral"
+      ]
+    },
+    {
+      "path": "data/processed/aave/protocol_reconciliation.parquet",
+      "bytes": 20628,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "token_address",
+        "symbol",
+        "decimals",
+        "price_usd",
+        "protocol_debt_units",
+        "wallet_debt_units",
+        "debt_coverage",
+        "protocol_debt_usd",
+        "wallet_debt_usd",
+        "atoken_supply_units",
+        "wallet_supplied_units",
+        "supply_share_held_by_debt_wallets",
+        "supply_call_failed"
+      ]
+    },
+    {
+      "path": "data/processed/aave/reserve_config.parquet",
+      "bytes": 19188,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "token_address",
+        "symbol",
+        "decimals",
+        "decimals_matches_state_check",
+        "ltv_bps",
+        "lt_bps",
+        "liq_bonus_raw_bps",
+        "ltv_std",
+        "lt_std",
+        "liq_bonus_std_premium",
+        "reserve_factor",
+        "usage_as_collateral",
+        "borrowing_enabled",
+        "is_active",
+        "is_frozen",
+        "is_paused",
+        "siloed_borrowing",
+        "borrow_cap",
+        "supply_cap",
+        "debt_ceiling_raw_2dec"
+      ]
+    },
+    {
+      "path": "data/processed/aave/snapshot_metadata.json",
+      "bytes": 5258
+    },
+    {
+      "path": "data/processed/aave/token_registry.csv",
+      "bytes": 3725
+    },
+    {
+      "path": "data/processed/market/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/processed/market/price_history.parquet",
+      "bytes": 4445,
+      "rows": 24,
+      "columns": [
+        "date",
+        "timestamp",
+        "asset",
+        "price_usd",
+        "price_type",
+        "source"
+      ]
+    },
+    {
+      "path": "data/raw/aave/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/raw/aave/account_data_raw_A.jsonl",
+      "bytes": 26273442
+    },
+    {
+      "path": "data/raw/aave/account_data_raw_B.jsonl",
+      "bytes": 26304167
+    },
+    {
+      "path": "data/raw/aave/borrow_scan_progress.json",
+      "bytes": 34
+    },
+    {
+      "path": "data/raw/aave/emode_probe.json",
+      "bytes": 71361
+    },
+    {
+      "path": "data/raw/aave/positions_raw_A.jsonl",
+      "bytes": 17259006
+    },
+    {
+      "path": "data/raw/aave/positions_raw_B.jsonl",
+      "bytes": 17294547
+    },
+    {
+      "path": "data/raw/aave/state_check.json",
+      "bytes": 84942
+    },
+    {
+      "path": "data/raw/aave/user_config_raw_A.jsonl",
+      "bytes": 2299585
+    },
+    {
+      "path": "data/raw/aave/user_config_raw_B.jsonl",
+      "bytes": 2304207
+    },
+    {
+      "path": "data/raw/market/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "data/raw/market/etherscan_liquidations_raw.csv",
+      "bytes": 32456
+    },
+    {
+      "path": "data/raw/market/n3_defillama_price_cache.json",
+      "bytes": 12376
+    },
+    {
+      "path": "data/raw/market/prices_raw.csv",
+      "bytes": 68398
+    },
+    {
+      "path": "data/staging/n3_dex_liquidity.parquet",
+      "bytes": 23549,
+      "rows": 8,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp_utc",
+        "chain_id",
+        "protocol_id",
+        "dex",
+        "pool_address",
+        "token_in",
+        "token_out",
+        "token_in_address",
+        "token_out_address",
+        "fee_tier",
+        "snapshot_block_hash",
+        "spot_output_raw_per_input_raw",
+        "reference_quote_method",
+        "input_token_usd_oracle",
+        "usd_conversion_method",
+        "dex_depth_2pct_usd",
+        "observed_impact_pct",
+        "max_search_usd",
+        "quote_calls",
+        "depth_lower_bound_usd",
+        "depth_upper_bound_usd",
+        "depth_bracket_width_usd",
+        "impact_below_depth_pct",
+        "impact_at_cap_pct",
+        "numerical_tolerance_usd",
+        "status",
+        "reconstruction_method",
+        "data_source",
+        "limitations",
+        "error_type"
+      ]
+    },
+    {
+      "path": "data/staging/n3_liquidations.parquet",
+      "bytes": 29937,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "n3_validation_status"
+      ]
+    },
+    {
+      "path": "data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 20312,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 15795,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/staging/n3_liquidations_holdout_24h.parquet",
+      "bytes": 13382,
+      "rows": 30,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/staging/n3_liquidations_priced.parquet",
+      "bytes": 29336,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "data/staging/n3_market_ratios.parquet",
+      "bytes": 7675,
+      "rows": 96,
+      "columns": [
+        "timestamp_hour_utc",
+        "steth_eth_market_ratio",
+        "wsteth_eth_market_ratio",
+        "wsteth_steth_market_ratio",
+        "source"
+      ]
+    },
+    {
+      "path": "data/staging/n3_price_timeseries.parquet",
+      "bytes": 27950,
+      "rows": 1000,
+      "columns": [
+        "timestamp",
+        "asset",
+        "token_address",
+        "quote_asset",
+        "price_value",
+        "price_type",
+        "source",
+        "snapshot_block",
+        "reference_timestamp",
+        "staleness_seconds",
+        "note"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/.git",
+      "bytes": 78
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/.gitignore",
+      "bytes": 1064
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/kpi_dictionary.csv",
+      "bytes": 8544
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/literature_review.xlsx",
+      "bytes": 17117
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/README.md",
+      "bytes": 14
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/requirements.txt",
+      "bytes": 410
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/research_design.md",
+      "bytes": 16870
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/schema_storage_safe.py",
+      "bytes": 42061
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/STORAGE_SAFETY_GUIDE_VI (1).md",
+      "bytes": 7363
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tmp_check.py",
+      "bytes": 608
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tmp_emode.py",
+      "bytes": 881
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tmp_hf.py",
+      "bytes": 460
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/.vscode/launch.json",
+      "bytes": 369
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/.vscode/settings.json",
+      "bytes": 524
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/config/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/config/n3_dex_pools.csv",
+      "bytes": 227
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/config/scenarios.yaml",
+      "bytes": 880
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/dashboard/pages/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/dashboard/services/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/borrower_risk.parquet",
+      "bytes": 3954931,
+      "rows": 57038,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "health_factor",
+        "risk_category",
+        "is_recursive_loop",
+        "emode_category"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/cliff_curve.parquet",
+      "bytes": 11474,
+      "rows": 61,
+      "columns": [
+        "eth_shock",
+        "eth_drop_pct",
+        "debt_at_risk_usd",
+        "positions_at_risk",
+        "total_protocol_debt_usd",
+        "marginal_debt_at_risk_usd_per_pct",
+        "marginal_multiple_vs_median",
+        "is_cliff",
+        "debt_at_risk_pct",
+        "baseline_mart_debt_at_risk_usd",
+        "baseline_mart_debt_delta_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/descriptive_summary.json",
+      "bytes": 1717
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/historical_daily.parquet",
+      "bytes": 5358,
+      "rows": 4,
+      "columns": [
+        "date_utc",
+        "liquidation_events",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "eth_usd_close",
+        "steth_eth_close",
+        "steth_discount_pct_close"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/historical_daily.parquet.as.json",
+      "bytes": 1044
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/overview_metrics.json",
+      "bytes": 238
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/stress_heatmap.parquet",
+      "bytes": 3629,
+      "rows": 30,
+      "columns": [
+        "eth_shock",
+        "depeg_shock",
+        "debt_at_risk_usd",
+        "positions_at_risk_count"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/stress_positions.parquet",
+      "bytes": 60763500,
+      "rows": 1083722,
+      "columns": [
+        "scenario_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet",
+        "hf_before",
+        "hf_after",
+        "debt_usd",
+        "debt_at_risk_usd",
+        "is_recursive_loop"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/marts/stress_summary.parquet",
+      "bytes": 6337,
+      "rows": 19,
+      "columns": [
+        "scenario_id",
+        "eth_shock",
+        "btc_shock",
+        "depeg_shock",
+        "positions_at_risk",
+        "debt_at_risk_usd",
+        "debt_at_risk_pct",
+        "looping_debt_at_risk_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/dim_asset_config.parquet",
+      "bytes": 3476,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "snapshot_timestamp",
+        "protocol_id",
+        "token_address",
+        "token_symbol",
+        "asset_class",
+        "decimals",
+        "price_usd_t0",
+        "price_eth_t0",
+        "ltv_std",
+        "lt_std",
+        "liq_bonus_std",
+        "lt_emode",
+        "liq_bonus_emode",
+        "dex_depth_2pct_usd",
+        "lambda_impact",
+        "gamma_exponent"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/fact_historical_liquidations.parquet",
+      "bytes": 3157,
+      "rows": 0,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/fact_wallet_positions.parquet",
+      "bytes": 3380,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "token_address",
+        "is_collateral_enabled",
+        "emode_category",
+        "is_isolated_collateral",
+        "collateral_amount_norm",
+        "collateral_usd_t0",
+        "debt_amount_norm",
+        "debt_usd_t0",
+        "effective_lt",
+        "effective_liq_bonus"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/fact_wallet_summary.parquet",
+      "bytes": 4213,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "emode_category",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "weighted_collateral_lt_usd",
+        "net_equity_usd",
+        "equity_bucket",
+        "effective_leverage",
+        "hf_calculated_t0",
+        "hf_reported_t0",
+        "dist_to_liq_pct",
+        "dominant_collateral_symbol",
+        "dominant_debt_symbol",
+        "is_recursive_loop",
+        "is_multi_collateral",
+        "is_cross_protocol"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/graph_network_edges.parquet",
+      "bytes": 2260,
+      "rows": 0,
+      "columns": [
+        "snapshot_block",
+        "edge_id",
+        "source_node_id",
+        "source_layer",
+        "target_node_id",
+        "target_layer",
+        "edge_type",
+        "protocol_id",
+        "weight_usd_t0",
+        "effective_lt"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/account_reference.parquet",
+      "bytes": 10038679,
+      "rows": 174674,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "call_ok",
+        "total_collateral_base_usd",
+        "total_debt_base_usd",
+        "available_borrows_base_usd",
+        "weighted_lt_bps",
+        "weighted_ltv_bps",
+        "health_factor_reported",
+        "emode_category_user",
+        "has_debt"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/borrower_candidates.parquet",
+      "bytes": 4711848,
+      "rows": 87388,
+      "columns": [
+        "wallet_address",
+        "first_borrow_block",
+        "last_borrow_block",
+        "n_borrow_events",
+        "in_candidate_A",
+        "in_candidate_B"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/borrower_positions.parquet",
+      "bytes": 9206655,
+      "rows": 147431,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "token_address",
+        "token_symbol",
+        "supplied_amount_norm",
+        "collateral_amount",
+        "debt_amount",
+        "variable_debt_amount_norm",
+        "stable_debt_amount_norm",
+        "collateral_enabled",
+        "emode_category",
+        "price_usd_t0",
+        "supplied_usd_t0",
+        "collateral_usd_t0",
+        "debt_usd_t0",
+        "lt_std",
+        "effective_lt",
+        "counted_as_collateral",
+        "reserve_debt_ceiling_raw_2dec",
+        "is_isolated_collateral",
+        "effective_liq_bonus"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/coverage_report.md",
+      "bytes": 5847
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/emode_membership.parquet",
+      "bytes": 14938,
+      "rows": 378,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "emode_category",
+        "emode_label",
+        "reserve_id",
+        "token_address",
+        "symbol",
+        "is_collateral",
+        "is_borrowable",
+        "emode_ltv_bps",
+        "emode_lt_bps",
+        "emode_bonus_raw_bps",
+        "emode_bonus_premium"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/hf_reconciliation.parquet",
+      "bytes": 8219566,
+      "rows": 57038,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet",
+        "collateral_usd_calc",
+        "debt_usd_calc",
+        "coll_x_lt",
+        "total_collateral_base_usd",
+        "total_debt_base_usd",
+        "health_factor_reported",
+        "emode_category_user",
+        "hf_calc",
+        "hf_abs_err",
+        "hf_rel_err",
+        "debt_rel_err",
+        "coll_rel_err"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/lido_ratios.parquet",
+      "bytes": 4589,
+      "rows": 2,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "wsteth_address",
+        "steth_per_wsteth",
+        "source"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/normalization_quality.json",
+      "bytes": 365
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/oracle_prices.parquet",
+      "bytes": 20212,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "token_address",
+        "token_symbol",
+        "decimals",
+        "oracle_price_raw",
+        "price_usd",
+        "base_currency_unit",
+        "aave_oracle",
+        "price_source",
+        "feed_description",
+        "aggregator_impl",
+        "feed_updated_at_utc",
+        "feed_staleness_sec"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/positions_long.parquet",
+      "bytes": 8971791,
+      "rows": 147431,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "token_address",
+        "symbol",
+        "decimals",
+        "a_balance_raw",
+        "stable_debt_raw",
+        "variable_debt_raw",
+        "coll_flag",
+        "collateral_amount",
+        "debt_amount",
+        "price_usd",
+        "collateral_usd",
+        "debt_usd",
+        "user_emode",
+        "lt_std",
+        "lt_eff",
+        "counted_collateral"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/protocol_reconciliation.parquet",
+      "bytes": 20628,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "token_address",
+        "symbol",
+        "decimals",
+        "price_usd",
+        "protocol_debt_units",
+        "wallet_debt_units",
+        "debt_coverage",
+        "protocol_debt_usd",
+        "wallet_debt_usd",
+        "atoken_supply_units",
+        "wallet_supplied_units",
+        "supply_share_held_by_debt_wallets",
+        "supply_call_failed"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/reserve_config.parquet",
+      "bytes": 19188,
+      "rows": 134,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp",
+        "token_address",
+        "symbol",
+        "decimals",
+        "decimals_matches_state_check",
+        "ltv_bps",
+        "lt_bps",
+        "liq_bonus_raw_bps",
+        "ltv_std",
+        "lt_std",
+        "liq_bonus_std_premium",
+        "reserve_factor",
+        "usage_as_collateral",
+        "borrowing_enabled",
+        "is_active",
+        "is_frozen",
+        "is_paused",
+        "siloed_borrowing",
+        "borrow_cap",
+        "supply_cap",
+        "debt_ceiling_raw_2dec"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/snapshot_metadata.json",
+      "bytes": 5258
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/aave/token_registry.csv",
+      "bytes": 3725
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/market/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/processed/market/price_history.parquet",
+      "bytes": 4445,
+      "rows": 24,
+      "columns": [
+        "date",
+        "timestamp",
+        "asset",
+        "price_usd",
+        "price_type",
+        "source"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/account_data_raw_A.jsonl",
+      "bytes": 26273442
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/account_data_raw_B.jsonl",
+      "bytes": 26304167
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/borrow_scan_progress.json",
+      "bytes": 34
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/emode_probe.json",
+      "bytes": 71361
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/positions_raw_A.jsonl",
+      "bytes": 17259006
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/positions_raw_B.jsonl",
+      "bytes": 17294547
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/state_check.json",
+      "bytes": 84942
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/user_config_raw_A.jsonl",
+      "bytes": 2299585
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/aave/user_config_raw_B.jsonl",
+      "bytes": 2304207
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/market/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/market/etherscan_liquidations_raw.csv",
+      "bytes": 32456
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/market/n3_defillama_price_cache.json",
+      "bytes": 12376
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/raw/market/prices_raw.csv",
+      "bytes": 68398
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_dex_liquidity.parquet",
+      "bytes": 23549,
+      "rows": 8,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp_utc",
+        "chain_id",
+        "protocol_id",
+        "dex",
+        "pool_address",
+        "token_in",
+        "token_out",
+        "token_in_address",
+        "token_out_address",
+        "fee_tier",
+        "snapshot_block_hash",
+        "spot_output_raw_per_input_raw",
+        "reference_quote_method",
+        "input_token_usd_oracle",
+        "usd_conversion_method",
+        "dex_depth_2pct_usd",
+        "observed_impact_pct",
+        "max_search_usd",
+        "quote_calls",
+        "depth_lower_bound_usd",
+        "depth_upper_bound_usd",
+        "depth_bracket_width_usd",
+        "impact_below_depth_pct",
+        "impact_at_cap_pct",
+        "numerical_tolerance_usd",
+        "status",
+        "reconstruction_method",
+        "data_source",
+        "limitations",
+        "error_type"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_liquidations.parquet",
+      "bytes": 29937,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "n3_validation_status"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 20312,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 15795,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_liquidations_holdout_24h.parquet",
+      "bytes": 13382,
+      "rows": 30,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 29336,
+      "rows": 42,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_market_ratios.parquet",
+      "bytes": 7675,
+      "rows": 96,
+      "columns": [
+        "timestamp_hour_utc",
+        "steth_eth_market_ratio",
+        "wsteth_eth_market_ratio",
+        "wsteth_steth_market_ratio",
+        "source"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/data/staging/n3_price_timeseries.parquet",
+      "bytes": 27950,
+      "rows": 1000,
+      "columns": [
+        "timestamp",
+        "asset",
+        "token_address",
+        "quote_asset",
+        "price_value",
+        "price_type",
+        "source",
+        "snapshot_block",
+        "reference_timestamp",
+        "staleness_seconds",
+        "note"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/data_contract.md",
+      "bytes": 13286
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/HUONG_DAN_CHAY_N3_17_10.md",
+      "bytes": 8724
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/HUONG_DAN_N2_AAVE_V3.md",
+      "bytes": 17542
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/MAP_N1_N2_N3.md",
+      "bytes": 1606
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/n3_liquidations_dune.sql",
+      "bytes": 2432
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/docs/tests/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/figures/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/figures/n3_collateral_by_token.png",
+      "bytes": 37786
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/figures/n3_debt_repaid_daily.png",
+      "bytes": 46399
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/figures/n3_liquidation_eth_timeline.png",
+      "bytes": 85981
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/figures/n3_steth_eth_depeg_timeline.png",
+      "bytes": 108352
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/descriptive_statistics.csv",
+      "bytes": 1042
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_collateral_breakdown.csv",
+      "bytes": 1021
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_debt_breakdown.csv",
+      "bytes": 935
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_descriptive_quality.json",
+      "bytes": 1505
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_dex_liquidity_quality.json",
+      "bytes": 1519
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 809
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_liquidations_daily.csv",
+      "bytes": 622
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_liquidations_final_quality.json",
+      "bytes": 2431
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_liquidations_hourly.csv",
+      "bytes": 4346
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_liquidation_event_market_alignment.csv",
+      "bytes": 30033
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_liquidation_market_hourly.csv",
+      "bytes": 23337
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_price_quality.json",
+      "bytes": 800
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_price_timeseries_quality.json",
+      "bytes": 2489
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1162
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/outputs/tables/out_simulation_results.parquet",
+      "bytes": 4464,
+      "rows": 0,
+      "columns": [
+        "run_id",
+        "snapshot_block",
+        "question_id",
+        "scenario_name",
+        "cf_rule",
+        "cascade_round",
+        "protocol_id",
+        "segment_group",
+        "round_liq_vol_usd",
+        "cum_liq_vol_usd",
+        "pos_bad_debt_usd",
+        "bad_debt_ratio_pct",
+        "equity_norm_loss_pct",
+        "prob_bad_debt_pct",
+        "tail_loss_es99_usd",
+        "dex_price_impact_pct",
+        "seq_liquidated_count",
+        "cascade_amp_factor",
+        "liq_freeze_vol_usd",
+        "healthy_to_liq_rate_pct",
+        "cross_protocol_contagion_pct"
+      ]
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/paper/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/scripts/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/scripts/qa_n3_delivery.py",
+      "bytes": 11826
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/requirements_n3_muc4_muc5.txt",
+      "bytes": 109
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/analysis/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/analysis/descriptive.py",
+      "bytes": 22234
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/build_oracle_prices.py",
+      "bytes": 4768
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/check_rpc.py",
+      "bytes": 2883
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/check_state.py",
+      "bytes": 8043
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_account_data.py",
+      "bytes": 6579
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_borrowers.py",
+      "bytes": 7385
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_dex_liquidity.py",
+      "bytes": 30196
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_liquidations.py",
+      "bytes": 14477
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_positions.py",
+      "bytes": 13872
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_prices.py",
+      "bytes": 10560
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/fetch_reserve_config.py",
+      "bytes": 8287
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/finalize_liquidations.py",
+      "bytes": 17935
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/map_emode_assets.py",
+      "bytes": 5609
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/n3_price_timeseries.py",
+      "bytes": 24275
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/normalize_aave.py",
+      "bytes": 8583
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/price_liquidations_usd.py",
+      "bytes": 19483
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/reconcile_protocol_totals.py",
+      "bytes": 6986
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/data/write_snapshot_metadata.py",
+      "bytes": 3168
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/models/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/models/cliff_reverse.py",
+      "bytes": 9468
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/models/health_factor.py",
+      "bytes": 13767
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/src/models/stress_test.py",
+      "bytes": 16608
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/test_cliff_reverse.py",
+      "bytes": 1993
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/test_depth_precision.py",
+      "bytes": 2885
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/test_health_factor.py",
+      "bytes": 2916
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/test_n3_m4_m5.py",
+      "bytes": 6430
+    },
+    {
+      "path": "DeFiRisk-Lab-updated-main/tests/test_stress.py",
+      "bytes": 2241
+    },
+    {
+      "path": "docs/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "docs/data_contract.md",
+      "bytes": 13286
+    },
+    {
+      "path": "docs/HUONG_DAN_CASCADE_DEMO.md",
+      "bytes": 7192
+    },
+    {
+      "path": "docs/HUONG_DAN_CHAY_N3_17_10.md",
+      "bytes": 8724
+    },
+    {
+      "path": "docs/HUONG_DAN_N2_AAVE_V3.md",
+      "bytes": 17542
+    },
+    {
+      "path": "docs/HUONG_DAN_N5_PREPARATION.md",
+      "bytes": 9031
+    },
+    {
+      "path": "docs/MAP_N1_N2_N3.md",
+      "bytes": 1606
+    },
+    {
+      "path": "docs/n3_liquidations_dune.sql",
+      "bytes": 2432
+    },
+    {
+      "path": "docs/tests/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/MANIFEST.json",
+      "bytes": 6591
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/README_N3_HANDOFF.md",
+      "bytes": 661
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/market_crashes_hourly.parquet",
+      "bytes": 44404,
+      "rows": 480,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/market_daily_continuous.parquet",
+      "bytes": 202908,
+      "rows": 2048,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file",
+        "log_return_continuous",
+        "realized_vol_30d_continuous_annualized"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/market_quality_summary.json",
+      "bytes": 368
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_daily_steth_eth_reference.csv",
+      "bytes": 262818
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidations_daily.csv",
+      "bytes": 936
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidations_hourly.csv",
+      "bytes": 27413
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "rows": 3107,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd",
+        "period_tag",
+        "has_valid_usd"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidations_quality.json",
+      "bytes": 4036
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidation_asset_breakdown.csv",
+      "bytes": 5087
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_liquidation_market_daily.csv",
+      "bytes": 2063
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/n3_market_recalculation_quality.json",
+      "bytes": 372
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/token_prices_continuous.parquet",
+      "bytes": 241915,
+      "rows": 4096,
+      "columns": [
+        "date",
+        "timestamp_utc",
+        "asset",
+        "price_usd",
+        "volume_usd",
+        "quote_timestamp_utc",
+        "status",
+        "source",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "repair_method",
+        "repair_status",
+        "source_file",
+        "valid_asof_quote",
+        "log_return_continuous",
+        "realized_vol_30d_continuous_annualized"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/concentration_2026/concentration_by_asset.parquet",
+      "bytes": 7734,
+      "rows": 130,
+      "columns": [
+        "snapshot_id",
+        "token_address",
+        "debt_usd",
+        "collateral_usd_counted"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/concentration_2026/concentration_by_wallet.parquet",
+      "bytes": 3358606,
+      "rows": 57038,
+      "columns": [
+        "snapshot_id",
+        "wallet_address",
+        "debt_usd",
+        "collateral_usd_counted"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/concentration_2026/concentration_quality.json",
+      "bytes": 1323
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/final/concentration_2026/hf_risk_distribution.parquet",
+      "bytes": 2647,
+      "rows": 12,
+      "columns": [
+        "snapshot_id",
+        "hf_risk_bucket",
+        "wallet_count"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/n3_period_manifest.json",
+      "bytes": 304
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 301525,
+      "rows": 2178,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 223607,
+      "rows": 2139,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 374254,
+      "rows": 2178,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 794
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1249
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/n3_period_manifest.json",
+      "bytes": 304
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_etherscan.parquet",
+      "bytes": 148547,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_for_fact.parquet",
+      "bytes": 113583,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_priced.parquet",
+      "bytes": 182979,
+      "rows": 929,
+      "columns": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_raw_amount",
+        "collateral_raw_amount",
+        "receive_atoken",
+        "debt_decimals",
+        "collateral_decimals",
+        "debt_amount_token",
+        "collateral_amount_token",
+        "price_bucket_ts",
+        "debt_price_usd",
+        "collateral_price_usd",
+        "debt_price_timestamp",
+        "collateral_price_timestamp",
+        "debt_price_confidence",
+        "collateral_price_confidence",
+        "debt_quote_status",
+        "collateral_quote_status",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_etherscan_quality.json",
+      "bytes": 792
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1188
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/data/staging/n3_dex_liquidity.parquet",
+      "bytes": 23549,
+      "rows": 8,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "snapshot_timestamp_utc",
+        "chain_id",
+        "protocol_id",
+        "dex",
+        "pool_address",
+        "token_in",
+        "token_out",
+        "token_in_address",
+        "token_out_address",
+        "fee_tier",
+        "snapshot_block_hash",
+        "spot_output_raw_per_input_raw",
+        "reference_quote_method",
+        "input_token_usd_oracle",
+        "usd_conversion_method",
+        "dex_depth_2pct_usd",
+        "observed_impact_pct",
+        "max_search_usd",
+        "quote_calls",
+        "depth_lower_bound_usd",
+        "depth_upper_bound_usd",
+        "depth_bracket_width_usd",
+        "impact_below_depth_pct",
+        "impact_at_cap_pct",
+        "numerical_tolerance_usd",
+        "status",
+        "reconstruction_method",
+        "data_source",
+        "limitations",
+        "error_type"
+      ]
+    },
+    {
+      "path": "N3_BAN_GIAO_2024_2026_20261021_210247/outputs/tables/n3_dex_liquidity_quality.json",
+      "bytes": 1494
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/README_DAU_TIEN.md",
+      "bytes": 867
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/requirements_n3_compound.txt",
+      "bytes": 73
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/config/n3_compound_markets.csv",
+      "bytes": 175
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/config/n3_compound_team_assignment.json",
+      "bytes": 1546811
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_account_reference.parquet",
+      "bytes": 8275,
+      "rows": 18,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_failed_queries.json",
+      "bytes": 7191
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_overlap_wallets.parquet",
+      "bytes": 6988,
+      "rows": 14,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_positions_long.parquet",
+      "bytes": 9338,
+      "rows": 24,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_quality.json",
+      "bytes": 1692
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/n3_compound_reserve_config.parquet",
+      "bytes": 13752,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/compound_consolidated_partial.sqlite",
+      "bytes": 20467712
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/merge_report.json",
+      "bytes": 3599
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/missing_queries.csv",
+      "bytes": 1286553
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/n3_compound_account_reference_partial.parquet",
+      "bytes": 56222,
+      "rows": 1218,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/n3_compound_overlap_wallets_partial.parquet",
+      "bytes": 54006,
+      "rows": 1121,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/n3_compound_positions_long_partial.parquet",
+      "bytes": 73930,
+      "rows": 1694,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/n3_compound_reserve_config_partial.parquet",
+      "bytes": 13752,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/consolidated_partial_20261022/README.md",
+      "bytes": 4469
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_account_reference.parquet",
+      "bytes": 21750,
+      "rows": 357,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_failed_queries.json",
+      "bytes": 7359
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 20211,
+      "rows": 331,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_positions_long.parquet",
+      "bytes": 28520,
+      "rows": 538,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_quality.json",
+      "bytes": 2385
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13752,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/raw/compound/n3_overlap_checkpoint.jsonl",
+      "bytes": 7248811
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/data/raw/compound/team_6105d9df30ba/shard_000_of_006/n3_overlap_checkpoint.jsonl",
+      "bytes": 23146222
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/docs/HUONG_DAN_CHIA_NHOM.md",
+      "bytes": 5237
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/docs/HUONG_DAN_CHIA_TU_CHECKPOINT.md",
+      "bytes": 14464
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/docs/N3_COMPOUND_Q3_README.md",
+      "bytes": 6131
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/scripts/merge_n3_compound.py",
+      "bytes": 5763
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/scripts/prepare_n3_compound_team.py",
+      "bytes": 3841
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/scripts/qa_n3_compound.py",
+      "bytes": 4062
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/src/data/fetch_compound_overlap.py",
+      "bytes": 34729
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/tests/test_n3_compound_merge.py",
+      "bytes": 5651
+    },
+    {
+      "path": "N3_Compound_Q3_Overlap_VSCode/tests/test_n3_compound_overlap.py",
+      "bytes": 8771
+    },
+    {
+      "path": "outputs/demo/cascade/cascade_rounds.csv",
+      "bytes": 2605
+    },
+    {
+      "path": "outputs/demo/cascade/cascade_rounds.parquet",
+      "bytes": 8249,
+      "rows": 5,
+      "columns": [
+        "run_id",
+        "scenario_id",
+        "cf_rule",
+        "model_version",
+        "data_kind",
+        "round",
+        "newly_liquidatable_wallets",
+        "eligible_wallets",
+        "executed_liquidations",
+        "simulated_repaid_debt_usd",
+        "cumulative_repaid_usd",
+        "collateral_seized_usd",
+        "liquidator_profit_usd",
+        "liquidation_freeze_debt_usd",
+        "bad_debt_usd",
+        "remaining_debt_usd",
+        "prices_before_json",
+        "prices_after_json",
+        "sold_usd_json",
+        "max_price_impact_pct"
+      ]
+    },
+    {
+      "path": "outputs/demo/cascade/cascade_summary.csv",
+      "bytes": 2332
+    },
+    {
+      "path": "outputs/demo/cascade/cascade_summary.parquet",
+      "bytes": 7841,
+      "rows": 4,
+      "columns": [
+        "run_id",
+        "scenario_id",
+        "cf_rule",
+        "model_version",
+        "data_kind",
+        "total_simulated_repaid_usd",
+        "cascade_amplification",
+        "total_rounds",
+        "initial_debt_usd",
+        "remaining_debt_usd",
+        "bad_debt_usd",
+        "bad_debt_ratio_pct",
+        "unique_liquidatable_wallets",
+        "sequential_liquidatable_wallets",
+        "total_liquidator_profit_usd",
+        "stop_reason",
+        "converged",
+        "parameters_json",
+        "shocks_json"
+      ]
+    },
+    {
+      "path": "outputs/figures/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "outputs/figures/n3_collateral_by_token.png",
+      "bytes": 37786
+    },
+    {
+      "path": "outputs/figures/n3_debt_repaid_daily.png",
+      "bytes": 46399
+    },
+    {
+      "path": "outputs/figures/n3_liquidation_eth_timeline.png",
+      "bytes": 85981
+    },
+    {
+      "path": "outputs/figures/n3_steth_eth_depeg_timeline.png",
+      "bytes": 108352
+    },
+    {
+      "path": "outputs/n5_preparation/audit_A_20261020/audit.json",
+      "bytes": 4551
+    },
+    {
+      "path": "outputs/n5_preparation/audit_A_20261020_v2/audit.json",
+      "bytes": 10768
+    },
+    {
+      "path": "outputs/n5_preparation/audit_A_20261020_v3/audit.json",
+      "bytes": 10809
+    },
+    {
+      "path": "outputs/n5_preparation/audit_A_final_20261020/audit.json",
+      "bytes": 12066
+    },
+    {
+      "path": "outputs/n5_preparation/audit_B_20261020/audit.json",
+      "bytes": 10778
+    },
+    {
+      "path": "outputs/n5_preparation/audit_B_20261020_v2/audit.json",
+      "bytes": 11225
+    },
+    {
+      "path": "outputs/n5_preparation/audit_B_final_20261020/audit.json",
+      "bytes": 12484
+    },
+    {
+      "path": "outputs/n5_preparation/review_A_20261022/audit.json",
+      "bytes": 15179
+    },
+    {
+      "path": "outputs/n5_preparation/review_B_20261022/audit.json",
+      "bytes": 15597
+    },
+    {
+      "path": "outputs/n5_preparation/synthetic_demo_20261020/benchmark_comparison.json",
+      "bytes": 21640
+    },
+    {
+      "path": "outputs/n5_preparation/synthetic_demo_20261020/README.txt",
+      "bytes": 146
+    },
+    {
+      "path": "outputs/n5_preparation/synthetic_demo_20261020/sensitivity.parquet",
+      "bytes": 13451,
+      "rows": 64,
+      "columns": [
+        "run_id",
+        "scenario_id",
+        "cf_rule",
+        "model_version",
+        "data_kind",
+        "total_simulated_repaid_usd",
+        "cascade_amplification",
+        "total_rounds",
+        "initial_debt_usd",
+        "remaining_debt_usd",
+        "bad_debt_usd",
+        "bad_debt_ratio_pct",
+        "unique_liquidatable_wallets",
+        "sequential_liquidatable_wallets",
+        "total_liquidator_profit_usd",
+        "stop_reason",
+        "converged",
+        "parameters_json",
+        "shocks_json",
+        "engine_model_version",
+        "experiment_mode",
+        "validation_status",
+        "price_impact_parameter",
+        "sell_fraction",
+        "eth_shock",
+        "depeg_shock",
+        "depth_multiplier"
+      ]
+    },
+    {
+      "path": "outputs/tables/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "outputs/tables/descriptive_statistics.csv",
+      "bytes": 1042
+    },
+    {
+      "path": "outputs/tables/n3_collateral_breakdown.csv",
+      "bytes": 1021
+    },
+    {
+      "path": "outputs/tables/n3_debt_breakdown.csv",
+      "bytes": 935
+    },
+    {
+      "path": "outputs/tables/n3_descriptive_quality.json",
+      "bytes": 1505
+    },
+    {
+      "path": "outputs/tables/n3_dex_liquidity_quality.json",
+      "bytes": 1519
+    },
+    {
+      "path": "outputs/tables/n3_etherscan_quality.json",
+      "bytes": 809
+    },
+    {
+      "path": "outputs/tables/n3_liquidations_daily.csv",
+      "bytes": 622
+    },
+    {
+      "path": "outputs/tables/n3_liquidations_final_quality.json",
+      "bytes": 2431
+    },
+    {
+      "path": "outputs/tables/n3_liquidations_hourly.csv",
+      "bytes": 4346
+    },
+    {
+      "path": "outputs/tables/n3_liquidation_event_market_alignment.csv",
+      "bytes": 30033
+    },
+    {
+      "path": "outputs/tables/n3_liquidation_market_hourly.csv",
+      "bytes": 23337
+    },
+    {
+      "path": "outputs/tables/n3_liquidation_market_hourly.csv.bak_20261019T044825278841Z",
+      "bytes": 23337
+    },
+    {
+      "path": "outputs/tables/n3_price_quality.json",
+      "bytes": 800
+    },
+    {
+      "path": "outputs/tables/n3_price_timeseries_quality.json",
+      "bytes": 2489
+    },
+    {
+      "path": "outputs/tables/n3_usd_pricing_quality.json",
+      "bytes": 1162
+    },
+    {
+      "path": "outputs/tables/out_simulation_results.parquet",
+      "bytes": 4464,
+      "rows": 0,
+      "columns": [
+        "run_id",
+        "snapshot_block",
+        "question_id",
+        "scenario_name",
+        "cf_rule",
+        "cascade_round",
+        "protocol_id",
+        "segment_group",
+        "round_liq_vol_usd",
+        "cum_liq_vol_usd",
+        "pos_bad_debt_usd",
+        "bad_debt_ratio_pct",
+        "equity_norm_loss_pct",
+        "prob_bad_debt_pct",
+        "tail_loss_es99_usd",
+        "dex_price_impact_pct",
+        "seq_liquidated_count",
+        "cascade_amp_factor",
+        "liq_freeze_vol_usd",
+        "healthy_to_liq_rate_pct",
+        "cross_protocol_contagion_pct"
+      ]
+    },
+    {
+      "path": "paper/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "scripts/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "scripts/n5_audit.py",
+      "bytes": 8296
+    },
+    {
+      "path": "scripts/n5_demo.py",
+      "bytes": 1926
+    },
+    {
+      "path": "scripts/qa_n3_delivery.py",
+      "bytes": 11826
+    },
+    {
+      "path": "scripts/reconcile_compound_exports.py",
+      "bytes": 8641
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_account_reference.parquet",
+      "bytes": 15123,
+      "rows": 185,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_failed_queries.json",
+      "bytes": 7728
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 13774,
+      "rows": 171,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_positions_long.parquet",
+      "bytes": 18896,
+      "rows": 251,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_quality.json",
+      "bytes": 2384
+    },
+    {
+      "path": "shard_001_of_006/shard_001_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13680,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "shard_002_of_006/shard_002_of_006/n3_compound_account_reference.parquet",
+      "bytes": 15418,
+      "rows": 202,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_002_of_006/shard_002_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 13966,
+      "rows": 181,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_002_of_006/shard_002_of_006/n3_compound_positions_long.parquet",
+      "bytes": 19052,
+      "rows": 264,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "shard_002_of_006/shard_002_of_006/n3_compound_quality.json",
+      "bytes": 2384
+    },
+    {
+      "path": "shard_002_of_006/shard_002_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13680,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "shard_003_of_006/shard_003_of_006/n3_compound_account_reference.parquet",
+      "bytes": 15299,
+      "rows": 189,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_003_of_006/shard_003_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 13871,
+      "rows": 177,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_003_of_006/shard_003_of_006/n3_compound_positions_long.parquet",
+      "bytes": 18853,
+      "rows": 238,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "shard_003_of_006/shard_003_of_006/n3_compound_quality.json",
+      "bytes": 2384
+    },
+    {
+      "path": "shard_003_of_006/shard_003_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13680,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_account_reference.parquet",
+      "bytes": 16447,
+      "rows": 220,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_failed_queries.json",
+      "bytes": 2772
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_failed_queries.json.bak_20261021T023251Z",
+      "bytes": 7473
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 15023,
+      "rows": 200,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_positions_long.parquet",
+      "bytes": 20844,
+      "rows": 320,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_quality.json",
+      "bytes": 2259
+    },
+    {
+      "path": "shard_004_of_006/shard_004_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13752,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "shard_004_of_006/__MACOSX/._shard_004_of_006",
+      "bytes": 163
+    },
+    {
+      "path": "shard_004_of_006/__MACOSX/shard_004_of_006/._n3_compound_failed_queries.json",
+      "bytes": 163
+    },
+    {
+      "path": "shard_004_of_006/__MACOSX/shard_004_of_006/._n3_compound_failed_queries.json.bak_20261021T023251Z",
+      "bytes": 163
+    },
+    {
+      "path": "shard_004_of_006/__MACOSX/shard_004_of_006/._n3_compound_quality.json",
+      "bytes": 163
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_account_reference.parquet",
+      "bytes": 16947,
+      "rows": 239,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "compound_is_liquidatable",
+        "is_cross_protocol",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_failed_queries.json",
+      "bytes": 2732
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_failed_queries.json.bak_20261021T220800Z",
+      "bytes": 7729
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_overlap_wallets.parquet",
+      "bytes": 15522,
+      "rows": 217,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "wallet_address",
+        "compound_markets_count",
+        "compound_borrow_usd",
+        "compound_collateral_usd",
+        "compound_base_supply_usd",
+        "any_compound_liquidatable",
+        "aave_debt_usd"
+      ]
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_positions_long.parquet",
+      "bytes": 21535,
+      "rows": 339,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "wallet_address",
+        "asset_role",
+        "token_address",
+        "token_symbol",
+        "amount_token",
+        "price_usd",
+        "value_usd",
+        "raw_amount"
+      ]
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_quality.json",
+      "bytes": 2384
+    },
+    {
+      "path": "shard_005_of_006/n3_compound_reserve_config.parquet",
+      "bytes": 13680,
+      "rows": 64,
+      "columns": [
+        "snapshot_id",
+        "snapshot_block",
+        "market_id",
+        "comet_address",
+        "token_address",
+        "token_symbol",
+        "role",
+        "price_usd",
+        "scale",
+        "borrow_collateral_factor",
+        "liquidate_collateral_factor",
+        "liquidation_factor",
+        "supply_cap_raw",
+        "price_feed",
+        "asset_offset"
+      ]
+    },
+    {
+      "path": "src/requirements_cascade.txt",
+      "bytes": 79
+    },
+    {
+      "path": "src/requirements_n3_muc4_muc5.txt",
+      "bytes": 109
+    },
+    {
+      "path": "src/analysis/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "src/analysis/descriptive.py",
+      "bytes": 22234
+    },
+    {
+      "path": "src/data/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "src/data/build_oracle_prices.py",
+      "bytes": 4768
+    },
+    {
+      "path": "src/data/check_rpc.py",
+      "bytes": 2883
+    },
+    {
+      "path": "src/data/check_state.py",
+      "bytes": 8043
+    },
+    {
+      "path": "src/data/fetch_account_data.py",
+      "bytes": 6579
+    },
+    {
+      "path": "src/data/fetch_borrowers.py",
+      "bytes": 7385
+    },
+    {
+      "path": "src/data/fetch_dex_liquidity.py",
+      "bytes": 30196
+    },
+    {
+      "path": "src/data/fetch_liquidations.py",
+      "bytes": 14477
+    },
+    {
+      "path": "src/data/fetch_positions.py",
+      "bytes": 13872
+    },
+    {
+      "path": "src/data/fetch_prices.py",
+      "bytes": 10560
+    },
+    {
+      "path": "src/data/fetch_reserve_config.py",
+      "bytes": 8287
+    },
+    {
+      "path": "src/data/finalize_liquidations.py",
+      "bytes": 17935
+    },
+    {
+      "path": "src/data/map_emode_assets.py",
+      "bytes": 5609
+    },
+    {
+      "path": "src/data/n3_price_timeseries.py",
+      "bytes": 24275
+    },
+    {
+      "path": "src/data/normalize_aave.py",
+      "bytes": 8583
+    },
+    {
+      "path": "src/data/price_liquidations_usd.py",
+      "bytes": 19483
+    },
+    {
+      "path": "src/data/reconcile_protocol_totals.py",
+      "bytes": 6986
+    },
+    {
+      "path": "src/data/write_snapshot_metadata.py",
+      "bytes": 3168
+    },
+    {
+      "path": "src/models/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "src/models/cascade.py",
+      "bytes": 16907
+    },
+    {
+      "path": "src/models/cliff_reverse.py",
+      "bytes": 9468
+    },
+    {
+      "path": "src/models/health_factor.py",
+      "bytes": 13767
+    },
+    {
+      "path": "src/models/n5_experiments.py",
+      "bytes": 7564
+    },
+    {
+      "path": "src/models/n5_inputs.py",
+      "bytes": 8952
+    },
+    {
+      "path": "src/models/n5_validation.py",
+      "bytes": 16935
+    },
+    {
+      "path": "src/models/stress_test.py",
+      "bytes": 16608
+    },
+    {
+      "path": "tests/.gitkeep",
+      "bytes": 0
+    },
+    {
+      "path": "tests/test_cascade.py",
+      "bytes": 13250
+    },
+    {
+      "path": "tests/test_cliff_reverse.py",
+      "bytes": 1993
+    },
+    {
+      "path": "tests/test_depth_precision.py",
+      "bytes": 2885
+    },
+    {
+      "path": "tests/test_health_factor.py",
+      "bytes": 2916
+    },
+    {
+      "path": "tests/test_n3_m4_m5.py",
+      "bytes": 6430
+    },
+    {
+      "path": "tests/test_n5_preparation.py",
+      "bytes": 11999
+    },
+    {
+      "path": "tests/test_stress.py",
+      "bytes": 2241
+    },
+    {
+      "path": "tests/validation_report.md",
+      "bytes": 8632
+    }
+  ],
+  "access_errors": [
+    "[WinError 5] Access is denied: '.\\\\N3_Compound_Q3_Overlap_VSCode\\\\tests\\\\tmpnd6yp4ef'",
+    "shard_004_of_006\\__MACOSX\\shard_004_of_006\\._n3_compound_account_reference.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.",
+    "shard_004_of_006\\__MACOSX\\shard_004_of_006\\._n3_compound_overlap_wallets.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.",
+    "shard_004_of_006\\__MACOSX\\shard_004_of_006\\._n3_compound_positions_long.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.",
+    "shard_004_of_006\\__MACOSX\\shard_004_of_006\\._n3_compound_reserve_config.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+  ],
+  "n3_manifest_checks": [
+    {
+      "path": "data/n3_history_2024_2026/final/market_daily_continuous.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/market_crashes_hourly.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/token_prices_continuous.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_daily_steth_eth_reference.csv",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/market_quality_summary.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_market_recalculation_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_observed.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": false
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_daily.csv",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidations_hourly.csv",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidation_asset_breakdown.csv",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/n3_liquidation_market_daily.csv",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_wallet.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": false
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_by_asset.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/hf_risk_distribution.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/final/concentration_2026/concentration_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/staging/n3_dex_liquidity.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "outputs/tables/n3_dex_liquidity_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_etherscan.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": false
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_priced.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": false
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/data/staging/n3_liquidations_for_fact.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_etherscan_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/outputs/tables/n3_usd_pricing_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2024_08/n3_period_manifest.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_etherscan.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": false
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_priced.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/data/staging/n3_liquidations_for_fact.parquet",
+      "exact_sha256_match": true,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_etherscan_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/outputs/tables/n3_usd_pricing_quality.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    },
+    {
+      "path": "data/n3_history_2024_2026/liquidations/crash_2025_10/n3_period_manifest.json",
+      "exact_sha256_match": false,
+      "lf_normalized_match": true
+    }
+  ]
+}

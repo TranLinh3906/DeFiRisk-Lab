@@ -1,0 +1,94 @@
+{
+  "complete": false,
+  "validation_status": "incomplete_coverage",
+  "scope": "Aave-targeted wallets; not a census of all Compound users",
+  "expected_queries": 114076,
+  "covered_queries": 99782,
+  "missing_queries": 14294,
+  "missing_unique_wallets": 3594,
+  "target_unique_wallets": 28640,
+  "metadata_fingerprint": "32f6f3c87efec1adca965f6c13bfb88b21e6f9f4f006f74c092698becd3aa3d0",
+  "snapshot_blocks": {
+    "A": 26179841,
+    "B": 26194188
+  },
+  "missing_by_snapshot_market": [
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_usdc",
+      "queries": 3574
+    },
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "queries": 3574
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "queries": 3573
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "queries": 3573
+    }
+  ],
+  "table_rows": {
+    "positions": 1694,
+    "accounts": 1218,
+    "config": 64,
+    "overlap": 1121
+  },
+  "exact_duplicate_rows_removed": {
+    "positions": 256,
+    "accounts": 174,
+    "config": 320,
+    "overlap": 156
+  },
+  "sources": [
+    {
+      "shard_index": 0,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\team_6105d9df30ba\\shard_000_of_006",
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 28274,
+      "quality_sha256": "52b8263c0c59beca5604e9d032a09a3268f1b452cc49c100346381e8f73c0549"
+    },
+    {
+      "shard_index": 1,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\shard_001_of_006\\shard_001_of_006",
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17156,
+      "quality_sha256": "88ee4707b541b0ee84e69d753b405672760463f4a017a081b41480835c354fa2"
+    },
+    {
+      "shard_index": 2,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\shard_002_of_006\\shard_002_of_006",
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17162,
+      "quality_sha256": "1f2072cdda03e5138e5c956cc4d9918b10babbd397c94d318d9ad9a574680b3f"
+    },
+    {
+      "shard_index": 3,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\shard_003_of_006\\shard_003_of_006",
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17166,
+      "quality_sha256": "8660f8b98de59f68aa61f930eda63275a2bd9f34b7c12bbb731d2aed9d69d402"
+    },
+    {
+      "shard_index": 4,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\shard_004_of_006\\shard_004_of_006",
+      "assignment": "sorted_wallet_round_robin_v1",
+      "successful_queries": 19020,
+      "quality_sha256": "fbebfd2a8180df0dd45c1314beb3a7b3f484e717058144efb1d0cb7b03d38ea4"
+    },
+    {
+      "shard_index": 5,
+      "directory": "D:\\DeFi Lending\\DeFiRisk-Lab\\shard_005_of_006",
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17164,
+      "quality_sha256": "5b01fe82f1fa274a1a171c62a37a25beaf5835de7a4c293ba9908c45fd84bfeb"
+    }
+  ],
+  "coverage_evidence": "Reconstructed from completed source QA and the declared deterministic assignment; no raw RPC checkpoints supplied for imported shards."
+}

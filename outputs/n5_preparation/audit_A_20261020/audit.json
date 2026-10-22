@@ -1,0 +1,133 @@
+{
+  "created_utc": "2026-10-20T16:17:00.385278+00:00",
+  "snapshot_block": 26179841,
+  "status": "failed",
+  "inputs": {
+    "positions": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+    "reserves": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+    "prices": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+    "emode": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+    "references": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\account_reference.parquet"
+  },
+  "scope": "Read-only input audit; no simulation or Compound access",
+  "n4": {
+    "borrower_risk": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\borrower_risk.parquet",
+      "total_rows": 57038,
+      "checked_rows": 2000,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "health_factor",
+        "risk_category",
+        "is_recursive_loop",
+        "emode_category"
+      ]
+    },
+    "stress_positions": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_positions.parquet",
+      "total_rows": 1083722,
+      "checked_rows": 2000,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "scenario_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet",
+        "hf_before",
+        "hf_after",
+        "debt_usd",
+        "debt_at_risk_usd",
+        "is_recursive_loop"
+      ]
+    },
+    "stress_summary": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_summary.parquet",
+      "total_rows": 19,
+      "checked_rows": 19,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "scenario_id",
+        "eth_shock",
+        "btc_shock",
+        "depeg_shock",
+        "positions_at_risk",
+        "debt_at_risk_usd",
+        "debt_at_risk_pct",
+        "looping_debt_at_risk_usd"
+      ]
+    },
+    "stress_heatmap": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_heatmap.parquet",
+      "total_rows": 30,
+      "checked_rows": 30,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "eth_shock",
+        "depeg_shock",
+        "debt_at_risk_usd",
+        "positions_at_risk_count"
+      ]
+    },
+    "hf_comparison": {
+      "compared_borrowers": 28493,
+      "portfolio_borrowers": 28493,
+      "median_absolute_error": 0.0,
+      "max_absolute_error": 4.7949999999999994e+17,
+      "note": "N4 vs independent adapter; does not replace Aave reference check"
+    }
+  },
+  "input_validation": {
+    "snapshot_block": 26179841,
+    "protocol_id": "aave_v3_ethereum",
+    "wallet_count": 28493,
+    "token_count": 65,
+    "gates": {
+      "schema_and_adapter": {
+        "status": "passed"
+      },
+      "hf_reference": {
+        "status": "passed",
+        "median_absolute_error": 7.267519919196275e-12,
+        "threshold": 0.005,
+        "compared_borrowers": 28493,
+        "missing_accounts": 0,
+        "reference_accounts_outside_portfolio": 58793
+      },
+      "sample_account_balances": {
+        "status": "failed",
+        "max_debt_relative_error": 0.9999999998002188,
+        "max_collateral_relative_error": null,
+        "note": "Per-account check within selected sample; not full-reserve reconciliation"
+      },
+      "reserve_reconciliation": {
+        "status": "pending",
+        "reason": "Full-population reserve evidence not supplied"
+      },
+      "historical_holdout": {
+        "status": "pending",
+        "reason": "Snapshot B/window/coverage and untouched holdout need verification"
+      }
+    },
+    "assumptions": [
+      "Token amounts already include decimals and accrued interest; no rescaling.",
+      "DEX depth is supplied explicitly, not independently calibrated.",
+      "Isolation constraints/protocol execution rules are not fully emulated.",
+      "Inputs are unvalidated until independent validation gates pass."
+    ],
+    "status": "failed"
+  },
+  "audit_only_depth_note": "Placeholder USD depth=1m; not used for price impact or simulation in this audit"
+}

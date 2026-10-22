@@ -1,0 +1,2 @@
+# Core simulation and unittest use only Python's standard library.
+pyarrow>=14

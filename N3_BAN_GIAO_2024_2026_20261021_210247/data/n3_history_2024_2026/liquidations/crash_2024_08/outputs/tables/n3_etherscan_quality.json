@@ -1,0 +1,20 @@
+{
+  "data_source": "Etherscan API V2 getLogs",
+  "chain_id": 1,
+  "protocol_id": "aave_v3_ethereum",
+  "pool_address": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+  "topic0": "0xe413a321e8681d831f4dbccbca790d2952b56f977908e45be37335533e005286",
+  "start_inclusive_utc": "2024-08-03 00:00:00+00:00",
+  "end_exclusive_utc": "2024-08-08 00:00:00+00:00",
+  "first_block": 20444295,
+  "last_block": 20480141,
+  "events_decoded": 2178,
+  "unique_transactions": 1574,
+  "missing_debt_decimals": 0,
+  "missing_collateral_decimals": 0,
+  "requires_usd_valuation": true,
+  "price_usd_source": null,
+  "warning": "Do not write these rows into fact_historical_liquidations until event-time prices and USD columns are validated",
+  "created_utc": "2026-10-21T07:04:04.163517+00:00",
+  "api_requests": 48
+}

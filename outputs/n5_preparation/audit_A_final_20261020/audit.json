@@ -1,0 +1,325 @@
+{
+  "created_utc": "2026-10-20T16:24:16.811061+00:00",
+  "snapshot_block": 26179841,
+  "status": "failed",
+  "inputs": {
+    "positions": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+    "reserves": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+    "prices": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+    "emode": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+    "references": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\account_reference.parquet"
+  },
+  "scope": "Read-only input audit; no simulation or Compound access",
+  "n4": {
+    "borrower_risk": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\borrower_risk.parquet",
+      "total_rows": 57038,
+      "checked_rows": 2000,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "snapshot_block",
+        "protocol_id",
+        "wallet_address",
+        "total_collateral_usd",
+        "total_debt_usd",
+        "health_factor",
+        "risk_category",
+        "is_recursive_loop",
+        "emode_category"
+      ]
+    },
+    "stress_positions": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_positions.parquet",
+      "total_rows": 1083722,
+      "checked_rows": 2000,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "scenario_id",
+        "snapshot_block",
+        "protocol_id",
+        "wallet",
+        "hf_before",
+        "hf_after",
+        "debt_usd",
+        "debt_at_risk_usd",
+        "is_recursive_loop"
+      ]
+    },
+    "stress_summary": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_summary.parquet",
+      "total_rows": 19,
+      "checked_rows": 19,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "scenario_id",
+        "eth_shock",
+        "btc_shock",
+        "depeg_shock",
+        "positions_at_risk",
+        "debt_at_risk_usd",
+        "debt_at_risk_pct",
+        "looping_debt_at_risk_usd"
+      ]
+    },
+    "stress_heatmap": {
+      "path": "DeFiRisk-Lab-updated-main\\data\\marts\\stress_heatmap.parquet",
+      "total_rows": 30,
+      "checked_rows": 30,
+      "scope": "First 2000 rows only",
+      "status": "sample_schema_passed",
+      "errors": [],
+      "columns": [
+        "eth_shock",
+        "depeg_shock",
+        "debt_at_risk_usd",
+        "positions_at_risk_count"
+      ]
+    },
+    "hf_comparison": {
+      "status": "failed",
+      "compared_borrowers": 28493,
+      "portfolio_borrowers": 28493,
+      "median_absolute_error": 0.0,
+      "max_absolute_error": 4.7949999999999994e+17,
+      "accounts_above_005": 519,
+      "largest_discrepancies": [
+        {
+          "wallet": "0xd15e5ff9337b9e35a8b016bea450cb125f79976f",
+          "adapter_hf": 4.7999999999999994e+17,
+          "n4_hf": 499999999999999.94,
+          "absolute_error": 4.7949999999999994e+17
+        },
+        {
+          "wallet": "0x453272bd0bc51f699e18f7d2c25cdf7a85c0a40d",
+          "adapter_hf": 712998404847.9226,
+          "n4_hf": 118517647367.4036,
+          "absolute_error": 594480757480.519
+        },
+        {
+          "wallet": "0x48c16c5652add27eddb0f896748a35fc60b8d1b4",
+          "adapter_hf": 5186632.442041289,
+          "n4_hf": 4052062.534167866,
+          "absolute_error": 1134569.9078734228
+        },
+        {
+          "wallet": "0xd52b080a5c304a9e98d70d5307bed059b851b35f",
+          "adapter_hf": 472107.9762562644,
+          "n4_hf": 0.0,
+          "absolute_error": 472107.9762562644
+        },
+        {
+          "wallet": "0x4099a2e681b2934038464f8c363ca9b81491eac4",
+          "adapter_hf": 93858.1533056866,
+          "n4_hf": 0.0,
+          "absolute_error": 93858.1533056866
+        }
+      ],
+      "eligibility_disagreements": 369,
+      "disagreement_debt_usd": 1277282758.9649246,
+      "largest_eligibility_disagreements": [
+        {
+          "wallet": "0xcdfa7efe670869c6b6be4375654e0b206ef49c89",
+          "adapter_hf": 1.035624990647871,
+          "n4_hf": 0.8175986768272666,
+          "adapter_debt_usd": 275235547.3239956
+        },
+        {
+          "wallet": "0x40e93a52f6af9fcd3b476aedadd7feabd9f7aba8",
+          "adapter_hf": 1.030113301627907,
+          "n4_hf": 0.8132473433904527,
+          "adapter_debt_usd": 122885370.48726211
+        },
+        {
+          "wallet": "0xf7462251c14d2fb83c7ab96367a7985423c83010",
+          "adapter_hf": 1.0305047366095208,
+          "n4_hf": 0.8144053226881006,
+          "adapter_debt_usd": 110691840.85166319
+        },
+        {
+          "wallet": "0x3207363359ca0c11d11073ad48301e8c958b7910",
+          "adapter_hf": 1.0231944433459519,
+          "n4_hf": 0.0011121678732021216,
+          "adapter_debt_usd": 75561626.85522275
+        },
+        {
+          "wallet": "0x755013a759c6c56d95b687ef4b2b9864f3654e60",
+          "adapter_hf": 1.0899894481842722,
+          "n4_hf": 0.8605179854086361,
+          "adapter_debt_usd": 72322974.86765777
+        }
+      ],
+      "note": "N4 vs independent adapter; does not replace Aave reference check"
+    }
+  },
+  "input_validation": {
+    "snapshot_block": 26179841,
+    "protocol_id": "aave_v3_ethereum",
+    "wallet_count": 28493,
+    "token_count": 65,
+    "gates": {
+      "schema_and_adapter": {
+        "status": "passed"
+      },
+      "hf_reference": {
+        "status": "passed",
+        "median_absolute_error": 7.267519919196275e-12,
+        "threshold": 0.005,
+        "compared_borrowers": 28493,
+        "missing_accounts": 0,
+        "reference_accounts_outside_portfolio": 58793,
+        "reference_borrowers_outside_portfolio": 0
+      },
+      "sample_account_balances": {
+        "status": "failed",
+        "max_debt_relative_error": 0.9999999998002188,
+        "max_collateral_relative_error": null,
+        "failed_debt_accounts": 220,
+        "failed_collateral_accounts": 32,
+        "largest_absolute_discrepancies": [
+          {
+            "wallet": "0x9abc37d06ec3dce9c68aa38dd1258fee283d2da5",
+            "metric": "debt",
+            "calculated_usd": 1.9978121656172407e-06,
+            "reference_usd": 2.0199999999999997e-06,
+            "absolute_error_usd": 2.218783438275904e-08,
+            "relative_error": 0.010984076427108438,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x28b6a6a69d4d2769c2d3dc0ef20f4f4b8b8ca61c",
+            "metric": "debt",
+            "calculated_usd": 2.923935386657484e-08,
+            "reference_usd": 5e-08,
+            "absolute_error_usd": 2.076064613342516e-08,
+            "relative_error": 0.4152129226685032,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x895e6fc867fe0ca1eca40d2be78e98636b8a4e92",
+            "metric": "debt",
+            "calculated_usd": 7.939217243854246e-10,
+            "reference_usd": 2e-08,
+            "absolute_error_usd": 1.9206078275614577e-08,
+            "relative_error": 0.9603039137807288,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x04867f0fdf9665eff5c2ad9384509a131f0367f4",
+            "metric": "debt",
+            "calculated_usd": 6.878143054396688e-07,
+            "reference_usd": 7e-07,
+            "absolute_error_usd": 1.2185694560331196e-08,
+            "relative_error": 0.017408135086187423,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x349f847db0dc17c85ed1e9b876a25f97cad70cf2",
+            "metric": "debt",
+            "calculated_usd": 1.9978121600000003e-18,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999998002189e-09,
+            "relative_error": 0.9999999998002188,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0xb904954d83b7714059f64a4fb9125b400f591296",
+            "metric": "debt",
+            "calculated_usd": 1.9978121600000003e-18,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999998002189e-09,
+            "relative_error": 0.9999999998002188,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0xd15e5ff9337b9e35a8b016bea450cb125f79976f",
+            "metric": "debt",
+            "calculated_usd": 1.9978121600000003e-18,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999998002189e-09,
+            "relative_error": 0.9999999998002188,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x8f70995433cc16965e23c185e5694ee53fa695f1",
+            "metric": "debt",
+            "calculated_usd": 2.99671824e-18,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999997003282e-09,
+            "relative_error": 0.9999999997003282,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0xba9bf07523fa994e614321c28d542e5a506bb973",
+            "metric": "debt",
+            "calculated_usd": 3.99942292e-18,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999996000577e-09,
+            "relative_error": 0.9999999996000577,
+            "zero_reference": false
+          },
+          {
+            "wallet": "0x08809e834721bd282b9a36028cf1af71892a275d",
+            "metric": "debt",
+            "calculated_usd": 2.1975933760000002e-17,
+            "reference_usd": 1e-08,
+            "absolute_error_usd": 9.999999978024066e-09,
+            "relative_error": 0.9999999978024066,
+            "zero_reference": false
+          }
+        ],
+        "note": "Per-account check within selected sample; not full-reserve reconciliation"
+      },
+      "reserve_reconciliation": {
+        "status": "pending",
+        "reason": "Full-population reserve evidence not supplied"
+      },
+      "historical_holdout": {
+        "status": "pending",
+        "reason": "Snapshot B/window/coverage and untouched holdout need verification"
+      }
+    },
+    "assumptions": [
+      "Token amounts already include decimals and accrued interest; no rescaling.",
+      "DEX depth is supplied explicitly, not independently calibrated.",
+      "Isolation constraints/protocol execution rules are not fully emulated.",
+      "Inputs are unvalidated until independent validation gates pass."
+    ],
+    "status": "failed"
+  },
+  "audit_only_depth_note": "Placeholder USD depth=1m; not used for price impact or simulation in this audit",
+  "snapshot_metadata": {
+    "path": "data\\processed\\aave\\snapshot_metadata.json",
+    "matching_snapshots": [
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "snapshot_timestamp_utc": "2026-10-12T23:59:59+00:00",
+        "target_timestamp_utc": "2026-10-13T00:00:00+00:00",
+        "block_hash": "0x40c731f68bcd8152ad12433f4be57783e731fcf1546575ab51aa894054244ac3",
+        "block_hash_verified_on_chain": true,
+        "role": "calibration / counterfactual stress test",
+        "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
+        "pool_data_provider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
+        "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
+        "n_reserves": 67
+      }
+    ],
+    "declared_status": {
+      "archive_eth_call_verified": true,
+      "oracle_prices_exported": true,
+      "reserve_config_exported": true,
+      "positions_exported": false,
+      "hf_validated": false
+    },
+    "limitations": [
+      "Cap nhat cac muc 'status' va 'limitations' khi hoan thanh tung buoc.",
+      "Chua kiem dinh HF toan mau; khong ghi la toan bo Aave neu chi lay mot phan nguoi vay."
+    ]
+  }
+}

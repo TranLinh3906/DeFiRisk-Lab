@@ -1,0 +1,18 @@
+{
+  "market_daily_2024_2026.parquet": {
+    "rows": 2048,
+    "duplicate_keys": 0
+  },
+  "market_crashes_hourly.parquet": {
+    "rows": 480,
+    "duplicate_keys": 0
+  },
+  "token_prices_2024_2026.parquet": {
+    "rows": 4096,
+    "duplicate_keys": 0,
+    "valid_prices": 4096,
+    "missing_or_invalid": 0,
+    "coverage_pct": 100.0,
+    "volume_available": false
+  }
+}

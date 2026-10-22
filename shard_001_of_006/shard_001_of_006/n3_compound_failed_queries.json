@@ -1,0 +1,238 @@
+{
+  "created_utc": "2026-10-21T08:55:31.169861+00:00",
+  "scope": "Aave-wallet-targeted Compound III on Ethereum; not full Compound census",
+  "chain_id": 1,
+  "snapshot_blocks": {
+    "A": 26179841,
+    "B": 26194188
+  },
+  "metadata_fingerprint": "32f6f3c87efec1adca965f6c13bfb88b21e6f9f4f006f74c092698becd3aa3d0",
+  "shard": {
+    "num_shards": 6,
+    "shard_index": 1,
+    "selection_hash": "f9f8372e630bc80bb5cf9a475bdf00eae84e37ebf6120c2b41478e3829a49648",
+    "global_selection": {
+      "eligible_unique_wallets": 28640,
+      "selected_unique_wallets": 28640,
+      "input_aave_rows_after_filter": 57038,
+      "selection": "all_eligible_wallets",
+      "limited_sample": false,
+      "aave_debt_column": "total_debt_base_usd"
+    },
+    "global_expected_queries": 114076,
+    "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5"
+  },
+  "input_aave_path": "data\\processed\\aave\\account_reference.parquet",
+  "markets": [
+    {
+      "market_id": "compound_v3_ethereum_usdc",
+      "comet_address": "0xc3d688b66703497daa19211eedff47f25384cdc3"
+    },
+    {
+      "market_id": "compound_v3_ethereum_weth",
+      "comet_address": "0xa17581a9e3356d9a858b789d68b4d866e593ae94"
+    }
+  ],
+  "selection": {
+    "eligible_unique_wallets": 28640,
+    "selected_unique_wallets": 4313,
+    "input_aave_rows_after_filter": 8578,
+    "selection": "all_eligible_wallets",
+    "limited_sample": false,
+    "aave_debt_column": "total_debt_base_usd"
+  },
+  "expected_wallet_market_snapshot_queries": 17156,
+  "successful_queries": 17109,
+  "failed_queries": 47,
+  "complete": false,
+  "failures_preview": [
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xb382e3d35be15dbe6b80f46954c0fa6840f94155",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xdd774b5f3fb997bf773b238710707fbfa5fd8e82",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xde6b2a06407575b98724818445178c1f5fd53361",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xfe0743bca71a1e00bdb3694fe119f0cd45339ef3",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "wallet": "0x5a8e874bc029cd783ea5df1ff2f24d95d62dbf14",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "wallet": "0x9994fbd53acd62153a66f43a97b1ad1b8fad7444",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "wallet": "0xd008aee6450e7a61b22fd27154ec0ccf6d565b11",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "wallet": "0xf9e9d66c645d11c77fd244665205ad84faedd13c",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x41d0670e315dd8d1a3eaaee1eddd144cfa41ad85",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x546ed89a05e62a423f9b46d0cf55737828aec621",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x61c193ad59695a7ae5db41751071c1b351473ec4",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x6c810b89e359247184b5cf027386d86dd2e87e9b",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x732cd27e616b0a33efcdb59d7a8b4a67774edc45",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x758a13bca51baacaaea7fa226295177623dd9998",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x7c4b5155b00fde7db026c187f93510c96ddf0cbe",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x7d4604316349114fb7f259de022d9a2c2174a8f5",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x7e41050a51aa6726cf6c299f962d4ef29b4bf8cf",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x7f845b4bccc8678adc02ebe7f46d3e1649ca5681",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x857ab908cbf3fc9c3a071db44d51777af56862e8",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x85a9284665c7be79af509de2a32853a60b0f0ff3",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x8935420b504275776dc9d1afa6775110be3051c4",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x8970d52788953bac6f76abcdc2852ef29f002588",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x8aed2cc38221798782dc619e01dd8e8e29c43f9f",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0x9341260d45df509c0b13bd83654c478548d2ac08",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xa56d9f75b86fdaa763252cc71f1589947ee1a1a6",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xa62748c246ef315ef6731d237551b68627e271ff",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xa79d22d80dcdf80d3e61e3cd56efc58cf825b15c",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xa8c160349118ea17b4b57129defd9c38f1cfbb62",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xacf040d32aeec8e13d720ae291f5640befecfe4b",
+      "error": "RuntimeError"
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "wallet": "0xad04eff018f862feae04e5ee6b3b7316a1f7436b",
+      "error": "RuntimeError"
+    }
+  ],
+  "method": "historical eth_call via Comet proxy; getPrice at snapshot; all supported collateral assets checked",
+  "limitations": [
+    "Aave-targeted wallet sample (not all Compound users)",
+    "Uses Comet isLiquidatable, NOT Aave HF",
+    "Cross-protocol participation is an exposure link, NOT evidence of contagion",
+    "No historical lending-event path proof from snapshots alone",
+    "Sampling by Aave debt causes selection bias if max-wallets > 0"
+  ]
+}

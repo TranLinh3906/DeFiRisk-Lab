@@ -1,0 +1,26 @@
+{
+  "chain_id": 1,
+  "n_snapshot_pool_directions": 8,
+  "n_verified_depth": 8,
+  "n_unverified": 0,
+  "approved_pools_source": "/Users/thylnh.iu/Downloads/N3_Aave_Day17_Two_Scripts/config/n3_dex_pools.csv",
+  "oracle": "N2 Aave oracle USD/token; ETH=WETH; stETH USD implied from same-block wstETH oracle / Lido ratio (NOT Curve market spot)",
+  "reconstruction": "archive eth_call Curve get_dy / UniV3 QuoterV2 at exact block, NOT TVL",
+  "depth_definition": "input USD where average quoted execution deteriorates 2% vs same-block fee-inclusive tiny-trade quote; equal normalization Curve/V3",
+  "depth_certification": "smallest QUOTED upper bracket in USD within numerical_tolerance_usd of a QUOTED lower bracket; lower impact <2%, upper impact >=2%. Not exchange-wide liquidity.",
+  "max_trade_search_usd": 500000000.0,
+  "depth_numeric_tolerance_usd": 1.0,
+  "depth_is_numeric_bracket_upper_bound": true,
+  "unverified_rows": [],
+  "assumptions": [
+    "Single selected pool per pair; alternate fee tiers may be deeper",
+    "No multi-hop routes, aggregator, gas, MEV, or liquidation incentive",
+    "Both Curve and V3 references estimated via fee-inclusive tiny swap; V3 slot0 separately verified",
+    "Real trading may differ; simulations should disclose selected direction"
+  ],
+  "snapshot_status": "N2 supplied snapshot blocks, N1 approval of crisis window still needed",
+  "status_counts": {
+    "verified_2pct_bracket": 8
+  },
+  "created_at_utc": "2026-10-18T16:49:24.467739+00:00"
+}

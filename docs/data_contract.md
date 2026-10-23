@@ -44,11 +44,13 @@ không đưa cột này vào file Parquet.
 
 ### `data/marts/stress_summary.parquet`
 
-Mỗi dòng ứng với một kịch bản `scenario_id` được cấu hình.
+Mỗi dòng ứng với một bộ `(scenario_id, snapshot_block)`. Chỉ số của Snapshot A
+và Snapshot B được tính riêng, không cộng dồn vào cùng một KPI.
 
 | Cột | Kiểu dữ liệu | Mô tả |
 |---|---|---|
 | `scenario_id` | `string` | Định danh kịch bản từ `config/scenarios.yaml`. |
+| `snapshot_block` | `int64` | Block snapshot mà các chỉ số rủi ro trong dòng này đại diện. |
 | `eth_shock` | `float64` | Cú sốc biến động giá ETH/WETH, dạng thập phân. |
 | `btc_shock` | `float64` | Cú sốc biến động giá BTC/WBTC, dạng thập phân. |
 | `depeg_shock` | `float64` | Mức mất neo bổ sung của LST so với ETH, dạng thập phân. |
@@ -78,14 +80,23 @@ Mỗi dòng ứng với bộ khóa `(scenario_id, snapshot_block, protocol_id, w
 
 ### `data/marts/stress_heatmap.parquet`
 
-Mỗi dòng ứng với một cặp cú sốc ETH và mất neo LST.
+Mỗi dòng ứng với một bộ `(snapshot_block, eth_shock, depeg_shock)`.
 
 | Cột | Kiểu dữ liệu | Mô tả |
 |---|---|---|
 | `eth_shock` | `float64` | Cú sốc giá ETH, dạng thập phân. |
+| `snapshot_block` | `int64` | Block snapshot được tính riêng trong ma trận. |
 | `depeg_shock` | `float64` | Cú sốc mất neo LST/ETH, dạng thập phân. |
 | `debt_at_risk_usd` | `float64` | Tổng dư nợ USD của các vị thế có `HF < 1.0`. |
 | `positions_at_risk_count` | `int64` | Số địa chỉ ví duy nhất rơi vào vùng rủi ro. |
+
+### `data/marts/overview_metrics.json`
+
+Các chỉ số được lồng dưới khóa `snapshots`, với một đối tượng cho mỗi
+`snapshot_block` (khóa JSON là chuỗi biểu diễn số block). Không có tổng hợp
+chung giữa các snapshot. Mỗi đối tượng chứa `snapshot_block`, `total_wallets`,
+`total_collateral_usd`, `total_debt_usd`, `total_positions_at_risk_count`,
+`total_debt_at_risk_usd` và `looping_wallets_count`.
 
 ### `data/marts/cliff_curve.parquet`
 

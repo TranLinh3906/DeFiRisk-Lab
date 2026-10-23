@@ -210,7 +210,7 @@ def run_stress_test(positions_df: pd.DataFrame, scenario_params: dict[str, Any])
 def generate_stress_heatmap(
     positions_df: pd.DataFrame, eth_steps: list[float], depeg_steps: list[float]
 ) -> pd.DataFrame:
-    """Calculate debt-at-risk and wallet counts for every ETH/depeg pair."""
+    """Calculate risk for every ETH/depeg pair, separately by snapshot block."""
     prepared = _prepare_positions(positions_df)
     rows: list[dict[str, Any]] = []
     for eth in eth_steps:
@@ -219,14 +219,18 @@ def generate_stress_heatmap(
                 prepared, {"eth_shock": eth, "depeg_shock": depeg},
                 f"heatmap_eth_{abs(eth):g}_depeg_{abs(depeg):g}",
             )
-            at_risk = result["hf_after"] < 1.0
-            rows.append({
-                "eth_shock": float(eth),
-                "depeg_shock": float(depeg),
-                "debt_at_risk_usd": float(result.loc[at_risk, "debt_usd"].sum()),
-                "positions_at_risk_count": int(result.loc[at_risk, "wallet"].nunique()),
-            })
-    return pd.DataFrame(rows, columns=["eth_shock", "depeg_shock", "debt_at_risk_usd", "positions_at_risk_count"])
+            for block, snap in result.groupby("snapshot_block", sort=True):
+                at_risk = snap["hf_after"] < 1.0
+                rows.append({
+                    "snapshot_block": int(block),
+                    "eth_shock": float(eth),
+                    "depeg_shock": float(depeg),
+                    "debt_at_risk_usd": float(snap.loc[at_risk, "debt_usd"].sum()),
+                    "positions_at_risk_count": int(snap.loc[at_risk, "wallet"].nunique()),
+                })
+    return pd.DataFrame(rows, columns=[
+        "snapshot_block", "eth_shock", "depeg_shock", "debt_at_risk_usd", "positions_at_risk_count"
+    ])
 
 
 def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -242,7 +246,8 @@ def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
         raise FileNotFoundError(f"Missing baseline risk mart: {baseline_path}")
     baseline = _normalize_keys(pd.read_parquet(baseline_path))
     baseline_cols = WALLET_KEYS + [
-        c for c in ("health_factor", "is_recursive_loop", "total_debt_usd") if c in baseline
+        c for c in ("health_factor", "is_recursive_loop", "total_collateral_usd", "total_debt_usd")
+        if c in baseline
     ]
     baseline = baseline[baseline_cols].drop_duplicates(subset=WALLET_KEYS, keep="first")
     positions = positions.drop(columns=[c for c in ("health_factor", "is_recursive_loop") if c in positions], errors="ignore")
@@ -265,13 +270,14 @@ def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def _summary_row(scenario_id: str, params: dict[str, Any], result: pd.DataFrame) -> dict[str, Any]:
-    """Aggregate scenario risk metrics, including the looping segment."""
+    """Aggregate one snapshot's scenario metrics, including the looping segment."""
     at_risk = result["hf_after"] < 1.0
     total_debt = float(result["debt_usd"].sum())
     risk_debt = float(result.loc[at_risk, "debt_usd"].sum())
     loop_at_risk = at_risk & result["is_recursive_loop"]
     return {
         "scenario_id": scenario_id,
+        "snapshot_block": int(result["snapshot_block"].iloc[0]),
         "eth_shock": float(params.get("eth_shock", 0.0)),
         "btc_shock": float(params.get("btc_shock", 0.0)),
         "depeg_shock": float(params.get("depeg_shock", params.get("lst_depeg_shock", 0.0))),
@@ -285,7 +291,7 @@ def _summary_row(scenario_id: str, params: dict[str, Any], result: pd.DataFrame)
 def main() -> None:
     """Run configured scenarios and write all three stress-test marts."""
     config = load_scenarios()
-    positions, _ = _load_model_inputs()
+    positions, baseline = _load_model_inputs()
     summary_rows = []
     position_rows = []
     for scenario_id, params_raw in config["scenarios"].items():
@@ -294,7 +300,8 @@ def main() -> None:
         if stable_shock is not None:
             params["stablecoin_shock"] = stable_shock
         result = run_stress_test(positions, {**params, "scenario_id": scenario_id})
-        summary_rows.append(_summary_row(scenario_id, params, result))
+        for _, snapshot_result in result.groupby("snapshot_block", sort=True):
+            summary_rows.append(_summary_row(scenario_id, params, snapshot_result))
         position_rows.append(result)
 
     heat_cfg = config.get("heatmap", {})
@@ -304,7 +311,7 @@ def main() -> None:
         list(heat_cfg.get("depeg_steps", [0.0, -0.01, -0.03, -0.05, -0.1])),
     )
     summary = pd.DataFrame(summary_rows, columns=[
-        "scenario_id", "eth_shock", "btc_shock", "depeg_shock", "positions_at_risk",
+        "scenario_id", "snapshot_block", "eth_shock", "btc_shock", "depeg_shock", "positions_at_risk",
         "debt_at_risk_usd", "debt_at_risk_pct", "looping_debt_at_risk_usd",
     ])
     position_output = pd.concat(position_rows, ignore_index=True) if position_rows else pd.DataFrame(
@@ -315,9 +322,30 @@ def main() -> None:
     summary.to_parquet(MARTS / "stress_summary.parquet", index=False)
     position_output.to_parquet(MARTS / "stress_positions.parquet", index=False)
     heatmap.to_parquet(MARTS / "stress_heatmap.parquet", index=False)
-    print(f"Wrote {MARTS / 'stress_summary.parquet'} ({len(summary)} scenarios)")
+    overview: dict[str, Any] = {"snapshots": {}}
+    for block, snap in baseline.groupby("snapshot_block", sort=True):
+        at_risk = snap["health_factor"] < 1.0
+        overview["snapshots"][str(int(block))] = {
+            "snapshot_block": int(block),
+            "total_wallets": int(snap["wallet_address"].nunique()),
+            "total_collateral_usd": float(snap["total_collateral_usd"].sum())
+            if "total_collateral_usd" in snap else None,
+            "total_debt_usd": float(snap["total_debt_usd"].sum())
+            if "total_debt_usd" in snap else None,
+            "total_positions_at_risk_count": int(snap.loc[at_risk, "wallet_address"].nunique()),
+            "total_debt_at_risk_usd": float(snap.loc[at_risk, "total_debt_usd"].sum())
+            if "total_debt_usd" in snap else None,
+            "looping_wallets_count": int(snap.loc[snap["is_recursive_loop"].fillna(False),
+                                                   "wallet_address"].nunique())
+            if "is_recursive_loop" in snap else 0,
+        }
+    (MARTS / "overview_metrics.json").write_text(
+        json.dumps(overview, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8"
+    )
+    print(f"Wrote {MARTS / 'stress_summary.parquet'} ({len(summary)} scenario-snapshots)")
     print(f"Wrote {MARTS / 'stress_positions.parquet'} ({len(position_output):,} wallet-scenarios)")
-    print(f"Wrote {MARTS / 'stress_heatmap.parquet'} ({len(heatmap)} shock pairs)")
+    print(f"Wrote {MARTS / 'stress_heatmap.parquet'} ({len(heatmap)} shock-snapshot pairs)")
+    print(f"Wrote {MARTS / 'overview_metrics.json'} (metrics separated by snapshot block)")
 
 
 if __name__ == "__main__":

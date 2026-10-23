@@ -1,7 +1,7 @@
 """Unit tests for stress scenario pricing and heatmap outputs."""
 import pandas as pd
 
-from src.models.stress_test import generate_stress_heatmap, run_stress_test
+from src.models.stress_test import _summary_row, generate_stress_heatmap, run_stress_test
 
 
 def _positions() -> pd.DataFrame:
@@ -53,7 +53,26 @@ def test_eth_and_lst_depeg_shocks_reduce_hf_and_increase_debt_at_risk() -> None:
 
 
 def test_heatmap_has_required_schema_and_grid_size() -> None:
-    result = generate_stress_heatmap(_positions(), [0.0, -0.2], [0.0, -0.05, -0.1])
-    required = {"eth_shock", "depeg_shock", "debt_at_risk_usd", "positions_at_risk_count"}
+    second_snapshot = _positions().assign(snapshot_block=200)
+    positions = pd.concat([_positions(), second_snapshot], ignore_index=True)
+    result = generate_stress_heatmap(positions, [0.0, -0.2], [0.0, -0.05, -0.1])
+    required = {
+        "snapshot_block", "eth_shock", "depeg_shock", "debt_at_risk_usd", "positions_at_risk_count"
+    }
     assert required.issubset(result.columns)
-    assert len(result) == 6
+    assert len(result) == 12
+    assert set(result["snapshot_block"]) == {100, 200}
+
+
+def test_scenario_summary_keeps_snapshot_debt_separate() -> None:
+    second_snapshot = _positions().assign(snapshot_block=200)
+    result = run_stress_test(
+        pd.concat([_positions(), second_snapshot], ignore_index=True),
+        {"scenario_id": "eth_drop_40", "eth_shock": -0.40},
+    )
+    summaries = [
+        _summary_row("eth_drop_40", {"eth_shock": -0.40}, snapshot)
+        for _, snapshot in result.groupby("snapshot_block", sort=True)
+    ]
+    assert [row["snapshot_block"] for row in summaries] == [100, 200]
+    assert [row["debt_at_risk_usd"] for row in summaries] == [50_000.0, 50_000.0]

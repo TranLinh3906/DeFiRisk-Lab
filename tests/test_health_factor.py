@@ -70,3 +70,49 @@ def test_e_mode_lst_weth_wallet_is_classified_as_recursive_loop() -> None:
     result = calculate_health_factor(positions, config, prices)
     assert result.loc[0, "emode_category"] == 1
     assert result.loc[0, "is_recursive_loop"]
+
+
+def test_existing_and_missing_position_prices_merge_without_suffix_key_error() -> None:
+    rows = [
+        {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, price=1.0),
+         "wallet_address": "0xexisting"},
+        {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, price=None),
+         "wallet_address": "0xmissing"},
+    ]
+    positions = pd.DataFrame(rows)
+    config = pd.DataFrame([{
+        "snapshot_block": 100, "token_address": "0xcoll",
+        "lt_std": 0.80,
+    }])
+    prices = pd.DataFrame([{
+        "snapshot_block": 100, "token_address": "0xcoll", "price_usd": 2.0,
+    }])
+    result = calculate_health_factor(positions, config, prices)
+    values = result.set_index("wallet_address")["total_collateral_usd"]
+    assert values.loc["0xexisting"] == 100.0
+    assert values.loc["0xmissing"] == 200.0
+
+
+def test_matching_non_one_emode_category_uses_emode_lt_and_mismatch_falls_back() -> None:
+    rows = [
+        {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, user_emode=2),
+         "wallet_address": "0xmatch"},
+        {**_row("0xcoll", "DAI", 0.0, 50.0, enabled=False, user_emode=2),
+         "wallet_address": "0xmatch"},
+        {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, user_emode=3),
+         "wallet_address": "0xmismatch"},
+        {**_row("0xcoll", "DAI", 0.0, 50.0, enabled=False, user_emode=3),
+         "wallet_address": "0xmismatch"},
+    ]
+    positions = pd.DataFrame(rows)
+    # Reserve E-Mode LT is valid for category 2 on this token.
+    config = pd.DataFrame([{
+        "snapshot_block": 100, "token_address": "0xcoll", "lt_std": 0.50,
+        "lt_emode": 0.90, "emode_category": 2,
+    }])
+    prices = pd.DataFrame([{
+        "snapshot_block": 100, "token_address": "0xcoll", "price_usd": 1.0,
+    }])
+    result = calculate_health_factor(positions, config, prices).set_index("wallet_address")
+    assert result.loc["0xmatch", "health_factor"] == 1.8
+    assert result.loc["0xmismatch", "health_factor"] == 1.0

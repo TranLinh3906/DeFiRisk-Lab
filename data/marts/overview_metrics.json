@@ -1,8 +1,22 @@
 {
-  "total_wallets": 28640,
-  "total_collateral_usd": 34428095570.78842,
-  "total_debt_usd": 18764432198.20397,
-  "total_positions_at_risk_count": 832,
-  "total_debt_at_risk_usd": 2538558369.863462,
-  "looping_wallets_count": 318
+  "snapshots": {
+    "26179841": {
+      "snapshot_block": 26179841,
+      "total_wallets": 28493,
+      "total_collateral_usd": 17319949052.956272,
+      "total_debt_usd": 9427484969.034634,
+      "total_positions_at_risk_count": 639,
+      "total_debt_at_risk_usd": 329182570.8289217,
+      "looping_wallets_count": 315
+    },
+    "26194188": {
+      "snapshot_block": 26194188,
+      "total_wallets": 28545,
+      "total_collateral_usd": 17108146517.832148,
+      "total_debt_usd": 9336947229.16934,
+      "total_positions_at_risk_count": 648,
+      "total_debt_at_risk_usd": 326408510.39313513,
+      "looping_wallets_count": 315
+    }
+  }
 }

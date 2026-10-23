@@ -110,16 +110,32 @@ def calculate_health_factor(
     if not set(POSITION_KEYS[:2] + ["token_address", "price_usd"]).issubset(px.columns):
         raise ValueError("prices_df requires snapshot_block, protocol_id, token_address and price_usd")
 
+    # Preserve the wallet's E-Mode category before joining the reserve category.
+    user_mode_col = next(
+        (name for name in ("emode_category_user", "user_emode", "emode_category") if name in pos),
+        None,
+    )
+    pos["_user_emode_category"] = _num(pos[user_mode_col]) if user_mode_col else 0
+    if "emode_category" in cfg and "emode_category" in pos:
+        cfg = cfg.rename(columns={"emode_category": "emode_category_config"})
+
     # Keep official composite keys on every join; deduplicate dimensions first.
     token_keys = POSITION_KEYS[:2] + ["token_address"]
     cfg_cols = token_keys + [c for c in (
-        "lt_std", "lt_bps", "lt_emode", "emode_lt_bps", "emode_category", "symbol",
+        "lt_std", "lt_bps", "lt_emode", "emode_lt_bps", "emode_category",
+        "emode_category_config", "symbol",
         "usage_as_collateral", "is_collateral_enabled",
     ) if c in cfg.columns]
     cfg = cfg[cfg_cols].drop_duplicates(subset=token_keys, keep="first")
     pos = pos.merge(cfg, on=token_keys, how="left", suffixes=("", "_config"))
     px_dim = px[token_keys + ["price_usd"]].drop_duplicates(subset=token_keys, keep="first")
-    pos = pos.merge(px_dim, on=token_keys, how="left")
+    if "price_usd" in pos:
+        pos = pos.merge(px_dim.rename(columns={"price_usd": "price_usd_price"}),
+                        on=token_keys, how="left")
+        pos["price_usd"] = pos["price_usd"].fillna(pos.get("price_usd_price", np.nan))
+        pos = pos.drop(columns=["price_usd_price"], errors="ignore")
+    else:
+        pos = pos.merge(px_dim, on=token_keys, how="left")
 
     flag_col = next((c for c in ("collateral_flag", "is_collateral_enabled", "coll_flag", "usage_as_collateral") if c in pos), None)
     collateral_enabled = _as_bool(pos[flag_col]) if flag_col else pd.Series(False, index=pos.index)
@@ -134,29 +150,29 @@ def calculate_health_factor(
     pos["collateral_usd"] = np.where(collateral_enabled, pos.collateral_amount * pos.price_usd, 0.0)
     pos["debt_usd"] = pos.debt_amount * pos.price_usd
 
-    std = _num(pos.get("lt_std", pd.Series(np.nan, index=pos.index)), np.nan)
-    if "lt_std" not in pos or std.isna().all():
-        std = _num(pos.get("lt_bps", pd.Series(0.0, index=pos.index))) / 10_000
-    else:
-        std = std.where(std <= 1, std / 10_000)
-    em = _num(pos.get("lt_emode", pd.Series(np.nan, index=pos.index)), np.nan)
-    if "lt_emode" not in pos or em.isna().all():
-        em = _num(pos.get("emode_lt_bps", pd.Series(np.nan, index=pos.index)), np.nan) / 10_000
-    else:
-        em = em.where(em <= 1, em / 10_000)
+    def lt_fraction(frame: pd.DataFrame, fraction_col: str, bps_col: str) -> pd.Series:
+        """Read LT as a fraction or basis points and invalidate out-of-range values."""
+        if fraction_col in frame:
+            raw = _num(frame[fraction_col], np.nan)
+        else:
+            raw = pd.Series(np.nan, index=frame.index, dtype="float64")
+        raw = raw.where(raw <= 1.0, raw / 10_000.0)
+        raw = raw.where(raw.between(0.0, 1.0))
+        if bps_col in frame:
+            fallback = _num(frame[bps_col], np.nan) / 10_000.0
+            fallback = fallback.where(fallback.between(0.0, 1.0))
+            raw = raw.fillna(fallback)
+        return raw
 
-    # A per-position user category may be present in positions; membership
-    # category is attached from config under the suffixed name after the join.
-    if "emode_category_user" in pos:
-        user_category = _num(pos["emode_category_user"])
-    elif "user_emode" in pos:
-        user_category = _num(pos["user_emode"])
-    elif "emode_category" in pos:
-        user_category = _num(pos["emode_category"])
-    else:
-        user_category = pd.Series(0.0, index=pos.index)
-    member_category = _num(pos.get("emode_category_config", pos.get("emode_category", pd.Series(0, index=pos.index))))
-    effective = np.where(user_category.eq(1) & member_category.eq(1) & em.notna(), em.fillna(0), std.fillna(0))
+    std = lt_fraction(pos, "lt_std", "lt_bps").fillna(0.0)
+    em = lt_fraction(pos, "lt_emode", "emode_lt_bps")
+    user_category = _num(pos["_user_emode_category"])
+    member_category = _num(pos.get(
+        "emode_category_config", pos.get("emode_category", pd.Series(0, index=pos.index))
+    ))
+    emode_lt_valid = em.notna() & em.gt(0.0)
+    use_emode_lt = user_category.gt(0) & user_category.eq(member_category) & emode_lt_valid
+    effective = np.where(use_emode_lt, em.fillna(0.0), std)
     pos["weighted_collateral_lt_usd"] = pos["collateral_usd"] * np.clip(effective, 0, 1)
 
     symbols = pos.get("symbol", pos.get("token_symbol", pd.Series("", index=pos.index)))
@@ -188,16 +204,20 @@ def calculate_health_factor(
 
 
 def build_overview(risk_df: pd.DataFrame) -> dict[str, Any]:
-    """Summarize unique wallets and risk exposure across all snapshot blocks."""
-    at_risk = risk_df.health_factor.lt(1.0)
-    return {
-        "total_wallets": int(risk_df.wallet_address.nunique()),
-        "total_collateral_usd": float(risk_df.total_collateral_usd.sum()),
-        "total_debt_usd": float(risk_df.total_debt_usd.sum()),
-        "total_positions_at_risk_count": int(risk_df.loc[at_risk, "wallet_address"].nunique()),
-        "total_debt_at_risk_usd": float(risk_df.loc[at_risk, "total_debt_usd"].sum()),
-        "looping_wallets_count": int(risk_df.loc[risk_df.is_recursive_loop, "wallet_address"].nunique()),
-    }
+    """Summarize wallets and risk exposure separately for each snapshot block."""
+    snapshots: dict[str, Any] = {}
+    for block, snap in risk_df.groupby("snapshot_block", sort=True):
+        at_risk = snap["health_factor"].lt(1.0)
+        snapshots[str(int(block))] = {
+            "snapshot_block": int(block),
+            "total_wallets": int(snap["wallet_address"].nunique()),
+            "total_collateral_usd": float(snap["total_collateral_usd"].sum()),
+            "total_debt_usd": float(snap["total_debt_usd"].sum()),
+            "total_positions_at_risk_count": int(snap.loc[at_risk, "wallet_address"].nunique()),
+            "total_debt_at_risk_usd": float(snap.loc[at_risk, "total_debt_usd"].sum()),
+            "looping_wallets_count": int(snap.loc[snap["is_recursive_loop"], "wallet_address"].nunique()),
+        }
+    return {"snapshots": snapshots}
 
 
 def main() -> None:

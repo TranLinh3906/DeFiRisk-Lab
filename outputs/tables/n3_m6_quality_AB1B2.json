@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-10-23T18:35:47.718350+00:00",
+  "scope": "Aave V3 Ethereum - N2 snapshots A/B1/B2",
+  "approved_blocks": {
+    "A": 26179841,
+    "B1": 20458637,
+    "B2": 23543615
+  },
+  "n_positions_rows": 178022,
+  "n_hf_rows": 68525,
+  "wallets_by_snapshot": {
+    "A": 28493,
+    "B1": 12047,
+    "B2": 27985
+  },
+  "source_columns": {
+    "wallet_positions": "wallet_address",
+    "wallet_hf": "wallet",
+    "asset": "token_address",
+    "debt_usd": "debt_usd",
+    "collateral_usd": "collateral_usd",
+    "hf": "health_factor_reported"
+  },
+  "collateral_rule": "Counted collateral only; flag=counted_collateral",
+  "limitations": [
+    "HHI is borrower debt concentration, not liquidation probability.",
+    "HF < 1 includes dust positions; apply debt thresholds separately.",
+    "Snapshot A and historical B1/B2 are distinct time points.",
+    "No claim of 100% protocol debt coverage without N2 source QA.",
+    "No simulated liquidation or DEX depth included in this module."
+  ]
+}

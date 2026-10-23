@@ -1,0 +1,35 @@
+{
+  "_note": "Nguon su that duy nhat cho snapshot. find_snapshot_blocks.py dien block/hash cho B1, B2 (khi block = null). A giu nguyen.",
+  "snapshots": {
+    "A": {
+      "role": "calibration",
+      "target_utc": "2026-10-13T00:00:00Z",
+      "block": 26179841,
+      "block_hash": "0x40c731f68bcd8152ad12433f4be57783e731fcf1546575ab51aa894054244ac3",
+      "window_end_exclusive_utc": null,
+      "leader_approx_block": null,
+      "block_timestamp_utc": "2026-10-12T23:59:59Z",
+      "archive_state_readable": true
+    },
+    "B1": {
+      "role": "out-of-sample event 2024-08-05",
+      "target_utc": "2024-08-04T23:59:59Z",
+      "block": 20458637,
+      "block_hash": "0x95ed667a5a234f47766e9f89a744e0c6d550de01ccaffe02c1dd56ea23ed5b92",
+      "window_end_exclusive_utc": "2024-08-06T00:00:00Z",
+      "leader_approx_block": 20458692,
+      "block_timestamp_utc": "2024-08-04T23:59:59Z",
+      "archive_state_readable": true
+    },
+    "B2": {
+      "role": "out-of-sample event 2025-10-10",
+      "target_utc": "2025-10-09T23:59:59Z",
+      "block": 23543615,
+      "block_hash": "0xacaf6dc7e29b333e24d5142d4863f867d51f20a86cdb10ab89c9bb4241a01496",
+      "window_end_exclusive_utc": "2025-10-12T00:00:00Z",
+      "leader_approx_block": 23530241,
+      "block_timestamp_utc": "2025-10-09T23:59:59Z",
+      "archive_state_readable": true
+    }
+  }
+}

@@ -47,6 +47,9 @@ POOL_ABI = [{
                  "components": [{"name": n, "type": t} for n, t in FIELDS]}],
 }]
 ZERO = "0x0000000000000000000000000000000000000000"
+# E-Mode kieu cu (Aave V3.0/3.1): moi reserve thuoc dung 1 category, tra bang DataProvider
+DP_ABI = [{"name": "getReserveEModeCategory", "type": "function", "stateMutability": "view",
+           "inputs": [{"name": "asset", "type": "address"}], "outputs": [{"name": "o", "type": "uint256"}]}]
 
 
 def main():
@@ -78,10 +81,46 @@ def main():
         print(f"[{label}] {len(id_to_tok)} reserve id duy nhat / {len(snap['reserves'])} reserve; "
               f"id min={min(id_to_tok)} max={max(id_to_tok)}")
 
-        for cid, cat in probe[label]["categories"].items():
+        cats = probe[label]["categories"]
+        needs_old = any((not c.get("getEModeCategoryCollateralConfig")) and c.get("getEModeCategoryData")
+                        for c in cats.values())
+        old_members = {}
+        if needs_old:
+            dp = w3.eth.contract(address=Web3.to_checksum_address(snap["pool_data_provider"]), abi=DP_ABI)
+            for rid, tk in id_to_tok.items():
+                try:
+                    old_members[rid] = int(dp.functions.getReserveEModeCategory(
+                        Web3.to_checksum_address(tk["token_address"])).call(block_identifier=blk))
+                except Exception as exc:  # noqa: BLE001
+                    problems.append(f"[{label}] {tk['symbol']}: getReserveEModeCategory loi ({type(exc).__name__})")
+            print(f"[{label}] E-Mode KIEU CU: reserve thuoc category != 0: "
+                  f"{sum(1 for c in old_members.values() if c)}")
+
+        for cid, cat in cats.items():
             cfg = cat.get("getEModeCategoryCollateralConfig")
             if not cfg:
-                problems.append(f"[{label}] category {cid}: khong co bitmap (chi co ham kieu cu)")
+                old = cat.get("getEModeCategoryData")
+                if not old:
+                    problems.append(f"[{label}] category {cid}: khong doc duoc cau hinh E-Mode")
+                    continue
+                if old.get("price_source") and old["price_source"] != ZERO:
+                    problems.append(f"[{label}] category {cid}: priceSource != 0 ({old['price_source']}); "
+                                    "Aave dung oracle rieng cho vi o E-Mode, HF tu tinh co the lech")
+                for rid, c in old_members.items():
+                    if c != int(cid):
+                        continue
+                    tk = id_to_tok[rid]
+                    rows.append({
+                        "snapshot_id": label, "snapshot_block": blk, "snapshot_timestamp": ts,
+                        "emode_category": int(cid), "emode_label": old["label"],
+                        "reserve_id": rid, "token_address": tk["token_address"], "symbol": tk["symbol"],
+                        "is_collateral": True, "is_borrowable": True,
+                        "emode_ltv_bps": old["ltv_bps"], "emode_lt_bps": old["lt_bps"],
+                        "emode_bonus_raw_bps": old["bonus_raw_bps"],
+                        "emode_bonus_premium": old["bonus_raw_bps"] / 1e4 - 1,
+                        "emode_membership_method": "getReserveEModeCategory",
+                        "emode_price_source": old.get("price_source"),
+                    })
                 continue
             col = set(cfg["collateral_bitmap_set_bits"])
             bor = set(cfg["borrowable_bitmap_set_bits"])
@@ -98,6 +137,7 @@ def main():
                     "emode_ltv_bps": cfg["ltv_bps"], "emode_lt_bps": cfg["lt_bps"],
                     "emode_bonus_raw_bps": cfg["bonus_raw_bps"],
                     "emode_bonus_premium": cfg["bonus_raw_bps"] / 1e4 - 1,
+                    "emode_membership_method": "bitmap", "emode_price_source": None,
                 })
 
     df = pd.DataFrame(rows)
@@ -111,11 +151,14 @@ def main():
     else:
         print("Khong co van de o cac kiem tra tu dong.")
 
-    for cid in (1, 3, 22, 26):
-        sub = df[(df.snapshot_id == "A") & (df.emode_category == cid)]
-        print(f"\nCategory {cid} ({sub.emode_label.iloc[0] if len(sub) else '?'}):")
-        print("  collateral:", ", ".join(sub[sub.is_collateral].symbol))
-        print("  borrowable:", ", ".join(sub[sub.is_borrowable].symbol))
+    for lb in state["snapshots"]:
+        for cid in (1, 3, 22, 26):
+            sub = df[(df.snapshot_id == lb) & (df.emode_category == cid)]
+            if not len(sub):
+                continue
+            print(f"\n[{lb}] Category {cid} ({sub.emode_label.iloc[0]}):")
+            print("  collateral:", ", ".join(sub[sub.is_collateral].symbol))
+            print("  borrowable:", ", ".join(sub[sub.is_borrowable].symbol))
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(OUT, index=False)

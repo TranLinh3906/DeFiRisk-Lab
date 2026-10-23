@@ -122,3 +122,6 @@ _archive_old_liquidation_runs/
 
 # Large local raw export
 /borrow_events_raw.jsonl
+
+#Phụng
+data/archive/

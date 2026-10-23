@@ -88,7 +88,7 @@ def run_batch(mc, wallets, blk):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--snapshot", choices=["A", "B"], default=None)
+    ap.add_argument("--snapshot", default=None, help="nhan snapshot (A, B1, B2...); mac dinh: tat ca trong state_check.json")
     ap.add_argument("--batch", type=int, default=150, help="so vi moi yeu cau Multicall3")
     ap.add_argument("--limit", type=int, default=None, help="chi chay N vi dau (de thu)")
     args = ap.parse_args()
@@ -101,8 +101,15 @@ def main():
     state = json.loads(STATE.read_text(encoding="utf-8"))
     cand = pd.read_parquet(CAND)
 
+    labels = [args.snapshot] if args.snapshot else list(state["snapshots"])
+    for lb in labels:
+        if lb not in state["snapshots"]:
+            sys.exit(f"Snapshot {lb} khong co trong state_check.json (chay check_state.py).")
+        if f"in_candidate_{lb}" not in cand.columns:
+            sys.exit(f"borrower_candidates.parquet thieu cot in_candidate_{lb}; chay build_candidates.py.")
+
     frames = []
-    for label in ([args.snapshot] if args.snapshot else ["A", "B"]):
+    for label in labels:
         snap = state["snapshots"][label]
         blk = snap["block"]
         flag = f"in_candidate_{label}"
@@ -111,6 +118,10 @@ def main():
             wallets = wallets[: args.limit]
         raw = ROOT / f"data/raw/aave/account_data_raw_{label}.jsonl"
         raw.parent.mkdir(parents=True, exist_ok=True)
+        guard = raw.with_name(raw.name + ".block")  # chan dung nham checkpoint cua block khac
+        if guard.exists() and guard.read_text().strip() != str(blk):
+            sys.exit(f"[{label}] checkpoint {raw.name} thuoc block khac ({guard.read_text().strip()} != {blk}). Xoa/doi ten roi chay lai.")
+        guard.write_text(str(blk))
         done = set()
         if raw.exists():
             with open(raw, encoding="utf-8") as f:
@@ -143,7 +154,12 @@ def main():
                   d.health_factor_reported.quantile([0.01, 0.05, 0.5]).round(3).tolist())
 
     if not args.limit:
-        pd.concat(frames, ignore_index=True).to_parquet(OUT, index=False)
+        new = pd.concat(frames, ignore_index=True)
+        if OUT.exists():  # giu snapshot khac con hop le, bo snapshot khong con trong config (vd B cu)
+            old = pd.read_parquet(OUT)
+            old = old[old.snapshot_id.isin(list(state["snapshots"])) & ~old.snapshot_id.isin(set(new.snapshot_id))]
+            new = pd.concat([old, new], ignore_index=True)
+        new.to_parquet(OUT, index=False)
         print(f"Da luu {OUT}")
     else:
         print("Che do --limit: KHONG ghi account_reference.parquet (chi de thu).")

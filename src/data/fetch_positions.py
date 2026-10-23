@@ -108,8 +108,9 @@ def stage2_reserve_data(mc, wallets, blk, dp_addr, reserves, cfg_path, pos_path,
         for (w, rid, _), (ok, d) in zip(batch_calls, res):
             row = {"wallet": w, "rid": rid, "token": reserves[rid]["token_address"], "ok": bool(ok)}
             if ok:
-                a, sd, vd, _, _, _, _, _, cflag = decode(["uint256"] * 7 + ["uint40", "bool"], d)
-                row.update({"a_bal": str(a), "stable": str(sd), "var": str(vd), "coll_flag": bool(cflag)})
+                a, sd, vd, _, sv, _, _, _, cflag = decode(["uint256"] * 7 + ["uint40", "bool"], d)
+                row.update({"a_bal": str(a), "stable": str(sd), "var": str(vd), "scaled_var": str(sv),
+                            "coll_flag": bool(cflag)})
             got[w].append(row)
         for w in batch_w:
             # vi khong co reserve nao duoc danh dau van duoc ghi 1 dong "rong" de checkpoint
@@ -140,7 +141,7 @@ def stage2_reserve_data(mc, wallets, blk, dp_addr, reserves, cfg_path, pos_path,
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--snapshot", choices=["A", "B"], default=None)
+    ap.add_argument("--snapshot", default=None, help="nhan snapshot (A, B1, B2...); mac dinh: tat ca trong state_check.json")
     ap.add_argument("--limit", type=int, default=None)
     args = ap.parse_args()
 
@@ -156,8 +157,15 @@ def main():
     px = pd.read_parquet(P / "oracle_prices.parquet")
     emem = pd.read_parquet(P / "emode_membership.parquet")
 
+    labels = [args.snapshot] if args.snapshot else list(state["snapshots"])
+    for lb in labels:
+        if lb not in state["snapshots"]:
+            sys.exit(f"Snapshot {lb} khong co trong state_check.json (chay check_state.py).")
+        if not (acct.snapshot_id == lb).any():
+            sys.exit(f"account_reference.parquet chua co snapshot {lb}; chay fetch_account_data.py.")
+
     all_pos, all_rec = [], []
-    for label in ([args.snapshot] if args.snapshot else ["A", "B"]):
+    for label in labels:
         snap = state["snapshots"][label]
         blk = snap["block"]
         reserves = snap["reserves"]  # thu tu getReservesList; id = vi tri (da kiem tra: id 0..66 duy nhat)
@@ -176,6 +184,12 @@ def main():
         print(f"[{label}] block {blk}: {len(wallets)} vi co no")
         cfg_path = ROOT / f"data/raw/aave/user_config_raw_{label}.jsonl"
         pos_path = ROOT / f"data/raw/aave/positions_raw_{label}.jsonl"
+        for rp in (cfg_path, pos_path):  # chan dung nham checkpoint cua block khac
+            guard = rp.with_name(rp.name + ".block")
+            if guard.exists() and guard.read_text().strip() != str(blk):
+                sys.exit(f"[{label}] checkpoint {rp.name} thuoc block khac. Xoa/doi ten roi chay lai.")
+            guard.parent.mkdir(parents=True, exist_ok=True)
+            guard.write_text(str(blk))
         stage1_user_config(mc, wallets, blk, cfg_path)
         stage2_reserve_data(mc, wallets, blk, Web3.to_checksum_address(snap["pool_data_provider"]),
                             reserves, cfg_path, pos_path)
@@ -194,7 +208,24 @@ def main():
         df["price_usd"] = df.token.map(pr)
         sc = 10.0 ** df["decimals"]
         df["collateral_amount"] = df.a_bal.map(int).astype(float) / sc
-        df["debt_amount"] = (df.stable.map(int) + df["var"].map(int)).astype(float) / sc
+        # No bien doi theo cach Aave tinh HF: scaledBalance x normalizedVariableDebt (rayMul).
+        # balanceOf cua debt token (cot "var") co the khac (vd GHO: balanceOf da tru chiet khau lai suat).
+        if "scaled_var" not in df.columns:
+            df["scaled_var"] = None
+        idx = {r["token_address"]: int(r["variable_borrow_index_normalized"]) for r in reserves}
+        RAY = 10 ** 27
+
+        def aave_var(tk, v, s):
+            if s is None or (isinstance(s, float) and pd.isna(s)):
+                return int(v)  # checkpoint cu khong co scaled_var: dung balanceOf
+            return (int(s) * idx[tk] + RAY // 2) // RAY
+
+        df["var_aave"] = [aave_var(t_, v, s) for t_, v, s in zip(df.token, df["var"], df.scaled_var)]
+        n_old = int(df.scaled_var.isna().sum())
+        if n_old:
+            print(f"   CANH BAO: {n_old} dong khong co scaled_var (checkpoint cu): dung balanceOf cho no bien doi")
+        df["debt_amount"] = (df.stable.map(int) + df.var_aave).astype(float) / sc
+        df["var_aave"] = df["var_aave"].map(str)  # so nguyen lon (>int64) -> chuoi de ghi parquet
         df["collateral_usd"] = df.collateral_amount * df.price_usd
         df["debt_usd"] = df.debt_amount * df.price_usd
 
@@ -248,13 +279,20 @@ def main():
                   f"HF tinh={r.hf_calc:.4f} | no tinh USD={r.debt_usd_calc:.4f} | no Aave USD={r.total_debt_base_usd:.4f}")
 
     if not args.limit:
-        pd.concat(all_pos, ignore_index=True)[[
+        new_pos = pd.concat(all_pos, ignore_index=True)[[
             "snapshot_id", "snapshot_block", "wallet", "token", "symbol", "decimals", "a_bal", "stable", "var",
-            "coll_flag", "collateral_amount", "debt_amount", "price_usd", "collateral_usd", "debt_usd",
+            "scaled_var", "var_aave", "coll_flag", "collateral_amount", "debt_amount", "price_usd", "collateral_usd", "debt_usd",
             "user_emode", "lt_std", "lt_eff", "counted_collateral"]].rename(columns={
                 "wallet": "wallet_address", "token": "token_address", "a_bal": "a_balance_raw",
-                "stable": "stable_debt_raw", "var": "variable_debt_raw"}).to_parquet(P / "positions_long.parquet", index=False)
-        pd.concat(all_rec, ignore_index=True).to_parquet(P / "hf_reconciliation.parquet", index=False)
+                "stable": "stable_debt_raw", "var": "variable_debt_raw",
+                "scaled_var": "variable_debt_scaled_raw", "var_aave": "variable_debt_aave_raw"})
+        new_rec = pd.concat(all_rec, ignore_index=True)
+        for path, new in ((P / "positions_long.parquet", new_pos), (P / "hf_reconciliation.parquet", new_rec)):
+            if path.exists():  # giu snapshot khac con hop le, bo snapshot khong con trong config (vd B cu)
+                old = pd.read_parquet(path)
+                old = old[old.snapshot_id.isin(list(state["snapshots"])) & ~old.snapshot_id.isin(set(new.snapshot_id))]
+                new = pd.concat([old, new], ignore_index=True)
+            new.to_parquet(path, index=False)
         print(f"Da luu {P / 'positions_long.parquet'} va hf_reconciliation.parquet")
     else:
         print("Che do --limit: KHONG ghi file dau ra cuoi (chi de thu).")

@@ -30,7 +30,8 @@ from web3 import Web3
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    # override=True: gia tri trong .env uu tien hon bien moi truong cu con sot lai
+    load_dotenv(Path.cwd() / ".env", override=True)
 except ImportError:
     pass
 from fetch_liquidations import Etherscan  # noqa: E402  (lop client cua N3)
@@ -100,14 +101,16 @@ def main():
     args = ap.parse_args()
 
     state = json.loads(STATE.read_text(encoding="utf-8"))
-    a_blk, b_blk = state["snapshots"]["A"]["block"], state["snapshots"]["B"]["block"]
+    blocks = {k: v["block"] for k, v in state["snapshots"].items()}
+    a_blk, b_blk = blocks.get("A", min(blocks.values())), max(blocks.values())  # b_blk = block lon nhat
     to_block = args.to_block or b_blk
     if to_block > b_blk:
-        sys.exit("to-block khong duoc vuot Snapshot B (tranh dung du lieu tuong lai).")
+        sys.exit("to-block khong duoc vuot block snapshot lon nhat (tranh dung du lieu tuong lai).")
 
-    key = os.getenv("ETHERSCAN_API_KEY", "").strip()
+    key = os.getenv("ETHERSCAN_API_KEY", "").strip().strip('"').strip("'").strip()
     if not key:
         sys.exit("Thieu ETHERSCAN_API_KEY trong .env")
+    print(f"Do dai ETHERSCAN_API_KEY dang dung: {len(key)} ky tu (khong in key)")
     client = Etherscan(key)
     print(f"topic0 Borrow = {TOPIC0}")
 
@@ -149,11 +152,11 @@ def main():
     g = ev.groupby("on_behalf_of").agg(
         first_borrow_block=("event_block", "min"), last_borrow_block=("event_block", "max"),
         n_borrow_events=("event_block", "size")).reset_index().rename(columns={"on_behalf_of": "wallet_address"})
-    g["in_candidate_A"] = g.first_borrow_block <= a_blk
-    g["in_candidate_B"] = g.first_borrow_block <= b_blk
+    for lb, bk in blocks.items():
+        g[f"in_candidate_{lb}"] = g.first_borrow_block <= bk
     OUT.parent.mkdir(parents=True, exist_ok=True)
     g.to_parquet(OUT, index=False)
-    print(f"Vi ung vien: {len(g)} | A: {int(g.in_candidate_A.sum())} | B: {int(g.in_candidate_B.sum())}")
+    print(f"Vi ung vien: {len(g)} | " + " | ".join(f"{lb}: {int(g[f'in_candidate_{lb}'].sum())}" for lb in blocks))
     print(f"Block Borrow dau tien: {int(g.first_borrow_block.min())} (neu gan --from-block thi ha --from-block xuong va chay --reset)")
 
     # Kiem tra do phu bang cac vi bi thanh ly that (N3), neu co file

@@ -27,10 +27,16 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[2] if Path(__file__).parent.name == "data" else Path.cwd()
 POOL = Web3.to_checksum_address("0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2")
 
-SNAPSHOTS = {
-    "A": (26179841, "0x40c731f68bcd8152ad12433f4be57783e731fcf1546575ab51aa894054244ac3"),
-    "B": (26194188, "0xf12bcb7db5631cc69f0aaa392df0855f2a2ff3c18a9b9bcbb3a25981cac9daed"),
-}
+def load_snapshots():
+    """Doc nhan snapshot, block, hash tu config/snapshots.json (nguon duy nhat)."""
+    cfg = json.loads((ROOT / "config/snapshots.json").read_text(encoding="utf-8"))["snapshots"]
+    bad = [k for k, v in cfg.items() if not v.get("block") or not v.get("block_hash")]
+    if bad:
+        sys.exit(f"config/snapshots.json thieu block/hash cho {bad}; chay find_snapshot_blocks.py truoc.")
+    return {k: (int(v["block"]), v["block_hash"]) for k, v in cfg.items()}
+
+
+SNAPSHOTS = load_snapshots()
 
 
 def abi(*items):

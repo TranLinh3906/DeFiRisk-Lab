@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from src.models.health_factor import calculate_health_factor
+from src.models.health_factor import _as_bool, calculate_health_factor
 
 
 def _frames(rows: list[dict]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -89,8 +89,33 @@ def test_existing_and_missing_position_prices_merge_without_suffix_key_error() -
     }])
     result = calculate_health_factor(positions, config, prices)
     values = result.set_index("wallet_address")["total_collateral_usd"]
-    assert values.loc["0xexisting"] == 100.0
+    assert values.loc["0xexisting"] == 200.0
     assert values.loc["0xmissing"] == 200.0
+
+
+def test_oracle_price_overrides_embedded_position_price() -> None:
+    positions, config, _ = _frames([_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, price=1.0)])
+    prices = pd.DataFrame([{"snapshot_block": 100, "token_address": "0xcoll", "price_usd": 2.0}])
+    assert calculate_health_factor(positions, config, prices).loc[0, "total_collateral_usd"] == 200.0
+
+
+def test_emode_membership_matches_category_when_token_has_multiple_categories() -> None:
+    positions = pd.DataFrame([
+        {**_row("0xcoll", "RETH", 100.0, 0.0, enabled=True, user_emode=2), "wallet_address": "0xmulti"},
+        {**_row("0xdebt", "WETH", 0.0, 50.0, enabled=False, user_emode=2), "wallet_address": "0xmulti"},
+    ])
+    config = pd.DataFrame([
+        {"snapshot_block": 100, "token_address": "0xcoll", "lt_std": .5, "emode_category": 1, "lt_emode": .6},
+        {"snapshot_block": 100, "token_address": "0xcoll", "lt_std": .5, "emode_category": 2, "lt_emode": .9},
+        {"snapshot_block": 100, "token_address": "0xdebt", "lt_std": .5, "emode_category": 2, "lt_emode": .9},
+    ])
+    prices = positions[["snapshot_block", "token_address"]].drop_duplicates().assign(price_usd=1.0)
+    result = calculate_health_factor(positions, config, prices)
+    assert result.loc[0, "health_factor"] == 1.8
+
+
+def test_false_string_parses_as_false() -> None:
+    assert not _as_bool(pd.Series(["false"])).iloc[0]
 
 
 def test_matching_non_one_emode_category_uses_emode_lt_and_mismatch_falls_back() -> None:

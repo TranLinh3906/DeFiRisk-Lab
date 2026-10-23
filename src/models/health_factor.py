@@ -15,7 +15,7 @@ PROTOCOL_ID = "aave_v3_ethereum"
 POSITION_KEYS = ["snapshot_block", "protocol_id", "wallet_address", "token_address"]
 SUMMARY_KEYS = POSITION_KEYS[:-1]
 RENAME_ALIASES = {"wallet": "wallet_address", "snapshot_id": "snapshot_block", "token": "token_address"}
-LST_SYMBOLS = {"WSTETH", "WEETH", "CBETH"}
+LST_SYMBOLS = {"STETH", "WSTETH", "WEETH", "CBETH", "RETH", "ANKRETH", "SETH2"}
 
 
 def normalize_input(frame: pd.DataFrame) -> pd.DataFrame:
@@ -122,20 +122,16 @@ def calculate_health_factor(
     # Keep official composite keys on every join; deduplicate dimensions first.
     token_keys = POSITION_KEYS[:2] + ["token_address"]
     cfg_cols = token_keys + [c for c in (
-        "lt_std", "lt_bps", "lt_emode", "emode_lt_bps", "emode_category",
-        "emode_category_config", "symbol",
+        "lt_std", "lt_bps", "symbol",
         "usage_as_collateral", "is_collateral_enabled",
     ) if c in cfg.columns]
     cfg = cfg[cfg_cols].drop_duplicates(subset=token_keys, keep="first")
     pos = pos.merge(cfg, on=token_keys, how="left", suffixes=("", "_config"))
     px_dim = px[token_keys + ["price_usd"]].drop_duplicates(subset=token_keys, keep="first")
-    if "price_usd" in pos:
-        pos = pos.merge(px_dim.rename(columns={"price_usd": "price_usd_price"}),
-                        on=token_keys, how="left")
-        pos["price_usd"] = pos["price_usd"].fillna(pos.get("price_usd_price", np.nan))
-        pos = pos.drop(columns=["price_usd_price"], errors="ignore")
-    else:
-        pos = pos.merge(px_dim, on=token_keys, how="left")
+    # Oracle is authoritative whenever supplied. Do not let embedded/stale t0
+    # prices silently override it; missing Oracle observations are errors for
+    # rows with an active collateral or debt balance.
+    pos = pos.drop(columns=["price_usd"], errors="ignore").merge(px_dim, on=token_keys, how="left")
 
     flag_col = next((c for c in ("collateral_flag", "is_collateral_enabled", "coll_flag", "usage_as_collateral") if c in pos), None)
     collateral_enabled = _as_bool(pos[flag_col]) if flag_col else pd.Series(False, index=pos.index)
@@ -146,7 +142,12 @@ def calculate_health_factor(
             break
     pos["collateral_amount"] = _num(pos["collateral_amount"])
     pos["debt_amount"] = _num(pos["debt_amount"])
-    pos["price_usd"] = _num(pos["price_usd"])
+    raw_price = pd.to_numeric(pos["price_usd"], errors="coerce")
+    exposed = (pos["collateral_amount"].gt(0) & collateral_enabled) | pos["debt_amount"].gt(0)
+    invalid_price = exposed & (raw_price.isna() | ~np.isfinite(raw_price) | raw_price.le(0))
+    if invalid_price.any():
+        raise ValueError("Oracle price is missing or non-positive for an active position")
+    pos["price_usd"] = _num(raw_price)
     pos["collateral_usd"] = np.where(collateral_enabled, pos.collateral_amount * pos.price_usd, 0.0)
     pos["debt_usd"] = pos.debt_amount * pos.price_usd
 
@@ -165,11 +166,25 @@ def calculate_health_factor(
         return raw
 
     std = lt_fraction(pos, "lt_std", "lt_bps").fillna(0.0)
-    em = lt_fraction(pos, "lt_emode", "emode_lt_bps")
     user_category = _num(pos["_user_emode_category"])
-    member_category = _num(pos.get(
-        "emode_category_config", pos.get("emode_category", pd.Series(0, index=pos.index))
-    ))
+    # E-Mode membership is category-specific. Preserve all categories for a
+    # token and join on the wallet's category rather than selecting one row.
+    cfg_source = normalize_input(reserve_config)
+    membership = cfg_source[[c for c in token_keys + ["emode_category", "emode_category_config", "lt_emode", "emode_lt_bps"] if c in cfg_source]].copy()
+    if "emode_category_config" not in membership and "emode_category" in membership:
+        membership = membership.rename(columns={"emode_category": "emode_category_config"})
+    if "emode_category_config" in membership:
+        if "lt_emode" not in membership and "emode_lt_bps" in membership:
+            membership["lt_emode"] = pd.to_numeric(membership["emode_lt_bps"], errors="coerce") / 10_000.0
+        membership = membership.drop_duplicates(subset=token_keys + ["emode_category_config"], keep="first")
+        pos = pos.drop(columns=[c for c in ("lt_emode", "emode_lt_bps", "emode_category_config") if c in pos], errors="ignore")
+        pos = pos.merge(membership, left_on=token_keys + ["_user_emode_category"],
+                        right_on=token_keys + ["emode_category_config"], how="left", suffixes=("", "_membership"))
+    else:
+        pos["emode_category_config"] = np.nan
+        pos["lt_emode"] = np.nan
+    em = lt_fraction(pos, "lt_emode", "emode_lt_bps")
+    member_category = _num(pos.get("emode_category_config", pd.Series(0, index=pos.index)))
     emode_lt_valid = em.notna() & em.gt(0.0)
     use_emode_lt = user_category.gt(0) & user_category.eq(member_category) & emode_lt_valid
     effective = np.where(use_emode_lt, em.fillna(0.0), std)
@@ -242,20 +257,18 @@ def main() -> None:
                 subset=SUMMARY_KEYS, keep="first"
             )
             positions = positions.merge(emode_users, on=SUMMARY_KEYS, how="left")
-    # Membership provides LT for category 1; standard config supplies lt_std.
+    # Keep every membership category; only standard reserve config is reduced
+    # to one row per token by calculate_health_factor.
     membership_path = PROCESSED / "emode_membership.parquet"
     if membership_path.exists():
         membership = normalize_input(pd.read_parquet(membership_path))
         lt_col = next((c for c in ("lt_emode", "emode_lt", "emode_lt_bps") if c in membership), None)
         if lt_col:
             em_cols = [c for c in ("snapshot_block", "protocol_id", "token_address", "emode_category", lt_col) if c in membership]
-            membership_keys = ["snapshot_block", "protocol_id", "token_address"]
-            membership_dim = membership[em_cols].drop_duplicates(subset=membership_keys, keep="first")
-            config = config.drop_duplicates(subset=membership_keys, keep="first")
-            config = config.merge(membership_dim.rename(columns={lt_col: "lt_emode"}),
-                                  on=membership_keys, how="left", suffixes=("", "_membership"))
-            if "emode_category_membership" in config:
-                config["emode_category"] = config["emode_category_membership"]
+            membership_dim = membership[em_cols].rename(columns={lt_col: "lt_emode"})
+            # Concatenate to make category membership available to the function
+            # without collapsing categories for a repeated token.
+            config = pd.concat([config, membership_dim], ignore_index=True, sort=False)
 
     risk = calculate_health_factor(positions, config, prices)
     MARTS.mkdir(parents=True, exist_ok=True)

@@ -20,7 +20,7 @@ PROTOCOL_ID = "aave_v3_ethereum"
 POSITION_KEYS = ["snapshot_block", "protocol_id", "wallet_address", "token_address"]
 WALLET_KEYS = POSITION_KEYS[:3]
 ALIASES = {"snapshot_id": "snapshot_block", "wallet": "wallet_address", "token": "token_address"}
-LST_SYMBOLS = {"STETH", "WSTETH", "WEETH", "CBETH"}
+LST_SYMBOLS = {"STETH", "WSTETH", "WEETH", "CBETH", "RETH", "ANKRETH", "SETH2"}
 ETH_SYMBOLS = {"ETH", "WETH"}
 BTC_SYMBOLS = {"BTC", "WBTC", "CBBTC"}
 STABLE_SYMBOLS = {"USDC", "USDT"}
@@ -96,7 +96,10 @@ def _prepare_positions(positions_df: pd.DataFrame) -> pd.DataFrame:
     data["symbol"] = data["symbol"].astype("string").str.strip().str.upper()
     if "is_collateral_enabled" not in data:
         data["is_collateral_enabled"] = data.get("counted_as_collateral", False)
-    data["is_collateral_enabled"] = data["is_collateral_enabled"].fillna(False).astype(bool)
+    if pd.api.types.is_bool_dtype(data["is_collateral_enabled"]):
+        data["is_collateral_enabled"] = data["is_collateral_enabled"].fillna(False)
+    else:
+        data["is_collateral_enabled"] = data["is_collateral_enabled"].astype("string").str.strip().str.lower().isin({"true", "1", "yes", "y"})
     for col in ("collateral_amount", "debt_amount", "price_usd", "effective_lt"):
         if col not in data:
             data[col] = np.nan
@@ -110,9 +113,17 @@ def _prepare_positions(positions_df: pd.DataFrame) -> pd.DataFrame:
             if usd_col in data:
                 inferred = _number(data[usd_col], np.nan).div(data[amount_col].where(data[amount_col].ne(0)))
                 data["price_usd"] = data["price_usd"].fillna(inferred)
-    data["price_usd"] = data["price_usd"].fillna(0.0)
     data["collateral_amount"] = data["collateral_amount"].fillna(0.0)
     data["debt_amount"] = data["debt_amount"].fillna(0.0)
+    if (data[["collateral_amount", "debt_amount"]] < 0).any().any():
+        raise ValueError("Position amounts must be non-negative")
+    active = ((data["is_collateral_enabled"] & data["collateral_amount"].gt(0)) |
+              data["debt_amount"].gt(0))
+    if (active & (data["price_usd"].isna() | ~np.isfinite(data["price_usd"]) | data["price_usd"].le(0))).any():
+        raise ValueError("Price is missing or non-positive for a position with collateral or debt")
+    data["price_usd"] = data["price_usd"].fillna(0.0)
+    if (data["price_usd"] < 0).any():
+        raise ValueError("Position prices must be non-negative")
     data["effective_lt"] = data["effective_lt"].fillna(0.0).clip(0.0, 1.0)
 
     # The canonical contract stores amounts and a normalized effective LT; derive
@@ -181,6 +192,14 @@ def _calculate_wallets(data: pd.DataFrame, params: dict[str, Any], scenario_id: 
         )
         base["hf_before"] = np.where(base["_debt_t0"].gt(0), base["_weighted_t0"] / base["_debt_t0"], 999.0)
         aggregate = aggregate.merge(base[group_cols + ["hf_before"]], on=group_cols, how="left")
+    zero_shock = all(float(params.get(k, 0.0)) == 0.0 for k in ("eth_shock", "btc_shock", "depeg_shock", "lst_depeg_shock"))
+    stable = params.get("stablecoin_shocks", params.get("stablecoin_shock", 0.0))
+    stable_zero = all(float(v) == 0.0 for v in stable.values()) if isinstance(stable, dict) else float(stable) == 0.0
+    assets_zero = all(float(v) == 0.0 for v in params.get("asset_shocks", {}).values())
+    if zero_shock and stable_zero and assets_zero:
+        # Preserve baseline Oracle-derived HF exactly (including prior model
+        # rounding) for the identity scenario.
+        aggregate["hf_after"] = aggregate["hf_before"]
     if "is_recursive_loop" not in d:
         aggregate["is_recursive_loop"] = False
     else:
@@ -240,7 +259,23 @@ def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
         positions_path = ROOT / "data/processed/fact_wallet_positions.parquet"
     if not positions_path.exists():
         raise FileNotFoundError("Expected borrower_positions.parquet or fact_wallet_positions.parquet")
-    positions = _prepare_positions(pd.read_parquet(positions_path))
+    positions_raw = _normalize_keys(pd.read_parquet(positions_path))
+    oracle_path = PROCESSED / "oracle_prices.parquet"
+    if oracle_path.exists():
+        oracle = _normalize_keys(pd.read_parquet(oracle_path))
+        keys = ["snapshot_block", "protocol_id", "token_address"]
+        oracle = oracle[keys + ["price_usd"]].drop_duplicates(keys, keep="first")
+        positions_raw = positions_raw.drop(columns=["price_usd", "price_usd_t0"], errors="ignore").merge(oracle, on=keys, how="left")
+    positions = _prepare_positions(positions_raw)
+    if oracle_path.exists():
+        exposed = ((positions["is_collateral_enabled"] & positions["collateral_amount"].gt(0)) |
+                   positions["debt_amount"].gt(0))
+        price = pd.to_numeric(positions["price_usd"], errors="coerce")
+        if (exposed & (price.isna() | ~np.isfinite(price) | price.le(0))).any():
+            raise ValueError("Oracle price is missing or non-positive for an active collateral/debt position")
+        positions["price_usd"] = price
+        positions["collateral_usd_t0"] = np.where(positions["is_collateral_enabled"], positions["collateral_amount"] * price, 0.0)
+        positions["debt_usd_t0"] = positions["debt_amount"] * price
     baseline_path = MARTS / "borrower_risk.parquet"
     if not baseline_path.exists():
         raise FileNotFoundError(f"Missing baseline risk mart: {baseline_path}")

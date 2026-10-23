@@ -1,5 +1,6 @@
 """Unit tests for stress scenario pricing and heatmap outputs."""
 import pandas as pd
+import pytest
 
 from src.models.stress_test import _summary_row, generate_stress_heatmap, run_stress_test
 
@@ -39,6 +40,26 @@ def test_zero_shock_preserves_health_factor() -> None:
     })
     assert result.loc[0, "hf_after"] == result.loc[0, "hf_before"]
     assert result.loc[0, "hf_before"] == 1.6
+
+
+def test_zero_shock_preserves_oracle_baseline_hf_exactly() -> None:
+    positions = _positions()
+    positions["health_factor"] = 1.6000000000000003
+    positions["price_usd"] = positions["price_usd_t0"]
+    positions.loc[0, "price_usd"] = 1_234.56
+    result = run_stress_test(positions, {
+        "scenario_id": "oracle_zero", "eth_shock": 0.0, "btc_shock": 0.0, "depeg_shock": 0.0,
+    })
+    assert result.loc[0, "hf_after"] == result.loc[0, "hf_before"]
+    assert result.loc[0, "hf_after"] == 1.6000000000000003
+
+
+def test_missing_price_for_active_balance_is_rejected() -> None:
+    positions = _positions()
+    positions.loc[0, "price_usd_t0"] = None
+    positions.loc[0, "collateral_usd_t0"] = None
+    with pytest.raises(ValueError, match="Price is missing or non-positive"):
+        run_stress_test(positions, {"scenario_id": "missing_price"})
 
 
 def test_eth_and_lst_depeg_shocks_reduce_hf_and_increase_debt_at_risk() -> None:

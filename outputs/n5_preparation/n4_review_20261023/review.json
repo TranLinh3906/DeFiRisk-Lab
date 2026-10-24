@@ -1,0 +1,95 @@
+{
+  "snapshots": {
+    "A": {
+      "current_mart": {
+        "compared_wallets": 28493,
+        "eligibility_disagreements": 191,
+        "accounts_hf_error_ge_005": 297,
+        "disagreement_debt_usd": 329182517.85523236
+      },
+      "regenerated_current_code": {
+        "compared_wallets": 28493,
+        "eligibility_disagreements": 191,
+        "accounts_hf_error_ge_005": 297,
+        "disagreement_debt_usd": 329182517.85523236
+      }
+    },
+    "B": {
+      "current_mart": {
+        "compared_wallets": 28545,
+        "eligibility_disagreements": 190,
+        "accounts_hf_error_ge_005": 294,
+        "disagreement_debt_usd": 326408457.48044044
+      },
+      "regenerated_current_code": {
+        "compared_wallets": 28545,
+        "eligibility_disagreements": 190,
+        "accounts_hf_error_ge_005": 294,
+        "disagreement_debt_usd": 326408457.48044044
+      }
+    }
+  },
+  "scope": "N4 review; unvalidated; no N4 source/mart changes",
+  "membership_token_keys_with_multiple_categories": 58,
+  "zero_shock": {
+    "wallet_snapshots": 57038,
+    "hf_error_ge_005": 590,
+    "eligibility_disagreements": 381
+  },
+  "cliff_probe": {
+    "input_blocks": [
+      26179841,
+      26194188
+    ],
+    "output_columns": [
+      "eth_shock",
+      "eth_drop_pct",
+      "debt_at_risk_usd",
+      "positions_at_risk",
+      "total_protocol_debt_usd",
+      "marginal_debt_at_risk_usd_per_pct",
+      "marginal_multiple_vs_median",
+      "is_cliff",
+      "debt_at_risk_pct"
+    ],
+    "baseline_debt_usd": 18764432198.20397
+  },
+  "n5_schema_compatibility": {
+    "stress_summary": {
+      "rows": 38,
+      "errors": [
+        "row 1: duplicate key ('eth_drop_10',)",
+        "row 3: duplicate key ('eth_drop_20',)",
+        "row 5: duplicate key ('eth_drop_30',)",
+        "row 7: duplicate key ('eth_drop_40',)"
+      ],
+      "error_count": 19
+    },
+    "stress_heatmap": {
+      "rows": 60,
+      "errors": [
+        "row 1: duplicate key (0.0, 0.0)",
+        "row 3: duplicate key (0.0, -0.01)",
+        "row 5: duplicate key (0.0, -0.03)",
+        "row 7: duplicate key (0.0, -0.05)"
+      ],
+      "error_count": 30
+    }
+  },
+  "input_probes": {
+    "false_string_hf_after": 1.6,
+    "missing_price_debt_usd": 0.0,
+    "missing_price_hf": 999.0,
+    "hf_embedded_vs_oracle_collateral_usd": 100.0,
+    "hf_expected_collateral_at_explicit_oracle_usd": 200.0,
+    "negative_dict_target": [
+      "$-1",
+      -1.0
+    ],
+    "negative_percent_target": [
+      "-10%",
+      -10.0
+    ],
+    "n4_weeth_depeg_multiplier": 0.95
+  }
+}

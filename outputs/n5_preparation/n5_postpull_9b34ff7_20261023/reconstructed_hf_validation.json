@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "rows": 57038,
+  "invalid_evidence_rows": 0,
+  "baseline_error_ge_tolerance": 436,
+  "tiny_jump_ge_tolerance": 446,
+  "baseline_eligibility_disagreements": 118
+}

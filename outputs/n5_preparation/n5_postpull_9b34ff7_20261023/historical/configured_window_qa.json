@@ -1,0 +1,24 @@
+{
+  "B1": {
+    "events": 1830,
+    "unique_wallets": 1152,
+    "first_hour_wallets": 177,
+    "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+    "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+    "duration_hours": 24.00027777777778,
+    "hit_rate": null,
+    "status": "observations_only",
+    "source_completeness": "unverified"
+  },
+  "B2": {
+    "events": 902,
+    "unique_wallets": 623,
+    "first_hour_wallets": 0,
+    "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+    "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+    "duration_hours": 48.000277777777775,
+    "hit_rate": null,
+    "status": "observations_only",
+    "source_completeness": "unverified"
+  }
+}

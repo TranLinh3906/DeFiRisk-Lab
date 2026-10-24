@@ -77,10 +77,19 @@ def assess_historical_readiness(events, *, snapshot_block, snapshot_timestamp, w
 
 def check_schema(rows, table: str) -> list[str]:
     """Check mandatory columns, scalar types, nulls, finiteness and primary keys."""
-    spec = SCHEMAS[table]
+    spec = dict(SCHEMAS[table])
     errors, seen = [], set()
     if not rows:
         return [f"{table}: empty table (not accepted)"]
+    # New N4 marts carry snapshot identity; legacy single-snapshot fixtures do not.
+    # If supplied anywhere, identity columns are required and typed on EVERY row.
+    identity = ()
+    if table in ("stress_summary", "stress_heatmap"):
+        identity = tuple(k for k in ("snapshot_block", "protocol_id") if any(k in r for r in rows))
+        spec.update({k: int if k == "snapshot_block" else str for k in identity})
+    heat_axes = tuple(k for k in ("eth_shock", "btc_shock", "depeg_shock")
+                      if any(k in r for r in rows)) if table == "stress_heatmap" else ()
+    spec.update({k: float for k in heat_axes})
     for i, row in enumerate(rows):
         for name, dtype in spec.items():
             if name not in row:
@@ -99,6 +108,8 @@ def check_schema(rows, table: str) -> list[str]:
                     errors.append(f"row {i}: negative {name}")
                 if name.endswith("_pct") and not 0 <= value <= 100:
                     errors.append(f"row {i}: percent outside 0..100: {name}")
+                if name == "snapshot_block" and value <= 0:
+                    errors.append(f"row {i}: snapshot_block must be positive")
         if table == "stress_heatmap":
             if not any(k in row for k in ("btc_shock", "depeg_shock")):
                 errors.append(f"row {i}: heatmap requires btc_shock or depeg_shock")
@@ -109,8 +120,10 @@ def check_schema(rows, table: str) -> list[str]:
                     except ValueError:
                         errors.append(f"row {i}: invalid {dimension}")
         keys = KEYS.get(table)
+        if table == "stress_summary":
+            keys = identity + keys
         if table == "stress_heatmap":
-            keys = tuple(k for k in ("eth_shock", "btc_shock", "depeg_shock") if k in row)
+            keys = identity + heat_axes
         if keys and all(k in row for k in keys):
             key = tuple(row[k] for k in keys)
             try:

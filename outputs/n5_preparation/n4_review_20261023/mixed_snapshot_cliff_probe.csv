@@ -1,0 +1,3 @@
+﻿eth_shock,eth_drop_pct,debt_at_risk_usd,positions_at_risk,total_protocol_debt_usd,marginal_debt_at_risk_usd_per_pct,marginal_multiple_vs_median,is_cliff,debt_at_risk_pct
+-0.0,0.0,105.88638397764669,461,18764432198.20397,,,False,5.642930351379433e-07
+-0.01,1.0,24783.983277436997,476,18678444416.391216,24678.09689345935,1.0,False,0.0001326876196161597

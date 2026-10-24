@@ -1,5 +1,42 @@
 # N5 — Báo cáo kiểm định
 
+## Sau pull 9b34ff7 — cập nhật mới nhất
+
+Xem `docs/N5_SAU_PULL_9b34ff7.md`. Bundle hiện tại:
+`outputs/n5_preparation/n5_postpull_9b34ff7_20261023/` (69 artifacts + manifest).
+
+- 64 test N5 đạt; N4 chính + contracts: 27 passed, 6 xfailed (lỗi N4 đã biết).
+- Bất đồng phân loại hiện là 60/58 ví A/B: 59/57 do cờ collateral, 1/1 do
+  permission membership. Attribution hiện hành khớp toàn bộ ví được kiểm tra.
+- Zero-shock so before/after đang passed do phép gán N4; gate tái dựng/tiny-shock
+  failed: 436 dòng lệch phép tái dựng >=0,005; 446 dòng bước nhảy; 118 dòng khác phân loại.
+- QA config A/B1/B2: A qua structure; B1/B2 thiếu metadata và 8 bảng dữ liệu.
+  B cũ giữ legacy, không đổi nhãn. B1 có 177 ví giờ đầu trong nguồn sự kiện,
+  B2 có 0; không tính hit-rate khi state/prediction/completeness chưa đủ.
+- 18 mapping KPI qua phép kiểm file/cột, graph bảo toàn theo token; Compound
+  ledger partial được kiểm bằng fixture/ledger rỗng, không áp flow thật.
+- Hash input/code/output khớp; vẫn unvalidated, không sửa code/marts N4/N2.
+
+Các mục bên dưới phản ánh phiên bản trước pull.
+
+## Cập nhật ngày 23/10/2026
+
+Chi tiết: `docs/CAP_NHAT_N5_20261023.md`. Bundle hiện tại:
+`outputs/n5_preparation/offline_handoff_20261023_v2/`, 58 artifacts + manifest.
+
+- Validator nhận schema nhiều snapshot mới: stress_summary/heatmap đều qua schema.
+- **58 test N5 đạt**; 5 contract tests N4 được ghi expected failures riêng, chưa sửa.
+- Phân loại HF còn bất đồng 191/190 ví A/B; không dùng 369/368 của mart cũ.
+- Nhóm đổi phân loại tái dựng được: membership mất category 132/133 ví, khác cờ
+  collateral 59/57 ví. Các residual khác giữ chưa giải thích, không ép gán nguyên nhân.
+- Zero-shock vẫn failed: 590 dòng lệch HF >=0,005; 381 dòng đổi phân loại.
+- Graph bảo toàn theo token/block; mapping đủ 18 KPI, mức triển khai ghi tường minh.
+- Adapter/tracking Compound partial đã chuẩn bị; chưa áp flow lên dữ liệu thật,
+  chưa có mô phỏng truyền dẫn được nghiệm thu.
+- SHA-256 nguồn và đầu ra khớp; giữ trạng thái unvalidated.
+
+Các bản bên dưới là lịch sử, không thay cho kết quả mới này.
+
 ## Cập nhật ngày 22/10/2026
 
 Đã hoàn tất bộ chuẩn bị offline tại

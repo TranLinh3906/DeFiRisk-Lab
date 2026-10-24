@@ -125,3 +125,7 @@ _archive_old_liquidation_runs/
 
 #Phụng
 data/archive/
+
+
+# Legacy duplicate directory
+DeFiRisk-Lab-updated-main/

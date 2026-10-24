@@ -1,0 +1,4 @@
+{
+  "normalizer_three_snapshots": "KeyError: 'B'",
+  "borrower_positions_written_before_failure": true
+}

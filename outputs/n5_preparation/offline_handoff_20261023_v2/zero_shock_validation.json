@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "errors": [],
+  "rows": 57038,
+  "eligibility_disagreements": 381,
+  "hf_error_ge_tolerance": 590,
+  "tolerance": 0.005,
+  "scope": "Numerical zero-shock consistency; not research acceptance"
+}

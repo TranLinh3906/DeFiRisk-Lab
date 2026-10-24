@@ -30,6 +30,13 @@ from eth_abi import decode, encode
 from web3 import Web3
 
 ROOT = Path(__file__).resolve().parents[2]
+if ROOT.name == "N3_Compound_Q3_Overlap_VSCode":
+    parent_meta = (
+        ROOT.parent /
+        "data/processed/aave/snapshot_metadata.json"
+    )
+    if parent_meta.is_file():
+        ROOT = ROOT.parent
 DEFAULT_AAVE = ROOT / "data/processed/aave/account_reference.parquet"
 DEFAULT_META = ROOT / "data/processed/aave/snapshot_metadata.json"
 DEFAULT_MARKETS = ROOT / "config/n3_compound_markets.csv"
@@ -118,15 +125,46 @@ def pick_wallets(aave: pd.DataFrame, snapshots: dict, limit: int, debt_only: boo
 
 def load_snapshots(path: Path) -> dict:
     meta = json.loads(path.read_text(encoding="utf-8"))
+
     if int(meta.get("chain_id", 0)) != 1:
-        raise ValueError("Aave snapshot metadata must be Ethereum mainnet chain_id=1")
-    snaps = meta.get("snapshots", {})
-    if not all(k in snaps for k in ("A", "B")):
-        raise ValueError("Aave metadata needs snapshots A and B")
-    for s, info in snaps.items():
-        if "snapshot_block" not in info or not info.get("snapshot_timestamp_utc"):
-            raise ValueError("Missing point-in-time snapshot metadata for " + s)
-    return {s: snaps[s] for s in ("A", "B")}
+        raise ValueError("Require Ethereum Mainnet chain_id=1")
+
+    expected = {
+        "A": 26179841,
+        "B1": 20458637,
+        "B2": 23543615,
+    }
+
+    snapshots = meta.get("snapshots", {})
+
+    if set(snapshots) != set(expected):
+        raise ValueError(
+            "N2 metadata must contain exactly A/B1/B2; "
+            f"received {sorted(snapshots)}"
+        )
+
+    for sid, block in expected.items():
+        info = snapshots[sid]
+
+        if int(info["snapshot_block"]) != block:
+            raise ValueError(
+                f"{sid}: block mismatch, expected {block}"
+            )
+
+        if not info.get("snapshot_timestamp_utc"):
+            raise ValueError(f"{sid}: missing UTC timestamp")
+
+        if info.get("block_hash_verified_on_chain") is not True:
+            raise ValueError(f"{sid}: block not verified")
+
+        if not info.get("block_hash"):
+            raise ValueError(f"{sid}: missing block hash")
+
+    return {
+        sid: snapshots[sid]
+        for sid in expected
+    }
+
 
 
 def load_markets(path: Path) -> list[dict]:
@@ -428,6 +466,144 @@ def assignment_partition(plan: dict, selected: dict, count: int, index: int) -> 
 
 
 
+def validate_compound_extended(folder: Path, expected: dict):
+    """Validate old or extended Compound shard before publishing."""
+    names = {
+        "positions": "n3_compound_positions_long.parquet",
+        "accounts": "n3_compound_account_reference.parquet",
+        "config": "n3_compound_reserve_config.parquet",
+        "overlap": "n3_compound_overlap_wallets.parquet",
+    }
+
+    qpath = folder / "n3_compound_quality.json"
+    if not qpath.is_file():
+        raise ValueError(f"Missing QA: {qpath}")
+
+    qa = json.loads(qpath.read_text(encoding="utf-8"))
+
+    blocks = {
+        str(k): int(v)
+        for k, v in qa["snapshot_blocks"].items()
+    }
+
+    if blocks != expected:
+        raise ValueError(
+            f"Incorrect snapshot blocks: {blocks}"
+        )
+
+    if qa.get("complete") is not True:
+        raise ValueError("Shard is not complete")
+
+    if int(qa.get("failed_queries", -1)) != 0:
+        raise ValueError("Shard contains failed queries")
+
+    if (
+        int(qa["successful_queries"])
+        != int(qa["expected_wallet_market_snapshot_queries"])
+    ):
+        raise ValueError("Successful query count mismatch")
+
+    frames = {}
+
+    keys = {
+        "positions": [
+            "snapshot_block", "market_id",
+            "wallet_address", "token_address", "asset_role"
+        ],
+        "accounts": [
+            "snapshot_block", "market_id", "wallet_address"
+        ],
+        "config": [
+            "snapshot_block", "market_id",
+            "token_address", "role"
+        ],
+        "overlap": [
+            "snapshot_block", "wallet_address"
+        ],
+    }
+
+    for label, name in names.items():
+        path = folder / name
+        if not path.is_file():
+            raise ValueError(f"Missing {path}")
+
+        df = pd.read_parquet(path)
+        frames[label] = df
+
+        required = (
+            {"snapshot_id", "snapshot_block"}
+            | set(keys[label])
+        )
+        missing = required - set(df.columns)
+
+        if missing:
+            raise ValueError(
+                f"{name}: missing columns {sorted(missing)}"
+            )
+
+        if df.duplicated(keys[label]).any():
+            raise ValueError(f"{name}: duplicate primary keys")
+
+        sid = df["snapshot_id"].astype(str)
+        actual = pd.to_numeric(
+            df["snapshot_block"], errors="coerce"
+        )
+        wanted = sid.map(expected)
+
+        if (
+            sid.isna().any()
+            or wanted.isna().any()
+            or not (actual == wanted).all()
+        ):
+            raise ValueError(
+                f"{name}: invalid snapshot/block mapping"
+            )
+
+    cfg = frames["config"]
+
+    markets = {
+        str(m["market_id"])
+        for m in qa["markets"]
+    }
+
+    observed = set(
+        zip(
+            cfg["snapshot_id"].astype(str),
+            cfg["market_id"].astype(str)
+        )
+    )
+    required_pairs = {
+        (sid, market)
+        for sid in expected
+        for market in markets
+    }
+
+    if observed != required_pairs:
+        raise ValueError(
+            "Reserve configuration missing snapshot/market: "
+            f"{required_pairs - observed}"
+        )
+
+    counts = {
+        "positions_rows": len(frames["positions"]),
+        "active_compound_market_accounts":
+            len(frames["accounts"]),
+        "unique_overlap_wallet_snapshot_pairs":
+            len(frames["overlap"]),
+    }
+
+    for field, actual in counts.items():
+        if field in qa and int(qa[field]) != actual:
+            raise ValueError(
+                f"{field}: QA={qa[field]}, actual={actual}"
+            )
+
+    print("[PASS] Snapshot/block mapping:", expected)
+    print("[PASS] No duplicate keys")
+    print("[PASS] No failed queries")
+    print("[PASS] Reserve config:", len(required_pairs))
+    return qa
+
 def extend_existing_shard(args):
     """Add historical B1/B2 to existing six-shard Compound exports."""
     import importlib.util
@@ -437,7 +613,12 @@ def extend_existing_shard(args):
     expected_new = {"B1": 20458637, "B2": 23543615}
     expected_old = {"A": 26179841, "B": 26194188}
 
-    if args.num_shards != 6 or args.max_wallets != 0:
+    if (
+        args.num_shards != 6
+        or not 0 <= args.shard_index < 6
+        or args.max_wallets != 0
+        or args.include_aave_zero_debt
+    ):
         raise ValueError("Require --num-shards 6 --max-wallets 0")
     if args.assignment_file or args.reset_checkpoint:
         raise ValueError(
@@ -470,15 +651,8 @@ def extend_existing_shard(args):
 
     output = candidates[0]
 
-    spec = importlib.util.spec_from_file_location(
-        "compound_quality_module",
-        ROOT / "scripts/qa_n3_compound.py"
-    )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-
     # Validate old A/B data before doing anything.
-    module.check(output)
+    validate_compound_extended(output, expected_old)
 
     old_qa = json.loads(
         (output / "n3_compound_quality.json").read_text("utf-8")
@@ -679,10 +853,7 @@ def extend_existing_shard(args):
     ).hexdigest()
 
     # A different checkpoint file in the SAME old shard checkpoint folder.
-    checkpoint = (
-        ROOT / "data/raw/compound" / name
-        / "n3_overlap_checkpoint_B1_B2.jsonl"
-    )
+    checkpoint = output / "n3_overlap_checkpoint_B1_B2.jsonl"
     cache = checkpoint_load(checkpoint, checkpoint_fp)
     checkpoint.parent.mkdir(parents=True, exist_ok=True)
 
@@ -780,6 +951,15 @@ def extend_existing_shard(args):
         previous = pd.read_parquet(output / filename)
         combined[label] = pd.concat(
             [previous, new_frames[label]], ignore_index=True
+        )
+        pd.testing.assert_frame_equal(
+            combined[label].iloc[:len(previous)]
+                .reset_index(drop=True),
+            previous.reset_index(drop=True),
+            check_dtype=False,
+            check_exact=False,
+            rtol=1e-12,
+            atol=1e-12
         )
 
     all_wallets = set(owners)
@@ -889,7 +1069,9 @@ def extend_existing_shard(args):
             encoding="utf-8"
         )
 
-        module.check(stage)
+        validate_compound_extended(
+            stage, {**expected_old, **expected_new}
+        )
 
         # Back up originals OUTSIDE the repository.
         stamp = datetime.now(timezone.utc).strftime(
@@ -919,14 +1101,16 @@ def extend_existing_shard(args):
                 )
             raise
 
-    module.check(output)
+    validate_compound_extended(
+        output, {**expected_old, **expected_new}
+    )
     print("[UPDATED EXISTING SHARD]", output)
     print("[SNAPSHOTS] A, B, B1, B2")
     print("[BACKUP]", backup)
 
 
 def main() -> None:
-    cli=argparse.ArgumentParser(description="N3 experimental targeted Compound III overlap @ Aave Snapshot A/B")
+    cli=argparse.ArgumentParser(description="N3 experimental targeted Compound III overlap @ Aave Snapshot A/B1/B2")
     cli.add_argument("--aave",type=Path,default=DEFAULT_AAVE)
     cli.add_argument("--snapshot-metadata",type=Path,default=DEFAULT_META)
     cli.add_argument("--markets",type=Path,default=DEFAULT_MARKETS)
@@ -1026,7 +1210,7 @@ def main() -> None:
     cache_path.parent.mkdir(parents=True,exist_ok=True)
     failures=[]
     with rpc_session as session,cache_path.open("a",encoding="utf8") as ck:
-        for sid in ("A","B"):
+        for sid in snaps:
             for market in markets:
                 key=(sid,market["market_id"])
                 mid=metas[key]

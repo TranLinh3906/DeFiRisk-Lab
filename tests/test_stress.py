@@ -2,7 +2,7 @@
 import pandas as pd
 import pytest
 
-from src.models.stress_test import _summary_row, generate_stress_heatmap, run_stress_test
+from src.models.stress_test import _asset_multiplier, _summary_row, generate_stress_heatmap, run_stress_test
 
 
 def _positions() -> pd.DataFrame:
@@ -44,14 +44,50 @@ def test_zero_shock_preserves_health_factor() -> None:
 
 def test_zero_shock_preserves_oracle_baseline_hf_exactly() -> None:
     positions = _positions()
-    positions["health_factor"] = 1.6000000000000003
+    positions["health_factor"] = 9_999.0
     positions["price_usd"] = positions["price_usd_t0"]
-    positions.loc[0, "price_usd"] = 1_234.56
     result = run_stress_test(positions, {
         "scenario_id": "oracle_zero", "eth_shock": 0.0, "btc_shock": 0.0, "depeg_shock": 0.0,
     })
     assert result.loc[0, "hf_after"] == result.loc[0, "hf_before"]
-    assert result.loc[0, "hf_after"] == 1.6000000000000003
+    assert result.loc[0, "hf_after"] == 1.6
+
+
+def test_tiny_eth_shock_changes_hf_smoothly_without_jump() -> None:
+    result = run_stress_test(_positions(), {"scenario_id": "tiny", "eth_shock": -1e-12})
+    assert result.loc[0, "hf_after"] < result.loc[0, "hf_before"]
+    assert result.loc[0, "hf_before"] - result.loc[0, "hf_after"] < 1e-10
+
+
+def test_tiny_shock_has_no_material_jump_or_spurious_threshold_flip() -> None:
+    positions = pd.DataFrame([
+        {"snapshot_block": 100, "protocol_id": "aave_v3_ethereum", "wallet_address": "at-one",
+         "token_address": "weth-c", "symbol": "WETH", "collateral_amount": 100., "debt_amount": 0.,
+         "price_usd_t0": 1., "is_collateral_enabled": True, "effective_lt": .8},
+        {"snapshot_block": 100, "protocol_id": "aave_v3_ethereum", "wallet_address": "at-one",
+         "token_address": "weth-d", "symbol": "WETH", "collateral_amount": 0., "debt_amount": 80.,
+         "price_usd_t0": 1., "is_collateral_enabled": False, "effective_lt": 0.},
+        {"snapshot_block": 100, "protocol_id": "aave_v3_ethereum", "wallet_address": "near-one",
+         "token_address": "weth-c2", "symbol": "WETH", "collateral_amount": 100., "debt_amount": 0.,
+         "price_usd_t0": 1., "is_collateral_enabled": True, "effective_lt": .8},
+        {"snapshot_block": 100, "protocol_id": "aave_v3_ethereum", "wallet_address": "near-one",
+         "token_address": "usdc-d", "symbol": "USDC", "collateral_amount": 0., "debt_amount": 79.9,
+         "price_usd_t0": 1., "is_collateral_enabled": False, "effective_lt": 0.},
+    ])
+    result = run_stress_test(positions, {"scenario_id": "tiny", "eth_shock": -1e-12}).set_index("wallet")
+    delta = (result["hf_after"] - result["hf_before"]).abs()
+    assert delta.max() < .005
+    # At HF=1, collateral and debt use the same shocked WETH price, so the
+    # tiny shock must not create a rounding-only classification flip.
+    assert result.loc["at-one", "hf_before"] == 1.0
+    assert result.loc["at-one", "hf_after"] == 1.0
+    assert (result["hf_before"] < 1.0).equals(result["hf_after"] < 1.0)
+
+
+def test_lst_specific_depeg_overrides_general_depeg() -> None:
+    assert _asset_multiplier("STETH", {"depeg_shock": -0.02, "wsteth_depeg": -0.07}) == pytest.approx(0.98)
+    assert _asset_multiplier("WSTETH", {"depeg_shock": -0.02, "wsteth_depeg": -0.07}) == pytest.approx(0.93)
+    assert _asset_multiplier("STETH", {"depeg_shock": -0.02, "asset_shocks": {"STETH": -0.05}}) == pytest.approx(0.95)
 
 
 def test_missing_price_for_active_balance_is_rejected() -> None:

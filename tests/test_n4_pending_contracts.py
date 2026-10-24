@@ -1,8 +1,4 @@
-"""Known N4 contracts awaiting repair. Expected failures are NOT passed contracts.
-
-Run separately from N5 unit tests. An unexpected success asks us to review and
-remove the expectedFailure marker after the corresponding N4 repair.
-"""
+"""Regression tests for N4 contracts reported during the N5 audit."""
 import unittest
 import pandas as pd
 
@@ -18,7 +14,6 @@ def fixture():
 
 
 class PendingN4Contracts(unittest.TestCase):
-    @unittest.expectedFailure
     def test_zero_shock_checks_input_arithmetic_instead_of_copying_hf(self):
         rows = fixture().assign(health_factor=1.2)
         try:
@@ -56,7 +51,6 @@ class PendingN4Contracts(unittest.TestCase):
         tiny = run_stress_test(data, {'eth_shock': -1e-12})
         self.assertAlmostEqual(zero.iloc[0].hf_after, tiny.iloc[0].hf_after, places=9)
 
-    @unittest.expectedFailure
     def test_inconsistent_baseline_rejected_or_tiny_shock_continuous(self):
         data = fixture().assign(health_factor=1.2)
         try:
@@ -66,7 +60,6 @@ class PendingN4Contracts(unittest.TestCase):
             return
         self.assertAlmostEqual(zero.iloc[0].hf_after, tiny.iloc[0].hf_after, places=6)
 
-    @unittest.expectedFailure
     def test_matching_category_without_collateral_permission_uses_standard_lt(self):
         data = fixture().assign(emode_category_user=2, debt_amount=50.)
         cfg = pd.DataFrame([dict(snapshot_block=100, token_address='t', lt_std=.5,
@@ -75,17 +68,14 @@ class PendingN4Contracts(unittest.TestCase):
         result = calculate_health_factor(data, cfg, px)
         self.assertAlmostEqual(result.iloc[0].health_factor, 1.)
 
-    @unittest.expectedFailure
     def test_nan_dictionary_target_rejected(self):
         with self.assertRaises(ValueError):
             _parse_target({'usd': float('nan')}, 100)
 
-    @unittest.expectedFailure
     def test_nan_percent_target_rejected(self):
         with self.assertRaises(ValueError):
             _parse_target('NaN%', 100)
 
-    @unittest.expectedFailure
     def test_infinite_dict_percent_target_rejected(self):
         with self.assertRaises(ValueError):
             _parse_target({'pct': float('inf')}, 100)

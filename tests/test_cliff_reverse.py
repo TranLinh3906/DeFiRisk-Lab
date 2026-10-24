@@ -66,7 +66,10 @@ def test_cliff_and_reverse_stress_keep_snapshots_independent() -> None:
     assert reverse["snapshots"]["2"]["baseline_protocol_debt_usd"] == 100_000.0
 
 
-@pytest.mark.parametrize("target", [-1, "-2%", {"usd": -1}, {"pct": -0.1}])
+@pytest.mark.parametrize("target", [
+    -1, "-2%", {"usd": -1}, {"pct": -0.1}, "NaN%",
+    {"usd": float("nan")}, {"pct": float("inf")}, float("-inf"),
+])
 def test_reverse_stress_rejects_negative_targets(target) -> None:
-    with pytest.raises(ValueError, match="^Target debt must be non-negative$"):
+    with pytest.raises(ValueError, match="^Target debt must be a finite, non-negative number$"):
         run_reverse_stress(_toy_positions(), [target])

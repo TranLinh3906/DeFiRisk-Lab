@@ -150,7 +150,17 @@ def _asset_multiplier(symbol: str, params: dict[str, Any]) -> float:
     if isinstance(stable_shock, dict):
         stable_shock = stable_shock.get(symbol, 0.0)
     if symbol in LST_SYMBOLS:
-        return max(0.0, (1.0 + eth) * (1.0 + depeg))
+        per_asset = params.get("asset_shocks", {}) or {}
+        specific_depeg = params.get(f"{symbol.lower()}_depeg")
+        if specific_depeg is None:
+            specific_depeg = per_asset.get(f"{symbol}_depeg", per_asset.get(f"{symbol.lower()}_depeg"))
+        if specific_depeg is None:
+            # For LSTs, a direct asset_shocks entry is interpreted as a
+            # token-specific depeg. It overrides the generic depeg shock.
+            specific_depeg = per_asset.get(symbol, per_asset.get(symbol.lower(), depeg))
+        else:
+            specific_depeg = float(specific_depeg)
+        return max(0.0, (1.0 + eth) * (1.0 + float(specific_depeg)))
     if symbol in ETH_SYMBOLS:
         return max(0.0, 1.0 + eth)
     if symbol in BTC_SYMBOLS:
@@ -181,25 +191,19 @@ def _calculate_wallets(data: pd.DataFrame, params: dict[str, Any], scenario_id: 
     aggregate["hf_after"] = np.where(debt_positive,
                                      aggregate["weighted_collateral_s"] / aggregate["debt_usd"], 999.0)
     aggregate["hf_after"] = aggregate["hf_after"].replace([np.inf, -np.inf], 999.0).fillna(999.0)
-    if "health_factor" in d:
-        baseline = d.groupby(group_cols, as_index=False, dropna=False)["health_factor"].first()
-        baseline = baseline.rename(columns={"health_factor": "hf_before"})
-        aggregate = aggregate.merge(baseline, on=group_cols, how="left")
-    else:
-        base = d.assign(_weighted_t0=d["collateral_usd_t0"] * d["effective_lt"])
-        base = base.groupby(group_cols, as_index=False, dropna=False).agg(
-            _weighted_t0=("_weighted_t0", "sum"), _debt_t0=("debt_usd_t0", "sum")
-        )
-        base["hf_before"] = np.where(base["_debt_t0"].gt(0), base["_weighted_t0"] / base["_debt_t0"], 999.0)
-        aggregate = aggregate.merge(base[group_cols + ["hf_before"]], on=group_cols, how="left")
-    zero_shock = all(float(params.get(k, 0.0)) == 0.0 for k in ("eth_shock", "btc_shock", "depeg_shock", "lst_depeg_shock"))
-    stable = params.get("stablecoin_shocks", params.get("stablecoin_shock", 0.0))
-    stable_zero = all(float(v) == 0.0 for v in stable.values()) if isinstance(stable, dict) else float(stable) == 0.0
-    assets_zero = all(float(v) == 0.0 for v in params.get("asset_shocks", {}).values())
-    if zero_shock and stable_zero and assets_zero:
-        # Preserve baseline Oracle-derived HF exactly (including prior model
-        # rounding) for the identity scenario.
-        aggregate["hf_after"] = aggregate["hf_before"]
+    # Reconstruct baseline HF from the same token-level inputs and aggregation
+    # used above. A stored wallet HF can use a different price/LT path and must
+    # not be mixed with this scenario calculation.
+    d["_collateral_usd_t0_model"] = np.where(
+        d["is_collateral_enabled"], d["collateral_usd_t0"], 0.0
+    )
+    d["_weighted_t0"] = d["_collateral_usd_t0_model"] * d["effective_lt"]
+    base = d.groupby(group_cols, as_index=False, dropna=False).agg(
+        _weighted_t0=("_weighted_t0", "sum"), _debt_t0=("debt_usd_t0", "sum")
+    )
+    base["hf_before"] = np.where(base["_debt_t0"].gt(0), base["_weighted_t0"] / base["_debt_t0"], 999.0)
+    base["hf_before"] = base["hf_before"].replace([np.inf, -np.inf], 999.0).fillna(999.0)
+    aggregate = aggregate.merge(base[group_cols + ["hf_before"]], on=group_cols, how="left")
     if "is_recursive_loop" not in d:
         aggregate["is_recursive_loop"] = False
     else:

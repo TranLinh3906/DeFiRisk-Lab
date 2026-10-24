@@ -163,7 +163,7 @@ def finalize(priced: pd.DataFrame, *, max_lag_minutes: int = 60) -> tuple[pd.Dat
         'status': 'fact-ready subset; full event coverage NOT guaranteed',
         'created_utc': datetime.now(timezone.utc).isoformat(),
         'source_price_type': 'DefiLlama historical market reference; NOT Aave oracle',
-        'study_scope': 'Aave V3 Ethereum; Snapshot B 24h holdout requires N1/N2 block and window',
+        'study_scope': 'Aave V3 Ethereum; B1/B2 holdouts require approved N1/N2 blocks and verified event windows',
         'research_design_alignment': {'Q1': 'background market liquidation evidence, not looping identification', 'Q2': 'realized debt repaid and collateral seized; NOT counterfactual CF/bad debt', 'Q3': 'realized token liquidation events for depeg validation; needs price and N2 position joins'},
         'total_events_in_input': int(len(df)),
         'fact_ready_events': int(len(fact)),
@@ -191,8 +191,17 @@ def main():
     p.add_argument('--no-raw-check', action='store_true', help='Use only if original Etherscan staging is unavailable')
     p.add_argument('--n2-asset-config', type=Path, help='Optional N2 dim_asset_config parquet for snapshot-independent token address precheck')
     p.add_argument('--max-lag-minutes', type=int, default=60)
-    p.add_argument('--snapshot-b-block', type=int, help='N1/N2 confirmed on-chain Snapshot B block; used only for optional 24h OOS extraction')
-    p.add_argument('--snapshot-b-utc', help='UTC timestamp for Snapshot B block; N1/N2 must verify exact block time')
+    p.add_argument('--snapshot-b1-block', type=int)
+    p.add_argument('--snapshot-b1-utc')
+    p.add_argument('--snapshot-b2-block', type=int)
+    p.add_argument('--snapshot-b2-utc')
+    p.add_argument('--snapshot-metadata', type=Path,
+                   default=ROOT / 'data/processed/aave/snapshot_metadata.json')
+    p.add_argument('--holdout-qa-b1', type=Path)
+    p.add_argument('--holdout-qa-b2', type=Path)
+    p.add_argument('--etherscan-qa', type=Path)
+    p.add_argument('--output-root', type=Path,
+                   help='Separate output directory; avoids changing old staging files')
     p.add_argument('--min-coverage-pct', type=float, default=0)
     p.add_argument('--overwrite', action='store_true')
     a = p.parse_args()
@@ -200,10 +209,59 @@ def main():
         raise SystemExit(f'Missing {a.input}; run price_liquidations_usd.py first.')
     if a.max_lag_minutes < 0 or not 0 <= a.min_coverage_pct <= 100:
         raise SystemExit('Invalid limits')
-    if (a.snapshot_b_block is None) != (a.snapshot_b_utc is None):
-        raise SystemExit('Provide BOTH --snapshot-b-block and --snapshot-b-utc, or neither')
-    if a.snapshot_b_block is not None and a.snapshot_b_block < 0:
-        raise SystemExit('Invalid --snapshot-b-block')
+    approved = {"B1": 20458637, "B2": 23543615}
+    requested = {}
+
+    for tag in ("B1", "B2"):
+        suffix = tag.lower()
+        block_arg = getattr(a, f"snapshot_{suffix}_block")
+        utc_arg = getattr(a, f"snapshot_{suffix}_utc")
+        qa_arg = getattr(a, f"holdout_qa_{suffix}")
+
+        if all(x is None for x in (block_arg, utc_arg, qa_arg)):
+            continue
+
+        if qa_arg is None or not qa_arg.is_file():
+            raise SystemExit(f"{tag}: provide valid --holdout-qa-{suffix}")
+
+        if not a.snapshot_metadata.is_file():
+            raise SystemExit(f"{tag}: N2 snapshot metadata is missing")
+
+        meta = json.loads(a.snapshot_metadata.read_text(encoding="utf-8"))
+        snaps = meta.get("snapshots", {})
+        if set(snaps) != {"A", "B1", "B2"}:
+            raise ValueError("Snapshot metadata must contain A, B1, B2")
+        if int(meta.get("chain_id", 0)) != 1:
+            raise ValueError("Wrong Ethereum chain_id")
+
+        snap = snaps[tag]
+        block = int(snap["snapshot_block"])
+
+        if block != approved[tag]:
+            raise ValueError(
+                f"{tag}: metadata block {block}, expected {approved[tag]}"
+            )
+        if block_arg is not None and block_arg != block:
+            raise ValueError(f"{tag}: supplied block does not match metadata")
+        if snap.get("block_hash_verified_on_chain") is not True:
+            raise ValueError(f"{tag}: N2 block hash verification missing")
+
+        utc = pd.Timestamp(snap["snapshot_timestamp_utc"])
+        if utc.tzinfo is None:
+            raise ValueError(f"{tag}: metadata timestamp requires UTC timezone")
+        utc = utc.tz_convert("UTC")
+
+        if utc_arg is not None:
+            supplied = pd.Timestamp(utc_arg)
+            if supplied.tzinfo is None:
+                raise ValueError(f"{tag}: supplied timestamp requires UTC")
+            if supplied.tz_convert("UTC") != utc:
+                raise ValueError(f"{tag}: timestamp differs from N2 metadata")
+
+        requested[tag] = {
+            "block": block, "utc": utc, "qa": qa_arg
+        }
+
     df, fact, quality = finalize(pd.read_parquet(a.input), max_lag_minutes=a.max_lag_minutes)
     if not a.no_raw_check:
         if not a.raw_events.is_file():
@@ -241,8 +299,12 @@ def main():
         quality['n2_token_check'] = 'PASS' if not unknown else 'REVIEW REQUIRED (snapshots may not include all historical assets)'
     else:
         quality['n2_token_check'] = 'PENDING (not provided)'
-    eth_qa_path = ROOT / 'outputs/tables/n3_etherscan_quality.json'
-    if eth_qa_path.exists():
+    eth_qa_path = (
+        a.etherscan_qa if a.etherscan_qa is not None
+        else None if requested
+        else ROOT / 'outputs/tables/n3_etherscan_quality.json'
+    )
+    if eth_qa_path is not None and eth_qa_path.exists():
         eth_qa = json.loads(eth_qa_path.read_text())
         quality['etherscan_query_window_utc'] = {
             'start': eth_qa.get('start_inclusive_utc'), 'end': eth_qa.get('end_exclusive_utc'),
@@ -254,50 +316,88 @@ def main():
             start = pd.Timestamp(eth_qa['start_inclusive_utc']); end = pd.Timestamp(eth_qa['end_exclusive_utc'])
             if len(df) and not df.event_timestamp.between(start, end, inclusive='left').all():
                 raise ValueError('Event timestamps outside documented Etherscan window')
-    holdout = None
-    if a.snapshot_b_block is not None:
-        snap_time = pd.Timestamp(a.snapshot_b_utc)
-        if snap_time.tzinfo is None:
-            raise SystemExit('--snapshot-b-utc must have explicit UTC/Z timezone offset')
-        snap_time = snap_time.tz_convert('UTC')
-        if not eth_qa_path.exists():
-            raise ValueError('Snapshot-B extraction requires n3_etherscan_quality.json to prove the requested 24h window was queried')
-        holdout_qa = json.loads(eth_qa_path.read_text())
-        if not holdout_qa.get('start_inclusive_utc') or not holdout_qa.get('end_exclusive_utc'):
-            raise ValueError('Etherscan quality JSON lacks query start/end; cannot claim full 24h query')
-        query_start = pd.Timestamp(holdout_qa['start_inclusive_utc'])
-        query_end = pd.Timestamp(holdout_qa['end_exclusive_utc'])
-        if query_start > snap_time or query_end < snap_time + pd.Timedelta(hours=24):
-            raise ValueError('Collected Etherscan time window does not cover the full 24h after Snapshot B')
-        after_block = df.event_block > a.snapshot_b_block
-        in_24h = (df.event_timestamp >= snap_time) & (df.event_timestamp < snap_time + pd.Timedelta(hours=24))
-        holdout_all = df.loc[after_block & in_24h].copy()
-        holdout = holdout_all.loc[holdout_all.n3_validation_status=='ok', FACT_COLUMNS].copy()
-        quality['snapshotB_24h_holdout'] = {
-            'snapshot_block_user_supplied': a.snapshot_b_block,
-            'snapshot_utc_user_supplied': snap_time.isoformat(),
-            'end_exclusive_utc': (snap_time + pd.Timedelta(hours=24)).isoformat(),
-            'all_events_after_snapshot': int(len(holdout_all)),
-            'priced_events': int(len(holdout)),
-            'snapshot_block_timestamp_independently_verified': False,
-            'oos_scope': 'only the events present in the N3 input; block coverage external verification still required'
+    holdouts = {}
+    for tag, info in requested.items():
+        block = info["block"]
+        snap_time = info["utc"]
+        report = json.loads(info["qa"].read_text(encoding="utf-8"))
+
+        start_text = report.get("start_inclusive_utc")
+        end_text = report.get("end_exclusive_utc")
+        if not start_text or not end_text:
+            raise ValueError(f"{tag}: QA lacks Etherscan query time window")
+
+        query_start = pd.Timestamp(start_text)
+        query_end = pd.Timestamp(end_text)
+        if query_start.tzinfo is None or query_end.tzinfo is None:
+            raise ValueError(f"{tag}: QA timestamps must contain timezone")
+        query_start = query_start.tz_convert("UTC")
+        query_end = query_end.tz_convert("UTC")
+
+        if (query_start > snap_time
+                or query_end < snap_time + pd.Timedelta(hours=24)):
+            raise ValueError(
+                f"{tag}: event collection does not cover full 24h after snapshot"
+            )
+
+        in_query = (
+            (df.event_timestamp >= query_start) &
+            (df.event_timestamp < query_end)
+        )
+        reported_count = report.get("events_decoded")
+        if (reported_count is not None
+                and int(reported_count) != int(in_query.sum())):
+            raise ValueError(
+                f"{tag}: priced input does not reconcile with Etherscan QA "
+                f"({int(in_query.sum())} versus {reported_count})"
+            )
+
+        in_24h = (
+            (df.event_block > block) &
+            (df.event_timestamp >= snap_time) &
+            (df.event_timestamp < snap_time + pd.Timedelta(hours=24))
+        )
+        events = df.loc[in_24h].copy()
+        fact_24h = events.loc[
+            events.n3_validation_status.eq("ok"), FACT_COLUMNS
+        ].copy()
+
+        holdouts[tag] = fact_24h
+        quality[f"snapshot{tag}_24h_holdout"] = {
+            "block": block,
+            "snapshot_utc": snap_time.isoformat(),
+            "end_exclusive_utc": (
+                snap_time + pd.Timedelta(hours=24)
+            ).isoformat(),
+            "events_in_window": int(len(events)),
+            "fact_ready_events": int(len(fact_24h)),
+            "etherscan_qa_file": str(info["qa"]),
+            "metadata_block_hash_verified_on_chain": True,
+            "timestamp_independently_verified_by_this_script": False,
+            "caveat": "Observed liquidation events, not counterfactual losses"
         }
+
     print(f"[AUDIT] priced={len(fact)}/{len(df)} ({quality['fact_ready_pct']}%), reasons={quality['reasons']}")
     if quality['fact_ready_pct'] is not None and quality['fact_ready_pct'] < a.min_coverage_pct:
         raise SystemExit('Coverage lower than minimum, NO files written.')
-    out = ROOT / 'data/staging/n3_liquidations.parquet'
-    fact_path = ROOT / 'data/staging/n3_liquidations_for_fact.parquet'
-    qa = ROOT / 'outputs/tables/n3_liquidations_final_quality.json'
-    targets = [out, fact_path, qa]
-    holdout_path = ROOT / 'data/staging/n3_liquidations_holdout_24h.parquet'
-    if holdout is not None:
-        targets.append(holdout_path)
-    if not a.overwrite and any(x.exists() for x in targets):
-        raise SystemExit('Output exists; use --overwrite to back up previous results.')
+    output_root = a.output_root.resolve() if a.output_root else ROOT
+    out = output_root / 'data/staging/n3_liquidations.parquet'
+    fact_path = output_root / 'data/staging/n3_liquidations_for_fact.parquet'
+    qa = output_root / 'outputs/tables/n3_liquidations_final_quality.json'
+    holdout_paths = {
+        tag: output_root /
+        f'data/staging/n3_liquidations_holdout_{tag}_24h.parquet'
+        for tag in holdouts
+    }
+    targets = [out, fact_path, qa] + list(holdout_paths.values())
+    if not a.overwrite and any(p.exists() for p in targets):
+        raise SystemExit(
+            'Output exists; choose separate --output-root or --overwrite'
+        )
     safe_write_df(df, out, a.overwrite)
     safe_write_df(fact, fact_path, a.overwrite)
-    if holdout is not None:
-        safe_write_df(holdout, holdout_path, a.overwrite)
+    for tag, holdout_df in holdouts.items():
+        safe_write_df(holdout_df, holdout_paths[tag], a.overwrite)
     safe_write_json(quality, qa, a.overwrite)
     for x in targets:
         print('[SAVED]', x.relative_to(ROOT))

@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-10-23T17:53:36.076108+00:00",
+  "snapshot_blocks": {
+    "A": 26179841,
+    "B1": 20458637,
+    "B2": 23543615
+  },
+  "old_file_sha256": "0994332f2a90d6302b7c7bb410541042b1d4abcc42f7603f51fe531f7bdca122",
+  "old_rows": 1000,
+  "new_rows": 1022,
+  "market_rows_preserved": 864,
+  "oracle_rows": 155,
+  "oracle_by_block": {
+    "20458637": 33,
+    "23543615": 55,
+    "26179841": 67
+  },
+  "lido_rows": 3,
+  "old_snapshot_B_26194188_excluded": true,
+  "market_note": "Market rows retained from old M3 only; these are not automatically historical market quotes for B1/B2. Use extended 2024-2026 market datasets for event-period analysis."
+}

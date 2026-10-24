@@ -1,57 +1,80 @@
 {
-  "created_utc": "2026-10-18T12:59:08.917890+00:00",
+  "created_utc": "2026-10-23T17:45:35.224550+00:00",
   "chain_id": 1,
   "protocol_id": "aave_v3_ethereum",
   "pool_address": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
-  "rpc_provider": "Alchemy (Ethereum mainnet); URL khong luu trong repo",
+  "rpc_provider": "Alchemy (Ethereum mainnet); URL không lưu trong repo",
   "snapshots": {
     "A": {
       "snapshot_id": "A",
       "snapshot_block": 26179841,
       "snapshot_timestamp_utc": "2026-10-12T23:59:59+00:00",
+      "role": "calibration / counterfactual stress test",
       "target_timestamp_utc": "2026-10-13T00:00:00+00:00",
       "block_hash": "0x40c731f68bcd8152ad12433f4be57783e731fcf1546575ab51aa894054244ac3",
       "block_hash_verified_on_chain": true,
-      "role": "calibration / counterfactual stress test",
+      "leader_approx_block": null,
       "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
       "pool_data_provider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
       "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
       "n_reserves": 67
     },
-    "B": {
-      "snapshot_id": "B",
-      "snapshot_block": 26194188,
-      "snapshot_timestamp_utc": "2026-10-14T23:59:59+00:00",
-      "target_timestamp_utc": "2026-10-15T00:00:00+00:00",
-      "block_hash": "0xf12bcb7db5631cc69f0aaa392df0855f2a2ff3c18a9b9bcbb3a25981cac9daed",
+    "B1": {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "snapshot_timestamp_utc": "2024-08-04T23:59:59+00:00",
+      "role": "out-of-sample validation 1 (Yen Carry Trade)",
+      "target_timestamp_utc": "2024-08-04T23:59:59+00:00",
+      "block_hash": "0x95ed667a5a234f47766e9f89a744e0c6d550de01ccaffe02c1dd56ea23ed5b92",
       "block_hash_verified_on_chain": true,
-      "role": "out-of-sample validation",
+      "leader_approx_block": 20458692,
+      "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
+      "pool_data_provider": "0x20e074F62EcBD8BC5E38211adCb6103006113A22",
+      "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
+      "n_reserves": 33
+    },
+    "B2": {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "snapshot_timestamp_utc": "2025-10-09T23:59:59+00:00",
+      "role": "out-of-sample validation 2 (10/10 Meltdown)",
+      "target_timestamp_utc": "2025-10-09T23:59:59+00:00",
+      "block_hash": "0xacaf6dc7e29b333e24d5142d4863f867d51f20a86cdb10ab89c9bb4241a01496",
+      "block_hash_verified_on_chain": true,
+      "leader_approx_block": 23530241,
       "aave_oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
       "pool_data_provider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
       "addresses_provider": "0x2f39d218133AFaB8F2B819B1066c7E434Ad94E9e",
-      "n_reserves": 67
+      "n_reserves": 55
     }
   },
-  "validation_window_rule": "Snapshot B: chi dung LiquidationCall co event_block > snapshot_block B va event_timestamp < 2026-10-16T00:00:00Z.",
+  "validation_window_rule": {
+    "B1": "event_block > 20458637 AND event_timestamp < 2024-08-06T00:00:00Z",
+    "B2": "event_block > 23543615 AND event_timestamp < 2025-10-12T00:00:00Z"
+  },
   "status": {
     "archive_eth_call_verified": true,
     "oracle_prices_exported": true,
     "reserve_config_exported": true,
     "positions_exported": true,
-    "hf_validated": true
+    "hf_validated": true,
+    "protocol_debt_reconciled": true
   },
   "limitations": [
-  "Phạm vi: Aave V3 Ethereum Core Market (Pool 0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2). Không gồm các market Aave khác (ví dụ Prime, EtherFi) và các chain khác.",
-  "Tập ví: lập từ sự kiện Borrow (quét từ block 16,200,000 đến block Snapshot B; Borrow đầu tiên ở block 16,496,939): 87,286 ví (A) và 87,388 ví (B); sau khi lọc bằng getUserAccountData còn 28,493 ví còn nợ (A) và 28,545 ví (B). Ví chỉ gửi tiền, không vay, nằm ngoài phạm vi.",
-  "Độ phủ nợ: tổng nợ của tập ví so với tổng totalSupply debt token on-chain là 100.0000% ở cả A và B (lệch khoảng 1 USD trên khoảng 9.4 tỷ USD). Chỉ đo cho nợ, tại hai snapshot này, trong Core Market; không có tiêu chí tương đương cho collateral/TVL vì aToken gồm cả người chỉ gửi tiền.",
-  "Phương pháp lập tập ví không bắt trực tiếp nợ mở bằng flash loan (interestRateMode khác 0) hay cơ chế không qua sự kiện Borrow. Độ phủ đo được là khoảng 100% ở hai snapshot nhưng không đảm bảo cho block khác.",
-  "Đối chiếu HF: HF tự tính so với HF Aave báo trên toàn bộ ví còn nợ trong tập ứng viên; sai số tuyệt đối trung vị 0.000000, p99 cho ví HF<=10 là 0.0043 (A) và 0.0043 (B), sai số tương đối trung vị khoảng 3e-12. Đây là kiểm tra nội bộ của N2; kiểm định độc lập thuộc N5.",
-  "Sai lệch từ 1% trở lên: 220 (A) và 229 (B) ví lệch nợ; 30 (A) và 35 (B) ví lệch collateral; 1 ví (A) và 2 ví (B) lệch ngưỡng HF<1. Các ví này có giá trị rất nhỏ (nợ Aave trung vị làm tròn 0.0 USD; nợ của ví lệch ngưỡng HF<1 tối đa khoảng 2.3e-5 USD). Nguyên nhân dự đoán là làm tròn đơn vị USD 8 chữ số của Aave, chưa kiểm tra từng ví.",
-  "Ví HF<1: 449 (A) và 460 (B), tổng nợ khoảng 53 USD, tức là vị thế rất nhỏ. Ngưỡng nợ bụi do N1/N4 quyết định; dữ liệu giữ nguyên, chưa gắn cờ dust.",
-  "E-Mode: category 47 và 48 đổi liquidation bonus giữa A và B (10420 thành 10414; 10120 thành 10114); cấu hình theo token không đổi giữa A và B. Dùng giá trị theo từng snapshot. Cột effective_liq_bonus chưa điền, chờ quy tắc từ N1/N4.",
-  "Isolation mode và siloed borrowing chưa được mô hình hóa riêng; chỉ có cờ is_isolated_collateral suy từ debt ceiling khác 0.",
-  "Giá dùng để tính HF là giá oracle Aave tại block (AaveOracle 0x54586bE62E3c3580375aE3723C145253060Ca0C2, USD 8 chữ số), không phải giá thị trường CoinGecko của N3.",
-  "Snapshot: timestamp là của block cuối cùng có thời điểm không muộn hơn mốc mục tiêu (sớm hơn khoảng 1 giây). Snapshot B chờ N1 duyệt; ETH giảm khoảng 1.4% từ A đến B, và trong 24 giờ sau B có lúc thấp hơn khoảng 3.3% so với lúc chụp rồi hồi lại; N3 ghi nhận 30 sự kiện thanh lý trong cửa sổ đó, nên kiểm định ngoài mẫu có độ mạnh thống kê thấp. Chưa có bằng chứng riêng cho việc Snapshot A là giai đoạn bình thường.",
-  "borrower_positions.parquet là bảng staging, chưa phải bảng canonical của nhóm."
+    "Phạm vi: Aave V3 Ethereum Core Market (Pool 0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2). Không gồm các market Aave khác (ví dụ Prime, EtherFi) và các chain khác.",
+    "Tập ví: lập từ sự kiện Borrow (quét từ block 16,200,000; Borrow đầu tiên ở block 16,496,939) đến block snapshot, rồi lọc ví còn nợ bằng getUserAccountData. A: 87,286 ví ứng viên, 28,493 ví còn nợ; B1: 21,262 ví ứng viên, 12,047 ví còn nợ; B2: 62,622 ví ứng viên, 27,985 ví còn nợ. Ví chỉ gửi tiền, không vay, nằm ngoài phạm vi.",
+    "Độ phủ nợ so với tổng totalSupply debt token on-chain của Pool: A: 100.0000% (tổng nợ giao thức 9,427,484,968 USD); B1: 100.0000% (tổng nợ giao thức 5,868,705,952 USD); B2: 100.0000% (tổng nợ giao thức 21,688,604,175 USD). Chỉ đo cho nợ, tại các snapshot này, trong Core Market; không có tiêu chí tương đương cho collateral/TVL vì aToken gồm cả người chỉ gửi tiền.",
+    "Phương pháp lập tập ví không bắt trực tiếp nợ mở bằng flash loan (interestRateMode khác 0) hay cơ chế không qua sự kiện Borrow. Độ phủ đo được ở các snapshot trên không đảm bảo cho block khác.",
+    "Đối chiếu HF tự tính với HF Aave báo trên toàn bộ ví còn nợ trong tập ứng viên: A: sai số tuyệt đối trung vị 0.000000, p99 (ví HF≤10) 0.0043, sai số tương đối trung vị 3.2e-12; B1: sai số tuyệt đối trung vị 0.000000, p99 (ví HF≤10) 0.0004, sai số tương đối trung vị 5.4e-12; B2: sai số tuyệt đối trung vị 0.000000, p99 (ví HF≤10) 0.0779, sai số tương đối trung vị 2.3e-11. Đây là kiểm tra nội bộ của N2; kiểm định độc lập thuộc N5. status.hf_validated = true khi sai số tuyệt đối trung vị < 0.005 ở mọi snapshot (tiêu chí của research_design.md); p99 có thể vượt 0.005 do các vị thế rất nhỏ (xem dòng sai lệch ≥1% bên dưới).",
+    "Sai lệch từ 1% trở lên: A: 220 ví lệch nợ ≥1% (nợ Aave của nhóm 0.00 USD = 0.000000% tổng nợ; 0 ví có nợ ≥100 USD), 30 ví lệch collateral ≥1%, 1 ví lệch ngưỡng HF<1; B1: 17 ví lệch nợ ≥1% (nợ Aave của nhóm 0.00 USD = 0.000000% tổng nợ; 0 ví có nợ ≥100 USD), 2 ví lệch collateral ≥1%, 0 ví lệch ngưỡng HF<1; B2: 537 ví lệch nợ ≥1% (nợ Aave của nhóm 2.28 USD = 0.000000% tổng nợ; 0 ví có nợ ≥100 USD), 10 ví lệch collateral ≥1%, 30 ví lệch ngưỡng HF<1. Nguyên nhân dự đoán là làm tròn đơn vị USD 8 chữ số của Aave ở vị thế rất nhỏ; chưa kiểm tra từng ví.",
+    "Ví có HF<1 (Aave báo): A: 449 ví (tổng nợ 52.97 USD); B1: 346 ví (tổng nợ 27,299.22 USD); B2: 236 ví (tổng nợ 330.15 USD). Ngưỡng nợ bụi do N1/N4 quyết định; dữ liệu giữ nguyên, chưa gắn cờ dust.",
+    "Cách tính nợ biến đổi: B1, B2 dùng scaled balance × chỉ số nợ chuẩn hóa (cách Aave dùng khi tính HF); A dùng balanceOf của debt token (checkpoint cũ không lưu scaled balance), cần thống nhất phương pháp nếu so sánh trực tiếp giữa các snapshot. Lý do: với B1, tính bằng balanceOf làm lệch nợ của ví vay GHO (nợ tự tính thấp hơn nợ Aave) và p99 sai số HF của ví HF≤10 là 0.0128 trên mẫu 200 ví; sau khi chuyển sang scaled balance p99 giảm còn khoảng 0.0004. Nguyên nhân dự đoán là chiết khấu lãi suất của GHO, chưa kiểm chứng trực tiếp.",
+    "E-Mode: cơ chế đọc khác nhau theo phiên bản Aave tại từng block. A: 48 category; B1: 1 category; B2: 28 category. Snapshot dùng E-Mode kiểu cũ (mỗi reserve thuộc đúng một category, tra bằng getReserveEModeCategory) hoặc bitmap tùy phiên bản; không dùng chung một bảng E-Mode cho các snapshot. Cột effective_liq_bonus chưa điền, chờ quy tắc từ N1/N4.",
+    "Số lượng reserve theo snapshot: A: 67; B1: 33; B2: 55. PoolDataProvider và phiên bản Aave khác nhau giữa các block, nên so sánh giữa snapshot cần ghi chú.",
+    "Isolation mode và siloed borrowing chưa được mô hình hóa riêng; chỉ có cờ is_isolated_collateral suy từ debt ceiling khác 0.",
+    "Giá dùng để tính HF là giá oracle Aave tại block (USD, 8 chữ số thập phân), không phải giá thị trường CoinGecko của N3.",
+    "Block snapshot là block cuối cùng có timestamp không muộn hơn mốc mục tiêu. Số block 'khoảng' ban đầu B1: 20458692, B2: 23530241 được thay bằng block tìm theo timestamp (B1: 20458637, B2: 23543615); các bước lọc sự kiện thanh lý (event_block >) phải dùng block mới.",
+    "Chưa có bằng chứng riêng cho việc Snapshot A là giai đoạn bình thường.",
+    "borrower_positions.parquet là bảng staging, chưa phải bảng canonical của nhóm."
   ]
 }

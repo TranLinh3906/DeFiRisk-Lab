@@ -164,7 +164,7 @@ def main():
                 counts = oracles.groupby("snapshot_block").size().to_dict()
                 print("MUC3 ORACLE COUNTS:", counts)
 
-    dex = load("data/staging/n3_dex_liquidity.parquet")
+    dex = load("data/staging/n3_dex_liquidity_A_B1_B2.parquet")
     if dex is not None:
         needed = {"snapshot_id", "snapshot_block", "dex", "token_in", "token_out",
                   "pool_address", "dex_depth_2pct_usd", "status", "observed_impact_pct",
@@ -177,19 +177,19 @@ def main():
                    "dex_depth_2pct_usd", "depth_lower_bound_usd", "depth_bracket_width_usd",
                    "observed_impact_pct") if c in dex.columns]
             print(dex[cols].to_string(index=False))
-            check(len(dex) == 8, "Muc4 exactly 8 snapshot/direction combinations", str(len(dex)))
+            check(len(dex) == 12, "Muc4 exactly 12 snapshot/direction combinations", str(len(dex)))
             cfg = root / "config/n3_dex_pools.csv"
             if cfg.exists():
                 jobs = pd.read_csv(cfg).fillna("")
                 expected_pairs = {(tag, str(r.dex).lower(), str(r.token_in).upper(), str(r.token_out).upper())
-                                  for tag in ("A", "B") for r in jobs.itertuples(index=False)}
+                                  for tag in ("A", "B1", "B2") for r in jobs.itertuples(index=False)}
                 actual_pairs = set(zip(dex.snapshot_id.astype(str), dex.dex.astype(str),
                                        dex.token_in.astype(str), dex.token_out.astype(str)))
                 check(actual_pairs == expected_pairs, "Muc4 exact pool directions from config")
             check(not dex.duplicated(["snapshot_id", "dex", "token_in", "token_out"]).any(),
                   "Muc4 directions and snapshots unique")
-            check(set(dex.snapshot_id.astype(str)) == {"A", "B"}, "Muc4 both A/B")
-        check(dex.status.eq("verified_2pct_bracket").all(), "Muc4 verified 8/8", str(dex.status.value_counts().to_dict()))
+            check(set(dex.snapshot_id.astype(str)) == {"A", "B1", "B2"}, "Muc4 all A/B1/B2")
+        check(dex.status.eq("verified_2pct_bracket").all(), "Muc4 verified 12/12", str(dex.status.value_counts().to_dict()))
         if needed <= set(dex.columns):
             numeric = ["dex_depth_2pct_usd", "depth_lower_bound_usd", "depth_upper_bound_usd",
                        "depth_bracket_width_usd", "observed_impact_pct", "impact_below_depth_pct"]
@@ -208,7 +208,16 @@ def main():
         meta_file = root / "data/processed/aave/snapshot_metadata.json"
         if meta_file.exists() and {"snapshot_id", "snapshot_block"} <= set(dex):
             meta = json.loads(meta_file.read_text())
-            expect = {k: int(v["snapshot_block"]) for k,v in meta["snapshots"].items()}
+            snapshots = meta.get("snapshots", {})
+            check(set(snapshots) == {"A", "B1", "B2"},
+                  "Muc4 metadata exactly A/B1/B2")
+            for tag, block in {"B1": 20458637, "B2": 23543615}.items():
+                check(int(snapshots.get(tag, {}).get("snapshot_block", 0)) == block,
+                      f"Muc4 {tag} approved block", str(block))
+            check(all(s.get("block_hash_verified_on_chain") is True
+                      for s in snapshots.values()),
+                  "Muc4 metadata block hashes verified on chain")
+            expect = {k: int(v["snapshot_block"]) for k,v in snapshots.items()}
             check(all(expect.get(str(r.snapshot_id)) == int(r.snapshot_block)
                       for r in dex.itertuples(index=False)), "Muc4 same historical block N2", str(expect))
 

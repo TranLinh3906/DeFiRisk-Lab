@@ -39,8 +39,8 @@ METADATA = ROOT / "data/processed/aave/snapshot_metadata.json"
 ORACLE = ROOT / "data/processed/aave/oracle_prices.parquet"
 REGISTRY = ROOT / "data/processed/aave/token_registry.csv"
 LIDO = ROOT / "data/processed/aave/lido_ratios.parquet"
-OUTPUT = ROOT / "data/staging/n3_dex_liquidity.parquet"
-QUALITY = ROOT / "outputs/tables/n3_dex_liquidity_quality.json"
+OUTPUT = ROOT / "data/staging/n3_dex_liquidity_A_B1_B2.parquet"
+QUALITY = ROOT / "outputs/tables/n3_dex_liquidity_A_B1_B2_quality.json"
 FACTORY = "0x1F98431c8aD98523631AE4a59f267346ea31F984"
 QUOTER_V2 = "0x61fFE014bA17989E743c5F6cB21bF9697530B21e"
 ETH_SENTINEL = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
@@ -87,16 +87,47 @@ CURVE_ABI = [
 
 
 def snapshots(metadata: dict) -> dict[str, dict]:
-    if int(metadata.get("chain_id", 0)) != 1 or metadata.get("protocol_id") != "aave_v3_ethereum":
-        raise ValueError("Only Aave V3 Ethereum Mainnet snapshots are supported")
+    if (int(metadata.get("chain_id", 0)) != 1
+            or metadata.get("protocol_id") != "aave_v3_ethereum"):
+        raise ValueError("Only Aave V3 Ethereum Mainnet is supported")
+
     raw = metadata.get("snapshots", {})
-    if set(raw) != {"A", "B"}:
-        raise ValueError("Need both N2 snapshot A and B")
+    required = {"A", "B1", "B2"}
+    if not isinstance(raw, dict) or set(raw) != required:
+        raise ValueError(
+            "N2 metadata must contain exactly A, B1, B2; "
+            f"received {sorted(raw) if isinstance(raw, dict) else type(raw)}"
+        )
+
+    approved = {"B1": 20458637, "B2": 23543615}
+    seen_blocks = set()
+
     for tag, snap in raw.items():
-        if not bool(snap.get("block_hash_verified_on_chain")):
-            raise ValueError(f"Snapshot {tag}: block hash is not verified in N2 metadata")
-        if int(snap.get("snapshot_block", 0)) <= 0:
-            raise ValueError("Missing positive snapshot_block")
+        if not isinstance(snap, dict):
+            raise ValueError(f"{tag}: invalid snapshot object")
+        if snap.get("block_hash_verified_on_chain") is not True:
+            raise ValueError(f"{tag}: block hash not verified on chain")
+
+        block = int(snap.get("snapshot_block", 0))
+        if block <= 0 or block in seen_blocks:
+            raise ValueError(f"{tag}: missing or duplicate snapshot block")
+        seen_blocks.add(block)
+
+        if tag in approved and block != approved[tag]:
+            raise ValueError(
+                f"{tag}: expected block {approved[tag]}, got {block}"
+            )
+
+        ts = pd.to_datetime(
+            snap.get("snapshot_timestamp_utc"),
+            utc=True,
+            errors="coerce",
+        )
+        if pd.isna(ts):
+            raise ValueError(f"{tag}: missing valid UTC timestamp")
+        if not snap.get("block_hash"):
+            raise ValueError(f"{tag}: missing block_hash")
+
     return raw
 
 
@@ -497,7 +528,7 @@ def main() -> None:
     frame = pd.DataFrame(records)
     valid = frame["status"].eq("verified_2pct_bracket")
     summary = {
-        "chain_id": 1, "n_snapshot_pool_directions": int(len(frame)),
+        "chain_id": 1, "snapshot_blocks": {tag: int(s["snapshot_block"]) for tag, s in snaps.items()}, "n_snapshot_pool_directions": int(len(frame)),
         "n_verified_depth": int(valid.sum()), "n_unverified": int((~valid).sum()),
         "approved_pools_source": str(args.config),
         "oracle": "N2 Aave oracle USD/token; ETH=WETH; stETH USD implied from same-block wstETH oracle / Lido ratio (NOT Curve market spot)",

@@ -1,116 +1,25 @@
-
-# Bao mat
-.env
-.venv/
-__pycache__/
-*.pyc
-.DS_Store
-
-# Thu muc backup
-outputs_backup_*/
-
-# Secrets and Python environment
-.env
-.env.*
-!.env.example
-.venv/
-__pycache__/
-*.pyc
-.DS_Store
-
-# Backup files
-*.parquet.bak_*
-*.json.bak_*
-outputs_backup_*/
-
-*.bak_mergefix_*
-*.backup
-
-# Secrets
-.env
-.env.*
-!.env.example
-
-# Python environment
-.venv/
-__pycache__/
-*.pyc
-
-# Backups and temporary files
-*.bak
-*.bak_*
-*.backup
-*.backup_*
-.DS_Store
-
-# Secrets
-.env
-.env.*
-!.env.example
-
-# Python environment
-.venv/
-__pycache__/
-*.pyc
-
-# Backups and temporary files
-*.bak
-*.bak_*
-*.backup
-*.backup_*
-.DS_Store
-
-# Large raw Aave data
-/data/raw/aave/borrow_events_raw.jsonl
-
-# Local secrets and backups
-.env
-.env.*
-!.env.example
-.venv/
-*.bak
-*.bak_*
-*.backup
-*.backup_*
-__pycache__/
-*.pyc
-
-# Large files
-/data/raw/aave/borrow_events_raw.jsonl
-
 # Secrets and local environment
 .env
 .env.*
 !.env.example
-.venv/
-__pycache__/
-*.pyc
-
-# Backup files
-*.bak
-*.bak_*
-*.backup
-*.backup_*
-.DS_Store
-
-# Local Python environment
 .venv/
 venv/
 __pycache__/
 *.pyc
 .DS_Store
 
-# Secrets
-.env
-.env.*
-!.env.example
-
 # Backups and temporary files
+outputs_backup_*/
 *backup*/
 *Backup*/
 *BACKUP*/
+*.parquet.bak_*
+*.json.bak_*
+*.bak_mergefix_*
 *.bak
 *.bak_*
+*.backup
+*.backup_*
 *.tmp
 *checkpoint*
 _archive_old_liquidation_runs/
@@ -120,12 +29,13 @@ _archive_old_liquidation_runs/
 *.7z
 *.rar
 
-# Large local raw export
+# Large raw Aave data
+/data/raw/aave/borrow_events_raw.jsonl
 /borrow_events_raw.jsonl
 
 #Phụng
 data/archive/
-
+/data/raw/aave/*.jsonl.block
 
 # Legacy duplicate directory
 DeFiRisk-Lab-updated-main/

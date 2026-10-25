@@ -1,0 +1,12 @@
+COMPOUND_B1_B2_TEAM_KIT/
+├── README_BAT_DAU.md                    # Mac/Windows, clone/pull/venv/RPC/check/dry-run/collect/qa/stage/push
+├── scripts/
+│   └── team_compound_b1b2.py          # Copy ONE file into repo's scripts/ once, merge code first
+└── docs/
+    ├── TIN_NHAN_GUI_NHOM.md            # message for 5 teammates
+    └── CAU_TRUC_THU_MUC.txt
+
+Important: This ZIP is a guide/QA wrapper, NOT the GitHub project itself. The repo
+must already contain src/data/fetch_compound_overlap.py with --extend-existing-shard,
+config/n3_compound_team_assignment.json, historical N2 files, and the original
+A/B shards. Never copy an .env or API key into this ZIP or GitHub.

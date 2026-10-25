@@ -27,7 +27,7 @@ def baseline_wallet_kpis(positions, categories):
     return out
 
 
-def kpi_mapping(dictionary):
+def kpi_mapping(dictionary, snapshot_labels=('A', 'B')):
     mappings = {
         'M01': ('baseline_candidate', 'A|B/baseline_wallet_kpis.parquet', 'net_equity_usd', 'Collateral enabled minus debt; borrower scope'),
         'M02': ('baseline_candidate', 'A|B/baseline_wallet_kpis.parquet', 'effective_leverage', 'Null for nonpositive equity; no fabricated epsilon leverage'),
@@ -53,6 +53,8 @@ def kpi_mapping(dictionary):
     for index, col in enumerate(['implementation_status', 'candidate_artifact', 'candidate_field', 'limitation']):
         out[col] = [v[index] for v in values]
     out['validation_status'] = 'unvalidated'
+    template = '|'.join(snapshot_labels) + '/'
+    out['candidate_artifact'] = out.candidate_artifact.str.replace('A|B/', template, regex=False)
     return out
 
 
@@ -94,8 +96,9 @@ def validate_kpi_artifacts(mapping, directory):
     for _, row in mapping.iterrows():
         errors = []
         relative = row.candidate_artifact
-        paths = ([relative.replace('A|B/', f'{label}/') for label in ['A', 'B']]
-                 if isinstance(relative, str) and relative.startswith('A|B/') else [relative])
+        prefix = relative.split('/')[0] if isinstance(relative, str) else ''
+        paths = ([relative.replace(prefix + '/', f'{label}/', 1) for label in prefix.split('|')]
+                 if '|' in prefix else [relative])
         for path in paths:
             if not isinstance(path, str) or not path:
                 continue  # Deliberately unimplemented: no invented file required.

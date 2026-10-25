@@ -1,0 +1,533 @@
+{
+  "snapshots": {
+    "A": {
+      "block": 26179841,
+      "wallets": 28493,
+      "graph_edges": 107779,
+      "graph_edge_types": {
+        "collateral_exposure": 44039,
+        "debt_exposure": 35247,
+        "wallet_protocol": 28493
+      },
+      "total_debt_only": {
+        "status": "passed",
+        "scope": "total debt only; Aave Ethereum Core at selected block",
+        "snapshot_block": 26179841,
+        "calculated_debt_usd": 9427484969.034634,
+        "protocol_debt_usd": 9427484968.297592,
+        "relative_error": 7.818007409899549e-11,
+        "tokens_outside_one_pct": 0,
+        "reserve_collateral_gate": "pending",
+        "research_acceptance": "pending"
+      },
+      "n4_eligibility_disagreements": 0,
+      "dex_mapping_status": {
+        "mapped": 3,
+        "missing_verified_direction": 62
+      },
+      "validation_status": "failed",
+      "graph_conservation_passed": true,
+      "snapshot_scope": "configured",
+      "hf_reconstruction_unexplained_wallets": 0,
+      "hf_attribution_summary": [],
+      "proposed_dust_policies": [
+        {
+          "proposed_min_debt_usd": 0.0,
+          "wallets": 28493,
+          "excluded_wallets": 0,
+          "excluded_reference_debt_usd": 0.0,
+          "failed_debt_accounts": 220,
+          "failed_collateral_accounts": 32,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 1.0,
+          "wallets": 22827,
+          "excluded_wallets": 5666,
+          "excluded_reference_debt_usd": 442.30275344999995,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 3,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 100.0,
+          "wallets": 19664,
+          "excluded_wallets": 8829,
+          "excluded_reference_debt_usd": 69527.24243968999,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 0,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        }
+      ]
+    },
+    "B1": {
+      "block": 20458637,
+      "wallets": 12047,
+      "graph_edges": 44393,
+      "graph_edge_types": {
+        "collateral_exposure": 16902,
+        "debt_exposure": 15444,
+        "wallet_protocol": 12047
+      },
+      "total_debt_only": {
+        "status": "passed",
+        "scope": "total debt only; Aave Ethereum Core at selected block",
+        "snapshot_block": 20458637,
+        "calculated_debt_usd": 5868705952.005379,
+        "protocol_debt_usd": 5868705952.008888,
+        "relative_error": 5.980060192270619e-13,
+        "tokens_outside_one_pct": 0,
+        "reserve_collateral_gate": "pending",
+        "research_acceptance": "pending"
+      },
+      "n4_eligibility_disagreements": 0,
+      "dex_mapping_status": {
+        "mapped": 3,
+        "missing_verified_direction": 30
+      },
+      "validation_status": "failed",
+      "graph_conservation_passed": true,
+      "snapshot_scope": "configured",
+      "hf_reconstruction_unexplained_wallets": 0,
+      "hf_attribution_summary": [],
+      "proposed_dust_policies": [
+        {
+          "proposed_min_debt_usd": 0.0,
+          "wallets": 12047,
+          "excluded_wallets": 0,
+          "excluded_reference_debt_usd": 0.0,
+          "failed_debt_accounts": 17,
+          "failed_collateral_accounts": 5,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 1.0,
+          "wallets": 10836,
+          "excluded_wallets": 1211,
+          "excluded_reference_debt_usd": 164.4318752,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 4,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 100.0,
+          "wallets": 9675,
+          "excluded_wallets": 2372,
+          "excluded_reference_debt_usd": 25342.30730185,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 0,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        }
+      ]
+    },
+    "B2": {
+      "block": 23543615,
+      "wallets": 27985,
+      "graph_edges": 105578,
+      "graph_edge_types": {
+        "collateral_exposure": 42272,
+        "debt_exposure": 35321,
+        "wallet_protocol": 27985
+      },
+      "total_debt_only": {
+        "status": "passed",
+        "scope": "total debt only; Aave Ethereum Core at selected block",
+        "snapshot_block": 23543615,
+        "calculated_debt_usd": 21688604175.320942,
+        "protocol_debt_usd": 21688604175.342823,
+        "relative_error": 1.0088755983891774e-12,
+        "tokens_outside_one_pct": 0,
+        "reserve_collateral_gate": "pending",
+        "research_acceptance": "pending"
+      },
+      "n4_eligibility_disagreements": 0,
+      "dex_mapping_status": {
+        "mapped": 3,
+        "missing_verified_direction": 52
+      },
+      "validation_status": "failed",
+      "graph_conservation_passed": true,
+      "snapshot_scope": "configured",
+      "hf_reconstruction_unexplained_wallets": 0,
+      "hf_attribution_summary": [],
+      "proposed_dust_policies": [
+        {
+          "proposed_min_debt_usd": 0.0,
+          "wallets": 27985,
+          "excluded_wallets": 0,
+          "excluded_reference_debt_usd": 0.0,
+          "failed_debt_accounts": 537,
+          "failed_collateral_accounts": 13,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 1.0,
+          "wallets": 23743,
+          "excluded_wallets": 4242,
+          "excluded_reference_debt_usd": 364.94463583,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 4,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        },
+        {
+          "proposed_min_debt_usd": 100.0,
+          "wallets": 20972,
+          "excluded_wallets": 7013,
+          "excluded_reference_debt_usd": 61261.27792747,
+          "failed_debt_accounts": 0,
+          "failed_collateral_accounts": 0,
+          "policy_status": "proposal_requires_N1_N2_N4_review"
+        }
+      ]
+    }
+  },
+  "research_acceptance": "pending",
+  "configured_snapshot_readiness": {
+    "status": "passed_structure",
+    "snapshots": {
+      "A": {
+        "snapshot_block": 26179841,
+        "status": "passed_structure",
+        "missing": [],
+        "errors": [],
+        "rows": {
+          "positions_long": 73637,
+          "reserve_config": 67,
+          "oracle_prices": 67,
+          "emode_membership": 189,
+          "account_reference": 87286,
+          "protocol_reconciliation": 67,
+          "borrower_positions": 73637,
+          "hf_reconciliation": 28493
+        },
+        "research_acceptance": "pending"
+      },
+      "B1": {
+        "snapshot_block": 20458637,
+        "status": "passed_structure",
+        "missing": [],
+        "errors": [],
+        "rows": {
+          "positions_long": 30968,
+          "reserve_config": 33,
+          "oracle_prices": 33,
+          "emode_membership": 7,
+          "account_reference": 21262,
+          "protocol_reconciliation": 33,
+          "borrower_positions": 30968,
+          "hf_reconciliation": 12047
+        },
+        "research_acceptance": "pending"
+      },
+      "B2": {
+        "snapshot_block": 23543615,
+        "status": "passed_structure",
+        "missing": [],
+        "errors": [],
+        "rows": {
+          "positions_long": 73417,
+          "reserve_config": 55,
+          "oracle_prices": 55,
+          "emode_membership": 111,
+          "account_reference": 62622,
+          "protocol_reconciliation": 55,
+          "borrower_positions": 73417,
+          "hf_reconciliation": 27985
+        },
+        "research_acceptance": "pending"
+      }
+    },
+    "stale_labels": {
+      "positions_long": [],
+      "reserve_config": [],
+      "oracle_prices": [],
+      "emode_membership": [],
+      "account_reference": [],
+      "protocol_reconciliation": [],
+      "borrower_positions": [],
+      "hf_reconciliation": []
+    },
+    "limitation": "Config identity only; no independent chain/hash verification or data relabeling"
+  },
+  "n4_schema_checks": {
+    "stress_summary": {
+      "status": "passed",
+      "errors": []
+    },
+    "stress_heatmap": {
+      "status": "passed",
+      "errors": []
+    }
+  },
+  "n4_stress": {
+    "rows": 1301975,
+    "inconsistent_debt_at_risk_rows": 0,
+    "limitation": "Reaggregated existing N4 outputs only; HF inputs not certified"
+  },
+  "zero_shock": {
+    "status": "passed",
+    "errors": [],
+    "rows": 68525,
+    "eligibility_disagreements": 0,
+    "hf_error_ge_tolerance": 0,
+    "tolerance": 0.005,
+    "scope": "Numerical zero-shock consistency; not research acceptance"
+  },
+  "reconstructed_hf_and_tiny_shock": {
+    "status": "failed",
+    "rows": 68525,
+    "invalid_evidence_rows": 0,
+    "baseline_error_ge_tolerance": 0,
+    "tiny_jump_ge_tolerance": 8,
+    "baseline_eligibility_disagreements": 0
+  },
+  "tiny_shock_investigation": {
+    "strict_failed": 8,
+    "analytic_continuity_failed": 0,
+    "diagnoses": {
+      "strict_pass": 68517,
+      "large_hf_expected_price_response": 8
+    },
+    "strict_gate_unchanged": true
+  },
+  "configured_event_windows": {
+    "B1": {
+      "events": 1830,
+      "unique_wallets": 1152,
+      "first_hour_wallets": 177,
+      "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+      "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+      "duration_hours": 24.00027777777778,
+      "hit_rate": null,
+      "status": "observations_only",
+      "source_completeness": "unverified"
+    },
+    "B2": {
+      "events": 902,
+      "unique_wallets": 623,
+      "first_hour_wallets": 0,
+      "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+      "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+      "duration_hours": 48.000277777777775,
+      "hit_rate": null,
+      "status": "observations_only",
+      "source_completeness": "unverified"
+    }
+  },
+  "historical_market_proxy": {
+    "B1": {
+      "status": "conditional_market_proxy_only",
+      "full_window": {
+        "observed_wallets": 1152,
+        "matched_wallets": 800,
+        "missing_state_wallets": 0,
+        "hit_rate": 0.6944444444444444
+      },
+      "first_hour": {
+        "observed_wallets": 177,
+        "matched_wallets": 88,
+        "missing_state_wallets": 0,
+        "hit_rate": 0.4971751412429379
+      },
+      "reference_open_prices": {
+        "ETH": 2722.17,
+        "BTC": 58715.83
+      },
+      "frozen_weighted_collateral_usd": 472535450.28625524,
+      "frozen_debt_usd": 2977445736.74139,
+      "threshold": 1.02,
+      "acceptance": "pending",
+      "limitation": "Observed supplied events only; fixed depeg/other assets; no oracle path or independent source completeness"
+    },
+    "B2": {
+      "status": "conditional_market_proxy_only",
+      "full_window": {
+        "observed_wallets": 623,
+        "matched_wallets": 182,
+        "missing_state_wallets": 6,
+        "hit_rate": 0.29213483146067415
+      },
+      "first_hour": {
+        "observed_wallets": 0,
+        "matched_wallets": 0,
+        "missing_state_wallets": 0,
+        "hit_rate": null
+      },
+      "reference_open_prices": {
+        "ETH": 4377.83,
+        "BTC": 121686.19
+      },
+      "frozen_weighted_collateral_usd": 7336950240.58579,
+      "frozen_debt_usd": 11360417251.527765,
+      "threshold": 1.02,
+      "acceptance": "pending",
+      "limitation": "Observed supplied events only; fixed depeg/other assets; no oracle path or independent source completeness"
+    }
+  },
+  "historical": {
+    "observed_events": 3107,
+    "candidate_events": 3068,
+    "rejected_events": 39,
+    "limitation": "Only supplied 2024/2025 windows; not Snapshot B ground truth"
+  },
+  "compound": {
+    "table_qa_status": "passed",
+    "account_reconciliation_mismatches": 0,
+    "rows": {
+      "positions": 2855,
+      "accounts": 1862,
+      "config": 77,
+      "overlap": 1711
+    },
+    "complete": false,
+    "expected_queries": 137050,
+    "covered_queries": 124180,
+    "missing_queries": 12870,
+    "missing_unique_wallets": 5408,
+    "validation_status": "unvalidated",
+    "limitation": "Partial coverage; unqueried wallets are unknown, never zero. No bridge simulation."
+  },
+  "kpi_artifact_checks": [
+    {
+      "kpi_id": "M01",
+      "implementation_status": "baseline_candidate",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M02",
+      "implementation_status": "baseline_candidate",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M03",
+      "implementation_status": "baseline_candidate",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M04",
+      "implementation_status": "baseline_candidate",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M05",
+      "implementation_status": "not_implemented",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M06",
+      "implementation_status": "synthetic_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M07",
+      "implementation_status": "definition_review",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M08",
+      "implementation_status": "not_implemented",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M09",
+      "implementation_status": "not_implemented",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M10",
+      "implementation_status": "synthetic_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M11",
+      "implementation_status": "synthetic_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M12",
+      "implementation_status": "definition_review",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M13",
+      "implementation_status": "synthetic_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M14",
+      "implementation_status": "synthetic_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M15",
+      "implementation_status": "definition_review",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M16",
+      "implementation_status": "tracking_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M17",
+      "implementation_status": "tracking_only",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    },
+    {
+      "kpi_id": "M18",
+      "implementation_status": "not_implemented",
+      "artifact_check": "passed_mapping_only",
+      "errors": [],
+      "research_acceptance": "pending"
+    }
+  ],
+  "synthetic": {
+    "sensitivity_runs": 64,
+    "simulation_runs": 8,
+    "software_output_checks": "passed",
+    "research_acceptance": "pending"
+  },
+  "q1_q3_scaffold": {
+    "status": "implemented_fixture_verified",
+    "mc_fixture_scenarios": 256,
+    "marginal_source": "invented stress grid",
+    "rho": 0.6,
+    "df": 4,
+    "seed": 20261025,
+    "limitation": "No fitted probability, no empirical Q1/Q3 causal conclusion; no assumed collateral withdrawals"
+  }
+}

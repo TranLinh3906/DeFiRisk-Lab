@@ -1,5 +1,11 @@
 # N5 — Kiểm định đầu vào, adapter và khung thí nghiệm
 
+**Cập nhật 25/10/2026:** dùng [kết quả A/B1/B2](KET_QUA_N5_AB1B2_20261025.md)
+và bundle `outputs/n5_preparation/n5_AB1B2_20261025_final/`.
+Runner mặc định đọc DEX A/B1/B2 và bộ Compound gộp 25/10, hỗ trợ coverage Parquet.
+Đã thêm điều tra tiny-shock/dust, baseline/graph ba snapshot, historical market proxy,
+price-impact anchors và fixture Q1/Q3. Những phần bên dưới mô tả các phiên bản trước.
+
 **Sau pull 9b34ff7:** xem [kết quả mới nhất](N5_SAU_PULL_9b34ff7.md) và
 [bảng bàn giao N4](BAN_GIAO_N4_SAU_PULL_9b34ff7.md). Bundle:
 `outputs/n5_preparation/n5_postpull_9b34ff7_20261023/`.

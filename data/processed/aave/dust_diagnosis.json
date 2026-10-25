@@ -1,0 +1,284 @@
+{
+  "A": {
+    "part1": {
+      "no": {
+        "wallets_rel_ge_1pct": 220,
+        "abs_err_bins_usd": {
+          "<=1e-6": 220,
+          "<=1e-4": 0,
+          "<=0.01": 0,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.0
+      },
+      "collateral": {
+        "wallets_rel_ge_1pct": 30,
+        "abs_err_bins_usd": {
+          "<=1e-6": 30,
+          "<=1e-4": 0,
+          "<=0.01": 0,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.0
+      },
+      "hf_lt1_flips": {
+        "wallets": 1,
+        "max_debt_abs_err_usd": 0.0,
+        "total_aave_debt_usd": 0.0
+      }
+    },
+    "part2": {
+      "wallets_tested": 28383,
+      "balanceOf|base_floor": {
+        "exact_match": 15,
+        "off_by_1_unit": 23079,
+        "other": 5289,
+        "ours_lower_than_aave": 28368,
+        "exact_pct": 0.0528
+      },
+      "balanceOf|base_ceil": {
+        "exact_match": 28383,
+        "off_by_1_unit": 0,
+        "other": 0,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 100.0
+      },
+      "scaled_half_up|base_floor": {
+        "exact_match": 4,
+        "off_by_1_unit": 14458,
+        "other": 13921,
+        "ours_lower_than_aave": 28379,
+        "exact_pct": 0.0141
+      },
+      "scaled_half_up|base_ceil": {
+        "exact_match": 16318,
+        "off_by_1_unit": 0,
+        "other": 12065,
+        "ours_lower_than_aave": 12065,
+        "exact_pct": 57.4922
+      },
+      "scaled_ceil|base_floor": {
+        "exact_match": 15,
+        "off_by_1_unit": 23079,
+        "other": 5289,
+        "ours_lower_than_aave": 28368,
+        "exact_pct": 0.0528
+      },
+      "scaled_ceil|base_ceil": {
+        "exact_match": 28383,
+        "off_by_1_unit": 0,
+        "other": 0,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 100.0
+      },
+      "scaled_floor|base_floor": {
+        "exact_match": 0,
+        "off_by_1_unit": 5963,
+        "other": 22420,
+        "ours_lower_than_aave": 28383,
+        "exact_pct": 0.0
+      },
+      "scaled_floor|base_ceil": {
+        "exact_match": 6259,
+        "off_by_1_unit": 0,
+        "other": 22124,
+        "ours_lower_than_aave": 22124,
+        "exact_pct": 22.0519
+      },
+      "best_variant": "balanceOf|base_ceil",
+      "top_tokens_among_mismatched_wallets": []
+    }
+  },
+  "B1": {
+    "part1": {
+      "no": {
+        "wallets_rel_ge_1pct": 17,
+        "abs_err_bins_usd": {
+          "<=1e-6": 17,
+          "<=1e-4": 0,
+          "<=0.01": 0,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.0
+      },
+      "collateral": {
+        "wallets_rel_ge_1pct": 2,
+        "abs_err_bins_usd": {
+          "<=1e-6": 2,
+          "<=1e-4": 0,
+          "<=0.01": 0,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.0
+      },
+      "hf_lt1_flips": {
+        "wallets": 0,
+        "max_debt_abs_err_usd": 0.0,
+        "total_aave_debt_usd": 0.0
+      }
+    },
+    "part2": {
+      "wallets_tested": 11944,
+      "balanceOf|base_floor": {
+        "exact_match": 11559,
+        "off_by_1_unit": 0,
+        "other": 385,
+        "ours_lower_than_aave": 385,
+        "exact_pct": 96.7766
+      },
+      "balanceOf|base_ceil": {
+        "exact_match": 0,
+        "off_by_1_unit": 9174,
+        "other": 2770,
+        "ours_lower_than_aave": 385,
+        "exact_pct": 0.0
+      },
+      "scaled_half_up|base_floor": {
+        "exact_match": 11944,
+        "off_by_1_unit": 0,
+        "other": 0,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 100.0
+      },
+      "scaled_half_up|base_ceil": {
+        "exact_match": 0,
+        "off_by_1_unit": 9413,
+        "other": 2531,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 0.0
+      },
+      "scaled_ceil|base_floor": {
+        "exact_match": 7208,
+        "off_by_1_unit": 0,
+        "other": 4736,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 60.3483
+      },
+      "scaled_ceil|base_ceil": {
+        "exact_match": 0,
+        "off_by_1_unit": 6193,
+        "other": 5751,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 0.0
+      },
+      "scaled_floor|base_floor": {
+        "exact_match": 7373,
+        "off_by_1_unit": 0,
+        "other": 4571,
+        "ours_lower_than_aave": 4571,
+        "exact_pct": 61.7297
+      },
+      "scaled_floor|base_ceil": {
+        "exact_match": 0,
+        "off_by_1_unit": 6359,
+        "other": 5585,
+        "ours_lower_than_aave": 4571,
+        "exact_pct": 0.0
+      },
+      "best_variant": "scaled_half_up|base_floor",
+      "top_tokens_among_mismatched_wallets": []
+    }
+  },
+  "B2": {
+    "part1": {
+      "no": {
+        "wallets_rel_ge_1pct": 537,
+        "abs_err_bins_usd": {
+          "<=1e-6": 100,
+          "<=1e-4": 308,
+          "<=0.01": 129,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.002435
+      },
+      "collateral": {
+        "wallets_rel_ge_1pct": 10,
+        "abs_err_bins_usd": {
+          "<=1e-6": 10,
+          "<=1e-4": 0,
+          "<=0.01": 0,
+          "<=1": 0,
+          ">1": 0
+        },
+        "fail_if_rel_ge_1pct_AND_abs_gt_0.01usd": 0,
+        "max_abs_err_usd": 0.0
+      },
+      "hf_lt1_flips": {
+        "wallets": 30,
+        "max_debt_abs_err_usd": 0.001216,
+        "total_aave_debt_usd": 0.0925
+      }
+    },
+    "part2": {
+      "wallets_tested": 27681,
+      "balanceOf|base_floor": {
+        "exact_match": 4,
+        "off_by_1_unit": 22095,
+        "other": 5582,
+        "ours_lower_than_aave": 27677,
+        "exact_pct": 0.0145
+      },
+      "balanceOf|base_ceil": {
+        "exact_match": 27681,
+        "off_by_1_unit": 0,
+        "other": 0,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 100.0
+      },
+      "scaled_half_up|base_floor": {
+        "exact_match": 2,
+        "off_by_1_unit": 14041,
+        "other": 13638,
+        "ours_lower_than_aave": 27679,
+        "exact_pct": 0.0072
+      },
+      "scaled_half_up|base_ceil": {
+        "exact_match": 16095,
+        "off_by_1_unit": 0,
+        "other": 11586,
+        "ours_lower_than_aave": 11586,
+        "exact_pct": 58.1446
+      },
+      "scaled_ceil|base_floor": {
+        "exact_match": 4,
+        "off_by_1_unit": 22095,
+        "other": 5582,
+        "ours_lower_than_aave": 27677,
+        "exact_pct": 0.0145
+      },
+      "scaled_ceil|base_ceil": {
+        "exact_match": 27681,
+        "off_by_1_unit": 0,
+        "other": 0,
+        "ours_lower_than_aave": 0,
+        "exact_pct": 100.0
+      },
+      "scaled_floor|base_floor": {
+        "exact_match": 0,
+        "off_by_1_unit": 6010,
+        "other": 21671,
+        "ours_lower_than_aave": 27681,
+        "exact_pct": 0.0
+      },
+      "scaled_floor|base_ceil": {
+        "exact_match": 6366,
+        "off_by_1_unit": 0,
+        "other": 21315,
+        "ours_lower_than_aave": 21315,
+        "exact_pct": 22.9977
+      },
+      "best_variant": "balanceOf|base_ceil",
+      "top_tokens_among_mismatched_wallets": []
+    }
+  }
+}

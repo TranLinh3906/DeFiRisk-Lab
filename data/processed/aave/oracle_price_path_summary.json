@@ -1,0 +1,165 @@
+{
+  "B1": {
+    "block_start": 20458637,
+    "block_end": 20465806,
+    "step_blocks": 10,
+    "samples": 718,
+    "tokens": {
+      "DAI": {
+        "price_at_snapshot": 0.99978763,
+        "min_price_in_window": 0.99948777,
+        "min_block": 20465507,
+        "min_time_utc": "2024-08-05T22:59:59Z",
+        "drawdown_pct_from_snapshot": -0.03
+      },
+      "GHO": {
+        "price_at_snapshot": 1.0,
+        "min_price_in_window": 1.0,
+        "min_block": 20458637,
+        "min_time_utc": "2024-08-04T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "USDC": {
+        "price_at_snapshot": 0.99996534,
+        "min_price_in_window": 0.99996534,
+        "min_block": 20458637,
+        "min_time_utc": "2024-08-04T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "USDT": {
+        "price_at_snapshot": 0.99953723,
+        "min_price_in_window": 0.99953723,
+        "min_block": 20458637,
+        "min_time_utc": "2024-08-04T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "WBTC": {
+        "price_at_snapshot": 58056.07522377,
+        "min_price_in_window": 49753.90958419,
+        "min_block": 20462507,
+        "min_time_utc": "2024-08-05T12:56:59Z",
+        "drawdown_pct_from_snapshot": -14.3
+      },
+      "WETH": {
+        "price_at_snapshot": 2683.3051,
+        "min_price_in_window": 2189.88508,
+        "min_block": 20460567,
+        "min_time_utc": "2024-08-05T06:26:47Z",
+        "drawdown_pct_from_snapshot": -18.389
+      },
+      "cbETH": {
+        "price_at_snapshot": 2892.6582039,
+        "min_price_in_window": 2360.74125237,
+        "min_block": 20460567,
+        "min_time_utc": "2024-08-05T06:26:47Z",
+        "drawdown_pct_from_snapshot": -18.389
+      },
+      "rETH": {
+        "price_at_snapshot": 2985.90230874,
+        "min_price_in_window": 2437.34544106,
+        "min_block": 20460567,
+        "min_time_utc": "2024-08-05T06:26:47Z",
+        "drawdown_pct_from_snapshot": -18.372
+      },
+      "weETH": {
+        "price_at_snapshot": 2802.88857278,
+        "min_price_in_window": 2287.6067017,
+        "min_block": 20460567,
+        "min_time_utc": "2024-08-05T06:26:47Z",
+        "drawdown_pct_from_snapshot": -18.384
+      },
+      "wstETH": {
+        "price_at_snapshot": 3152.14004079,
+        "min_price_in_window": 2572.50822704,
+        "min_block": 20460567,
+        "min_time_utc": "2024-08-05T06:26:47Z",
+        "drawdown_pct_from_snapshot": -18.389
+      }
+    }
+  },
+  "B2": {
+    "block_start": 23543615,
+    "block_end": 23557920,
+    "step_blocks": 10,
+    "samples": 1432,
+    "tokens": {
+      "DAI": {
+        "price_at_snapshot": 0.99975094,
+        "min_price_in_window": 0.99839115,
+        "min_block": 23550805,
+        "min_time_utc": "2025-10-11T00:08:35Z",
+        "drawdown_pct_from_snapshot": -0.136
+      },
+      "GHO": {
+        "price_at_snapshot": 1.0,
+        "min_price_in_window": 1.0,
+        "min_block": 23543615,
+        "min_time_utc": "2025-10-09T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "USDC": {
+        "price_at_snapshot": 0.99979105,
+        "min_price_in_window": 0.99979105,
+        "min_block": 23543615,
+        "min_time_utc": "2025-10-09T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "USDT": {
+        "price_at_snapshot": 1.00005282,
+        "min_price_in_window": 1.00005282,
+        "min_block": 23543615,
+        "min_time_utc": "2025-10-09T23:59:59Z",
+        "drawdown_pct_from_snapshot": 0.0
+      },
+      "WBTC": {
+        "price_at_snapshot": 121562.34214777,
+        "min_price_in_window": 106499.17920746,
+        "min_block": 23549975,
+        "min_time_utc": "2025-10-10T21:21:23Z",
+        "drawdown_pct_from_snapshot": -12.391
+      },
+      "WETH": {
+        "price_at_snapshot": 4370.38366453,
+        "min_price_in_window": 3456.7046,
+        "min_block": 23549985,
+        "min_time_utc": "2025-10-10T21:23:23Z",
+        "drawdown_pct_from_snapshot": -20.906
+      },
+      "cbBTC": {
+        "price_at_snapshot": 121552.15,
+        "min_price_in_window": 106490.25,
+        "min_block": 23549975,
+        "min_time_utc": "2025-10-10T21:21:23Z",
+        "drawdown_pct_from_snapshot": -12.391
+      },
+      "cbETH": {
+        "price_at_snapshot": 4862.29364453,
+        "min_price_in_window": 3846.05164059,
+        "min_block": 23549985,
+        "min_time_utc": "2025-10-10T21:23:23Z",
+        "drawdown_pct_from_snapshot": -20.9
+      },
+      "rETH": {
+        "price_at_snapshot": 5015.80198246,
+        "min_price_in_window": 3967.45712777,
+        "min_block": 23549985,
+        "min_time_utc": "2025-10-10T21:23:23Z",
+        "drawdown_pct_from_snapshot": -20.901
+      },
+      "weETH": {
+        "price_at_snapshot": 4714.36772718,
+        "min_price_in_window": 3728.98107473,
+        "min_block": 23549985,
+        "min_time_utc": "2025-10-10T21:23:23Z",
+        "drawdown_pct_from_snapshot": -20.902
+      },
+      "wstETH": {
+        "price_at_snapshot": 5313.95345873,
+        "min_price_in_window": 4203.3144426,
+        "min_block": 23549985,
+        "min_time_utc": "2025-10-10T21:23:23Z",
+        "drawdown_pct_from_snapshot": -20.9
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "hf": {
+    "A": {
+      "current": {
+        "flips": 60,
+        "abs_error_ge_005": 220
+      },
+      "regenerated": {
+        "flips": 60,
+        "abs_error_ge_005": 220
+      }
+    },
+    "B": {
+      "current": {
+        "flips": 58,
+        "abs_error_ge_005": 217
+      },
+      "regenerated": {
+        "flips": 58,
+        "abs_error_ge_005": 217
+      }
+    }
+  },
+  "zero_vs_tiny": {
+    "zero_abs_error_ge_005": 0,
+    "tiny_abs_error_ge_005": 446,
+    "tiny_eligibility_flips": 118
+  },
+  "emode_permission_hf": 1.8,
+  "target_nonfinite": {
+    "dict_nan": "('$nan', nan)",
+    "percent_nan": "('NaN%', nan)",
+    "dict_inf": "('inf%', inf)"
+  },
+  "n2_metadata_three_snapshots": "KeyError: 'B'",
+  "n2_raw_paths": {
+    "borrow_events_raw.jsonl": true,
+    "data/raw/aave/borrow_events_raw.jsonl": false
+  },
+  "syntax_errors": {}
+}

@@ -1,0 +1,72 @@
+{
+  "scope": "Legacy A/B only; not historical B1/B2",
+  "snapshot_blocks": {
+    "A": 26179841,
+    "B": 26194188
+  },
+  "missing_queries": 14294,
+  "unique_wallets": 3594,
+  "wallet_snapshot_pairs": 7147,
+  "overlap_with_covered_queries": 0,
+  "parts": [
+    {
+      "part": 0,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1189,
+      "queries": 2378
+    },
+    {
+      "part": 1,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1192,
+      "queries": 2384
+    },
+    {
+      "part": 2,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1189,
+      "queries": 2378
+    },
+    {
+      "part": 3,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1191,
+      "queries": 2382
+    },
+    {
+      "part": 4,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1191,
+      "queries": 2382
+    },
+    {
+      "part": 5,
+      "unique_wallets": 599,
+      "wallet_snapshot_pairs": 1195,
+      "queries": 2390
+    }
+  ],
+  "coverage_evidence": "Reconstructed from completed source QA and the declared deterministic assignment; no raw RPC checkpoints supplied for imported shards.",
+  "by_snapshot_market": [
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_usdc",
+      "queries": 3574
+    },
+    {
+      "snapshot_id": "A",
+      "market_id": "compound_v3_ethereum_weth",
+      "queries": 3574
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_usdc",
+      "queries": 3573
+    },
+    {
+      "snapshot_id": "B",
+      "market_id": "compound_v3_ethereum_weth",
+      "queries": 3573
+    }
+  ]
+}

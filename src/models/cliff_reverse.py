@@ -100,31 +100,29 @@ def find_liquidation_cliff(
 
 def _parse_target(target: Any, total_debt_usd: float) -> tuple[str, float]:
     """Resolve a USD target or percentage target into a debt amount."""
+    def validate(amount: float) -> float:
+        if not np.isfinite(amount) or amount < 0:
+            raise ValueError("Target debt must be a finite, non-negative number")
+        return amount
+
     if isinstance(target, dict):
         if "usd" in target:
-            amount = float(target["usd"])
-            if amount < 0:
-                raise ValueError("Target debt must be non-negative")
+            amount = validate(float(target["usd"]))
             return str(target.get("label", f"${amount:,.0f}")), amount
         pct = target.get("pct", target.get("percent"))
         if pct is not None:
-            fraction = float(pct)
-            if fraction < 0:
-                raise ValueError("Target debt must be non-negative")
+            fraction = validate(float(pct))
             if fraction > 1:
                 fraction /= 100.0
-            return str(target.get("label", f"{fraction:.0%}")), total_debt_usd * fraction
+            amount = validate(float(total_debt_usd) * fraction)
+            return str(target.get("label", f"{fraction:.0%}")), amount
         raise ValueError(f"Unrecognized reverse stress target: {target}")
     if isinstance(target, str) and target.strip().endswith("%"):
         fraction = float(target.strip()[:-1]) / 100.0
-        if fraction < 0:
-            raise ValueError("Target debt must be non-negative")
-        return target.strip(), total_debt_usd * fraction
-    amount = float(target)
-    if amount < 0:
-        raise ValueError("Target debt must be non-negative")
-    if not np.isfinite(amount):
-        raise ValueError(f"Target debt must be finite: {target}")
+        validate(fraction)
+        amount = validate(float(total_debt_usd) * fraction)
+        return target.strip(), amount
+    amount = validate(float(target))
     return f"${amount:,.0f}", amount
 
 

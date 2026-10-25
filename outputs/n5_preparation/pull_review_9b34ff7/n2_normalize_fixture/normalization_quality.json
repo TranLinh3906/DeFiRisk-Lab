@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-10-23T15:39:44.830812+00:00",
+  "rows": 3,
+  "duplicate_pk": 0,
+  "wallets_by_snapshot": {
+    "A": 1,
+    "B1": 1,
+    "B2": 1
+  },
+  "null_price_rows": 0,
+  "negative_amounts": 0,
+  "rows_collateral_enabled_but_lt_zero": 0,
+  "isolated_collateral_rows": 0,
+  "note": "staging; effective_liq_bonus de NULL; khong tao co dust"
+}

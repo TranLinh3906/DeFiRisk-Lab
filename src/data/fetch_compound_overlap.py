@@ -1128,6 +1128,7 @@ def main() -> None:
     cli.add_argument("--extend-existing-shard",
                      action="store_true")
     cli.add_argument("--existing-shards-root", type=Path)
+<<<<<<< HEAD
     args = cli.parse_args()
 
     # KHONG cho phep mo rong shard cu khi chua chuan hoa checkpoint
@@ -1143,6 +1144,14 @@ def main() -> None:
             "Bat buoc su dung --assignment-file "
             "config/n3_compound_team_assignment.json. "
             "Khong cho phep chia vi theo round-robin."
+=======
+    args=cli.parse_args()
+    if args.extend_existing_shard:
+        cli.error(
+            "In-place extension is disabled to protect existing A/B files. "
+            "Use scripts/fetch_compound_historical_B1_B2.py and provide "
+            "a new --output-root under outputs/"
+>>>>>>> c9f3c9060b204b6fb668bb5021289f63decb4432
         )
     if args.max_wallets<0 or args.batch_size<1 or args.wallet_chunk<1:cli.error("invalid limits")
     if not math.isfinite(args.rpc_interval) or args.rpc_interval < 0:

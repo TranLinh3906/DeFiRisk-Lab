@@ -1,0 +1,29 @@
+{
+  "files": {
+    "aave_missing_pairs.parquet": "3f63e811f7fc9098f586593c321529e4e2ad5281a53655987d0e9fb93436188b",
+    "markets.csv": "76a373b5593d72fdcab4a897d60e76c0895fd80db862ab7d626acc2ede27544e",
+    "missing_A_compound_v3_ethereum_usdc.csv": "27d7faa48419710a5c7b18087f83203aca5b10a262a77ab8c6838b92b20813d6",
+    "missing_A_compound_v3_ethereum_weth.csv": "cb1c69adb95845ca3f84e24e06cf8bfdbf17f521600be6fea0acc8b7b8e6565e",
+    "missing_B_compound_v3_ethereum_usdc.csv": "273ca2ab33c08ff9363ab1a270ef53d3640a8d13d753c39ce8f161818ec3bbfa",
+    "missing_B_compound_v3_ethereum_weth.csv": "1524393c1ed2873fd7ec0b12eeabfd037fc38b0f1faabd0c243987b02f166ee0",
+    "missing_queries.csv": "2e352c2aa40fcb9cb680c2e71a439795e7d16379951708461241a133d77f2da1",
+    "missing_wallets_unique.csv": "8495cfa5aa375507d05ff34fa3d25f8faa819ef56c15b14624c7e61a69bb9150",
+    "missing_wallets_unique.txt": "9735371405c171f4feb9a0c7c49f42ae0867c7198f8515baf274549e9647b6ca",
+    "parts_summary.csv": "aaea1d6d85b33755f05434c59e78a8840361cd73ed725dadcb4cfb296ecf63bd",
+    "snapshot_metadata_AB_frozen.json": "c68a01900df276d2823fa1a4656827ed882b575a034904da85471929734cfc16",
+    "summary.json": "c77503b6885d9f5f7a0a9b6d6bbc45f02ffe0af1581718bb5e633bd9dadc78f2",
+    "part_00/aave_missing_pairs.parquet": "59b4368059d032feddfc76f3b08a61bf61f297dfc2801e593ca725d5461bfeee",
+    "part_00/missing_queries.csv": "58ad86fd3f349669311ae335a41f3fa2aff61d369ec8fbf962d5fc6377dfc17f",
+    "part_01/aave_missing_pairs.parquet": "9110f47741945e8deac2c019e51c3975d7c955afc03608e69814ba008ddd332c",
+    "part_01/missing_queries.csv": "f70dadc3925aa7941f5e51dd4a19ea647c6cd858ac866a249d92a355a5a20811",
+    "part_02/aave_missing_pairs.parquet": "e5a739ab1fcc7c50745df662c444d549364f3a62ce9a09a82c68da1919319e11",
+    "part_02/missing_queries.csv": "8e6c68b7c756b13d79d57df0508f932414b44f1abd361cd5cdc5c2ca6963683c",
+    "part_03/aave_missing_pairs.parquet": "2743b31a7ea056d22b96bf8947b203ba3ed7aceb5e4a7d6ca364431021c744c3",
+    "part_03/missing_queries.csv": "d8adbd182bd82dd37486cdcda23013d932ba54d9782038978443550cccd48950",
+    "part_04/aave_missing_pairs.parquet": "87a08dc8608b029302ebfc1020b7c76a94d6de71c1d00056774ebb158209ece2",
+    "part_04/missing_queries.csv": "0055d55fe3299e4fa53eef045bd81c854af02361b98ea29187380a10a2d3b54f",
+    "part_05/aave_missing_pairs.parquet": "d344c5d8c0629e3bf03ed68fd94a279d610399145f063c2beb03dc58f07b016e",
+    "part_05/missing_queries.csv": "937d214b00f289fd28b1e8b8f009d0b8591857b26c6348d498ac3953561cfc3f"
+  },
+  "status": "recovery_inputs_only"
+}

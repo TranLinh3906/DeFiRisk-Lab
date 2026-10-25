@@ -97,7 +97,7 @@ def calculate_health_factor(
     if "wallet_address" not in pos:
         raise ValueError("positions_df requires wallet_address (or wallet alias)")
     if "collateral_flag" not in pos:
-        for alias in ("is_collateral_enabled", "coll_flag", "usage_as_collateral"):
+        for alias in ("collateral_enabled", "is_collateral_enabled", "coll_flag", "usage_as_collateral"):
             if alias in pos:
                 pos = pos.rename(columns={alias: "collateral_flag"})
                 break
@@ -170,7 +170,11 @@ def calculate_health_factor(
     # E-Mode membership is category-specific. Preserve all categories for a
     # token and join on the wallet's category rather than selecting one row.
     cfg_source = normalize_input(reserve_config)
-    membership = cfg_source[[c for c in token_keys + ["emode_category", "emode_category_config", "lt_emode", "emode_lt_bps"] if c in cfg_source]].copy()
+    membership_flag = next((c for c in ("is_collateral", "collateral_enabled") if c in cfg_source), None)
+    membership_source = cfg_source
+    if membership_flag:
+        membership_source = cfg_source.loc[_as_bool(cfg_source[membership_flag])].copy()
+    membership = membership_source[[c for c in token_keys + ["emode_category", "emode_category_config", "lt_emode", "emode_lt_bps"] if c in membership_source]].copy()
     if "emode_category_config" not in membership and "emode_category" in membership:
         membership = membership.rename(columns={"emode_category": "emode_category_config"})
     if "emode_category_config" in membership:
@@ -264,7 +268,7 @@ def main() -> None:
         membership = normalize_input(pd.read_parquet(membership_path))
         lt_col = next((c for c in ("lt_emode", "emode_lt", "emode_lt_bps") if c in membership), None)
         if lt_col:
-            em_cols = [c for c in ("snapshot_block", "protocol_id", "token_address", "emode_category", lt_col) if c in membership]
+            em_cols = [c for c in ("snapshot_block", "protocol_id", "token_address", "emode_category", lt_col, "is_collateral", "collateral_enabled") if c in membership]
             membership_dim = membership[em_cols].rename(columns={lt_col: "lt_emode"})
             # Concatenate to make category membership available to the function
             # without collapsing categories for a repeated token.

@@ -118,6 +118,31 @@ def test_false_string_parses_as_false() -> None:
     assert not _as_bool(pd.Series(["false"])).iloc[0]
 
 
+def test_collateral_enabled_alias_is_recognized() -> None:
+    positions, config, prices = _frames([
+        _row("0xcoll", "DAI", 100.0, 0.0, enabled=True),
+    ])
+    positions["collateral_enabled"] = positions.pop("is_collateral_enabled")
+    result = calculate_health_factor(positions, config, prices)
+    assert result.loc[0, "total_collateral_usd"] == 100.0
+
+
+def test_non_collateral_emode_member_falls_back_to_standard_lt() -> None:
+    positions = pd.DataFrame([
+        {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, user_emode=2), "wallet_address": "0xborrowable"},
+        {**_row("0xdebt", "WETH", 0.0, 50.0, enabled=False, user_emode=2), "wallet_address": "0xborrowable"},
+    ])
+    config = pd.DataFrame([
+        {"snapshot_block": 100, "token_address": "0xcoll", "lt_std": .5,
+         "lt_emode": .9, "emode_category": 2, "is_collateral": False},
+        {"snapshot_block": 100, "token_address": "0xdebt", "lt_std": .5,
+         "lt_emode": .9, "emode_category": 2, "is_collateral": True},
+    ])
+    prices = positions[["snapshot_block", "token_address"]].drop_duplicates().assign(price_usd=1.0)
+    result = calculate_health_factor(positions, config, prices)
+    assert result.loc[0, "health_factor"] == 1.0
+
+
 def test_matching_non_one_emode_category_uses_emode_lt_and_mismatch_falls_back() -> None:
     rows = [
         {**_row("0xcoll", "DAI", 100.0, 0.0, enabled=True, user_emode=2),

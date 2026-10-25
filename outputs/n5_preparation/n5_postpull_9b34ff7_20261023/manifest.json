@@ -1,0 +1,1211 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-23T15:55:11.073986+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+      "bytes": 8971791,
+      "sha256": "3ee320a4aa93b5b201705393d85e28b962de60af728f6e506adec5095b4c0072",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "bytes": 19188,
+      "sha256": "1c89ca2152af44e7cf620f81ed72eae01f49704086a0db47cfd33765112d48f8",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "bytes": 20212,
+      "sha256": "3ea40357ff5fb0f7c3a8beb6cfb76908fa669d00a84ca31e3721d156a38c363a",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+      "bytes": 14938,
+      "sha256": "afacd53b776250de050a6619e995fe522daecec3a12a87e0f34d6f403355d9bc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\account_reference.parquet",
+      "bytes": 10038679,
+      "sha256": "73c3e54edc467f896883e34473243c1fe13e27d5aa18e7726339120fbb2ebaf4",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\protocol_reconciliation.parquet",
+      "bytes": 20628,
+      "sha256": "6d09eeae88fb5621ddfa33e4388a2df5470f9146513b432c15b8fcbf14d4d3b7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\snapshot_metadata.json",
+      "bytes": 5258,
+      "sha256": "aa7f78965f9cce49e163ad09f5ada4bff44b1d7690ab5369a8229767f17e0da4",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\marts\\borrower_risk.parquet",
+      "bytes": 3954577,
+      "sha256": "2e80edc2364974bb47974ff1c3698384d953bcfcdbb8fbd70a2b078da710a8c7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\borrower_positions.parquet",
+      "bytes": 9206655,
+      "sha256": "d3153f2e71b70137623ac686eb184eb170414d03147453e7054f6cffc20681b7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\marts\\stress_positions.parquet",
+      "bytes": 60775493,
+      "sha256": "68be469ad947786246ece34ad54faae4107a92fcec717d16bbf4e722fec63c56",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\marts\\stress_summary.parquet",
+      "bytes": 7482,
+      "sha256": "6c540e45cbb2dd5345aff5bdafdbd2aa979d5b1e6bb91262c3d20c48c23322af",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\marts\\stress_heatmap.parquet",
+      "bytes": 4681,
+      "sha256": "aa4c39b469e373f7cf0670feecf824ea45cf64d0acf279d7f4cbe663e4058e8c",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_dex_liquidity.parquet",
+      "bytes": 23549,
+      "sha256": "4df89b27490883852ff039428a6ab32576450c806d217960db2ae655a7f63535",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "sha256": "20d67d570585df11755c62d91262da01efe8c692c62c51b7506e4934ea453f07",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_liquidations_holdout_24h.parquet",
+      "bytes": 13382,
+      "sha256": "490bf69f09aa1cfa9a884e52a6fccea36b8c24ab6c1636842e9e9a05ae19b9eb",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\graph_network_edges.parquet",
+      "bytes": 2260,
+      "sha256": "0f405c722b02c3e947cfd10b476cc7e72e64c5ab068e4bbff4d2b01bf48bd1a0",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\fact_historical_liquidations.parquet",
+      "bytes": 3157,
+      "sha256": "c3049f6f542a2b62680e9dc89bbcdc03e1084b1872f47baec9e4c2276664f6a0",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\merge_report.json",
+      "bytes": 3599,
+      "sha256": "b46463289038c557fa3c608d1e5a9da1ec3e76174754870cb720aa05f87c1076",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\hf_reconciliation.parquet",
+      "bytes": 8219566,
+      "sha256": "51a88b00693e8fc6bca80d1f48ff365f0fbc817e6e00e8a5838ac7763f20caf0",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_snapshots.py",
+      "bytes": 4902,
+      "sha256": "9348e5986c9f4ad96759dd34627accb85da5651766e99a96df870b9fe25d841e",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\compound_consolidated_partial.sqlite",
+      "bytes": 20467712,
+      "sha256": "52cd8a6bce81ef848c1b37ebdd7aac09d7b1b26dc5af3641a9f42280cadcd244",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\n3_compound_positions_long_partial.parquet",
+      "bytes": 73930,
+      "sha256": "12ef03f42b32a2ac66907619c25309d132f41c690b5941b7b8b3be645491e3cf",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\n3_compound_account_reference_partial.parquet",
+      "bytes": 56222,
+      "sha256": "0711bcbf165b8e05039f50d10344fd34f45e3a01e9b71dffc12d32c4ac455bc1",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\n3_compound_reserve_config_partial.parquet",
+      "bytes": 13752,
+      "sha256": "b626c038de5540c35a12de9aaa1c16f946702ecdbf5194178b1c9dd99b748e64",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\N3_Compound_Q3_Overlap_VSCode\\data\\processed\\compound\\consolidated_partial_20261022\\n3_compound_overlap_wallets_partial.parquet",
+      "bytes": 54006,
+      "sha256": "0ccbb22940907b77344c5fd812fdeda69494d356051a99f8860e57b0ceef017f",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\market_daily_continuous.parquet",
+      "bytes": 202908,
+      "sha256": "1b491981ba31b89c2c48e94d900e8d97f3e5598a443939bd0d7c6a2bdc968692",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\market_crashes_hourly.parquet",
+      "bytes": 44404,
+      "sha256": "4168f1ace1972168b106fe3a7d6cf730316b94ed5fb52b24bb232d2c60040a78",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\token_prices_continuous.parquet",
+      "bytes": 241915,
+      "sha256": "2c9fa24bb46fdca2db8b3cce742637d01439da6eceeda2233e6cca39ee9b2a56",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\concentration_2026\\concentration_by_wallet.parquet",
+      "bytes": 3358606,
+      "sha256": "a2e9cafca18687a3d8b1cc9f5378d6e00d134323ef6969963d1bdffcc3acf733",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_prepare_handoff.py",
+      "bytes": 26788,
+      "sha256": "3e0341bdbaf31d9651450ee0e0b5099086ba1b9e45055b937e9f9c964768fbaa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_audit.py",
+      "bytes": 8296,
+      "sha256": "6fdfd9361dbd681144bd86742058ff5b7ecbfb03131f145d191f4128f348c243",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 14459,
+      "sha256": "0fe53fce35baf0125806480917788afbdaa9502ce79ce6425953015e6be5d550",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_inputs.py",
+      "bytes": 8952,
+      "sha256": "d3320a1161d9ff07a04512bf7b9b413f77f1388157c49e06750f7cd99fd40cea",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_validation.py",
+      "bytes": 17733,
+      "sha256": "17947eefdc85de51ed0c6efd4214d85d2e3c45f39d841df1b5b7c7d32a6e7340",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_experiments.py",
+      "bytes": 7564,
+      "sha256": "18360fffeb4469050d1a5ff2beb684e79f5fda88118f323a87e02eb396a6603c",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_integration.py",
+      "bytes": 15620,
+      "sha256": "7012c5bef4ea5de47d77f31cfe493889bb4f3ddd1090d7984fed597096f69988",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_kpis.py",
+      "bytes": 7766,
+      "sha256": "6b23530ba9c41a8b73f56fa4915590ea5794a11190116e30945133bbfef24d08",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\health_factor.py",
+      "bytes": 16035,
+      "sha256": "dd19cbefff014df30297fc7f433fca9e635ad406e06e21b2b8a45f32ecabeb19",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\stress_test.py",
+      "bytes": 20995,
+      "sha256": "48c3bb9ad32807c5560b8603e1ccd87a7043dfb77bef84af135c220badd0d6d0",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cliff_reverse.py",
+      "bytes": 10937,
+      "sha256": "da3c93b86ee50191f41d28b309e815d8052d2f22a8e9059b1e0fa46671a8a409",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cascade.py",
+      "bytes": 16907,
+      "sha256": "1ff119c5dec136ea0ee9c127f6646289ecfe3a44d26a3edf45d046ab8e6ed5ea",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\research_design.md",
+      "bytes": 16870,
+      "sha256": "d5f9c4fc4818d3cb4c7d63cf55b12898a2d6818722520a3d64cea14b6355cc30",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\kpi_dictionary.csv",
+      "bytes": 8544,
+      "sha256": "8cb28ead8e2cd340ff7354c9a6b224a344e1a529f831c185d9a75ff0972a53ca",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "snapshot_readiness.json",
+      "bytes": 2492,
+      "sha256": "b8c4f9a6d75df9ca18155175cb150ae017ebc535fb700551eee86ef952ce8994",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "kpi_mapping.csv",
+      "bytes": 10996,
+      "sha256": "7dd09c15cc5f735ea3c3b55966ad6a692afb4395415a224fc22c2602310dc71a",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/validation.json",
+      "bytes": 5541,
+      "sha256": "b2a484116a57c6d44896ab99a31ad470529e04af11b33c9c7273cbf9efcf51a2",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/debt_reconciliation.parquet",
+      "bytes": 10608,
+      "sha256": "d48dd58a3f9673d81cde1941dbaad5bf6a902ae16c0443d5a7ea894cc897e5d7",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_network_edges_candidate.parquet",
+      "bytes": 11863346,
+      "sha256": "5196a22adf9dd167f502dbdb8408f6e760cb78c06cc5dad83bfe05636a72a6db",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_node_metrics_candidate.parquet",
+      "bytes": 1741662,
+      "sha256": "4c7ad82e0449f24a025ebeb8caf27ba5d6bd8949b1e9b29159a7c21adf93b006",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/normalized_positions_candidate.parquet",
+      "bytes": 2372527,
+      "sha256": "770c2106ae535911447dffce9d0f5919ea21eab1196b3d5bae5c92f7773a8274",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_conservation.parquet",
+      "bytes": 10388,
+      "sha256": "4274676c36ed79a3b99df192b1628640df4ab0d39a3decac9a9cd8274b7b858a",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_conservation.csv",
+      "bytes": 16376,
+      "sha256": "fcbe9a5ff7f67e741ba61ebb11a0919a9fce6c1e8fe603c2241bb1c5be6bcb5f",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/baseline_wallet_kpis.parquet",
+      "bytes": 3135367,
+      "sha256": "09b11c2dec4d428c2cd42c0295dc9421e031d44d196ded64be9a7030785b23f8",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/n4_hf_comparison.parquet",
+      "bytes": 1999486,
+      "sha256": "813a2275dc90eafcdf8377e238458102bdc564c316f2e59cc5e04e3f750f42fc",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/n4_eligibility_disagreements.parquet",
+      "bytes": 12139,
+      "sha256": "e3de97849fb78ba740fd16c4dcf0115f7e6a1f902dd6892e30e983bb09a2725e",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/n4_eligibility_disagreements.csv",
+      "bytes": 10346,
+      "sha256": "5b3e80c91e89b9580f1ff220632962fbf85bd6216f1d0ade125bed65672fe930",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_attribution_by_token.parquet",
+      "bytes": 4792302,
+      "sha256": "f905215e759418ecbecee6c63e76192ffdb816215ae76c008d6fbe175d146434",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_attribution_by_wallet.parquet",
+      "bytes": 2827992,
+      "sha256": "c94584a1c459a457a8d4b1cdc4934669afdd7d211a7adc5f1cf7c41f7219ac43",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_disagreement_tokens.csv",
+      "bytes": 35356,
+      "sha256": "794b7d4bfcd7ea43fff48b8d24e94050ae63e823502d8581edb42f191dc2eba6",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_unexplained_residuals.csv",
+      "bytes": 250,
+      "sha256": "5dd3f5711a0b24c953efcc568dab8a07d67bb5eff6306de85fd65becbe691176",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_attribution_disagreements.csv",
+      "bytes": 11654,
+      "sha256": "35447db2a181e6ddde540e749e4165ef666edb9717a41f1c09d3f0fd848bfa93",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/hf_cause_summary.csv",
+      "bytes": 220,
+      "sha256": "928e837d3494dec1a0d7c5f29a5755af2a3046eb3b62447882525244b065631f",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/n4_by_emode_category.parquet",
+      "bytes": 4198,
+      "sha256": "9a08dc8c6857624918e211fbaa284a9750d5fa79b54f3b27daed636d0d28d8dc",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/dex_depth_mapping.parquet",
+      "bytes": 10478,
+      "sha256": "6878f10dc70d2c53c92f33225e0a7227cdd1b3845f24dfc496d82199c0d2d4cb",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/account_balance_diagnostics.parquet",
+      "bytes": 2562849,
+      "sha256": "7f1f85295d9e55b8a17897062a4f513ebb5d0246ebd75df585195d3db463e3e0",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/validation.json",
+      "bytes": 5966,
+      "sha256": "8b809b5d9f355702bd1add99e686f91b78d359eba3e84556f28b8e5ea3f97d65",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/debt_reconciliation.parquet",
+      "bytes": 10609,
+      "sha256": "3f05ddbce3e5befb26c29efa25b434b3b35d387f8227718bff81e181ec9f10e3",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/graph_network_edges_candidate.parquet",
+      "bytes": 11865971,
+      "sha256": "df2fb03fa463ebaa6070aed1575d60853664e7aa96cc7eac730269d4bc33fdac",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/graph_node_metrics_candidate.parquet",
+      "bytes": 1744694,
+      "sha256": "116573ed3c392b414cf75378ec5ce249aa70023d82d687901f45d229b038aaaf",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/normalized_positions_candidate.parquet",
+      "bytes": 2376651,
+      "sha256": "39d79ab5b8038c7239a95b347538839ba5ae462b72e46084f2e78049bb8844c4",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/graph_conservation.parquet",
+      "bytes": 10388,
+      "sha256": "94db6384dc771c35783ae4ef2befe78a3bb10340d8c497c06725ebedafdbe61c",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/graph_conservation.csv",
+      "bytes": 16344,
+      "sha256": "f3d487e5b8e8d1e1cf27ff74266eae6871ade0227ce61029bf4cb505c2e6d566",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/baseline_wallet_kpis.parquet",
+      "bytes": 3141168,
+      "sha256": "1cc178b49ed8f79e214a4f34f9229d1bee00d176d4548495b9941622cc91967c",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/n4_hf_comparison.parquet",
+      "bytes": 2003203,
+      "sha256": "38f6a42e4776b08b24d2f411e25f68385237708efd0c71d665b3a7b96729265e",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/n4_eligibility_disagreements.parquet",
+      "bytes": 12008,
+      "sha256": "378e7016b90aae089d590687b3507b7e8b31fa69cb84eb9e2c177940e5aaac13",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/n4_eligibility_disagreements.csv",
+      "bytes": 9989,
+      "sha256": "b20936b552b91a7e62a7aff9ad9567cfb243f91c23312ceb458002b4f3a4a185",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_attribution_by_token.parquet",
+      "bytes": 4802913,
+      "sha256": "ce9ce2a498ae08d58dce48c0bd94068ba8e4228706d59fe7a1948886c6852568",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_attribution_by_wallet.parquet",
+      "bytes": 2833385,
+      "sha256": "a7da8c3913942ff293fa298feb3e1da1965e7c526de401243c4bce8f1d5dc84e",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_disagreement_tokens.csv",
+      "bytes": 34027,
+      "sha256": "0810a909ab49b619662e363afb718bb6170d5ddbff647eddba94d8e4fb90ad32",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_unexplained_residuals.csv",
+      "bytes": 250,
+      "sha256": "5dd3f5711a0b24c953efcc568dab8a07d67bb5eff6306de85fd65becbe691176",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_attribution_disagreements.csv",
+      "bytes": 11262,
+      "sha256": "739e2c96f420d4b8a267883f4f37d7501f96c48fcbe0f8861f2c904c4d487745",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/hf_cause_summary.csv",
+      "bytes": 219,
+      "sha256": "1c7459b05ed51fe64b60042da324ca138a5fcc5daed41245f1cf008f791e7e02",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/n4_by_emode_category.parquet",
+      "bytes": 4194,
+      "sha256": "138a73c05c721bba102fc27d7a6b48ba9e41c63499e979667c4fc097da5aae6e",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/dex_depth_mapping.parquet",
+      "bytes": 10478,
+      "sha256": "fb2944fa7cbe0690acb28ceda1551e5f6850edcac441151eb9f69242749ae15e",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B/account_balance_diagnostics.parquet",
+      "bytes": 2562621,
+      "sha256": "bdc243635e7f2cfa18f3446941e47f8d82c3c782843159aabd91044c088954a0",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "n4_stress_summary_by_snapshot_diagnostic.parquet",
+      "bytes": 8072,
+      "sha256": "ad2d6f59ad0cee05ba169921703934464611d502e92fda97ff98328ba9135342",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "zero_shock_validation.json",
+      "bytes": 223,
+      "sha256": "147cce1e97f69ef0808bca0b87600218ededd89fe1212b5a6c63616eb377d206",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "zero_shock_mismatches.csv",
+      "bytes": 113,
+      "sha256": "c1be9e1a65f1b41b1f5e771901122435d10baa3b3386bcddcfa7b23844740345",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "reconstructed_hf_validation.json",
+      "bytes": 194,
+      "sha256": "9733d9dd065c951893c455afdd271aa513949a5c3344293e1ecdcdcad9c84dd3",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "reconstructed_hf_diagnostics.parquet",
+      "bytes": 5822506,
+      "sha256": "4b7aeccbe81fbdd2e2ce2cce16b38985e0bd002e2c7c15592a67c37e404ff740",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "reconstructed_hf_failures.csv",
+      "bytes": 108947,
+      "sha256": "0f80f944efd218185fcf86422e5653f58e14a423204372900cfaec823d5156cd",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/configured_window_events.parquet",
+      "bytes": 474678,
+      "sha256": "25c4284ea3343af7a122a0b1754c81296c87e79dc8ebaef79d21210c83340d82",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/configured_window_qa.json",
+      "bytes": 706,
+      "sha256": "cd80ac925510374dac408a1c363a87c687cc8f06ec84751cf0d1800da928cb48",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/fact_historical_liquidations_candidate.parquet",
+      "bytes": 327921,
+      "sha256": "8d1bdd58bb510f70381ecfa278640cbb216865e9f5e2607cd4db48a8926c3621",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/rejected_events.parquet",
+      "bytes": 28271,
+      "sha256": "eea66da41b6748fba96230156707f928020648b01867d922581cde065b45d72d",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/price_series_qa.json",
+      "bytes": 3274,
+      "sha256": "033da56ec0918f8aeddbb402869ef7ffc6e40cc4e15abe4a6e44d6719c198fb7",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "historical/concentration_qa.json",
+      "bytes": 437,
+      "sha256": "932e4d96f35d44d44b5e7d726adc909b4c148dfb7e2baf156a43bc612e25e722",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/partial_qa.json",
+      "bytes": 472,
+      "sha256": "b1278f21de5526913c6c1afb940d01d293a66e38d67d1d3fff473dd988a848f5",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/bridge_accounts_partial_candidate.parquet",
+      "bytes": 57677,
+      "sha256": "ad73536578a483ee64de597f9b3123787ff168c9fb40c5ce877e42ec6675bb8b",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/exposures_partial.parquet",
+      "bytes": 80605,
+      "sha256": "98c80d7761a580784441476c97e02eb6ccbb65c3d40b5a4e145805e2575de9fc",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/flow_events_template.csv",
+      "bytes": 114,
+      "sha256": "99541f48204994f9b0f263517684f2bb9aa785be0e068de9e8790f50dece1a85",
+      "data_kind": "template",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/query_coverage_tracking.parquet",
+      "bytes": 4464106,
+      "sha256": "9258fad8793dcf8ff8f2e2350e080b678470611956238ec7b504fa3e6c69a742",
+      "data_kind": "observed_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/tracking_status.json",
+      "bytes": 343,
+      "sha256": "b1ca281952cf761470a3eaed9d8c190f1cb8ca9a8d15fff05266b8c342f3d55a",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/cascade_rounds.parquet",
+      "bytes": 17071,
+      "sha256": "0b1a44e1f53f14b292ffad9f65a4d16937f70bb8ee4d874e4ee601acdd9d5158",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/cascade_summary.parquet",
+      "bytes": 16383,
+      "sha256": "0c75f4750e9e8d6fc862fa623929b7a6ab6cedae5fe61d48e6db1b3d4ac8f7aa",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/sensitivity.parquet",
+      "bytes": 22356,
+      "sha256": "2dfa57bd5f9d9452bd39083d5ae3a7504f50b729eee334cd2867a7f9a29e4fa1",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/benchmark_comparison.json",
+      "bytes": 1230,
+      "sha256": "0f9d8d7e7b0a0987f5c71bcfca723db3ad080de283fed7af79d0026268703964",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/cascade_curve.png",
+      "bytes": 25077,
+      "sha256": "7099d0051ca48c03a3acec1af92111fe00b9275dd25c8b5a0d7669432153fa5e",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "synthetic/sensitivity_chart.png",
+      "bytes": 26865,
+      "sha256": "cf5bcd992d6390be4b3e8df0f182026652119b998ea583d4ea32639e059beb25",
+      "data_kind": "synthetic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "kpi_artifact_qa.json",
+      "bytes": 3342,
+      "sha256": "aa6db9465f4ae59c0491e897292b2a92e432dcd73fc7b28ae220deb47e45efa1",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 11961,
+      "sha256": "995e55d7cf0854d7d3204ff86fece4d344d217ac1507631480ddade402557f03",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1036,
+      "sha256": "6429c779ec33456b131efc6312554a940c76112ef79911597b652619bb205d86",
+      "data_kind": "documentation",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "snapshots": {
+      "A": {
+        "block": 26179841,
+        "wallets": 28493,
+        "graph_edges": 107779,
+        "graph_edge_types": {
+          "collateral_exposure": 44039,
+          "debt_exposure": 35247,
+          "wallet_protocol": 28493
+        },
+        "total_debt_only": {
+          "status": "passed",
+          "scope": "total debt only; Aave Ethereum Core at selected block",
+          "snapshot_block": 26179841,
+          "calculated_debt_usd": 9427484969.034634,
+          "protocol_debt_usd": 9427484968.297592,
+          "relative_error": 7.818007409899549e-11,
+          "tokens_outside_one_pct": 0,
+          "reserve_collateral_gate": "pending",
+          "research_acceptance": "pending"
+        },
+        "n4_eligibility_disagreements": 60,
+        "dex_mapping_status": {
+          "mapped": 3,
+          "missing_verified_direction": 62
+        },
+        "validation_status": "failed",
+        "graph_conservation_passed": true,
+        "snapshot_scope": "configured",
+        "hf_reconstruction_unexplained_wallets": 0,
+        "hf_attribution_summary": [
+          {
+            "candidate_causes": "collateral_flag_difference",
+            "attribution_status": "numerically_reconstructed",
+            "wallets": 59,
+            "debt_usd": 9397149.624946369
+          },
+          {
+            "candidate_causes": "membership_collateral_permission_ignored",
+            "attribution_status": "numerically_reconstructed",
+            "wallets": 1,
+            "debt_usd": 5372.709989734845
+          }
+        ]
+      },
+      "B": {
+        "block": 26194188,
+        "wallets": 28545,
+        "graph_edges": 107993,
+        "graph_edge_types": {
+          "collateral_exposure": 44114,
+          "debt_exposure": 35334,
+          "wallet_protocol": 28545
+        },
+        "total_debt_only": {
+          "status": "passed",
+          "scope": "total debt only; Aave Ethereum Core at selected block",
+          "snapshot_block": 26194188,
+          "calculated_debt_usd": 9336947229.16934,
+          "protocol_debt_usd": 9336947228.433437,
+          "relative_error": 7.88162092224177e-11,
+          "tokens_outside_one_pct": 0,
+          "reserve_collateral_gate": "pending",
+          "research_acceptance": "pending"
+        },
+        "n4_eligibility_disagreements": 58,
+        "dex_mapping_status": {
+          "mapped": 3,
+          "missing_verified_direction": 62
+        },
+        "validation_status": "failed",
+        "graph_conservation_passed": true,
+        "snapshot_scope": "legacy_metadata_only",
+        "hf_reconstruction_unexplained_wallets": 0,
+        "hf_attribution_summary": [
+          {
+            "candidate_causes": "collateral_flag_difference",
+            "attribution_status": "numerically_reconstructed",
+            "wallets": 57,
+            "debt_usd": 9398261.162600247
+          },
+          {
+            "candidate_causes": "membership_collateral_permission_ignored",
+            "attribution_status": "numerically_reconstructed",
+            "wallets": 1,
+            "debt_usd": 5373.94700301327
+          }
+        ]
+      }
+    },
+    "research_acceptance": "pending",
+    "configured_snapshot_readiness": {
+      "status": "blocked",
+      "snapshots": {
+        "A": {
+          "snapshot_block": 26179841,
+          "status": "passed_structure",
+          "missing": [],
+          "errors": [],
+          "rows": {
+            "positions_long": 73637,
+            "reserve_config": 67,
+            "oracle_prices": 67,
+            "emode_membership": 189,
+            "account_reference": 87286,
+            "protocol_reconciliation": 67,
+            "borrower_positions": 73637,
+            "hf_reconciliation": 28493
+          },
+          "research_acceptance": "pending"
+        },
+        "B1": {
+          "snapshot_block": 20458637,
+          "status": "missing_data",
+          "missing": [
+            "snapshot_metadata",
+            "positions_long",
+            "reserve_config",
+            "oracle_prices",
+            "emode_membership",
+            "account_reference",
+            "protocol_reconciliation",
+            "borrower_positions",
+            "hf_reconciliation"
+          ],
+          "errors": [],
+          "rows": {
+            "positions_long": 0,
+            "reserve_config": 0,
+            "oracle_prices": 0,
+            "emode_membership": 0,
+            "account_reference": 0,
+            "protocol_reconciliation": 0,
+            "borrower_positions": 0,
+            "hf_reconciliation": 0
+          },
+          "research_acceptance": "pending"
+        },
+        "B2": {
+          "snapshot_block": 23543615,
+          "status": "missing_data",
+          "missing": [
+            "snapshot_metadata",
+            "positions_long",
+            "reserve_config",
+            "oracle_prices",
+            "emode_membership",
+            "account_reference",
+            "protocol_reconciliation",
+            "borrower_positions",
+            "hf_reconciliation"
+          ],
+          "errors": [],
+          "rows": {
+            "positions_long": 0,
+            "reserve_config": 0,
+            "oracle_prices": 0,
+            "emode_membership": 0,
+            "account_reference": 0,
+            "protocol_reconciliation": 0,
+            "borrower_positions": 0,
+            "hf_reconciliation": 0
+          },
+          "research_acceptance": "pending"
+        }
+      },
+      "stale_labels": {
+        "positions_long": [
+          "B"
+        ],
+        "reserve_config": [
+          "B"
+        ],
+        "oracle_prices": [
+          "B"
+        ],
+        "emode_membership": [
+          "B"
+        ],
+        "account_reference": [
+          "B"
+        ],
+        "protocol_reconciliation": [
+          "B"
+        ],
+        "borrower_positions": [
+          "B"
+        ],
+        "hf_reconciliation": [
+          "B"
+        ]
+      },
+      "limitation": "Config identity only; no independent chain/hash verification or data relabeling"
+    },
+    "n4_schema_checks": {
+      "stress_summary": {
+        "status": "passed",
+        "errors": []
+      },
+      "stress_heatmap": {
+        "status": "passed",
+        "errors": []
+      }
+    },
+    "n4_stress": {
+      "rows": 1083722,
+      "inconsistent_debt_at_risk_rows": 0,
+      "limitation": "Reaggregated existing N4 outputs only; HF inputs not certified"
+    },
+    "zero_shock": {
+      "status": "passed",
+      "errors": [],
+      "rows": 57038,
+      "eligibility_disagreements": 0,
+      "hf_error_ge_tolerance": 0,
+      "tolerance": 0.005,
+      "scope": "Numerical zero-shock consistency; not research acceptance"
+    },
+    "reconstructed_hf_and_tiny_shock": {
+      "status": "failed",
+      "rows": 57038,
+      "invalid_evidence_rows": 0,
+      "baseline_error_ge_tolerance": 436,
+      "tiny_jump_ge_tolerance": 446,
+      "baseline_eligibility_disagreements": 118
+    },
+    "configured_event_windows": {
+      "B1": {
+        "events": 1830,
+        "unique_wallets": 1152,
+        "first_hour_wallets": 177,
+        "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+        "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+        "duration_hours": 24.00027777777778,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      },
+      "B2": {
+        "events": 902,
+        "unique_wallets": 623,
+        "first_hour_wallets": 0,
+        "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+        "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+        "duration_hours": 48.000277777777775,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      }
+    },
+    "historical": {
+      "observed_events": 3107,
+      "candidate_events": 3068,
+      "rejected_events": 39,
+      "limitation": "Only supplied 2024/2025 windows; not Snapshot B ground truth"
+    },
+    "compound": {
+      "table_qa_status": "passed",
+      "account_reconciliation_mismatches": 0,
+      "rows": {
+        "positions": 1694,
+        "accounts": 1218,
+        "config": 64,
+        "overlap": 1121
+      },
+      "complete": false,
+      "expected_queries": 114076,
+      "covered_queries": 99782,
+      "missing_queries": 14294,
+      "missing_unique_wallets": 3594,
+      "validation_status": "unvalidated",
+      "limitation": "Partial coverage; unqueried wallets are unknown, never zero. No bridge simulation."
+    },
+    "kpi_artifact_checks": [
+      {
+        "kpi_id": "M01",
+        "implementation_status": "baseline_candidate",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M02",
+        "implementation_status": "baseline_candidate",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M03",
+        "implementation_status": "baseline_candidate",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M04",
+        "implementation_status": "baseline_candidate",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M05",
+        "implementation_status": "not_implemented",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M06",
+        "implementation_status": "synthetic_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M07",
+        "implementation_status": "definition_review",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M08",
+        "implementation_status": "not_implemented",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M09",
+        "implementation_status": "not_implemented",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M10",
+        "implementation_status": "synthetic_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M11",
+        "implementation_status": "synthetic_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M12",
+        "implementation_status": "definition_review",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M13",
+        "implementation_status": "synthetic_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M14",
+        "implementation_status": "synthetic_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M15",
+        "implementation_status": "definition_review",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M16",
+        "implementation_status": "tracking_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M17",
+        "implementation_status": "tracking_only",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      },
+      {
+        "kpi_id": "M18",
+        "implementation_status": "not_implemented",
+        "artifact_check": "passed_mapping_only",
+        "errors": [],
+        "research_acceptance": "pending"
+      }
+    ],
+    "synthetic": {
+      "sensitivity_runs": 64,
+      "simulation_runs": 8,
+      "software_output_checks": "passed",
+      "research_acceptance": "pending"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "status": "blocked",
+  "snapshots": {
+    "A": {
+      "snapshot_block": 26179841,
+      "status": "passed_structure",
+      "missing": [],
+      "errors": [],
+      "rows": {
+        "positions_long": 73637,
+        "reserve_config": 67,
+        "oracle_prices": 67,
+        "emode_membership": 189,
+        "account_reference": 87286,
+        "protocol_reconciliation": 67,
+        "borrower_positions": 73637,
+        "hf_reconciliation": 28493
+      },
+      "research_acceptance": "pending"
+    },
+    "B1": {
+      "snapshot_block": 20458637,
+      "status": "missing_data",
+      "missing": [
+        "snapshot_metadata",
+        "positions_long",
+        "reserve_config",
+        "oracle_prices",
+        "emode_membership",
+        "account_reference",
+        "protocol_reconciliation",
+        "borrower_positions",
+        "hf_reconciliation"
+      ],
+      "errors": [],
+      "rows": {
+        "positions_long": 0,
+        "reserve_config": 0,
+        "oracle_prices": 0,
+        "emode_membership": 0,
+        "account_reference": 0,
+        "protocol_reconciliation": 0,
+        "borrower_positions": 0,
+        "hf_reconciliation": 0
+      },
+      "research_acceptance": "pending"
+    },
+    "B2": {
+      "snapshot_block": 23543615,
+      "status": "missing_data",
+      "missing": [
+        "snapshot_metadata",
+        "positions_long",
+        "reserve_config",
+        "oracle_prices",
+        "emode_membership",
+        "account_reference",
+        "protocol_reconciliation",
+        "borrower_positions",
+        "hf_reconciliation"
+      ],
+      "errors": [],
+      "rows": {
+        "positions_long": 0,
+        "reserve_config": 0,
+        "oracle_prices": 0,
+        "emode_membership": 0,
+        "account_reference": 0,
+        "protocol_reconciliation": 0,
+        "borrower_positions": 0,
+        "hf_reconciliation": 0
+      },
+      "research_acceptance": "pending"
+    }
+  },
+  "stale_labels": {
+    "positions_long": [
+      "B"
+    ],
+    "reserve_config": [
+      "B"
+    ],
+    "oracle_prices": [
+      "B"
+    ],
+    "emode_membership": [
+      "B"
+    ],
+    "account_reference": [
+      "B"
+    ],
+    "protocol_reconciliation": [
+      "B"
+    ],
+    "borrower_positions": [
+      "B"
+    ],
+    "hf_reconciliation": [
+      "B"
+    ]
+  },
+  "limitation": "Config identity only; no independent chain/hash verification or data relabeling"
+}

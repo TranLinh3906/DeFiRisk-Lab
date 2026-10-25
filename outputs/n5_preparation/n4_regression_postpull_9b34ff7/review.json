@@ -1,0 +1,131 @@
+{
+  "snapshots": {
+    "A": {
+      "current_mart": {
+        "compared_wallets": 28493,
+        "eligibility_disagreements": 60,
+        "accounts_hf_error_ge_005": 220,
+        "disagreement_debt_usd": 9402522.334936105
+      },
+      "regenerated_current_code": {
+        "compared_wallets": 28493,
+        "eligibility_disagreements": 60,
+        "accounts_hf_error_ge_005": 220,
+        "disagreement_debt_usd": 9402522.334936105
+      }
+    },
+    "B": {
+      "current_mart": {
+        "compared_wallets": 28545,
+        "eligibility_disagreements": 58,
+        "accounts_hf_error_ge_005": 217,
+        "disagreement_debt_usd": 9403635.10960326
+      },
+      "regenerated_current_code": {
+        "compared_wallets": 28545,
+        "eligibility_disagreements": 58,
+        "accounts_hf_error_ge_005": 217,
+        "disagreement_debt_usd": 9403635.10960326
+      }
+    }
+  },
+  "scope": "N4 review; unvalidated; no N4 source/mart changes",
+  "membership_token_keys_with_multiple_categories": 58,
+  "zero_shock": {
+    "wallet_snapshots": 57038,
+    "hf_error_ge_005": 0,
+    "eligibility_disagreements": 0
+  },
+  "tiny_shock": {
+    "hf_error_ge_005": 446,
+    "eligibility_disagreements": 118
+  },
+  "cliff_probe": {
+    "input_blocks": [
+      26179841,
+      26194188
+    ],
+    "output_columns": [
+      "snapshot_block",
+      "eth_shock",
+      "eth_drop_pct",
+      "debt_at_risk_usd",
+      "positions_at_risk",
+      "total_protocol_debt_usd",
+      "marginal_debt_at_risk_usd_per_pct",
+      "marginal_multiple_vs_median",
+      "is_cliff",
+      "debt_at_risk_pct"
+    ],
+    "baseline_rows": [
+      {
+        "snapshot_block": 26179841,
+        "eth_shock": -0.0,
+        "eth_drop_pct": 0.0,
+        "debt_at_risk_usd": 9402575.308625432,
+        "positions_at_risk": 508.0,
+        "total_protocol_debt_usd": 9427484969.034634,
+        "marginal_debt_at_risk_usd_per_pct": null,
+        "marginal_multiple_vs_median": 0.0,
+        "is_cliff": false,
+        "debt_at_risk_pct": 0.0997357761853663
+      },
+      {
+        "snapshot_block": 26194188,
+        "eth_shock": -0.0,
+        "eth_drop_pct": 0.0,
+        "debt_at_risk_usd": 9403688.02229791,
+        "positions_at_risk": 516.0,
+        "total_protocol_debt_usd": 9336947229.16934,
+        "marginal_debt_at_risk_usd_per_pct": null,
+        "marginal_multiple_vs_median": 0.0,
+        "is_cliff": false,
+        "debt_at_risk_pct": 0.10071480315236296
+      }
+    ]
+  },
+  "n5_schema_compatibility": {
+    "stress_summary": {
+      "rows": 38,
+      "errors": [],
+      "error_count": 0
+    },
+    "stress_heatmap": {
+      "rows": 60,
+      "errors": [],
+      "error_count": 0
+    }
+  },
+  "input_probes": {
+    "false_string_hf_after": 0.0,
+    "missing_price": {
+      "status": "rejected",
+      "error": "Price is missing or non-positive for a position with collateral or debt"
+    },
+    "hf_embedded_vs_oracle_collateral_usd": 200.0,
+    "hf_expected_collateral_at_explicit_oracle_usd": 200.0,
+    "negative_dict_target": {
+      "status": "rejected",
+      "error": "Target debt must be non-negative"
+    },
+    "negative_percent_target": {
+      "status": "rejected",
+      "error": "Target debt must be non-negative"
+    },
+    "nan_dict_target": {
+      "status": "accepted",
+      "value": [
+        "$nan",
+        null
+      ]
+    },
+    "infinite_percent_target": {
+      "status": "accepted",
+      "value": [
+        "inf%",
+        null
+      ]
+    },
+    "n4_weeth_depeg_multiplier": 0.95
+  }
+}

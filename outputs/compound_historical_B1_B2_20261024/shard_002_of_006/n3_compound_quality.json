@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-10-25T05:53:23.499441+00:00",
+  "scope": "B1/B2-only isolated historical Compound III shard; legacy A/B outputs are not read or modified",
+  "chain_id": 1,
+  "snapshot_blocks": {
+    "B1": 20458637,
+    "B2": 23543615
+  },
+  "metadata_fingerprint": "16840f2d4c3dd1d4bf09f3c99845d0b42f4cd621ea183a3cf63e29817e69dae7",
+  "shard": {
+    "num_shards": 6,
+    "shard_index": 2,
+    "selection_hash": "94eeee792ff0606c50287f4e99c560f85fbc5e95285905d76025b5f064d400f9",
+    "assignment_hash": "a484bf06233e08c0a6a88dfc0243fbd4aee65fc71b7f4b2e60b8415c47d110ac",
+    "assignment": "shared_existing_owner_plus_sha256_new_wallets_v1",
+    "global_expected_queries": 80064,
+    "expected_queries": 12602
+  },
+  "input_aave_path": "D:\\GPM1_T6_2\\DeFiRisk-Lab\\data\\processed\\aave\\account_reference.parquet",
+  "markets": [
+    {
+      "market_id": "compound_v3_ethereum_usdc",
+      "comet_address": "0xc3d688b66703497daa19211eedff47f25384cdc3"
+    },
+    {
+      "market_id": "compound_v3_ethereum_weth",
+      "comet_address": "0xa17581a9e3356d9a858b789d68b4d866e593ae94"
+    }
+  ],
+  "selection": {
+    "eligible_unique_wallets": 46111,
+    "selected_unique_wallets": 46111,
+    "input_aave_rows_after_filter": 68525,
+    "selection": "all_eligible_wallets",
+    "limited_sample": false,
+    "aave_debt_column": "total_debt_base_usd"
+  },
+  "expected_wallet_market_snapshot_queries": 12602,
+  "successful_queries": 12602,
+  "failed_queries": 0,
+  "complete": true,
+  "failures_preview": [],
+  "method": "historical eth_call via Comet proxy; getPrice at snapshot; all supported collateral assets checked",
+  "limitations": [
+    "Aave-targeted wallet sample, not a full Compound census",
+    "B1/B2 output only"
+  ],
+  "positions_rows": 347,
+  "active_compound_market_accounts": 226,
+  "unique_overlap_wallet_snapshot_pairs": 207,
+  "any_borrow_market_accounts": 44,
+  "outcome": "pass_complete_for_selected_Aave_wallets"
+}

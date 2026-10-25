@@ -1,0 +1,41 @@
+{
+  "window_definition": "N blocks inclusive centered on supplied peak, not on snapshot",
+  "snapshots": [
+    {
+      "snapshot_id": "B1",
+      "peak_block": 20458637,
+      "window_start_block": 20458488,
+      "window_end_block": 20458787,
+      "window_inclusive_length": 300,
+      "event_rows_in_window": 25,
+      "unique_tx_count": 16,
+      "duplicate_pk": 0,
+      "etherscan_qa_blocks": [
+        20444295,
+        20480141
+      ],
+      "etherscan_source_covers_entire_peak_window": true,
+      "status": "LOCAL_COLLECTION_WINDOW_COVERED",
+      "independent_block_log_completeness": "NOT_INDEPENDENTLY_REQUERIED",
+      "note": "Local coverage only, not number of expected external logs. Need re-query peak window to prove exhaustiveness."
+    },
+    {
+      "snapshot_id": "B2",
+      "peak_block": 23543615,
+      "window_start_block": 23543466,
+      "window_end_block": 23543765,
+      "window_inclusive_length": 300,
+      "event_rows_in_window": 0,
+      "unique_tx_count": 0,
+      "duplicate_pk": 0,
+      "etherscan_qa_blocks": [
+        23529321,
+        23565080
+      ],
+      "etherscan_source_covers_entire_peak_window": true,
+      "status": "LOCAL_COLLECTION_WINDOW_COVERED",
+      "independent_block_log_completeness": "NOT_INDEPENDENTLY_REQUERIED",
+      "note": "Local coverage only, not number of expected external logs. Need re-query peak window to prove exhaustiveness."
+    }
+  ]
+}

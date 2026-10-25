@@ -1,0 +1,43 @@
+{
+  "status": "QA_ONLY",
+  "source_path": "data/staging/n3_market_ratios.parquet",
+  "rows_input": 98,
+  "source_types": [
+    {
+      "source": "CoinGecko indicative MARKET ratio (hour-aligned USD prices)",
+      "provenance_check": "MARKET_SOURCE_CANDIDATE",
+      "count": 98
+    }
+  ],
+  "snapshots": [
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "snapshot_utc": "2024-08-04T23:59:59+00:00",
+      "window_hours": 24,
+      "market_obs_near_window": 25,
+      "suspected_non_market_obs": 0,
+      "expected_hour_bins": 25,
+      "covered_hour_bins": 25,
+      "coverage_pct": 100.0,
+      "market_ratio_asof_snapshot_available": true,
+      "status": "PASS_OBSERVATION_QA"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "snapshot_utc": "2025-10-09T23:59:59+00:00",
+      "window_hours": 24,
+      "market_obs_near_window": 25,
+      "suspected_non_market_obs": 0,
+      "expected_hour_bins": 25,
+      "covered_hour_bins": 25,
+      "coverage_pct": 100.0,
+      "market_ratio_asof_snapshot_available": true,
+      "status": "PASS_OBSERVATION_QA"
+    }
+  ],
+  "lido_contract_ratios_are_not_market_depeg": true,
+  "limitations": "Aave oracle or stEthPerToken do NOT substitute market stETH/ETH. Hourly observed depeg is NOT Chainlink AnswerUpdated or causal liquidation evidence.",
+  "lido_input_rows_for_reference_only": 3
+}

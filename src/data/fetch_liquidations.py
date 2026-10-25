@@ -44,6 +44,9 @@ def parse_args():
     p.add_argument("--start", default="2026-10-12", help="UTC inclusive YYYY-MM-DD")
     p.add_argument("--end", default="2026-10-16", help="UTC exclusive YYYY-MM-DD")
     p.add_argument("--block-span", type=int, default=2000, help="Etherscan block window size")
+    p.add_argument("--start-block", type=int, help="Explicit inclusive block for peak QA (requires --end-block)")
+    p.add_argument("--end-block", type=int, help="Explicit inclusive block for peak QA (requires --start-block)")
+    p.add_argument("--output-root", type=Path, help="Separate root for peak log exports; never overwrite existing raw N3 data")
     p.add_argument("--no-decimals", action="store_true", help="Skip eth_call for token decimals")
     p.add_argument("--overwrite", action="store_true", help="Back up and replace existing N3 outputs")
     return p.parse_args()
@@ -227,15 +230,21 @@ def main():
     args = parse_args()
     if args.block_span < 1:
         raise SystemExit("--block-span must be positive")
-    start = pd.Timestamp(args.start, tz="UTC")
-    end = pd.Timestamp(args.end, tz="UTC")
-    if end <= start:
+    use_blocks = args.start_block is not None or args.end_block is not None
+    if use_blocks and (args.start_block is None or args.end_block is None):
+        raise SystemExit('Must give BOTH --start-block and --end-block')
+    if use_blocks and (args.start_block < 1 or args.end_block < args.start_block):
+        raise SystemExit('Invalid explicit block range')
+    start = pd.Timestamp(args.start, tz="UTC") if not use_blocks else None
+    end = pd.Timestamp(args.end, tz="UTC") if not use_blocks else None
+    if not use_blocks and end <= start:
         raise SystemExit("End date must be after start date")
-    if end.to_pydatetime() > datetime.now(timezone.utc):
+    if not use_blocks and end.to_pydatetime() > datetime.now(timezone.utc):
         raise SystemExit("End date must not be in the future")
-    raw_path = ROOT / "data/raw/market/etherscan_liquidations_raw.csv"
-    staging_path = ROOT / "data/staging/n3_liquidations_etherscan.parquet"
-    qa_path = ROOT / "outputs/tables/n3_etherscan_quality.json"
+    out_root = args.output_root.resolve() if args.output_root else ROOT
+    raw_path = out_root / "data/raw/market/etherscan_liquidations_raw.csv"
+    staging_path = out_root / "data/staging/n3_liquidations_etherscan.parquet"
+    qa_path = out_root / "outputs/tables/n3_etherscan_quality.json"
     if not args.overwrite and any(p.exists() for p in (raw_path, staging_path, qa_path)):
         raise SystemExit("Some output files exist; add --overwrite to back up and replace them")
     load_dotenv(ROOT / ".env")
@@ -243,18 +252,22 @@ def main():
     if not key:
         raise SystemExit("Add ETHERSCAN_API_KEY=... to .env in project root; never paste keys in chats")
     client = Etherscan(key)
-    first = client.block_at(int(start.timestamp()), "after")
-    last = client.block_at(int(end.timestamp()) - 1, "before")
+    if use_blocks:
+        first, last = args.start_block, args.end_block
+    else:
+        first = client.block_at(int(start.timestamp()), "after")
+        last = client.block_at(int(end.timestamp()) - 1, "before")
     if last < first:
         raise SystemExit("No blocks in requested date range")
-    print(f"[RANGE] {args.start} (inclusive) → {args.end} (exclusive), blocks {first}–{last}")
+    print(f"[RANGE] blocks {first}-{last} (inclusive); mode={'EXPLICIT_BLOCKS' if use_blocks else 'UTC_DATES'}")
     raw_logs = find_logs(client, first, last, args.block_span)
     decoded = [decode_event(record) for record in raw_logs]
     df = pd.DataFrame(decoded)
     if df.empty:
         df = pd.DataFrame(columns=COLUMNS)
     else:
-        df = df[(df.event_timestamp >= start) & (df.event_timestamp < end)].copy()
+        if not use_blocks:
+            df = df[(df.event_timestamp >= start) & (df.event_timestamp < end)].copy()
         if df.duplicated(["tx_hash", "log_index"]).any():
             raise RuntimeError("Duplicate (tx_hash, log_index) found; do not silently drop")
         df = df.sort_values(["event_block", "log_index"])
@@ -280,7 +293,9 @@ def main():
     report = {
         "data_source": "Etherscan API V2 getLogs",
         "chain_id": 1, "protocol_id": PROTOCOL_ID, "pool_address": AAVE_POOL,
-        "topic0": EVENT_TOPIC, "start_inclusive_utc": str(start), "end_exclusive_utc": str(end),
+        "topic0": EVENT_TOPIC, "start_inclusive_utc": str(start) if start is not None else None,
+        "end_exclusive_utc": str(end) if end is not None else None,
+        "query_mode": "explicit_inclusive_block_range" if use_blocks else "utc_date_range",
         "first_block": first, "last_block": last, "events_decoded": len(df),
         "unique_transactions": df.tx_hash.nunique(),
         "missing_debt_decimals": int(df.debt_decimals.isna().sum()),
@@ -296,9 +311,9 @@ def main():
         shutil.copy2(qa_path, qa_path.with_name(qa_path.name + f".bak_{stamp}"))
     qa_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"[SUCCESS] {len(df)} events saved; {df.tx_hash.nunique()} transactions; {client.call_count} API requests")
-    print("[OUTPUT] data/raw/market/etherscan_liquidations_raw.csv")
-    print("[OUTPUT] data/staging/n3_liquidations_etherscan.parquet")
-    print("[OUTPUT] outputs/tables/n3_etherscan_quality.json")
+    print(f"[OUTPUT] {raw_path}")
+    print(f"[OUTPUT] {staging_path}")
+    print(f"[OUTPUT] {qa_path}")
     print("[NEXT] Run src/data/price_liquidations_usd.py to add historical token USD prices.")
 
 

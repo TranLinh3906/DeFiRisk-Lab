@@ -1,0 +1,10 @@
+{
+  "executed_liquidation_txs": 16,
+  "verified_receipts": 0,
+  "new_receipts": 0,
+  "gas_usd_quote_matched": 0,
+  "gas_proof_scope": "Observed successful liquidation executions ONLY",
+  "freeze_due_to_gas_or_profit_confirmed": false,
+  "limitations": "Cannot infer missed liquidation opportunities, gas-profit freeze, liquidator PnL, MEV or incentives from successful receipt costs alone. N4/N5 must model counterfactual unexecuted opportunities.",
+  "source_events": "outputs/n3_peak300_liquidation_QA_FINAL/n3_liquidations_peak300_events.parquet"
+}

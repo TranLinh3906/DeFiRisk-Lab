@@ -1,0 +1,91 @@
+{
+  "method": "Event-level, no lookahead, address-to-symbol mapping, USD market_reference for BOTH event tokens",
+  "price_age_limit_minutes": 60,
+  "coverage_target_pct": 85.0,
+  "denominator": "ALL observed unique liquidation events after verified snapshot block within [snapshot_utc,snapshot_utc+window)",
+  "time_windows": {
+    "first_hour": "[t0,t0+1h)",
+    "full_day": "[t0,t0+24h)"
+  },
+  "warning": "Do not equate this two-token event-time market coverage to preexisting 49.72% without verifying identical numerator, denominator and time window",
+  "oracle_comparison": "NOT_ASSESSED: snapshot oracle prices cannot substitute for event-time oracle history",
+  "event_collection_completeness": "NOT_VERIFIED_INDEPENDENTLY: check Etherscan window QA and chain event logs",
+  "snapshots": {
+    "B1": {
+      "block": 20458637,
+      "snapshot_utc": "2024-08-04T23:59:59+00:00",
+      "first_hour": {
+        "events_total": 189,
+        "events_with_both_usd_market_quotes": 189,
+        "events_with_at_least_one_usd_market_quote": 189,
+        "eth_usd_market_reference_matched": 0,
+        "steth_eth_market_ratio_matched": 0,
+        "eth_usd_market_reference_coverage_pct": 0.0,
+        "steth_eth_market_ratio_coverage_pct": 0.0,
+        "two_token_price_coverage_pct": 100.0,
+        "target_pct": 85.0,
+        "status": "PASS",
+        "debt_token_reason_counts": {
+          "matched": 189
+        },
+        "collateral_token_reason_counts": {
+          "matched": 189
+        }
+      },
+      "full_day": {
+        "events_total": 1830,
+        "events_with_both_usd_market_quotes": 1830,
+        "events_with_at_least_one_usd_market_quote": 1830,
+        "eth_usd_market_reference_matched": 0,
+        "steth_eth_market_ratio_matched": 0,
+        "eth_usd_market_reference_coverage_pct": 0.0,
+        "steth_eth_market_ratio_coverage_pct": 0.0,
+        "two_token_price_coverage_pct": 100.0,
+        "target_pct": 85.0,
+        "status": "PASS",
+        "debt_token_reason_counts": {
+          "matched": 1830
+        },
+        "collateral_token_reason_counts": {
+          "matched": 1830
+        }
+      }
+    },
+    "B2": {
+      "block": 23543615,
+      "snapshot_utc": "2025-10-09T23:59:59+00:00",
+      "first_hour": {
+        "events_total": 0,
+        "events_with_both_usd_market_quotes": 0,
+        "events_with_at_least_one_usd_market_quote": 0,
+        "eth_usd_market_reference_matched": 0,
+        "steth_eth_market_ratio_matched": 0,
+        "eth_usd_market_reference_coverage_pct": null,
+        "steth_eth_market_ratio_coverage_pct": null,
+        "two_token_price_coverage_pct": null,
+        "target_pct": 85.0,
+        "status": "NO_EVENTS",
+        "debt_token_reason_counts": {},
+        "collateral_token_reason_counts": {}
+      },
+      "full_day": {
+        "events_total": 791,
+        "events_with_both_usd_market_quotes": 791,
+        "events_with_at_least_one_usd_market_quote": 791,
+        "eth_usd_market_reference_matched": 0,
+        "steth_eth_market_ratio_matched": 0,
+        "eth_usd_market_reference_coverage_pct": 0.0,
+        "steth_eth_market_ratio_coverage_pct": 0.0,
+        "two_token_price_coverage_pct": 100.0,
+        "target_pct": 85.0,
+        "status": "PASS",
+        "debt_token_reason_counts": {
+          "matched": 791
+        },
+        "collateral_token_reason_counts": {
+          "matched": 791
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+timestamp,asset,token_address,quote_asset,price_value,price_type,source,snapshot_block,reference_timestamp,staleness_seconds,note,effective_timestamp_utc,quote_age_sec_at_observation,qa_valid,qa_invalid_reason

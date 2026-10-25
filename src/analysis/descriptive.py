@@ -106,8 +106,13 @@ def load_prices(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def series(p: pd.DataFrame, ptype: str, asset: str, quote: str) -> pd.DataFrame:
-    d = p.loc[(p.price_type == ptype) & (p.asset == asset) & (p.quote_asset == quote),
-              ["timestamp", "price_value"]].copy()
+    filtered = p.loc[(p.price_type == ptype) & (p.asset == asset) & (p.quote_asset == quote)].copy()
+    # Reference timestamp, when available, is the actual market observation
+    # time. Using the resampled nominal timestamp would overstate freshness.
+    if "reference_timestamp" in filtered.columns:
+        ref = utc(filtered["reference_timestamp"])
+        filtered["timestamp"] = ref.where(ref.notna(), filtered["timestamp"])
+    d = filtered[["timestamp", "price_value"]].copy()
     d = d.drop_duplicates(["timestamp"], keep="last").sort_values("timestamp")
     return d
 
@@ -240,7 +245,7 @@ def build(events: pd.DataFrame, prices: pd.DataFrame, registry: pd.DataFrame | N
             "CoinGecko/market observations are reference quotes, not on-chain execution prices or Chainlink state",
             "Hourly comparison is descriptive, cannot demonstrate depeg causes liquidations",
             "Token USD amounts value repaid debt vs seized collateral, not realized execution proceeds",
-            "Snapshot B crisis-window choice requires Research Lead approval",
+            "B1/B2 historical holdout windows must match verified N1/N2 snapshot metadata and event source QA",
         ],
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
     }
@@ -249,6 +254,255 @@ def build(events: pd.DataFrame, prices: pd.DataFrame, registry: pd.DataFrame | N
             "debt": debt_break, "quality": quality}
 
 
+
+def _utc_timestamp(value: object, label: str) -> pd.Timestamp:
+    """Require an explicit timezone for snapshot metadata; never guess local time."""
+    t = pd.Timestamp(value)
+    if pd.isna(t) or t.tzinfo is None:
+        raise ValueError(f"{label}: must be timezone-aware UTC")
+    return t.tz_convert("UTC")
+
+
+def audited_snapshots(metadata: dict) -> dict:
+    """Use verified Research Design snapshot metadata, never hardcode timestamps."""
+    if int(metadata.get("chain_id", 0)) != 1:
+        raise ValueError("Invalid snapshot metadata: chain_id must be Ethereum mainnet 1")
+    snaps = metadata.get("snapshots", {})
+    approved = {"B1": 20458637, "B2": 23543615}
+    result = {}
+    for name, block in approved.items():
+        row = snaps.get(name)
+        if not row:
+            raise ValueError(f"Missing verified snapshot {name} metadata")
+        if int(row.get("snapshot_block", -1)) != block:
+            raise ValueError(f"{name} snapshot block mismatch (expected {block})")
+        if row.get("block_hash_verified_on_chain") is not True:
+            raise ValueError(f"{name} block hash has not been verified on-chain")
+        if not row.get("block_hash"):
+            raise ValueError(f"{name} verified block hash is missing")
+        result[name] = (block, _utc_timestamp(row["snapshot_timestamp_utc"], name))
+    return result
+
+
+def _event_side_quote_audit(events: pd.DataFrame, prices: pd.DataFrame,
+                            registry: pd.DataFrame | None,
+                            token_field: str, max_age_min: int) -> pd.DataFrame:
+    """Audit exact event-time USD market reference for each event token.
+
+    Currency price matching uses the *effective source time* when provided,
+    not a synthetic resampling timestamp. An absent/ambiguous token mapping
+    remains an explicit gap (we never borrow another token's price).
+    """
+    if registry is None or not {"token_address", "symbol"}.issubset(registry.columns):
+        lookup = {}
+        ambiguous = set()
+        registry_available = False
+    else:
+        r = registry[["token_address", "symbol"]].dropna().copy()
+        r["token_address"] = r.token_address.astype(str).str.lower().str.strip()
+        r["symbol"] = r.symbol.astype(str).str.upper().str.strip()
+        options = r.groupby("token_address")["symbol"].agg(lambda x: set(x))
+        ambiguous = set(options[options.map(len).gt(1)].index)
+        symbol_to_addresses = r.groupby("symbol")["token_address"].nunique()
+        ambiguous_symbols = set(symbol_to_addresses[symbol_to_addresses.gt(1)].index)
+        ambiguous |= set(r.loc[r.symbol.isin(ambiguous_symbols), "token_address"])
+        lookup = {token: next(iter(symbols)) for token, symbols in options.items()
+                  if len(symbols) == 1 and token not in ambiguous}
+        registry_available = True
+
+    out = events[["tx_hash", "log_index", "event_timestamp", token_field]].copy()
+    out["token_address"] = out[token_field].astype(str).str.lower().str.strip()
+    out["token_symbol"] = out.token_address.map(lookup)
+    out["market_price_usd"] = float("nan")
+    out["market_quote_time_utc"] = pd.Series(pd.NaT, index=out.index, dtype="datetime64[ns, UTC]")
+    out["market_quote_age_sec"] = float("nan")
+    out["status"] = "no_token_registry" if not registry_available else "token_unmapped"
+    out.loc[out.token_address.isin(ambiguous), "status"] = "ambiguous_token_mapping"
+
+    market = prices[(prices.price_type == "market_reference") & (prices.quote_asset == "USD")].copy()
+    if "reference_timestamp" in market.columns:
+        ref = utc(market["reference_timestamp"])
+        market["effective_quote_timestamp"] = ref.where(ref.notna(), market.timestamp)
+    else:
+        market["effective_quote_timestamp"] = market.timestamp
+    market = market.sort_values("effective_quote_timestamp")
+
+    for sym in out.token_symbol.dropna().unique():
+        selector = out.token_symbol.eq(sym) & out.status.eq("token_unmapped")
+        # A mapped symbol is not ambiguous but can still lack a USD market series.
+        if not selector.any():
+            selector = out.token_symbol.eq(sym) & ~out.token_address.isin(ambiguous)
+        mp = market.loc[market.asset.eq(sym), ["effective_quote_timestamp", "price_value"]]
+        idx = out.index[selector]
+        if mp.empty:
+            out.loc[idx, "status"] = "no_usd_market_series"
+            continue
+        lef = out.loc[idx, ["event_timestamp"]].copy().sort_values("event_timestamp")
+        rhs = mp.drop_duplicates("effective_quote_timestamp", keep="last").sort_values("effective_quote_timestamp")
+        merged = pd.merge_asof(lef, rhs, left_on="event_timestamp", right_on="effective_quote_timestamp", direction="backward")
+        merged.index = lef.index
+        ages = (merged.event_timestamp - merged.effective_quote_timestamp).dt.total_seconds()
+        ok = merged.price_value.notna() & ages.ge(0) & ages.le(max_age_min * 60)
+        out.loc[merged.index, "market_quote_age_sec"] = ages
+        out.loc[merged.index, "market_quote_time_utc"] = merged.effective_quote_timestamp
+        out.loc[merged.index, "market_price_usd"] = merged.price_value.where(ok)
+        out.loc[merged.index, "status"] = "stale_market_quote"
+        out.loc[merged.index[merged.effective_quote_timestamp.isna()], "status"] = "no_prior_market_quote"
+        out.loc[merged.index[ok], "status"] = "matched"
+    return out[["token_address", "token_symbol", "status", "market_price_usd",
+                "market_quote_time_utc", "market_quote_age_sec"]].rename(
+                    columns={"token_address": f"{token_field}_audit_address",
+                             "token_symbol": f"{token_field}_symbol",
+                             "status": f"{token_field}_price_status",
+                             "market_price_usd": f"{token_field}_market_usd",
+                             "market_quote_time_utc": f"{token_field}_quote_utc",
+                             "market_quote_age_sec": f"{token_field}_quote_age_sec"})
+
+
+def audit_holdout_price_coverage(raw_events: pd.DataFrame, raw_prices: pd.DataFrame,
+                                 registry: pd.DataFrame | None, metadata: dict,
+                                 max_age_min: int = 90, target_pct: float = 85.) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+    """Independent 1h/24h market USD price coverage; never excludes unpriced logs.
+
+    Two-sided coverage is the proportion of eligible liquidation logs for
+    which BOTH debt and collateral tokens have prior nonstale USD market quotes.
+    This definition may differ from any prior 49.72% report; no retroactive
+    reinterpretation of that figure is allowed.
+    """
+    needed = {"tx_hash", "log_index", "event_timestamp", "event_block",
+              "debt_token_address", "collateral_token_address"}
+    if needed - set(raw_events.columns):
+        raise ValueError(f"Holdout audit events missing columns: {sorted(needed - set(raw_events.columns))}")
+    if not 0 <= target_pct <= 100 or max_age_min <= 0:
+        raise ValueError("Invalid quote age or coverage target")
+    e = raw_events.copy()
+    e["tx_hash"] = e.tx_hash.astype(str).str.lower().str.strip()
+    e["log_index"] = pd.to_numeric(e.log_index, errors="raise").astype("int64")
+    e["event_block"] = pd.to_numeric(e.event_block, errors="raise").astype("int64")
+    e["event_timestamp"] = utc(e.event_timestamp)
+    if e.event_timestamp.isna().any() or e.duplicated(["tx_hash", "log_index"]).any():
+        raise ValueError("Holdout audit requires valid UTC times and unique event keys")
+    p = load_prices(raw_prices)
+    specs = audited_snapshots(metadata)
+    slices = []
+    for tag, (block, ts) in specs.items():
+        mask = e.event_block.gt(block) & e.event_timestamp.ge(ts) & e.event_timestamp.lt(ts + pd.Timedelta(hours=24))
+        sub = e.loc[mask].copy()
+        sub["snapshot_id"] = tag
+        sub["snapshot_block"] = block
+        sub["snapshot_utc"] = ts
+        sub["window_first_hour"] = sub.event_timestamp.lt(ts + pd.Timedelta(hours=1))
+        slices.append(sub)
+    audit = pd.concat(slices, ignore_index=True)
+    if not audit.empty:
+        for fld in ("debt_token_address", "collateral_token_address"):
+            side = _event_side_quote_audit(audit, p, registry, fld, max_age_min)
+            audit = pd.concat([audit.reset_index(drop=True), side.reset_index(drop=True)], axis=1)
+        # Separately audit ETH/USD and stETH/ETH. These MUST NOT be
+        # conflated with the two-token USD coverage statistic.
+        def _reference_series(price_type, asset, quote):
+            subset = p.loc[
+                p.price_type.eq(price_type) & p.asset.eq(asset) & p.quote_asset.eq(quote)
+            ].copy()
+            if "reference_timestamp" in subset.columns:
+                observed = utc(subset.reference_timestamp)
+                subset["timestamp"] = observed.where(observed.notna(), subset.timestamp)
+            return series(subset, price_type, asset, quote)
+
+        event_times = audit[["event_timestamp"]].copy()
+        event_times["_audit_row_id"] = range(len(audit))
+        aligned_eth = backward_align(
+            event_times,
+            _reference_series("market_reference", "ETH", "USD"),
+            "event_timestamp", "eth_audit", max_age_min
+        )
+        aligned_ratio = backward_align(
+            event_times,
+            _reference_series("market_ratio", "STETH", "ETH"),
+            "event_timestamp", "steth_ratio_audit", max_age_min
+        )
+        aligned_eth = aligned_eth.sort_values("_audit_row_id")
+        aligned_ratio = aligned_ratio.sort_values("_audit_row_id")
+        audit["eth_usd_market_reference_matched"] = aligned_eth.eth_audit_price.notna().to_numpy()
+        audit["steth_eth_market_ratio_matched"] = aligned_ratio.steth_ratio_audit_price.notna().to_numpy()
+        audit["eth_usd_quote_age_sec"] = aligned_eth.eth_audit_quote_age_sec.to_numpy()
+        audit["steth_eth_ratio_age_sec"] = aligned_ratio.steth_ratio_audit_quote_age_sec.to_numpy()
+        audit["both_token_usd_quotes_matched"] = (
+            audit.debt_token_address_price_status.eq("matched") &
+            audit.collateral_token_address_price_status.eq("matched")
+        )
+        audit["either_token_usd_quote_matched"] = (
+            audit.debt_token_address_price_status.eq("matched") |
+            audit.collateral_token_address_price_status.eq("matched")
+        )
+        if "n3_validation_status" in audit.columns:
+            audit["fact_ready_usd"] = audit.n3_validation_status.eq("ok")
+        else:
+            audit["fact_ready_usd"] = pd.NA
+    else:
+        audit["both_token_usd_quotes_matched"] = pd.Series(dtype=bool)
+        audit["either_token_usd_quote_matched"] = pd.Series(dtype=bool)
+        audit["fact_ready_usd"] = pd.Series(dtype=bool)
+        audit["eth_usd_market_reference_matched"] = pd.Series(dtype=bool)
+        audit["steth_eth_market_ratio_matched"] = pd.Series(dtype=bool)
+    gaps = []
+    summary = {
+        "method": "Event-level, no lookahead, address-to-symbol mapping, USD market_reference for BOTH event tokens",
+        "price_age_limit_minutes": max_age_min,
+        "coverage_target_pct": target_pct,
+        "denominator": "ALL observed unique liquidation events after verified snapshot block within [snapshot_utc,snapshot_utc+window)",
+        "time_windows": {"first_hour": "[t0,t0+1h)", "full_day": "[t0,t0+24h)"},
+        "warning": "Do not equate this two-token event-time market coverage to preexisting 49.72% without verifying identical numerator, denominator and time window",
+        "oracle_comparison": "NOT_ASSESSED: snapshot oracle prices cannot substitute for event-time oracle history",
+        "event_collection_completeness": "NOT_VERIFIED_INDEPENDENTLY: check Etherscan window QA and chain event logs",
+        "snapshots": {},
+    }
+    for tag, (block, ts) in specs.items():
+        one = audit[audit.snapshot_id.eq(tag)]
+        snap_report = {"block": block, "snapshot_utc": ts.isoformat(), "first_hour": {}, "full_day": {}}
+        for win, sub in (("first_hour", one[one.window_first_hour]), ("full_day", one)):
+            count = int(len(sub))
+            n_two = int(sub.both_token_usd_quotes_matched.sum())
+            n_either = int(sub.either_token_usd_quote_matched.sum())
+            pct = round(100 * n_two / count, 4) if count else None
+            snap_report[win] = {
+                "events_total": count,
+                "events_with_both_usd_market_quotes": n_two,
+                "events_with_at_least_one_usd_market_quote": n_either,
+                "eth_usd_market_reference_matched": int(sub.eth_usd_market_reference_matched.sum()),
+                "steth_eth_market_ratio_matched": int(sub.steth_eth_market_ratio_matched.sum()),
+                "eth_usd_market_reference_coverage_pct": round(100 * int(sub.eth_usd_market_reference_matched.sum()) / count, 4) if count else None,
+                "steth_eth_market_ratio_coverage_pct": round(100 * int(sub.steth_eth_market_ratio_matched.sum()) / count, 4) if count else None,
+                "two_token_price_coverage_pct": pct,
+                "target_pct": target_pct,
+                "status": "NO_EVENTS" if count == 0 else ("PASS" if pct >= target_pct else "BELOW_TARGET"),
+                "debt_token_reason_counts": {str(k): int(v) for k,v in sub.get("debt_token_address_price_status", pd.Series(dtype=str)).value_counts().items()},
+                "collateral_token_reason_counts": {str(k): int(v) for k,v in sub.get("collateral_token_address_price_status", pd.Series(dtype=str)).value_counts().items()},
+            }
+        summary["snapshots"][tag] = snap_report
+        print(f"[MARKET FIRST HOUR {tag}] market_usd_both={snap_report['first_hour']['events_with_both_usd_market_quotes']}/{snap_report['first_hour']['events_total']} coverage={snap_report['first_hour']['two_token_price_coverage_pct']}% target={target_pct}% status={snap_report['first_hour']['status']}")
+        if not one.empty:
+            missing = one.loc[one.window_first_hour & ~one.both_token_usd_quotes_matched]
+            for fld in ("debt_token_address", "collateral_token_address"):
+                bad = missing[missing[f"{fld}_price_status"].ne("matched")].copy()
+                if bad.empty:
+                    continue
+                gaps.append(pd.DataFrame({
+                    "snapshot_id": tag,
+                    "snapshot_block": block,
+                    "tx_hash": bad.tx_hash,
+                    "log_index": bad.log_index,
+                    "event_timestamp": bad.event_timestamp,
+                    "side": "debt" if fld.startswith("debt") else "collateral",
+                    "token_address": bad[fld],
+                    "token_symbol": bad[f"{fld}_symbol"],
+                    "missing_reason": bad[f"{fld}_price_status"],
+                    "quote_age_seconds": bad[f"{fld}_quote_age_sec"],
+                }))
+    gap_columns = ["snapshot_id", "snapshot_block", "tx_hash", "log_index", "event_timestamp", "side",
+                   "token_address", "token_symbol", "missing_reason", "quote_age_seconds"]
+    gap_df = pd.concat(gaps, ignore_index=True) if gaps else pd.DataFrame(columns=gap_columns)
+    return audit, gap_df, summary
 
 def export_m5_deliverables(result: dict, overwrite: bool) -> None:
     """Create the three required M5 delivery files."""
@@ -409,12 +663,52 @@ def main() -> None:
     cli.add_argument("--max-price-lag-min", type=int, default=90)
     cli.add_argument("--overwrite", action="store_true")
     cli.add_argument("--dry-run", action="store_true")
+    cli.add_argument("--audit-holdouts", action="store_true", help="Audit B1/B2 first-hour market price coverage")
+    cli.add_argument("--audit-only", action="store_true", help="Only run B1/B2 coverage audit; do not overwrite M5 deliverables")
+    cli.add_argument("--snapshot-metadata", type=Path, default=ROOT / "data/processed/aave/snapshot_metadata.json")
+    cli.add_argument("--coverage-target-pct", type=float, default=85.0)
+    cli.add_argument("--audit-output-root", type=Path, default=ROOT, help="Separate root for new QA CSV/JSON files")
     args = cli.parse_args()
     if args.max_price_lag_min <= 0:
         cli.error("--max-price-lag-min must be >0")
+    if args.audit_only and not args.audit_holdouts:
+        cli.error("--audit-only requires --audit-holdouts")
+    if not 0 <= args.coverage_target_pct <= 100:
+        cli.error("--coverage-target-pct must be between 0 and 100")
     if not args.events.exists() or not args.prices.exists():
         raise SystemExit("Thieu events/prices. Chay N3 Muc 1-3 truoc; khong dung oracle snapshot lam market quote.")
     registry = pd.read_csv(args.registry) if args.registry.exists() else None
+    if args.audit_holdouts:
+        if not args.snapshot_metadata.is_file():
+            raise SystemExit(f"Missing verified B1/B2 metadata: {args.snapshot_metadata}")
+        snapshot_metadata = json.loads(args.snapshot_metadata.read_text(encoding="utf-8"))
+        audit, gaps, report = audit_holdout_price_coverage(
+            pd.read_parquet(args.events), pd.read_parquet(args.prices), registry,
+            snapshot_metadata, max_age_min=args.max_price_lag_min,
+            target_pct=args.coverage_target_pct,
+        )
+        if args.dry_run:
+            print("[DRY RUN] Holdout QA not written")
+        else:
+            table_dir = args.audit_output_root.resolve() / "outputs/tables"
+            paths = {
+                "n3_holdout_price_coverage_B1_B2_events.csv":
+                    (audit, table_dir / "n3_holdout_price_coverage_B1_B2_events.csv"),
+                "n3_holdout_price_missing_first_hour.csv":
+                    (gaps, table_dir / "n3_holdout_price_missing_first_hour.csv"),
+            }
+            target = table_dir / "n3_holdout_market_price_coverage_quality.json"
+            if not args.overwrite and (target.exists() or any(path.exists() for _, path in paths.values())):
+                raise SystemExit("Holdout audit exists; choose --audit-output-root or --overwrite (backup)")
+            for label, (frame, path) in paths.items():
+                safe_write(path, lambda dest, f=frame: f.to_csv(dest, index=False), args.overwrite)
+                print("[SAVED]", path)
+            safe_write(target, lambda dest: dest.write_text(
+                json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8"), args.overwrite)
+            print("[SAVED]", target)
+        if args.audit_only:
+            print("[AUDIT ONLY] M5 charts and descriptive marts untouched")
+            return
     result = build(pd.read_parquet(args.events), pd.read_parquet(args.prices), registry,
                    max_age_min=args.max_price_lag_min, start=args.start, end=args.end)
     q = result["quality"]

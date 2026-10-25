@@ -1,0 +1,16 @@
+{
+  "source_2pct_brackets_verified": 12,
+  "bracket_anchor_points": 24,
+  "target_grid_queries": 84,
+  "real_new_rpc_quotes": 84,
+  "not_quoted": 0,
+  "number_of_directions_with_at_least_5_real_sizes": 12,
+  "directions_total": 12,
+  "calibration_ready": true,
+  "impact_monotonicity_violations": [],
+  "executed_rpc": true,
+  "warning": "Original 2% brackets stay verified. Unquoted sizes are NOT verified or interpolated. See checkpoint for actual RPC proofs.",
+  "input_dex_sha256": "da35729009bfd7b85aea2ebe7f9cb24fc2e7f348ef9ca0c173cfd62622adf896",
+  "input_qa_sha256": "af84e5d1540ef9dc8bddcc1ae86695c8b78fedfd5831bb4891696963ed358165",
+  "created_utc": "2026-10-25T16:42:14.640361+00:00"
+}

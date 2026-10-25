@@ -1,0 +1,4 @@
+snapshot_id,snapshot_block,snapshot_utc,market_quote_rows_within_lag,market_assets_with_valid_quote,n_distinct_market_assets,aave_oracle_rows_at_exact_block,warning
+A,26179841,2026-10-12T23:59:59+00:00,12,"['BTC', 'ETH', 'STETH', 'USDC', 'USDT', 'WSTETH']",6,67,Oracle and contract ratios are NOT substituted for missing market quotes
+B1,20458637,2024-08-04T23:59:59+00:00,0,[],0,33,Oracle and contract ratios are NOT substituted for missing market quotes
+B2,23543615,2025-10-09T23:59:59+00:00,0,[],0,55,Oracle and contract ratios are NOT substituted for missing market quotes

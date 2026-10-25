@@ -1,6 +1,6 @@
 """N3 / Muc 2 - Finalize Etherscan Aave V3 liquidation staging.
 
-Aligned to Research Design v2.0 (Snapshot B historical ground truth) and
+Aligned to Research Design v2.0 (A/B1/B2 historical holdouts) and
 DATA_CONTRACT v1.0 (11 fields, exact event PK).
 
 Uses existing output of price_liquidations_usd.py, DOES NOT call the API and
@@ -67,6 +67,22 @@ def safe_write_json(obj: dict, path: Path, overwrite: bool):
     os.close(fd)
     try:
         Path(tmp).write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding='utf-8')
+        os.replace(tmp, path)
+    finally:
+        Path(tmp).unlink(missing_ok=True)
+
+
+def safe_write_csv(df: pd.DataFrame, path: Path, overwrite: bool):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and not overwrite:
+        raise FileExistsError(f'{path} exists; pass --overwrite')
+    if path.exists():
+        ts = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+        shutil.copy2(path, path.with_name(path.name + '.bak_' + ts))
+    fd, tmp = tempfile.mkstemp(dir=path.parent, prefix='.n3_', suffix='.tmp')
+    os.close(fd)
+    try:
+        df.to_csv(tmp, index=False)
         os.replace(tmp, path)
     finally:
         Path(tmp).unlink(missing_ok=True)
@@ -203,11 +219,15 @@ def main():
     p.add_argument('--output-root', type=Path,
                    help='Separate output directory; avoids changing old staging files')
     p.add_argument('--min-coverage-pct', type=float, default=0)
+    p.add_argument('--first-hour-target-pct', type=float, default=85.0,
+                   help='Report target for event-time USD valuation coverage; never alters raw data')
+    p.add_argument('--require-first-hour-target', action='store_true',
+                   help='Fail before writing if an audited snapshot first hour is below target')
     p.add_argument('--overwrite', action='store_true')
     a = p.parse_args()
     if not a.input.exists():
         raise SystemExit(f'Missing {a.input}; run price_liquidations_usd.py first.')
-    if a.max_lag_minutes < 0 or not 0 <= a.min_coverage_pct <= 100:
+    if a.max_lag_minutes < 0 or not 0 <= a.min_coverage_pct <= 100 or not 0 <= a.first_hour_target_pct <= 100:
         raise SystemExit('Invalid limits')
     approved = {"B1": 20458637, "B2": 23543615}
     requested = {}
@@ -317,6 +337,7 @@ def main():
             if len(df) and not df.event_timestamp.between(start, end, inclusive='left').all():
                 raise ValueError('Event timestamps outside documented Etherscan window')
     holdouts = {}
+    first_hour_audits = {}
     for tag, info in requested.items():
         block = info["block"]
         snap_time = info["utc"]
@@ -352,6 +373,40 @@ def main():
                 f"({int(in_query.sum())} versus {reported_count})"
             )
 
+        # UTC first hour starts at the VERIFIED snapshot block time, not at
+        # the first observed liquidation. Keep unpriced events in denominator.
+        in_first_hour = (
+            (df.event_block > block) &
+            (df.event_timestamp >= snap_time) &
+            (df.event_timestamp < snap_time + pd.Timedelta(hours=1))
+        )
+        one_hour = df.loc[in_first_hour].copy()
+        one_hour["price_usable_for_fact"] = one_hour["n3_validation_status"].eq("ok")
+        one_hour["snapshot_id"] = tag
+        first_hour_audits[tag] = one_hour[
+            ["snapshot_id", "tx_hash", "log_index", "event_block", "event_timestamp",
+             "wallet_address", "collateral_token_address", "debt_token_address",
+             "debt_price_timestamp", "collateral_price_timestamp",
+             "n3_validation_status", "price_usable_for_fact"]
+        ].copy()
+        ok_n = int(one_hour["price_usable_for_fact"].sum())
+        n_first = int(len(one_hour))
+        first_pct = round(ok_n * 100 / n_first, 4) if n_first else None
+        quality[f"snapshot{tag}_first_hour_valuation_audit"] = {
+            "definition": "[snapshot_timestamp_utc, snapshot_timestamp_utc + 1h); block strictly greater than snapshot block",
+            "denominator": "all decoded events in the first hour, including unpriced",
+            "events_total": n_first,
+            "events_fact_ready": ok_n,
+            "events_not_fact_ready": n_first - ok_n,
+            "fact_ready_pct": first_pct,
+            "target_pct": a.first_hour_target_pct,
+            "meets_target": None if first_pct is None else first_pct >= a.first_hour_target_pct,
+            "status": "NO_EVENTS" if n_first == 0 else ("PASS" if first_pct >= a.first_hour_target_pct else "BELOW_TARGET"),
+            "validation_reason_counts": {str(k): int(v) for k, v in one_hour.n3_validation_status.value_counts().items()},
+            "warning": "Fact-ready event USD coverage is NOT the separate market-price matching coverage reported by descriptive.py",
+        }
+        print(f"[FIRST HOUR {tag}] events={n_first} fact_ready={ok_n} coverage={first_pct} target={a.first_hour_target_pct}%")
+
         in_24h = (
             (df.event_block > block) &
             (df.event_timestamp >= snap_time) &
@@ -377,6 +432,10 @@ def main():
             "caveat": "Observed liquidation events, not counterfactual losses"
         }
 
+    if a.require_first_hour_target:
+        below = [tag for tag in requested if quality[f"snapshot{tag}_first_hour_valuation_audit"]["status"] != "PASS"]
+        if below:
+            raise SystemExit(f"[STOP] First-hour fact-ready coverage below target or undefined: {below}. NO files written.")
     print(f"[AUDIT] priced={len(fact)}/{len(df)} ({quality['fact_ready_pct']}%), reasons={quality['reasons']}")
     if quality['fact_ready_pct'] is not None and quality['fact_ready_pct'] < a.min_coverage_pct:
         raise SystemExit('Coverage lower than minimum, NO files written.')
@@ -389,7 +448,11 @@ def main():
         f'data/staging/n3_liquidations_holdout_{tag}_24h.parquet'
         for tag in holdouts
     }
-    targets = [out, fact_path, qa] + list(holdout_paths.values())
+    first_hour_paths = {
+        tag: output_root / f'outputs/tables/n3_liquidations_holdout_{tag}_first_hour_audit.csv'
+        for tag in first_hour_audits
+    }
+    targets = [out, fact_path, qa] + list(holdout_paths.values()) + list(first_hour_paths.values())
     if not a.overwrite and any(p.exists() for p in targets):
         raise SystemExit(
             'Output exists; choose separate --output-root or --overwrite'
@@ -398,9 +461,11 @@ def main():
     safe_write_df(fact, fact_path, a.overwrite)
     for tag, holdout_df in holdouts.items():
         safe_write_df(holdout_df, holdout_paths[tag], a.overwrite)
+    for tag, audit_df in first_hour_audits.items():
+        safe_write_csv(audit_df, first_hour_paths[tag], a.overwrite)
     safe_write_json(quality, qa, a.overwrite)
     for x in targets:
-        print('[SAVED]', x.relative_to(ROOT))
+        print('[SAVED]', x)
     print('[NOTICE] Canonical data/processed/fact_historical_liquidations.parquet was NOT modified.')
 
 

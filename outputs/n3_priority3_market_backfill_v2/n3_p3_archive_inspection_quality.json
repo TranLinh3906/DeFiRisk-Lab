@@ -1,0 +1,116 @@
+{
+  "input_prices": "data/staging/n3_price_timeseries_A_B1_B2.parquet",
+  "archives": [
+    {
+      "file": "data/n3_history_2024_2026/final/market_crashes_hourly.parquet",
+      "input_rows": 480,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file"
+      ],
+      "decision": "SOURCE_FIELD_PRESENT",
+      "candidate_rows": 0,
+      "source_provenance": "SOURCE_FIELD_PRESENT_REVIEW_ORIGIN",
+      "approved_candidate_rows": 0,
+      "timestamp_column": "timestamp_utc",
+      "price_column": "close",
+      "quote_column": "None",
+      "price_type_column": "None",
+      "time_semantics": "OBSERVATION_TIME"
+    },
+    {
+      "file": "data/n3_history_2024_2026/final/market_daily_continuous.parquet",
+      "input_rows": 2048,
+      "columns": [
+        "timestamp_utc",
+        "asset",
+        "pair",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume_base_asset",
+        "volume_quote_usdt",
+        "trade_count",
+        "source",
+        "interval",
+        "log_return",
+        "realized_vol_30_bars_annualized",
+        "source_file",
+        "log_return_continuous",
+        "realized_vol_30d_continuous_annualized"
+      ],
+      "decision": "SOURCE_FIELD_PRESENT",
+      "candidate_rows": 0,
+      "source_provenance": "SOURCE_FIELD_PRESENT_REVIEW_ORIGIN",
+      "approved_candidate_rows": 0,
+      "timestamp_column": "timestamp_utc",
+      "price_column": "close",
+      "quote_column": "None",
+      "price_type_column": "None",
+      "time_semantics": "OBSERVATION_TIME"
+    },
+    {
+      "file": "data/processed/market/price_history.parquet",
+      "input_rows": 24,
+      "columns": [
+        "date",
+        "timestamp",
+        "asset",
+        "price_usd",
+        "price_type",
+        "source"
+      ],
+      "decision": "SOURCE_FIELD_PRESENT",
+      "candidate_rows": 24,
+      "source_provenance": "SOURCE_FIELD_PRESENT_REVIEW_ORIGIN",
+      "approved_candidate_rows": 24,
+      "timestamp_column": "timestamp",
+      "price_column": "price_usd",
+      "quote_column": "None",
+      "price_type_column": "price_type",
+      "time_semantics": "OBSERVATION_TIME"
+    }
+  ],
+  "snapshots": {
+    "A": {
+      "block": 26179841,
+      "timestamp_utc": "2026-10-12T23:59:59+00:00",
+      "new_source_labeled_market_assets_near_snapshot": [
+        "BTC",
+        "ETH",
+        "STETH",
+        "USDC",
+        "USDT",
+        "WSTETH"
+      ],
+      "count": 6
+    },
+    "B1": {
+      "block": 20458637,
+      "timestamp_utc": "2024-08-04T23:59:59+00:00",
+      "new_source_labeled_market_assets_near_snapshot": [],
+      "count": 0
+    },
+    "B2": {
+      "block": 23543615,
+      "timestamp_utc": "2025-10-09T23:59:59+00:00",
+      "new_source_labeled_market_assets_near_snapshot": [],
+      "count": 0
+    }
+  },
+  "generated_utc": "2026-10-25T16:43:19.141609+00:00"
+}

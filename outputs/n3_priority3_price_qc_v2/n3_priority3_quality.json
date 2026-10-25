@@ -1,0 +1,59 @@
+{
+  "source_rows": 1046,
+  "qa_valid_all_types": 1046,
+  "invalid_rows": 0,
+  "invalid_reasons": {},
+  "price_type_counts": {
+    "market_reference": 600,
+    "market_ratio": 288,
+    "aave_oracle": 155,
+    "lido_contract_conversion": 3
+  },
+  "market_usd_quotes_clean": 600,
+  "removed_market_price_conflicts": 0,
+  "market_log_returns_with_fresh_previous_quote": 570,
+  "snapshot_coverage": [
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "snapshot_utc": "2026-10-12T23:59:59+00:00",
+      "market_quote_rows_within_lag": 12,
+      "market_assets_with_valid_quote": [
+        "BTC",
+        "ETH",
+        "STETH",
+        "USDC",
+        "USDT",
+        "WSTETH"
+      ],
+      "n_distinct_market_assets": 6,
+      "aave_oracle_rows_at_exact_block": 67,
+      "warning": "Oracle and contract ratios are NOT substituted for missing market quotes"
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "snapshot_utc": "2024-08-04T23:59:59+00:00",
+      "market_quote_rows_within_lag": 0,
+      "market_assets_with_valid_quote": [],
+      "n_distinct_market_assets": 0,
+      "aave_oracle_rows_at_exact_block": 33,
+      "warning": "Oracle and contract ratios are NOT substituted for missing market quotes"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "snapshot_utc": "2025-10-09T23:59:59+00:00",
+      "market_quote_rows_within_lag": 0,
+      "market_assets_with_valid_quote": [],
+      "n_distinct_market_assets": 0,
+      "aave_oracle_rows_at_exact_block": 55,
+      "warning": "Oracle and contract ratios are NOT substituted for missing market quotes"
+    }
+  ],
+  "snapshot_qa_status": "SNAPSHOT_QA_COMPUTED",
+  "event_time_B1_85pct_coverage_VERIFIED": false,
+  "warning": "Data readiness does not establish event-time two-sided B1 coverage; keep the independent event/quote test.",
+  "source_sha256": "160562472fadc885c77c474bc8e9c2e2f718b8c4f166671c80f2c4f6dbc0371f",
+  "generated_utc": "2026-10-25T16:43:26.418108+00:00"
+}

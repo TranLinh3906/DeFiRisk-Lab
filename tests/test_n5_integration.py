@@ -130,6 +130,21 @@ class GuardTests(unittest.TestCase):
         self.assertTrue(wallets.iloc[0].reconstruction_matches_n4)
         self.assertEqual(tokens.iloc[0].candidate_cause,'collateral_flag_difference')
 
+    def test_wallet_attribution_respects_permission_and_wallet_flag(self):
+        row, cfg, prices, members = prepared()
+        row['user_emode'] = 3  # Category exists but denies collateral E-Mode LT.
+        cfg[0]['usage_as_collateral'] = False
+        for enabled, hf in [(True, 1.), (False, 0.)]:
+            source = dict(row, is_collateral_enabled=enabled, coll_flag=enabled)
+            p = prepare_portfolio([source], cfg, prices, snapshot_block=100,
+                depth_usd={'t': 1}, emode_membership=members)
+            risk = pd.DataFrame([dict(snapshot_block=100, wallet_address='w', health_factor=hf)])
+            tokens, wallets = attribute_hf_differences(p, pd.DataFrame([source]),
+                pd.DataFrame(cfg), pd.DataFrame(members), risk, model_mode='wallet_collateral')
+            self.assertEqual(tokens.iloc[0].reconstructed_n4_lt, .5)
+            self.assertEqual(tokens.iloc[0].n4_collateral_enabled, enabled)
+            self.assertTrue(wallets.iloc[0].reconstruction_matches_n4)
+
     def test_baseline_kpis_nonpositive_equity_has_no_fabricated_leverage(self):
         row = position()
         row['debt_amount'] = 150.

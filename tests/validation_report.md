@@ -1,6 +1,22 @@
 # N5 — Báo cáo kiểm định
 
-## Sau pull 9b34ff7 — cập nhật mới nhất
+## Cập nhật 25/10/2026 — dùng cho hiện trạng A/B1/B2
+
+Xem [kết quả triển khai và giới hạn](../docs/KET_QUA_N5_AB1B2_20261025.md).
+Bundle: `outputs/n5_preparation/n5_AB1B2_20261025_final/`.
+
+- Đủ A/B1/B2: 68.525 ví–snapshot; structure, HF trung vị, tổng nợ và graph conservation đạt.
+- N4–adapter không có bất đồng phía HF=1; tái dựng HF hiện hành không còn residual ngoài dung sai.
+- Zero-shock đạt. 8 cảnh báo tiny-shock tuyệt đối được giải thích bởi HF rất lớn và nằm trong biên biến động giá; giữ nguyên gate strict.
+- Gate số dư chưa lọc vẫn failed; bảng đề xuất dust 0/1/100 USD đã xuất, chưa tự duyệt chính sách.
+- B1 market proxy: 88/177 ví giờ đầu = 49,72%, chưa đạt 85%; không phải nghiệm thu oracle/OOS. B2 giờ đầu không có quan sát, giữ null.
+- Compound A đủ truy vấn mục tiêu, B1/B2 còn thiếu 12.870; đã nối adapter/runner mới.
+- Q1/Q3 mới được triển khai và chạy fixture, chưa nghiệm thu thực nghiệm. Manifest của bundle vẫn unvalidated.
+- Kiểm thử cuối: **117 passed, 12 subtests passed**; hash 116 artifacts và toàn bộ input/code của bundle đều khớp.
+
+Các phần ngày 20–23/10 bên dưới là lịch sử và không thay thế kết quả cập nhật này.
+
+## Sau pull 9b34ff7 — lịch sử ngày 23/10
 
 Xem `docs/N5_SAU_PULL_9b34ff7.md`. Bundle hiện tại:
 `outputs/n5_preparation/n5_postpull_9b34ff7_20261023/` (69 artifacts + manifest).

@@ -1,0 +1,9 @@
+{
+  "exposure_rows": 2855,
+  "events_applied": 0,
+  "status": "prepared_not_simulated",
+  "token_conservation_empty_ledger": "passed",
+  "unqueried_positions": "unknown",
+  "coverage_evidence": "reconstructed assignment/source QA; not raw RPC evidence",
+  "limitation": "No assumed withdrawals; no Aave close factor imposed on Comet"
+}

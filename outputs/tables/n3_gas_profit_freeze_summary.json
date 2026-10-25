@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-10-25T17:39:26.310902+00:00",
+  "total_analyzed_events": 42,
+  "frozen_events_count": 24,
+  "frozen_events_pct": 57.14,
+  "assumptions": {
+    "avg_gas_units_per_liquidation": 400000,
+    "assumed_gas_price_gwei": 50.0,
+    "assumed_eth_price_usd": 3000.0
+  },
+  "conclusion": "Positions with Profit < Gas Fee are economically rational to remain unliquidated (Frozen)."
+}

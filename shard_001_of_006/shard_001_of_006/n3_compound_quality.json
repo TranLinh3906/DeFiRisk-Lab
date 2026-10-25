@@ -1,26 +1,28 @@
 {
-  "created_utc": "2026-10-21T08:59:18.638051+00:00",
+  "created_utc": "2026-10-25T14:00:22.385157+00:00",
   "scope": "Aave-wallet-targeted Compound III on Ethereum; not full Compound census",
   "chain_id": 1,
   "snapshot_blocks": {
     "A": 26179841,
-    "B": 26194188
+    "B": 26194188,
+    "B1": 20458637,
+    "B2": 23543615
   },
-  "metadata_fingerprint": "32f6f3c87efec1adca965f6c13bfb88b21e6f9f4f006f74c092698becd3aa3d0",
+  "metadata_fingerprint": "9fed9e33e659f264f30c65e5ebe2cf1bfa67191b06523d6ff100132f87bd9cb5",
   "shard": {
     "num_shards": 6,
     "shard_index": 1,
-    "selection_hash": "f9f8372e630bc80bb5cf9a475bdf00eae84e37ebf6120c2b41478e3829a49648",
+    "selection_hash": "177f7b1cb4af6ab174fc2f3951f6a01a70e329b8b4c629b124636df8277a6d18",
     "global_selection": {
       "eligible_unique_wallets": 28640,
-      "selected_unique_wallets": 28640,
-      "input_aave_rows_after_filter": 57038,
-      "selection": "all_eligible_wallets",
+      "selected_unique_wallets": 46246,
+      "input_aave_rows_after_filter": 97070,
+      "selection": "legacy A/B plus historical B1/B2",
       "limited_sample": false,
       "aave_debt_column": "total_debt_base_usd"
     },
-    "global_expected_queries": 114076,
-    "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5"
+    "global_expected_queries": 194140,
+    "assignment": "legacy_owner_plus_sha256_new_wallets_v1"
   },
   "input_aave_path": "data\\processed\\aave\\account_reference.parquet",
   "markets": [
@@ -35,14 +37,14 @@
   ],
   "selection": {
     "eligible_unique_wallets": 28640,
-    "selected_unique_wallets": 4313,
+    "selected_unique_wallets": 7325,
     "input_aave_rows_after_filter": 8578,
     "selection": "all_eligible_wallets",
     "limited_sample": false,
     "aave_debt_column": "total_debt_base_usd"
   },
-  "expected_wallet_market_snapshot_queries": 17156,
-  "successful_queries": 17156,
+  "expected_wallet_market_snapshot_queries": 30026,
+  "successful_queries": 30026,
   "failed_queries": 0,
   "complete": true,
   "failures_preview": [],
@@ -54,9 +56,19 @@
     "No historical lending-event path proof from snapshots alone",
     "Sampling by Aave debt causes selection bias if max-wallets > 0"
   ],
-  "positions_rows": 251,
-  "active_compound_market_accounts": 185,
-  "unique_overlap_wallet_snapshot_pairs": 171,
-  "any_borrow_market_accounts": 32,
-  "outcome": "pass_complete_for_selected_Aave_wallets"
+  "positions_rows": 581,
+  "active_compound_market_accounts": 406,
+  "unique_overlap_wallet_snapshot_pairs": 376,
+  "any_borrow_market_accounts": 87,
+  "outcome": "pass_complete_for_selected_Aave_wallets",
+  "extension": {
+    "added_snapshots": {
+      "B1": 20458637,
+      "B2": 23543615
+    },
+    "historical_queries_added": 12870,
+    "original_AB_kept": true,
+    "new_checkpoint": "D:\\Tai ve\\Gói 1\\DeFI risk lab\\DeFiRisk-Lab\\shard_001_of_006\\shard_001_of_006\\n3_overlap_checkpoint_B1_B2.jsonl",
+    "scope": "Aave-targeted, not full Compound census"
+  }
 }

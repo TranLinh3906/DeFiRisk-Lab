@@ -178,7 +178,9 @@ def inspect_compound(directory):
     """Read imported exports only; keep coverage status independent of table QA."""
     directory = Path(directory)
     report = json.loads((directory / 'merge_report.json').read_text(encoding='utf-8'))
-    tables = {name: pd.read_parquet(directory / f'n3_compound_{suffix}_partial.parquet')
+    modern = (directory / 'query_coverage.parquet').is_file()
+    ending = '' if modern else '_partial'
+    tables = {name: pd.read_parquet(directory / f'n3_compound_{suffix}{ending}.parquet')
               for name, suffix in [('positions', 'positions_long'), ('accounts', 'account_reference'),
                                    ('config', 'reserve_config'), ('overlap', 'overlap_wallets')]}
     p, a = tables['positions'], tables['accounts']
@@ -206,9 +208,10 @@ def inspect_compound(directory):
     return dict(table_qa_status='passed' if mismatches == 0 else 'failed',
                 account_reconciliation_mismatches=mismatches,
                 rows={k: len(v) for k, v in tables.items()},
-                complete=report['complete'], expected_queries=report['expected_queries'],
-                covered_queries=report['covered_queries'], missing_queries=report['missing_queries'],
-                missing_unique_wallets=report['missing_unique_wallets'],
+                complete=report['complete'], expected_queries=report.get('expected_queries', report.get('expected_wallet_market_snapshot_queries')),
+                covered_queries=report.get('covered_queries', report.get('successful_queries')), missing_queries=report['missing_queries'],
+                missing_unique_wallets=(pd.read_parquet(directory / 'query_coverage.parquet').loc[lambda d: ~d.covered, 'wallet_address'].nunique()
+                                       if modern else report['missing_unique_wallets']),
                 validation_status='unvalidated',
                 limitation='Partial coverage; unqueried wallets are unknown, never zero. No bridge simulation.'), tables
 

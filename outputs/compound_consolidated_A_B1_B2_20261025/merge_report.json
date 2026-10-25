@@ -1,0 +1,414 @@
+{
+  "created_utc": "2026-10-25T13:06:26.067567+00:00",
+  "chain_id": 1,
+  "snapshot_blocks": {
+    "A": 26179841,
+    "B1": 20458637,
+    "B2": 23543615
+  },
+  "markets": [
+    {
+      "market_id": "compound_v3_ethereum_usdc",
+      "comet_address": "0xc3d688b66703497daa19211eedff47f25384cdc3"
+    },
+    {
+      "market_id": "compound_v3_ethereum_weth",
+      "comet_address": "0xa17581a9e3356d9a858b789d68b4d866e593ae94"
+    }
+  ],
+  "complete": false,
+  "failed_queries": 0,
+  "expected_wallet_market_snapshot_queries": 137050,
+  "successful_queries": 124180,
+  "positions_rows": 2855,
+  "active_compound_market_accounts": 1862,
+  "unique_overlap_wallet_snapshot_pairs": 1711,
+  "selection": {
+    "limited_sample": false
+  },
+  "missing_queries": 12870,
+  "validation_status": "incomplete_coverage",
+  "scope": "Aave borrower-targeted Compound III USDC/WETH; snapshots A/B1/B2 only",
+  "coverage_evidence": "Reconstructed from completed source QA, matching input selection hashes and deterministic assignments; not an independent RPC recheck.",
+  "limitations": [
+    "Missing queries are unknown, not zero balances",
+    "Not a census of all Compound users",
+    "Legacy snapshot B is excluded"
+  ],
+  "git_head": "ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+  "legacy_aave_ref": "aca4cdd",
+  "legacy_aave_sha256": "73c3e54edc467f896883e34473243c1fe13e27d5aa18e7726339120fbb2ebaf4",
+  "current_aave_sha256": "0b4a324f773f1b5256c76c3a8522371d2bb808cefed02a6cc78c97f4a6e58e13",
+  "snapshots": [
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "target_wallets": 28493,
+      "expected_queries": 56986,
+      "covered_queries": 56986,
+      "missing_queries": 0,
+      "coverage_pct": 100.0,
+      "positions_rows": 960,
+      "accounts_rows": 686,
+      "config_rows": 32,
+      "overlap_rows": 631
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "target_wallets": 12047,
+      "expected_queries": 24094,
+      "covered_queries": 20108,
+      "missing_queries": 3986,
+      "coverage_pct": 83.45646218975679,
+      "positions_rows": 839,
+      "accounts_rows": 483,
+      "config_rows": 16,
+      "overlap_rows": 444
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "target_wallets": 27985,
+      "expected_queries": 55970,
+      "covered_queries": 47086,
+      "missing_queries": 8884,
+      "coverage_pct": 84.12721100589602,
+      "positions_rows": 1056,
+      "accounts_rows": 693,
+      "config_rows": 29,
+      "overlap_rows": 636
+    }
+  ],
+  "exact_duplicate_rows_removed": {
+    "positions": 160,
+    "accounts": 110,
+    "config": 372,
+    "overlap": 100
+  },
+  "sources": [
+    {
+      "directory": "N3_Compound_Q3_Overlap_VSCode/data/processed/compound/team_6105d9df30ba/shard_000_of_006",
+      "shard_index": 0,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188
+      },
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 28274,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "52b8263c0c59beca5604e9d032a09a3268f1b452cc49c100346381e8f73c0549"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "c6e69c630db3490f033bce7e4368927e5fa3a877b497c05ce2d81084df7c99f1"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "ec5d2d57e4e141916757cba24561aeb4fae4ab6eaf5d706d2e020a305de3acad"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "b626c038de5540c35a12de9aaa1c16f946702ecdbf5194178b1c9dd99b748e64"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "f090f92b34a8ad833016813eb496440b570ae07c74223ef74288c6c6f4cfaca3"
+        }
+      }
+    },
+    {
+      "directory": "shard_001_of_006/shard_001_of_006",
+      "shard_index": 1,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188
+      },
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17156,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "88ee4707b541b0ee84e69d753b405672760463f4a017a081b41480835c354fa2"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "c8ad743841d140b62078a6f76b264271e07bc7690ff08604c85c3041f54a8ffe"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "39a935cf06e91f92418bba91fbe681f6b250de8e693534fed3f2fd9828ac6030"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "8a71c9671209d1446f5b7fb4cf727e182d7478bbce2952e4e643327624389311"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "67be6742ddc1ef7e0dffbb7d927387a4c50d2e4ad1009d8688d0e7ca92faa392"
+        }
+      }
+    },
+    {
+      "directory": "shard_002_of_006/shard_002_of_006",
+      "shard_index": 2,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188
+      },
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 17162,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "1f2072cdda03e5138e5c956cc4d9918b10babbd397c94d318d9ad9a574680b3f"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "592a383fb79e152c03e1a318dc424e285a231ffa60fc66643fd6aadac6fe4a96"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "a70fc1f1afcc51b3b60ec5a0436980e293fcebfe0fe90e834af99e70d9ac5c0d"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "8a71c9671209d1446f5b7fb4cf727e182d7478bbce2952e4e643327624389311"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "43c182cd64960cafa25f38f4a0dc4f0d2517c100a84e3e0287021659c3d93a38"
+        }
+      }
+    },
+    {
+      "directory": "shard_003_of_006/shard_003_of_006",
+      "shard_index": 3,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188,
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "assignment": "legacy_owner_plus_sha256_new_wallets_v1",
+      "successful_queries": 29610,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "05ec0791f52de6b2693188a5d8e6cd51ce6aaf5381efb12bf74e276009f98021"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "c06c803fc6c5b630334cbb93596da2d751b63ad7baac0977c73768fccacfd6dd"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "de7276a886ea4b9abd4a27e50920f28e9fd54e2730851c07e8627f23a7df9367"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "c249354dd3fd5e361a839b542884600fc52376e3c9c103587508fa0c493ba735"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "96972946f0ba4d45b6de45148dc878ae0861e2741223e8f43890fc56710c09e0"
+        }
+      }
+    },
+    {
+      "directory": "shard_004_of_006/shard_004_of_006",
+      "shard_index": 4,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188
+      },
+      "assignment": "sorted_wallet_round_robin_v1",
+      "successful_queries": 19020,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "fbebfd2a8180df0dd45c1314beb3a7b3f484e717058144efb1d0cb7b03d38ea4"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "a7da48b05b1a5acf5bfc66d0d017fc3e142dbd4456366da17a1e8fa1da7b4bc4"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "81934db79187852c10b63105af8b568b6ca3f8838433cfc46eca8079ee480318"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "b626c038de5540c35a12de9aaa1c16f946702ecdbf5194178b1c9dd99b748e64"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "b3707e9502f403182cb88ad3668c918e448137b9e42bbcf45e6ab4d971ebea4f"
+        }
+      }
+    },
+    {
+      "directory": "shard_005_of_006",
+      "shard_index": 5,
+      "snapshot_blocks": {
+        "A": 26179841,
+        "B": 26194188,
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "assignment": "legacy_owner_plus_sha256_new_wallets_v1",
+      "successful_queries": 29958,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "12d7dec88805fd60eee618d9e9be2030d87efb3cd841bf71d149fb8d4a3c2ea2"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "5721b0bea9b514ce50d298aa70b8ace573b473699d492e3a9682815c5e9988fb"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "7136b1c543579302ae3478c1f17456b947e36973a390337e117d8f60653a7a29"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "c249354dd3fd5e361a839b542884600fc52376e3c9c103587508fa0c493ba735"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "65a8ccc478ec8729021018e280007c84e35820cf5f50a71762ebb727693943da"
+        }
+      }
+    },
+    {
+      "directory": "processed/processed/compound/team_6105d9df30ba/shard_004_of_006_A_ONLY",
+      "shard_index": 4,
+      "snapshot_blocks": {
+        "A": 26179841
+      },
+      "assignment": "checkpoint_assignment_v1:6105d9df30ba1f7f285bdd8dc277c944cf2dfa02915cea51c41ca8b1467833a5",
+      "successful_queries": 8578,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "126ae3b7a15c35bf31c20a671b0da2b2f7c7643f0016cff8578103b364864474"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "7830a3832caf13cf83b004c46eb28f89d0dc2c0eb6caf1de1dc6a2cfb643a7d5"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "ada7b6b8d0aec3ddfcf56b4742696d30e394b9aae251b45cbcdf492a4d383a4b"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "af686ba471a5bf37ebadce370441ffed9b14c85a8bbc359ba854b5f665881ae2"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "881d2451f845f3ad8de24174cf1626ca98e621e867c483940b0d8d06d9990a13"
+        }
+      }
+    },
+    {
+      "directory": "outputs/compound_historical_B1_B2_20261024/shard_000_of_006",
+      "shard_index": 0,
+      "snapshot_blocks": {
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "assignment": "shared_existing_owner_plus_sha256_new_wallets_v1",
+      "successful_queries": 16640,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "385af2f695d62887ba96fa13cf01f99b5c51d5199ae8b0a12ab7286d4d8fae14"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "8feb78a48fe334150891ab700e65c941cd6cfc371c84bd1f7261bec2137b1f41"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "7716e19df2c4581aea73c40302e7c43c0a7742b45e952402603ccba491242e2e"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "e6389190e54fe06722a912c79b3b58e5f7194f697aef9b6329ab0dc3d5ee7060"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "90c168e98988bc50e818deb1a5aaba54c7f72a7b330c3de788e4c859cae0abe9"
+        }
+      }
+    },
+    {
+      "directory": "outputs/compound_historical_B1_B2_20261024/shard_002_of_006",
+      "shard_index": 2,
+      "snapshot_blocks": {
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "assignment": "shared_existing_owner_plus_sha256_new_wallets_v1",
+      "successful_queries": 12602,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "working_tree",
+          "sha256": "92e58147acd9d1a57d58d70edc9e08318d54cceec03fde9525bc00a86647a5b7"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "working_tree",
+          "sha256": "63287a45b84a4cf5d9e2bd58070d9f80e2ee0db98a98a7439f0db2cada87cc7d"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "working_tree",
+          "sha256": "47e6612fdff818fa25e9031f44b0f82803a6a410cb34f4ccc5926c06b32e0752"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "working_tree",
+          "sha256": "ee6c8c799565cf88c799a53e2ce426d7dcf859b879d96d42c9859f4e2865223e"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "working_tree",
+          "sha256": "41e509665c94e91f7c5b63fdd0fd339deb2c05334201910e79c30cfef5c1f7f1"
+        }
+      }
+    },
+    {
+      "directory": "outputs/compound_historical_B1_B2_20261024/shard_004_of_006",
+      "shard_index": 4,
+      "snapshot_blocks": {
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "assignment": "shared_existing_owner_plus_sha256_new_wallets_v1",
+      "successful_queries": 12714,
+      "files": {
+        "n3_compound_quality.json": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "700686f6bdfcdd986fdd1272c3eba2c593e98a2c8ce1e7c22c89e87c358302a6"
+        },
+        "n3_compound_positions_long.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "f0263b14b97ec0f695cf7b684e594225fcc94823689346383706b680c27dd9cb"
+        },
+        "n3_compound_account_reference.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "64986302a0e24e57cfe23129dfb33f727ac88b0a58f8bbe47656dbdbbf90c910"
+        },
+        "n3_compound_reserve_config.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "e6389190e54fe06722a912c79b3b58e5f7194f697aef9b6329ab0dc3d5ee7060"
+        },
+        "n3_compound_overlap_wallets.parquet": {
+          "read_from": "git:ce8b0e59dc57300ba98fb1c6522f84da9c0efb52",
+          "sha256": "2e301d711ed1ab4486f2c9a89a44d2bff581754bd5eeeae6484b999a0d4a3e3a"
+        }
+      }
+    }
+  ]
+}

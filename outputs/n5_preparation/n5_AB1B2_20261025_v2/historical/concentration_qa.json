@@ -1,0 +1,26 @@
+[
+  {
+    "snapshot_block": 26179841,
+    "wallets": 28493,
+    "missing_wallet_rows": 0,
+    "max_debt_abs_error_usd": 0.0,
+    "total_debt_usd": 9427484969.034634,
+    "top_10_debt_pct": 36.45153374157534
+  },
+  {
+    "snapshot_block": 20458637,
+    "wallets": 12047,
+    "missing_wallet_rows": 0,
+    "max_debt_abs_error_usd": 0.0,
+    "total_debt_usd": 5868705952.005379,
+    "top_10_debt_pct": 23.79607546260898
+  },
+  {
+    "snapshot_block": 23543615,
+    "wallets": 27985,
+    "missing_wallet_rows": 0,
+    "max_debt_abs_error_usd": 0.0,
+    "total_debt_usd": 21688604175.320942,
+    "top_10_debt_pct": 28.844872508934895
+  }
+]

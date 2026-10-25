@@ -81,7 +81,7 @@ def attribute_hf_differences(portfolio, positions, reserves, membership, risk, *
     remain visible instead of assigning all disagreements to E-Mode by fiat.
     """
     block = portfolio.snapshot_block
-    if model_mode not in ('category_membership', 'first_membership'):
+    if model_mode not in ('category_membership', 'first_membership', 'wallet_collateral'):
         raise ValueError('Unknown N4 attribution mode')
     selected = membership[membership.snapshot_block.eq(block)]
     first = selected.drop_duplicates('token_address', keep='first')
@@ -102,14 +102,17 @@ def attribute_hf_differences(portfolio, positions, reserves, membership, risk, *
                            else category) if chosen is not None else 0
         standard = float(cfg[token]['lt_std'])
         n4_lt = float(chosen['emode_lt_bps']) / 10000 if (
-            category > 0 and category == chosen_category and chosen['emode_lt_bps'] > 0) else standard
+            chosen is not None and category > 0 and category == chosen_category and chosen['emode_lt_bps'] > 0
+            and (model_mode != 'wallet_collateral' or flag(chosen['is_collateral'], 'membership collateral'))) else standard
         # N4 main uses borrower_positions. The collateral quantity there already
         # has disabled rows zeroed; reserve usage_as_collateral is the fallback flag.
         n4_enabled = bool(cfg[token]['usage_as_collateral'])
         amount, price = row['collateral_amount'], row['price_usd']
         wallet_enabled = flag(source_flags.get((wallet, token), row['is_collateral_enabled']), 'wallet collateral')
         # borrower_positions zeros disabled collateral before the HF pipeline.
-        n4_amount = amount * wallet_enabled if model_mode == 'category_membership' else amount
+        n4_amount = amount * wallet_enabled if model_mode != 'first_membership' else amount
+        if model_mode == 'wallet_collateral':
+            n4_enabled = wallet_enabled and n4_lt > 0
         n4_weighted = n4_amount * price * n4_lt * n4_enabled
         expected = amount * price * row['effective_lt'] * row['is_collateral_enabled']
         delta = n4_weighted - expected

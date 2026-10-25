@@ -1130,7 +1130,11 @@ def main() -> None:
     cli.add_argument("--existing-shards-root", type=Path)
     args=cli.parse_args()
     if args.extend_existing_shard:
-        return extend_existing_shard(args)
+        cli.error(
+            "In-place extension is disabled to protect existing A/B files. "
+            "Use scripts/fetch_compound_historical_B1_B2.py and provide "
+            "a new --output-root under outputs/"
+        )
     if args.max_wallets<0 or args.batch_size<1 or args.wallet_chunk<1:cli.error("invalid limits")
     if not math.isfinite(args.rpc_interval) or args.rpc_interval < 0:
         cli.error("rpc-interval must be finite and nonnegative")

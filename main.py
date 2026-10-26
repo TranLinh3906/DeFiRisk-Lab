@@ -1,10 +1,11 @@
 from pathlib import Path
+from dashboard_theme import themed_plot, CHART_COLORS
 import base64
 from html import escape
 import numpy as np
 import pandas as pd
 import plotly.express as px
-px.defaults.color_discrete_sequence = ['#1773cd', '#3ba3ed', '#115292', '#61cbe4', '#D49A42', '#C65B72', '#4481b3']
+px.defaults.color_discrete_sequence = CHART_COLORS
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import json
@@ -20,20 +21,20 @@ st.markdown("""<style>
 /* Ice Blue pastel: main content only; original navy sidebar and cards untouched. */
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
 [data-testid="stMain"], [data-testid="stMainBlockContainer"] {
-  background-color:#dfedfd !important;
+  background-color:#fcebe0 !important;
 }
 [data-testid="stMain"] {
-  background:linear-gradient(145deg,#eaf4fe 0%,#dfedfd 48%,#d5e7fc 100%) !important;
+  background:linear-gradient(145deg,#fdf2eb 0%,#fcebe0 48%,#fbe4d6 100%) !important;
 }
-[data-testid="stHeader"] {background:rgba(234,245,255,.94) !important;}
+[data-testid="stHeader"] {background:rgba(250,245,237,.94) !important;}
 /* Keep the dark navigation and its scroll region exactly as designed. */
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div,
 [data-testid="stSidebar"] [data-testid="stSidebarContent"] {
-  background-color:#061d36 !important;
+  background-color:#361306 !important;
 }
 
-[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#061d36!important;border-right:1px solid #1b4270!important}
-[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#051c35 0%,#0d2f57 52%,#051f3b 100%)!important}
+[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#361306!important;border-right:1px solid #70321b!important}
+[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#351205 0%,#57210d 52%,#3a1406 100%)!important}
 [data-testid="stSidebar"] [data-testid="stSidebarUserContent"]{padding-top:0!important}
 /* Brand is sticky inside the SAME sidebar scroll flow: it cannot cover Overview. */
 [data-testid="stSidebar"] .st-key-brand_fixed{
@@ -43,169 +44,169 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
   width:100%!important;
   height:auto!important;
   z-index:100!important;
-  background:linear-gradient(160deg,#051c35,#0e2d52)!important;
+  background:linear-gradient(160deg,#351205,#52200e)!important;
   padding:12px 12px 16px!important;
   box-sizing:border-box!important;
-  border-bottom:1px solid #214b7c!important;
+  border-bottom:1px solid #7c3a21!important;
 }
 [data-testid="stSidebar"] .st-key-brand_fixed > div{background:transparent!important}
-.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #328af255)}
-.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#eaf4fe;margin-top:4px}
-.brand-sub{text-align:center;color:#90bdf0;font-size:.82rem;margin:5px 0 0}
+.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #eb693955)}
+.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#fdf2eb;margin-top:4px}
+.brand-sub{text-align:center;color:#f0aa90;font-size:.82rem;margin:5px 0 0}
 /* No spacer: brand occupies its natural height, menu follows immediately. */
 .nav-spacer{height:0!important;display:none!important}
-.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#82b1e8;font-weight:800;margin:0 0 10px 8px}
-[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #02122466;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#e89e82;font-weight:800;margin:0 0 10px 8px}
+[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #230c0366;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 [data-testid="stSidebar"] .stButton>button:before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#ffffff24,transparent 60%);pointer-events:none}
 [data-testid="stSidebar"] .stButton>button p{font-size:1.12rem!important;font-weight:750!important;color:white!important}
 [data-testid="stSidebar"] .stButton>button:hover{filter:brightness(1.12);transform:translateX(4px);box-shadow:0 8px 22px #0008}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #72aef6;outline-offset:2px;box-shadow:0 0 0 4px #67a9f52a,0 8px 22px #0008}
-[data-testid="stSidebar"] .st-key-nav_0 button{background:#0d63c9!important}
-[data-testid="stSidebar"] .st-key-nav_1 button{background:#094285!important}
-[data-testid="stSidebar"] .st-key-nav_2 button{background:#277de3!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #f29877;outline-offset:2px;box-shadow:0 0 0 4px #f08f6c2a,0 8px 22px #0008}
+[data-testid="stSidebar"] .st-key-nav_0 button{background:#c34313!important}
+[data-testid="stSidebar"] .st-key-nav_1 button{background:#812c0d!important}
+[data-testid="stSidebar"] .st-key-nav_2 button{background:#e35a27!important}
 [data-testid="stSidebar"] .st-key-nav_3 button{background:#C47A14!important}
-[data-testid="stSidebar"] .st-key-nav_4 button{background:#1a73dc!important}
-[data-testid="stSidebar"] .st-key-nav_5 button{background:#3d618c!important}
-[data-testid="stSidebar"] hr{border-color:#264e7c}
-[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#93bbe9!important}
-.status-panel{background:#11335c;border:1px solid #2b5483;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#dcebfd}
+[data-testid="stSidebar"] .st-key-nav_4 button{background:#dc4e1a!important}
+[data-testid="stSidebar"] .st-key-nav_5 button{background:#8c523d!important}
+[data-testid="stSidebar"] hr{border-color:#7c3d26}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#e9aa93!important}
+.status-panel{background:#5c2511;border:1px solid #83432b;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#fce9dd}
 .status-title{font-weight:750;font-size:.95rem;margin-bottom:5px}
-.status-desc{font-size:.76rem;color:#a1c1e7;line-height:1.5}
-.status-pill{display:inline-block;background:#0c2c54;color:#79f1d1;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
+.status-desc{font-size:.76rem;color:#e7b4a1;line-height:1.5}
+.status-pill{display:inline-block;background:#541f0c;color:#f09a7a;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
 .block-container{padding-top:1.5rem;max-width:1450px}
-[data-testid="stMetric"]{background:#112234;border:1px solid #233c59;padding:16px;border-radius:12px}
-[data-testid="stMetricLabel"] p{color:#a4c1e3!important}
-[data-testid="stMetricValue"] div{color:#f8fbff!important}
+[data-testid="stMetric"]{background:#341a11;border:1px solid #593223;padding:16px;border-radius:12px}
+[data-testid="stMetricLabel"] p{color:#e3b5a4!important}
+[data-testid="stMetricValue"] div{color:#fefbf9!important}
 h1,h2,h3{letter-spacing:-.025em}
 .demo{padding:10px 14px;border-radius:9px;background:#493c19;color:#ffe5a2;border:1px solid #796028;margin-bottom:18px}
-.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #0d294a1a}
+.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #4a1d0d1a}
 .page-banner-title{color:white!important;font-size:2rem;font-weight:800;line-height:1.2;letter-spacing:-.025em}
 .page-banner-sub{color:#fff!important;opacity:.9;font-size:.97rem;margin-top:7px}
 
 /* Aurora Risk Intelligence data explorer */
-.risk-shell{background:linear-gradient(150deg,#081b33,#0b2749 75%,#061c37);border:1px solid #204774;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #041e3a33;color:#dfedfd}
+.risk-shell{background:linear-gradient(150deg,#331408,#491c0b 75%,#371306);border:1px solid #743720;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #38130633;color:#fcebe0}
 .risk-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.risk-title{font-size:1.38rem;font-weight:800;color:#ebf5fe}.risk-kicker{font-size:.73rem;color:#78a6db;letter-spacing:.1em;margin-top:3px}
-.risk-tag{background:#17406f;border:1px solid #2b5c98;border-radius:30px;padding:6px 12px;color:#8fbff8;font-size:.74rem;font-weight:700}
+.risk-title{font-size:1.38rem;font-weight:800;color:#fdf3ec}.risk-kicker{font-size:.73rem;color:#db9378;letter-spacing:.1em;margin-top:3px}
+.risk-tag{background:#6f2f17;border:1px solid #98482b;border-radius:30px;padding:6px 12px;color:#f4ad93;font-size:.74rem;font-weight:700}
 .risk-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:17px}
-.risk-kpi{background:#132e4e;border:1px solid #24446a;border-radius:13px;padding:14px;min-width:0}
-.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#8bb0db;letter-spacing:.06em;margin-top:5px}
-.risk-composition{background:#0f2a4b;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #24446a}
-.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#cfe4fc}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#2c4768}
-.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#abc9ec}
-.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #25476e;background:#0a223f}
-.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#ddecfd;font-size:.82rem}
-.risk-table th{background:#15355b;color:#8ebaed;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
-.risk-table td{padding:13px 12px;border-top:1px solid #224165;white-space:nowrap;font-variant-numeric:tabular-nums}
-.risk-table tbody tr:nth-child(even){background:#0f2a4a}.risk-table tbody tr:hover{background:#173e6c}
-.risk-wallet{color:#68a8f5;font-weight:700}.risk-muted{color:#7ba0ca;font-size:.72rem;margin-top:4px}
-.risk-hf-track{height:5px;background:#2d4b6e;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
+.risk-kpi{background:#4e2313;border:1px solid #6a3724;border-radius:13px;padding:14px;min-width:0}
+.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#dba18b;letter-spacing:.06em;margin-top:5px}
+.risk-composition{background:#4b1f0f;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #6a3724}
+.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#fae1d1}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#683c2c}
+.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#ecc4ab}
+.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #6e3925;background:#3f180a}
+.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#fceade;font-size:.82rem}
+.risk-table th{background:#5b2815;color:#eda88e;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
+.risk-table td{padding:13px 12px;border-top:1px solid #653422;white-space:nowrap;font-variant-numeric:tabular-nums}
+.risk-table tbody tr:nth-child(even){background:#4a1f0f}.risk-table tbody tr:hover{background:#6c2e17}
+.risk-wallet{color:#f1906c;font-weight:700}.risk-muted{color:#ca907b;font-size:.72rem;margin-top:4px}
+.risk-hf-track{height:5px;background:#6e3f2d;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
 .risk-pill{padding:5px 9px;border-radius:20px;font-weight:800;font-size:.68rem;display:inline-block}
-.risk-footer{color:#779fcd;font-size:.76rem;margin-top:12px}
-.risk-shell .risk-empty{padding:25px;text-align:center;color:#a5c1e2}
+.risk-footer{color:#cd8e77;font-size:.76rem;margin-top:12px}
+.risk-shell .risk-empty{padding:25px;text-align:center;color:#e2b5a5}
 @media(max-width:760px){.risk-kpis{grid-template-columns:1fr}.risk-number{font-size:1.4rem}.risk-shell{padding:12px}}
 
 /* Reusable Aurora tables across every dashboard page */
-.aurora-table-shell{background:linear-gradient(145deg,#081b33,#0e2b4d);border:1px solid #204774;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #0a244030;color:#e2eefd}
-.aurora-table-title{font-size:1.25rem;font-weight:800;color:#eaf4fe;margin-bottom:5px}
-.aurora-table-sub{font-size:.77rem;color:#8db3df;margin-bottom:17px}
-.aurora-scroll{overflow:auto;border:1px solid #2e4f75;border-radius:12px;max-height:530px}
-.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#dfedfd;font-variant-numeric:tabular-nums}
-.aurora-data th{position:sticky;top:0;background:#1a3b62;color:#a2c8f4;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
-.aurora-data td{padding:13px;border-top:1px solid #214167;white-space:nowrap}
-.aurora-data tbody tr:nth-child(even){background:#0f2b4d}.aurora-data tbody tr:hover{background:#1b3f6a}
-.aurora-table-footer{font-size:.74rem;color:#8cafd7;margin-top:12px}
+.aurora-table-shell{background:linear-gradient(145deg,#331408,#4d1f0e);border:1px solid #743720;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #40190a30;color:#fcede3}
+.aurora-table-title{font-size:1.25rem;font-weight:800;color:#fdf2eb;margin-bottom:5px}
+.aurora-table-sub{font-size:.77rem;color:#dfa38d;margin-bottom:17px}
+.aurora-scroll{overflow:auto;border:1px solid #75412e;border-radius:12px;max-height:530px}
+.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#fcebe0;font-variant-numeric:tabular-nums}
+.aurora-data th{position:sticky;top:0;background:#622d1a;color:#f4c2a2;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.aurora-data td{padding:13px;border-top:1px solid #673421;white-space:nowrap}
+.aurora-data tbody tr:nth-child(even){background:#4d200f}.aurora-data tbody tr:hover{background:#6a301b}
+.aurora-table-footer{font-size:.74rem;color:#d7a08c;margin-top:12px}
 
 /* Bloomberg x Aurora | TABLE-ONLY OVERRIDES: original navigation, logo and charts untouched */
-.aurora-table-shell,.risk-shell{background:#18385d!important;border:1px solid #4f78a8!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #03162e24!important;padding:17px!important}
-.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#e8f3fe!important}
+.aurora-table-shell,.risk-shell{background:#5d2b18!important;border:1px solid #a8674f!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #2d0f0424!important;padding:17px!important}
+.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#fdf1e9!important}
 .aurora-table-title:before{content:'▮';color:#f3ae4d;margin-right:9px}
-.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#7da0c8!important;letter-spacing:.045em!important}
-.aurora-scroll,.risk-table-wrap{border:1px solid #214064!important;border-radius:7px!important;background:#1e4068!important;scrollbar-color:#789dc8 #1e4068}
-.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#dae9fb!important;font-variant-numeric:tabular-nums!important}
-.aurora-data th,.risk-table th{background:#2a5383!important;color:#dcebfd!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #5984b8!important}
-.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #3a5b83!important;line-height:1.45!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#234670!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#305c8f!important}
-.aurora-data td.terminal-num{text-align:right;color:#e4f1fd}
+.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#c8917d!important;letter-spacing:.045em!important}
+.aurora-scroll,.risk-table-wrap{border:1px solid #643321!important;border-radius:7px!important;background:#68321e!important;scrollbar-color:#c88e78 #68321e}
+.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#fbe7da!important;font-variant-numeric:tabular-nums!important}
+.aurora-data th,.risk-table th{background:#83422a!important;color:#fce9dd!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #b87359!important}
+.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #834e3a!important;line-height:1.45!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#703823!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#8f4a30!important}
+.aurora-data td.terminal-num{text-align:right;color:#fceee5}
 .aurora-data th.terminal-num{text-align:right}
-.aurora-data td.terminal-identity{color:#6aaaf5;font-weight:650}
-.aurora-data td.terminal-alert{color:#7fb6f7;font-weight:700}
-.aurora-data td.terminal-safe{color:#75dfb4;font-weight:650}
-.aurora-data td.terminal-muted{color:#93b2d7}
-.aurora-table-footer,.risk-footer{color:#7ba0ca!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
-.risk-kpis{gap:8px!important}.risk-kpi{background:#264e7c!important;border:1px solid #5176a3!important;border-radius:7px!important;padding:11px!important}
+.aurora-data td.terminal-identity{color:#f1926e;font-weight:650}
+.aurora-data td.terminal-alert{color:#f3a183;font-weight:700}
+.aurora-data td.terminal-safe{color:#df9275;font-weight:650}
+.aurora-data td.terminal-muted{color:#d7a593}
+.aurora-table-footer,.risk-footer{color:#ca907b!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
+.risk-kpis{gap:8px!important}.risk-kpi{background:#7c3d26!important;border:1px solid #a36751!important;border-radius:7px!important;padding:11px!important}
 .risk-number{font-family:'Cascadia Code',Consolas,monospace;font-size:1.35rem!important}
-.risk-composition{background:#264e7c!important;border-radius:7px!important;border-color:#234062!important}
+.risk-composition{background:#7c3d26!important;border-radius:7px!important;border-color:#623423!important}
 .risk-pill{border-radius:4px!important;padding:4px 7px!important;letter-spacing:.03em!important}
-.risk-tag{border-radius:4px!important;background:#102842!important;border-color:#276a55!important;color:#78e2b6!important}
+.risk-tag{border-radius:4px!important;background:#421e10!important;border-color:#6a3927!important;color:#e29578!important}
 .risk-wallet{font-family:'Cascadia Code',Consolas,monospace!important}
 /* Native widgets outside terminal tables retain the existing design. */
 
 /* CONCEPT 01 · CLASSIC CLEAN / all six pages. Sidebar, data and logic unchanged. */
 [data-testid="stMain"]{
- background:radial-gradient(ellipse at 90% 0%,#cfe4fc 0%,transparent 46%),
- linear-gradient(160deg,#e9f2fe 0%,#dfedfd 60%,#daeafd 100%)!important;
+ background:radial-gradient(ellipse at 90% 0%,#fae1d1 0%,transparent 46%),
+ linear-gradient(160deg,#fdf1ea 0%,#fcebe0 60%,#fbe8dc 100%)!important;
 }
 .block-container{max-width:1450px;padding-top:1.55rem}
 .page-banner{background-image:linear-gradient(110deg,rgba(255,255,255,.13),transparent 70%)!important;
- border-radius:18px!important;box-shadow:0 10px 24px #3873ba2B!important;padding:23px 28px!important}
+ border-radius:18px!important;box-shadow:0 10px 24px #ba5b382B!important;padding:23px 28px!important}
 .page-banner-title{font-size:1.83rem!important;letter-spacing:-.025em!important}
 .page-banner-sub{font-size:.96rem!important}
 [data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{
- color:#10325b!important;letter-spacing:-.03em!important;font-weight:800!important}
+ color:#5b2410!important;letter-spacing:-.03em!important;font-weight:800!important}
 [data-testid="stMain"] h2{font-size:1.55rem!important}
 [data-testid="stMain"] h3{font-size:1.25rem!important}
 [data-testid="stMetric"]{
- background:linear-gradient(155deg,#FFFFFF,#e2eefd)!important;
- border:1px solid #bbd6f7!important;border-radius:15px!important;
- box-shadow:0 7px 20px #3d71ae14!important;padding:19px 21px!important;
+ background:linear-gradient(155deg,#FFFFFF,#fcede3)!important;
+ border:1px solid #f7d2bb!important;border-radius:15px!important;
+ box-shadow:0 7px 20px #ae5c3d14!important;padding:19px 21px!important;
  min-height:112px!important}
-[data-testid="stMetricLabel"] p{color:#44658b!important;font-size:.85rem!important;font-weight:650!important}
-[data-testid="stMetricValue"] div{color:#0c396e!important;font-weight:800!important;font-size:2rem!important}
-[data-testid="stMetricDelta"]{color:#09458c!important}
+[data-testid="stMetricLabel"] p{color:#8b5744!important;font-size:.85rem!important;font-weight:650!important}
+[data-testid="stMetricValue"] div{color:#6e260c!important;font-weight:800!important;font-size:2rem!important}
+[data-testid="stMetricDelta"]{color:#882e0d!important}
 [data-testid="stMain"] [data-testid="stRadio"]>label,
 [data-testid="stMain"] [data-testid="stSelectbox"]>label,
 [data-testid="stMain"] [data-testid="stMultiSelect"]>label{
- color:#2b5280!important;font-weight:650!important}
+ color:#80422b!important;font-weight:650!important}
 [data-testid="stMain"] [data-baseweb="select"]>div,
 [data-testid="stMain"] [data-testid="stNumberInput"] input{
- background:#FFFFFF!important;border:1px solid #bed6f4!important;border-radius:10px!important}
+ background:#FFFFFF!important;border:1px solid #f4d3be!important;border-radius:10px!important}
 [data-testid="stMain"] .stButton>button:not([kind="primary"]){
- border-radius:10px!important;border-color:#a6c7ee!important;
- background:#ebf5fe!important;color:#1c5495!important}
+ border-radius:10px!important;border-color:#eec2a6!important;
+ background:#fdf3ec!important;color:#953d1c!important}
 .aurora-table-shell,.risk-shell{
- background:linear-gradient(160deg,#1d487b,#275387)!important;
- border:1px solid #6392c7!important;border-radius:17px!important;
- box-shadow:0 12px 26px #3568a42B!important}
+ background:linear-gradient(160deg,#7b361d,#874127)!important;
+ border:1px solid #c77e63!important;border-radius:17px!important;
+ box-shadow:0 12px 26px #a453352B!important}
 .aurora-table-title,.risk-title{color:#FFFFFF!important;font-size:1.17rem!important}
-.aurora-scroll,.risk-table-wrap{background:#1e4777!important;border-color:#618ec1!important}
-.aurora-data th,.risk-table th{background:#305e93!important;color:#e6f0fd!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#2b5484!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#376193!important}
-.aurora-data td,.risk-table td{border-top-color:#426793!important}
-.risk-kpi,.risk-composition{background:#2b5688!important;border-color:#5b86b6!important}
-.aurora-table-footer,.risk-footer{color:#c7ddfa!important}
+.aurora-scroll,.risk-table-wrap{background:#77361e!important;border-color:#c17b61!important}
+.aurora-data th,.risk-table th{background:#934b30!important;color:#fdefe6!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#84432b!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#935037!important}
+.aurora-data td,.risk-table td{border-top-color:#935842!important}
+.risk-kpi,.risk-composition{background:#88442b!important;border-color:#b6745b!important}
+.aurora-table-footer,.risk-footer{color:#fadbc7!important}
 @media(max-width:780px){.page-banner-title{font-size:1.5rem!important}[data-testid="stMetricValue"] div{font-size:1.5rem!important}}
 
 
 /* MICRO PATCH: section titles + filter labels ONLY (no layout/data changes). */
 [data-testid="stMain"] [data-testid="stHeadingWithActionElements"] h3 {
   display:inline-block!important;
-  background:linear-gradient(90deg,#cfe4fc,#e6f0fd)!important;
-  border-left:5px solid #1167cc!important;
-  border-bottom:1px solid #abccf2!important;
+  background:linear-gradient(90deg,#fae1d1,#fdefe6)!important;
+  border-left:5px solid #c94514!important;
+  border-bottom:1px solid #f2c7ab!important;
   border-radius:0 12px 12px 0!important;
   padding:11px 18px!important;
-  color:#093971!important;
+  color:#6f260b!important;
   font-size:1.52rem!important;
   font-weight:850!important;
-  box-shadow:0 4px 14px #3c77ba1B!important;
+  box-shadow:0 4px 14px #ba5e3c1B!important;
 }
 [data-testid="stMain"] [data-testid="stSelectbox"] > label p,
 [data-testid="stMain"] [data-testid="stMultiSelect"] > label p,
 [data-testid="stMain"] [data-testid="stRadio"] > label p {
-  color:#0c4890!important;
+  color:#8e310e!important;
   font-weight:800!important;
   font-size:.94rem!important;
   letter-spacing:.012em!important;
@@ -219,12 +220,12 @@ def dollars(x):
 # HF < 1 is the Aave liquidation eligibility threshold; sub-bands are illustrative.
 def risk_level(hf):
     if hf < 0.8:
-        return 'Critical', '#6eadf6', '#1b3c62'
+        return 'Critical', '#f19573', '#622e1b'
     if hf < 1.0:
         return 'High', '#ffbd65', '#57402b'
     if hf < 1.2:
-        return 'Watch', '#74aff6', '#163d6a'
-    return 'Healthy', '#67dfbd', '#112e51'
+        return 'Watch', '#f29978', '#6a2d16'
+    return 'Healthy', '#df8767', '#512211'
 
 
 def compact_money(value):
@@ -245,7 +246,7 @@ def _sync_table_page(page_key, selector_key):
     st.session_state[page_key] = int(st.session_state[selector_key])
 
 
-def render_aurora_table(df, title, key, accent='#0d63c9', subtitle='', formats=None):
+def render_aurora_table(df, title, key, accent='#c34313', subtitle='', formats=None):
     """Reusable styled table for all non-wallet datasets, preserving full data for export."""
     df = df.copy().reset_index(drop=True)
     formats = formats or {}
@@ -394,23 +395,23 @@ def render_risk_explorer(data, key='borrower', hf_col='health_factor', title='Bo
     pct = lambda n: 100*n/total if total else 0
     composition = ''.join(
         f'<div style="width:{pct(n):.4f}%;background:{color}"></div>'
-        for n, color in [(critical, '#569ff4'), (high, '#f5b451'), (watch, '#63a6f5'), (healthy, '#1663c0')]
+        for n, color in [(critical, '#ef835b'), (high, '#f5b451'), (watch, '#f08d68'), (healthy, '#c04416')]
     )
-    accent = '#277de3' if key == 'borrower' else '#C47A14'
+    accent = '#e35a27' if key == 'borrower' else '#C47A14'
     html = f'''<div class="risk-shell" style="border-top:4px solid {accent}">
       <div class="risk-head"><div><div class="risk-title">▮ {escape(title)}</div>
       <div class="risk-kicker">BORROWER ANALYTICS / AAVE V3</div></div><span class="risk-tag">● RESEARCH DATA</span></div>
       <div class="risk-kpis">
-        <div class="risk-kpi"><div class="risk-number" style="color:#68a8f5">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
-        <div class="risk-kpi"><div class="risk-number" style="color:#82b8f7">{at_risk:,}</div><div class="risk-label">HF BELOW 1</div></div>
+        <div class="risk-kpi"><div class="risk-number" style="color:#f1906c">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
+        <div class="risk-kpi"><div class="risk-number" style="color:#f3a386">{at_risk:,}</div><div class="risk-label">HF BELOW 1</div></div>
         <div class="risk-kpi"><div class="risk-number" style="color:#ffc37a">{compact_money(debt_at_risk)}</div><div class="risk-label">DEBT WITH HF < 1</div></div>
       </div>
       <div class="risk-composition"><div class="risk-comp-title">Portfolio risk composition · Current filter</div>
         <div class="risk-track">{composition}</div>
-        <div class="risk-legend"><span style="color:#81b7f7">● Critical {pct(critical):.0f}%</span>
+        <div class="risk-legend"><span style="color:#f3a385">● Critical {pct(critical):.0f}%</span>
         <span style="color:#ffc37a">● High {pct(high):.0f}%</span>
-        <span style="color:#83b9f7">● Watch {pct(watch):.0f}%</span>
-        <span style="color:#569cee">● Healthy {pct(healthy):.0f}%</span></div></div>
+        <span style="color:#f3a487">● Watch {pct(watch):.0f}%</span>
+        <span style="color:#ee7f56">● Healthy {pct(healthy):.0f}%</span></div></div>
       <div class="risk-table-wrap"><table class="risk-table"><thead><tr>
         <th>Wallet</th><th>Debt</th><th>Collateral</th><th>Health factor</th><th>E-Mode</th><th>Strategy</th><th>Risk</th>
       </tr></thead><tbody>'''
@@ -516,7 +517,7 @@ elif page.startswith(('04','05')):
     page=PAGES[4] if section=='Thực thi cascade' else PAGES[3]
 
 
-PAGE_COLORS = ['#0d63c9','#094285','#277de3','#C47A14','#1a73dc','#3d618c']
+PAGE_COLORS = ['#c34313','#812c0d','#e35a27','#C47A14','#dc4e1a','#8c523d']
 PAGE_SUBTITLES = [
     'The Observatory / ecosystem & borrower exposure',
     'The Crisis Time Machine / observed market replay',
@@ -528,49 +529,49 @@ PAGE_SUBTITLES = [
 # Pastel rose/lilac preview theme.
 st.markdown("""<style>
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
- background:linear-gradient(135deg,#eaf4fe 0%,#e2eefd 48%,#dbeafd 100%)!important;
+ background:linear-gradient(135deg,#fdf2eb 0%,#fcede3 48%,#fce9dc 100%)!important;
 }
-[data-testid="stHeader"]{background:rgba(238,246,255,.94)!important}
-[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#254163!important}
-[data-testid="stMain"] p,[data-testid="stMain"] label{color:#395372}
-[data-testid="stMetric"]{background:linear-gradient(145deg,#fdfeff,#dfedfd)!important;border-color:#c2d6ef!important;box-shadow:0 6px 20px #376ba70D!important}
-[data-testid="stMetricValue"] div{color:#234b7a!important}
-[data-testid="stMetricLabel"] p{color:#415f82!important}
-[data-testid="stExpander"]{background:#f9fcff88;border-radius:12px}
-[data-testid="stMultiSelect"]{border-left-color:#5f93ce!important}
-[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#fafcff,#d4e6fc)!important;border-color:#accaed!important}
-[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#dbeafd,#d1e5fc 65%,#c5defb)!important;border-color:#a8c9ef!important}
-[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#6eadf670,#b7d7fa20)!important;border-color:#86b7ef!important}
-[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#fafcffEB!important;border-color:#b6cfec!important}
+[data-testid="stHeader"]{background:rgba(250,245,237,.94)!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#633625!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label{color:#724839}
+[data-testid="stMetric"]{background:linear-gradient(145deg,#fffefd,#fcebe0)!important;border-color:#efd4c2!important;box-shadow:0 6px 20px #a755370D!important}
+[data-testid="stMetricValue"] div{color:#7a3a23!important}
+[data-testid="stMetricLabel"] p{color:#825341!important}
+[data-testid="stExpander"]{background:#fefbfa88;border-radius:12px}
+[data-testid="stMultiSelect"]{border-left-color:#ce7d5f!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#fffcfa,#fbe4d5)!important;border-color:#edc5ac!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#fce9dc,#fbe2d2 65%,#f9dac7)!important;border-color:#efc4a8!important}
+[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#f1957370,#f8d2b920)!important;border-color:#efa286!important}
+[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#fffcfaEB!important;border-color:#eccbb6!important}
 [data-testid="stMain"] .signal-panel{border-left-color:var(--signal)!important}
 [data-testid="stMain"] .explore-card{border-top-color:var(--accent)!important}
-[data-testid="stMain"] .front-copy,[data-testid="stMain"] .terminal-hero p{color:#415f82!important}
-[data-testid="stMain"] .front-tags span{color:#3b618d!important;background:#FFFFFFA0!important}
-[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#b6cfed!important}
+[data-testid="stMain"] .front-copy,[data-testid="stMain"] .terminal-hero p{color:#825341!important}
+[data-testid="stMain"] .front-tags span{color:#8d513b!important;background:#FFFFFFA0!important}
+[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#edcbb6!important}
 </style>""",unsafe_allow_html=True)
 
 page_index = PAGES.index(page)
 st.markdown("""<style>
-.terminal-nav-group{color:#7ea0c8;font-size:10px;font-weight:700;letter-spacing:1.6px;margin:20px 0 8px}
-.terminal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#f8fbff,#d1e5fc);border:1px solid #a3c5ee;border-top:3px solid #2e72c0;border-radius:6px 6px 18px 18px;padding:26px 28px;margin-bottom:18px;box-shadow:0 10px 28px #285a9412}
-.terminal-eyebrow{font:700 11px monospace;letter-spacing:2px;color:#44658b;margin-bottom:10px}
-.terminal-hero h1{margin:0!important;font-size:29px!important;color:#0d325d!important}
-.terminal-hero p{margin:8px 0 0;color:#416187;font-size:14px}
-.terminal-mode{font:700 11px monospace;letter-spacing:1px;border:1px solid #9dbce0;padding:9px 12px;border-radius:6px;color:#285488;white-space:nowrap;background:#ffffff90}
-.signal-panel{border:1px solid #b0ccec;border-left:4px solid var(--signal);background:#f9fcff;border-radius:10px;display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 21px;margin:12px 0 20px;box-shadow:0 6px 20px #1d4c8208}
-.signal-kicker{font:700 10px monospace;letter-spacing:1.5px;color:#47668b;margin-bottom:6px}
-.signal-title{font-weight:750;font-size:18px;color:#143965}.signal-value{font:700 28px monospace;color:var(--signal);align-self:center}
-.signal-detail{font-size:12px;color:#48678b;line-height:1.6;margin-top:6px}
-.terminal-legend{font-size:11px;color:#426186;display:flex;gap:18px;flex-wrap:wrap;margin:-5px 0 20px}
+.terminal-nav-group{color:#c8927e;font-size:10px;font-weight:700;letter-spacing:1.6px;margin:20px 0 8px}
+.terminal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#fefbf9,#fbe2d2);border:1px solid #eec0a3;border-top:3px solid #c0552e;border-radius:6px 6px 18px 18px;padding:26px 28px;margin-bottom:18px;box-shadow:0 10px 28px #94452812}
+.terminal-eyebrow{font:700 11px monospace;letter-spacing:2px;color:#8b5744;margin-bottom:10px}
+.terminal-hero h1{margin:0!important;font-size:29px!important;color:#5d230d!important}
+.terminal-hero p{margin:8px 0 0;color:#875441;font-size:14px}
+.terminal-mode{font:700 11px monospace;letter-spacing:1px;border:1px solid #e0af9d;padding:9px 12px;border-radius:6px;color:#884228;white-space:nowrap;background:#ffffff90}
+.signal-panel{border:1px solid #ecc7b0;border-left:4px solid var(--signal);background:#fefbfa;border-radius:10px;display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 21px;margin:12px 0 20px;box-shadow:0 6px 20px #82381d08}
+.signal-kicker{font:700 10px monospace;letter-spacing:1.5px;color:#8b5947;margin-bottom:6px}
+.signal-title{font-weight:750;font-size:18px;color:#652a14}.signal-value{font:700 28px monospace;color:var(--signal);align-self:center}
+.signal-detail{font-size:12px;color:#8b5a48;line-height:1.6;margin-top:6px}
+.terminal-legend{font-size:11px;color:#865442;display:flex;gap:18px;flex-wrap:wrap;margin:-5px 0 20px}
 .terminal-dot{width:7px;height:7px;display:inline-block;border-radius:50%;margin-right:5px;box-shadow:0 0 7px currentColor}
-[data-testid="stPlotlyChart"]{border:1px solid #bad6f7;border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
-[data-testid="stMultiSelect"]{border-left:2px solid #4591ea;padding-left:9px}
+[data-testid="stPlotlyChart"]{border:1px solid #f7d2ba;border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
+[data-testid="stMultiSelect"]{border-left:2px solid #ea7245;padding-left:9px}
 @media(max-width:650px){.terminal-hero{padding:20px;align-items:flex-start;flex-direction:column}.signal-panel{grid-template-columns:1fr}.terminal-hero h1{font-size:24px!important}}
 </style>""", unsafe_allow_html=True)
 mode = 'SIMULATION / PRECOMPUTED' if page_index in (3, 4) else 'OBSERVED / SNAPSHOTS' if page_index in (1, 2) else 'RESEARCH / CONTEXT'
-hero_accent = '#4690e7' if page_index in (3, 4) else '#2e72c0'
+hero_accent = '#e77146' if page_index in (3, 4) else '#c0552e'
 st.markdown(f'<div class="terminal-hero" style="border-top-color:{hero_accent}"><div><div class="terminal-eyebrow">DEFIRISK LAB / ETHEREUM LENDING</div><h1>{escape(page.split(" · ",1)[-1])}</h1><p>{escape(PAGE_SUBTITLES[page_index])}</p></div><div class="terminal-mode" style="color:{hero_accent}">{mode}</div></div>', unsafe_allow_html=True)
-st.markdown('<div class="terminal-legend"><span><i class="terminal-dot" style="color:#218b88;background:#218b88"></i>Ổn định tương đối</span><span><i class="terminal-dot" style="color:#aa751b;background:#aa751b"></i>Cần theo dõi</span><span><i class="terminal-dot" style="color:#c34963;background:#c34963"></i>Vị thế có nguy cơ</span><span><i class="terminal-dot" style="color:#3581d9;background:#3581d9"></i>Kết quả mô phỏng</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="terminal-legend"><span><i class="terminal-dot" style="color:#8b3e21;background:#8b3e21"></i>Ổn định tương đối</span><span><i class="terminal-dot" style="color:#aa751b;background:#aa751b"></i>Cần theo dõi</span><span><i class="terminal-dot" style="color:#C62828;background:#C62828"></i>Vị thế có nguy cơ</span><span><i class="terminal-dot" style="color:#d96135;background:#d96135"></i>Kết quả mô phỏng</span></div>', unsafe_allow_html=True)
 
 # All research tables are read locally. No synthetic fallback.
 ROOT = Path(__file__).resolve().parent
@@ -614,7 +615,7 @@ def numeric(df, names):
 def show_table(df, filename):
     """Shared terminal renderer for Stress / Cascade, preserving raw export and filters."""
     key = 'terminal_' + ''.join(ch if ch.isalnum() else '_' for ch in filename)
-    accent = '#C47A14' if 'stress' in filename else '#1a73dc' if 'cascade' in filename else '#0d63c9'
+    accent = '#C47A14' if 'stress' in filename else '#dc4e1a' if 'cascade' in filename else '#c34313'
     render_aurora_table(df, filename.replace('_', ' ').removesuffix('.csv').title(),
                         key, accent=accent, subtitle='')
 
@@ -628,27 +629,27 @@ def kpi_sum(df, candidates, title, money=False):
 
 
 # Bloomberg × Aurora chart system. Presentation only; all values come from loaded data.
-def quant_style(fig, height=390, accent='#4e9af4'):
+def quant_style(fig, height=390, accent='#ee7e54'):
     fig.update_layout(
-        colorway=['#1773cd', '#3ba3ed', '#115292', '#61cbe4', '#D49A42', '#C65B72'],
-        template='plotly_white', paper_bgcolor='#f9fcff', plot_bgcolor='#f9fcff',
-        font=dict(family='Arial, sans-serif', color='#3c5c81', size=12),
+        colorway=CHART_COLORS,
+        template='plotly_white', paper_bgcolor='#FFFCF7', plot_bgcolor='#FFFCF7',
+        font=dict(family='Arial, sans-serif', color='#814f3c', size=14),
         height=height, margin=dict(l=42,r=40,t=38,b=48),
-        hoverlabel=dict(bgcolor='#1b4679',font_color='#FFFFFF',font_size=12),
-        legend=dict(orientation='h',y=1.13,x=0,font=dict(size=11)),
-        xaxis=dict(gridcolor='#cfe0f4',zeroline=False,showline=False),
-        yaxis=dict(gridcolor='#cfe0f4',zeroline=False,showline=False),
+        hoverlabel=dict(bgcolor='#79341b',font_color='#FFFFFF',font_size=12),
+        legend=dict(orientation='h',y=1.13,x=0,font=dict(size=13)),
+        xaxis=dict(gridcolor='#f4ddcf',zeroline=False,showline=False),
+        yaxis=dict(gridcolor='#f4ddcf',zeroline=False,showline=False),
     )
     return fig
 
-def quant_chart(fig, title, accent='#4e9af4', height=390):
+def quant_chart(fig, title, accent='#ee7e54', height=390):
     st.markdown(
-        f'<div style="background:linear-gradient(120deg,#fdfeff,#d7e8fc);border:1px solid #b6cfed;'
+        f'<div style="background:linear-gradient(120deg,#fffefd,#fbe6d8);border:1px solid #edcbb6;'
         f'border-left:4px solid {accent};border-radius:15px 15px 0 0;'
-        f'padding:16px 20px 10px;color:#10396a;font-weight:800;font-size:1.08rem">'
+        f'padding:16px 20px 10px;color:#6a2810;font-weight:850;font-size:1.2rem">'
         f'{escape(title)}</div>',unsafe_allow_html=True)
     quant_style(fig,height,accent)
-    st.plotly_chart(fig,use_container_width=True,config={'displaylogo':False})
+    themed_plot(fig,use_container_width=True,config={'displaylogo':False})
 
 def quant_stress(df, title='Stress · Debt at risk ranking', max_bars=19):
     if not {'scenario_id','debt_at_risk_usd'}.issubset(df.columns) or df.empty: return
@@ -663,7 +664,7 @@ def quant_stress(df, title='Stress · Debt at risk ranking', max_bars=19):
     x=x.nlargest(max_bars,'debt_at_risk_usd').sort_values('debt_at_risk_usd')
     vals=x['debt_at_risk_usd'].to_numpy()
     q1,q2=np.quantile(vals,[.5,.8])
-    colors=['#FF7890' if v>=q2 else '#F4B65F' if v>=q1 else '#4d99f4' for v in vals]
+    colors=['#C62828' if v>=q2 else '#F4B65F' if v>=q1 else '#ee7d53' for v in vals]
     fig=go.Figure(go.Bar(x=vals,y=x['scenario_id'].astype(str),orientation='h',
         marker=dict(color=colors,line=dict(width=0)),
         customdata=np.array(x['scenario_id'].astype(str))[:,None],
@@ -681,17 +682,17 @@ def quant_historical(df,time_col,value_col,count_col,selected):
     if value_col:
         x[value_col]=pd.to_numeric(x[value_col],errors='coerce')
         fig=go.Figure(go.Scatter(x=x[time_col],y=x[value_col],mode='lines+markers',
-            line=dict(color='#1376eb',width=3),marker=dict(size=7,color='#6fadf6'),
+            line=dict(color='#e74f17',width=3),marker=dict(size=7,color='#f19674'),
             fill='tozeroy',fillcolor='rgba(55,217,194,.10)',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_yaxes(title='Debt repaid (USD)',tickformat='~s')
-        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#1376eb',380)
+        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#e74f17',380)
     if count_col:
         x[count_col]=pd.to_numeric(x[count_col],errors='coerce')
-        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#4e9af4',
+        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#ee7e54',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Events: %{y:,.0f}<extra></extra>'))
         fig.update_yaxes(title='Liquidation events',rangemode='tozero')
-        quant_chart(fig,'Historical · Liquidation events','#4e9af4',320)
+        quant_chart(fig,'Historical · Liquidation events','#ee7e54',320)
 
 def quant_cascade(df):
     x=df.copy().sort_values('round')
@@ -701,50 +702,50 @@ def quant_cascade(df):
     if 'executed_liquidations' in x:
         vals=pd.to_numeric(x['executed_liquidations'],errors='coerce')
         fig=go.Figure(go.Bar(x=x['round'],y=vals,
-            marker=dict(color=['#F5A84C' if v>0 else '#436186' for v in vals]),
+            marker=dict(color=['#FFB800' if v>0 else '#865543' for v in vals]),
             hovertemplate='Round %{x}<br>Liquidations: %{y:,.0f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Executed liquidations',rangemode='tozero')
-        quant_chart(fig,'Cascade · Liquidations per round','#F5A84C',360)
+        quant_chart(fig,'Cascade · Liquidations per round','#FFB800',360)
     if 'repaid_debt_usd' in x:
         vals=pd.to_numeric(x['repaid_debt_usd'],errors='coerce')
         fig=go.Figure(go.Scatter(x=x['round'],y=vals,mode='lines+markers',
-            line=dict(color='#90c0f8',width=3),marker=dict(size=8,color='#b7d6fa'),
-            fill='tozeroy',fillcolor='rgba(72,145,218,.12)',
+            line=dict(color='#f4ae94',width=3),marker=dict(size=8,color='#f8d2b9'),
+            fill='tozeroy',fillcolor='rgba(225,115,45,.12)',
             hovertemplate='Round %{x}<br>Debt repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Repaid debt (USD)',tickformat='~s')
-        quant_chart(fig,'Cascade · Debt repaid by round','#1a73dc',360)
+        quant_chart(fig,'Cascade · Debt repaid by round','#dc4e1a',360)
 
 def quant_hf(df,hf):
     values=pd.to_numeric(df[hf],errors='coerce').dropna()
     if values.empty:return
-    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#72aef6',
+    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#f29877',
         hovertemplate='Health Factor: %{x:.2f}<br>Positions: %{y}<extra></extra>'))
-    fig.add_vline(x=1,line=dict(color='#FF7890',width=2,dash='dash'))
+    fig.add_vline(x=1,line=dict(color='#C62828',width=2,dash='dash'))
     fig.update_xaxes(title='Health Factor')
     fig.update_yaxes(title='Borrower positions')
-    quant_chart(fig,'Borrower · Health Factor distribution','#72aef6',360)
+    quant_chart(fig,'Borrower · Health Factor distribution','#f29877',360)
 
 SNAPSHOT_NAMES = {26179841: 'A · Calibration', 20458637: 'B1 · Aug 2024', 23543615: 'B2 · Oct 2025'}
 
 
 def overview_launchpad():
     st.markdown("""<style>
-.research-front{position:relative;overflow:hidden;background:linear-gradient(135deg,#d6e8fc,#c7ddfa 65%,#daeafd);border:1px solid #b2d0f2;border-radius:26px;padding:32px 34px;margin:10px 0 22px;min-height:215px}
-.research-front:after{content:'';position:absolute;right:-25px;bottom:-235px;width:440px;height:440px;border-radius:50%;background:linear-gradient(170deg,#58a0f470,#cee3fc10);border:1px solid #73aaeb;pointer-events:none}
+.research-front{position:relative;overflow:hidden;background:linear-gradient(135deg,#fbe5d7,#fadbc7 65%,#fbe8dc);border:1px solid #f2cbb2;border-radius:26px;padding:32px 34px;margin:10px 0 22px;min-height:215px}
+.research-front:after{content:'';position:absolute;right:-25px;bottom:-235px;width:440px;height:440px;border-radius:50%;background:linear-gradient(170deg,#ef845d70,#fae0d010);border:1px solid #eb9373;pointer-events:none}
 .research-front h2{font-size:36px!important;letter-spacing:-1.2px!important;max-width:650px;position:relative;z-index:1;margin:12px 0!important}
-.front-copy{max-width:590px;font-size:14px;color:#436184;line-height:1.7;position:relative;z-index:1}
-.front-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}.front-tags span{background:#ffffffa0;border:1px solid #ffffff;padding:6px 12px;border-radius:30px;font-size:11px;color:#325b8b}
-.explore-card{border:1px solid #bed7f4;border-radius:18px;padding:21px;background:#ffffffa0;min-height:145px;border-top:3px solid var(--accent);margin-bottom:7px}
-.explore-card small{font:11px monospace;color:#59779b}.explore-card h3{margin:12px 0 8px!important;font-size:23px!important}.explore-card p{font-size:13px;color:#506d90;line-height:1.6;margin-bottom:0}
-.transmission{border:1px solid #c4d7ee;background:#f9fcffb0;border-radius:20px;padding:22px 26px;margin:22px 0}.transmission-label{font:11px monospace;letter-spacing:1.5px;color:#4f7097}.transmission-flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}.transmission-node{text-align:center;font-size:13px;font-weight:650;color:#2a4c75}.transmission-node b{display:block;font-size:24px;color:var(--accent);margin-bottom:9px}.transmission-arrow{color:#8aa6c7}.transmission-note{font-size:11px;color:#5e7794}
+.front-copy{max-width:590px;font-size:14px;color:#845543;line-height:1.7;position:relative;z-index:1}
+.front-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}.front-tags span{background:#ffffffa0;border:1px solid #ffffff;padding:6px 12px;border-radius:30px;font-size:11px;color:#8b4a32}
+.explore-card{border:1px solid #f4d3be;border-radius:18px;padding:21px;background:#ffffffa0;min-height:145px;border-top:3px solid var(--accent);margin-bottom:7px}
+.explore-card small{font:11px monospace;color:#9b6b59}.explore-card h3{margin:12px 0 8px!important;font-size:23px!important}.explore-card p{font-size:13px;color:#906150;line-height:1.6;margin-bottom:0}
+.transmission{border:1px solid #eed4c4;background:#fefbfab0;border-radius:20px;padding:22px 26px;margin:22px 0}.transmission-label{font:11px monospace;letter-spacing:1.5px;color:#97624f}.transmission-flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}.transmission-node{text-align:center;font-size:13px;font-weight:650;color:#753e2a}.transmission-node b{display:block;font-size:24px;color:var(--accent);margin-bottom:9px}.transmission-arrow{color:#c79a8a}.transmission-note{font-size:11px;color:#946d5e}
 @media(max-width:650px){.research-front{padding:24px}.research-front h2{font-size:28px!important}.transmission-flow{flex-wrap:wrap}.transmission-node{font-size:11px}.research-front:after{opacity:.3}}
 </style>
 <div class="research-front"><div class="terminal-eyebrow">DEFIRISK LAB / RESEARCH TERMINAL</div><h2>Explore the risk<br>behind DeFi.</h2><div class="front-copy">Từ vị thế người vay đến cú sốc thị trường và thực thi thanh lý. Khám phá bằng chứng theo snapshot, đối chiếu các kịch bản và lần theo cơ chế truyền rủi ro.</div><div class="front-tags"><span>Aave V3</span><span>Compound III · nghiên cứu</span><span>Historical snapshots</span><span>Precomputed scenarios</span></div></div>
 """, unsafe_allow_html=True)
-    cards = [('01 / EXPOSURE', 'Wallet risk', 'Khám phá Health Factor, dư nợ và mức tập trung của mẫu vị thế.', '#279b9c', 2),
-             ('02 / MARKET SHOCK', 'Stress impact', 'Chọn cú sốc có sẵn, so sánh mức phơi nhiễm giữa A / B1 / B2.', '#4591e9', 3),
+    cards = [('01 / EXPOSURE', 'Wallet risk', 'Khám phá Health Factor, dư nợ và mức tập trung của mẫu vị thế.', '#9c4727', 2),
+             ('02 / MARKET SHOCK', 'Stress impact', 'Chọn cú sốc có sẵn, so sánh mức phơi nhiễm giữa A / B1 / B2.', '#e97145', 3),
              ('03 / EXECUTION', 'Cascade', 'Theo dõi thanh lý theo vòng và so sánh cấu hình thực thi.', '#d17e59', 4)]
     for col, (tag, title, text, color, target) in zip(st.columns(3), cards):
         with col:
@@ -753,7 +754,7 @@ def overview_launchpad():
                 st.session_state['_requested_target']=target
                 st.session_state.selected_page = PAGES[target]
                 st.rerun()
-    st.markdown("""<div class="transmission"><div class="transmission-label">RISK TRANSMISSION / CONCEPTUAL FRAMEWORK</div><div class="transmission-flow"><div class="transmission-node" style="--accent:#279b9c"><b>◈</b>Borrowers</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#c39744"><b>≋</b>Liquidations</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#ce6178"><b>▥</b>DEX impact</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#4a8ddc"><b>⌘</b>Contagion</div></div><div class="transmission-note">Sơ đồ cơ chế nghiên cứu, không phải kết quả chứng minh lây lan thực tế. Xem Methodology để đọc giả định và giới hạn.</div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="transmission"><div class="transmission-label">RISK TRANSMISSION / CONCEPTUAL FRAMEWORK</div><div class="transmission-flow"><div class="transmission-node" style="--accent:#9c4727"><b>◈</b>Borrowers</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#c39744"><b>≋</b>Liquidations</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#C62828"><b>▥</b>DEX impact</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#dc714a"><b>⌘</b>Contagion</div></div><div class="transmission-note">Sơ đồ cơ chế nghiên cứu, không phải kết quả chứng minh lây lan thực tế. Xem Methodology để đọc giả định và giới hạn.</div></div>""", unsafe_allow_html=True)
 
 
 def scenario_explorer(stress):
@@ -805,10 +806,10 @@ def scenario_explorer(stress):
 
 
 def terminal_signal(title, value, detail, tone='neutral', simulation=False):
-    colors = {'stable':'#218b88', 'watch':'#aa751b', 'risk':'#c34963', 'neutral':'#416b9d'}
+    colors = {'stable':'#8b3e21', 'watch':'#8D5C00', 'risk':'#C62828', 'neutral':'#9d5a41'}
     color = colors.get(tone, colors['neutral'])
     kind = 'SIMULATED / ' if simulation else 'OBSERVED / '
-    st.markdown(f'<div class="signal-panel" style="--signal:{color}"><div><div class="signal-kicker" style="color:{"#3581d9" if simulation else "#47668b"}">{kind}SELECTION INTELLIGENCE</div><div class="signal-title">{escape(title)}</div><div class="signal-detail">{escape(detail)}</div></div><div class="signal-value">{escape(str(value))}</div></div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="signal-panel" style="--signal:{color}"><div><div class="signal-kicker" style="color:{"#d96135" if simulation else "#8b5947"}">{kind}SELECTION INTELLIGENCE</div><div class="signal-title">{escape(title)}</div><div class="signal-detail">{escape(detail)}</div></div><div class="signal-value">{escape(str(value))}</div></div>', unsafe_allow_html=True)
 
 
 def stress_signal(frame):
@@ -877,7 +878,7 @@ def snapshot_comparison(frame):
     x['Snapshot'] = x.snapshot_block.map(SNAPSHOT_NAMES).fillna(x.snapshot_block.astype(str))
     # Keep each scenario and snapshot distinct; do not sum alternative scenarios.
     fig = px.bar(x, x='scenario_id', y='debt_at_risk_usd', color='Snapshot',
-                 barmode='group', color_discrete_sequence=['#1c71d5', '#3a89e8', '#E59A3D'],
+                 barmode='group', color_discrete_sequence=['#d54e1c', '#e8693a', '#E59A3D'],
                  labels={'scenario_id': 'Scenario', 'debt_at_risk_usd': 'Debt at risk (USD)'})
     fig.update_xaxes(tickangle=-40)
     quant_chart(fig, 'Cùng cú sốc · khác thời điểm', height=450)
@@ -926,9 +927,9 @@ def borrower_map(frame, sampled=False):
     fig = px.scatter(x, x=hf, y=debt, color='Risk zone', hover_data=hover_fields,
                      size=collateral if collateral and x[collateral].max() > 0 else None,
                      size_max=38, log_y=True, hover_name=wallet,
-                     color_discrete_map={'HF < 1': '#E76A83', '1 ≤ HF < 1.1': '#D99430', 'HF ≥ 1.1': '#0da5b7'},
+                     color_discrete_map={'HF < 1': '#C62828', '1 ≤ HF < 1.1': '#D99430', 'HF ≥ 1.1': '#b23d12'},
                      labels={hf: 'Health Factor', debt: 'Debt (USD · log scale)'})
-    fig.add_vline(x=1, line_dash='dash', line_color='#E76A83', annotation_text='HF = 1')
+    fig.add_vline(x=1, line_dash='dash', line_color='#C62828', annotation_text='HF = 1')
     quant_chart(fig, 'Bản đồ vị thế · mức an toàn và quy mô dư nợ', height=430)
     st.caption(('Mẫu top-wallet N3, không phải toàn bộ người vay. ' if sampled else '') +
                'Mỗi điểm là một bản ghi vị thế; kích thước theo collateral nếu có. Trục dư nợ dùng thang log; HF ≥ 1 không có nghĩa không còn rủi ro.')
@@ -944,7 +945,7 @@ def stress_heatmap(frame):
     x = frame.pivot(index='scenario_id', columns='snapshot_block', values='debt_at_risk_pct')
     x = x.rename(columns=SNAPSHOT_NAMES)
     fig = go.Figure(go.Heatmap(z=x.to_numpy(), x=x.columns.tolist(), y=x.index.tolist(),
-        colorscale=[[0, '#e1eefd'], [.45, '#4685d0'], [1, '#2882ed']],
+        colorscale=[[0, '#fcece2'], [.45, '#d06b46'], [1, '#ea5f2b']],
         colorbar=dict(title='Debt at risk %'),
         hovertemplate='Snapshot: %{x}<br>Scenario: %{y}<br>Debt at risk: %{z:.2f}%<extra></extra>'))
     quant_chart(fig, 'Stress landscape · tỷ lệ dư nợ có nguy cơ', height=max(360, 26*len(x)+100))
@@ -959,7 +960,7 @@ def market_timeline(frame):
     x['hour_utc'] = pd.to_datetime(x.hour_utc, utc=True, errors='coerce')
     x = x.dropna(subset=['hour_utc']).sort_values('hour_utc')
     fig = make_subplots(specs=[[{'secondary_y': True}]])
-    fig.add_trace(go.Bar(x=x.hour_utc, y=x.debt_repaid_usd, name='Liquidation debt repaid', marker_color='#337dd5'), secondary_y=False)
+    fig.add_trace(go.Bar(x=x.hour_utc, y=x.debt_repaid_usd, name='Liquidation debt repaid', marker_color='#d55f33'), secondary_y=False)
     fig.add_trace(go.Scatter(x=x.hour_utc, y=x.eth_usd_price, name='ETH price', line=dict(color='#DA9543', width=2)), secondary_y=True)
     fig.update_yaxes(title_text='Debt repaid (USD)', secondary_y=False)
     fig.update_yaxes(title_text='ETH price (USD)', secondary_y=True, showgrid=False)
@@ -997,7 +998,7 @@ def split_reality(frame):
                     st.metric('Debt repaid quan sát (USD)',f'${total:,.0f}' if pd.notna(total) else 'Chưa có giá USD')
                     st.caption(f'{len(observed):,} sự kiện trong tập nguồn; giá USD có thể thiếu.')
                     agg=observed.groupby('hour').debt_repaid_usd.sum(min_count=1).reset_index()
-                    fig=px.bar(agg,x='hour',y='debt_repaid_usd',labels={'hour':'UTC','debt_repaid_usd':'Observed repaid USD'},color_discrete_sequence=['#289b9c'])
+                    fig=px.bar(agg,x='hour',y='debt_repaid_usd',labels={'hour':'UTC','debt_repaid_usd':'Observed repaid USD'},color_discrete_sequence=['#9c4728'])
                     quant_chart(fig,'Observed liquidation events',height=320)
                 st.caption('Nguồn: '+str(path.relative_to(ROOT)))
             else:
@@ -1024,45 +1025,190 @@ def method_comparison(summary, selected_row):
         st.caption('Chưa có nhiều method với cùng toàn bộ điều kiện để so sánh trực tiếp.')
         return
     fig = px.bar(view, x='method', y='simulated_repaid_usd', color='method',
-                 color_discrete_sequence=['#1c71d5', '#3a89e8', '#E59A3D'],
+                 color_discrete_sequence=['#d54e1c', '#e8693a', '#E59A3D'],
                  labels={'method': 'Method', 'simulated_repaid_usd': 'Simulated repaid debt (USD)'})
     quant_chart(fig, 'Cùng điều kiện · so sánh phương pháp thực thi', height=330)
     st.caption('Giữ nguyên snapshot, scenario, variant, seed, phí, gas và các điều kiện đã chọn. Không diễn giải chênh lệch method thành bằng chứng causal feedback.')
 
 
 st.markdown("""<style>
-[data-testid="stSidebar"], [data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(155deg,#102236,#183251 55%,#182c45)!important;border-right-color:#315988!important}
-[data-testid="stSidebar"] .st-key-brand_fixed{background:linear-gradient(150deg,#11263d,#1c3656)!important;border-bottom-color:#3a5e89!important}
-[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#315f94,#396496)!important;border-color:#6c97c755!important}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#2d72c1,#2c77ce)!important;outline-color:#90bff7!important;box-shadow:0 0 0 4px #6197d729,0 8px 22px #081b3022!important}
-[data-testid="stSidebar"] .st-key-space_nav_1 button{background:linear-gradient(110deg,#336cae,#4a7db7)!important}
-[data-testid="stSidebar"] .st-key-space_nav_2 button{background:linear-gradient(110deg,#37669e,#386daa)!important}
-[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#a4c6ed!important}
-[data-testid="stSidebar"] .status-panel{background:#274263!important;border-color:#43658f!important}
-[data-testid="stSidebar"] .status-desc{color:#b9cfea!important}
-.brand-logo{filter:drop-shadow(0 0 18px #80b2ec55)!important}
-[data-testid="stMain"] .stButton>button{background:#d6e5f6!important;color:#2c5789!important;border-color:#9ebee3!important}
-[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:linear-gradient(155deg,#27476c,#335680)!important;border-color:#6890be!important}
-[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#3d638f!important;color:#ebf3fe!important}
-[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#35567c!important}
-[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#3e6189!important}
-[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{border-top-color:#5175a0!important}
-[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#476e9b!important}
-[data-testid="stMain"] .aurora-data td.terminal-identity{color:#a3cbf9!important}
+[data-testid="stSidebar"], [data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(155deg,#361a10,#512718 55%,#452418)!important;border-right-color:#884831!important}
+[data-testid="stSidebar"] .st-key-brand_fixed{background:linear-gradient(150deg,#3d1d11,#562c1c)!important;border-bottom-color:#894f3a!important}
+[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#944c31,#965239)!important;border-color:#c7856c55!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#c1552d,#ce582c)!important;outline-color:#f4ad93!important;box-shadow:0 0 0 4px #d7816129,0 8px 22px #30130822!important}
+[data-testid="stSidebar"] .st-key-space_nav_1 button{background:linear-gradient(110deg,#ae5433,#b7674a)!important}
+[data-testid="stSidebar"] .st-key-space_nav_2 button{background:linear-gradient(110deg,#9e5337,#aa5738)!important}
+[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#edc0a4!important}
+[data-testid="stSidebar"] .status-panel{background:#633727!important;border-color:#8f5843!important}
+[data-testid="stSidebar"] .status-desc{color:#eaccb9!important}
+.brand-logo{filter:drop-shadow(0 0 18px #ec9d8055)!important}
+[data-testid="stMain"] .stButton>button{background:#f6e2d6!important;color:#89452c!important;border-color:#e3b19e!important}
+[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:linear-gradient(155deg,#6c3a27,#804833)!important;border-color:#be7f68!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#8f533d!important;color:#fdf3ec!important}
+[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#7c4835!important}
+[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#89523e!important}
+[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{border-top-color:#a06651!important}
+[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#9b5e47!important}
+[data-testid="stMain"] .aurora-data td.terminal-identity{color:#f6c5a6!important}
 </style>""",unsafe_allow_html=True)
 
 st.markdown("""<style>
-[data-testid="stMain"]{background:linear-gradient(130deg,#E4F0FF 0%,#D7E9FF 52%,#C9E0FC 100%)!important}
-[data-testid="stHeader"]{background:rgba(222,237,255,.96)!important}
-[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#F3F8FF,#C4DCFC)!important;border-color:#86B2E8!important;border-top-color:#2678D0!important;box-shadow:0 9px 24px #1E5DA51A}
-[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#174C87,#226DB1)!important;border-color:#4F98DE!important}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#075BC2,#2387DF)!important;outline-color:#82C4FF!important;box-shadow:0 0 0 4px #2988DE35,0 8px 22px #091C3D44!important}
-[data-testid="stMain"] .stButton>button{background:#D6E9FF!important;color:#174C83!important;border-color:#8EB8E7!important}
-[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#DDEEFF,#C2DEFC 65%,#B1D1F5)!important;border-color:#83AFDF!important}
-[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .transmission{background:#F5FAFF!important;border-color:#9DBFE5!important}
+[data-testid="stMain"]{background:linear-gradient(130deg,#fdefe6 0%,#fbe7db 52%,#faddcb 100%)!important}
+[data-testid="stHeader"]{background:rgba(250,245,237,.96)!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#fef8f4,#f9dac7)!important;border-color:#e8a086!important;border-top-color:#d05426!important;box-shadow:0 9px 24px #a5421e1A}
+[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#873517,#b14922)!important;border-color:#de764f!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#b73f12,#df5623)!important;outline-color:#f4a98d!important;box-shadow:0 0 0 4px #de5a2935,0 8px 22px #3d170944!important}
+[data-testid="stMain"] .stButton>button{background:#fbe7da!important;color:#833417!important;border-color:#e7a68e!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#fcebe0,#f9d9c5 65%,#f5ccb1)!important;border-color:#df9c83!important}
+[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .transmission{background:#fef9f6!important;border-color:#e5b09d!important}
 [data-testid="stMain"] .signal-panel{border-left-color:var(--signal)!important}
-[data-testid="stMain"] .explore-card{background:#F6FAFF!important;border-color:#99BCE2!important;border-top-color:var(--accent)!important}
-[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#153E6C!important}
+[data-testid="stMain"] .explore-card{background:#fefaf7!important;border-color:#e2ad99!important;border-top-color:var(--accent)!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#6c2c15!important}
+</style>""",unsafe_allow_html=True)
+
+st.markdown("""<style>
+/* Reference palette preview: slate blue foundation, indigo structure, electric accents. */
+html,body,[data-testid="stApp"],[data-testid="stAppViewContainer"],[data-testid="stMain"]{background:#f8f1ed!important}
+[data-testid="stHeader"]{background:rgba(250,245,237,.97)!important}
+[data-testid="stSidebar"],[data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:#994f33!important;border-right:1px solid #994f33!important}
+[data-testid="stSidebar"] .st-key-brand_fixed{background:#994f33!important;border-bottom-color:#b58472!important}
+[data-testid="stSidebar"] .stButton>button{background:#8e4c33!important;border:1px solid #be8975!important;box-shadow:none!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:#cc5c33!important;border-color:#f6c3a3!important;outline:1px solid #f6c3a3!important;box-shadow:none!important}
+[data-testid="stSidebar"] .st-key-space_nav_1 button,[data-testid="stSidebar"] .st-key-space_nav_2 button{background:#8e4c33!important}
+[data-testid="stSidebar"] .st-key-space_nav_1 button[kind="primary"],[data-testid="stSidebar"] .st-key-space_nav_2 button[kind="primary"]{background:#cc5c33!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#994f33!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label{color:#693f30}
+[data-testid="stMain"] .terminal-hero{background:#f6ece5!important;border-color:#dfc5b5!important;border-top-color:#cc5c33!important;box-shadow:none!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(120deg,#f8ece4,#f5e4d9)!important;border-color:#dfc5b5!important}
+[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#cc5c3325,#ed734508)!important;border-color:#e5b8a7!important}
+[data-testid="stMain"] .stButton>button{background:#cc5c33!important;color:#FFFFFF!important;border-color:#cc5c33!important;box-shadow:none!important}
+[data-testid="stMain"] .stButton>button p{color:#FFFFFF!important}
+[data-testid="stMain"] .stButton>button:hover{background:#cc5c33!important;border-color:#cc5c33!important}
+[data-testid="stMain"] [data-testid="stMetric"],[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#fefcfa!important;border-color:#e2cbbd!important;box-shadow:none!important}
+[data-testid="stMain"] .signal-panel{border-left-color:var(--signal)!important}
+[data-testid="stMain"] .explore-card{border-top-color:#cc5c33!important}
+[data-testid="stMetricValue"] div{color:#994f33!important}
+[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:#994f33!important;border-color:#b27660!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#994f33!important}
+[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#994f33!important}
+[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#a25a3f!important}
+[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#cc5c33!important}
+[data-testid="stMain"] [data-testid="stMultiSelect"]{border-left-color:#cc5c33!important}
+[data-testid="stMain"] .terminal-mode{background:#fcf7f4!important;color:#cc5c33!important}
+</style>""",unsafe_allow_html=True)
+
+st.markdown("""<style>
+/* Strong information hierarchy: restrained surfaces, decisive type and accents. */
+[data-testid="stMain"]{background:#f8ede6!important}
+[data-testid="stMain"] h1{font-size:38px!important;font-weight:850!important;line-height:1.18!important;letter-spacing:-1px!important;color:#602b17!important}
+[data-testid="stMain"] h2{font-size:29px!important;font-weight:800!important;color:#602b17!important}
+[data-testid="stMain"] h3{font-size:23px!important;font-weight:800!important;color:#65301d!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label,[data-testid="stMain"] li{color:#4f2a1c;font-size:15px;line-height:1.65}
+[data-testid="stMain"] [data-testid="stCaptionContainer"] p{color:#744e40!important;font-size:13px!important;line-height:1.6!important;opacity:1!important}
+[data-testid="stMain"] [data-testid="stWidgetLabel"] p{font-size:15px!important;font-weight:750!important;color:#602b17!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(110deg,#fae1d1,#fef8f4)!important;border:1px solid #d69f8b!important;border-left:7px solid #cc5c33!important;border-top:1px solid #d69f8b!important;padding:28px 30px!important;box-shadow:0 6px 18px #6d2d1512!important}
+[data-testid="stMain"] .terminal-hero h1{font-size:38px!important;color:#602b17!important}
+[data-testid="stMain"] .terminal-hero p{font-size:16px!important;color:#764431!important;font-weight:550!important}
+[data-testid="stMain"] .terminal-eyebrow{color:#7e4733!important;font-size:12px!important;font-weight:800!important}
+[data-testid="stMain"] .terminal-mode{background:#cc5c33!important;color:#FFFFFF!important;border-color:#cc5c33!important;font-size:11px!important;font-weight:800!important}
+[data-testid="stMain"] [data-testid="stMetric"]{background:#FFFFFF!important;border:1px solid #d3a492!important;border-top:4px solid #cc5c33!important;border-radius:10px!important;box-shadow:0 5px 13px #7d371d0C!important;padding:18px 20px!important}
+[data-testid="stMain"] [data-testid="stMetricLabel"] p{color:#6f4130!important;font-size:14px!important;font-weight:700!important}
+[data-testid="stMain"] [data-testid="stMetricValue"] div{font-size:34px!important;font-weight:850!important;color:#652a14!important;letter-spacing:-.7px}
+[data-testid="stMain"] .signal-title{font-size:22px!important;font-weight:800!important;color:#602b17!important}
+[data-testid="stMain"] .signal-value{font-size:36px!important;font-weight:850!important;color:var(--signal)!important}
+[data-testid="stMain"] .signal-kicker{font-size:12px!important;letter-spacing:1.2px!important;font-weight:800!important}
+[data-testid="stMain"] .signal-detail{font-size:14px!important;color:#694234!important;line-height:1.7!important}
+[data-testid="stMain"] .signal-panel{background:#FFFFFF!important;border:1px solid #daad9c!important;border-left:6px solid var(--signal)!important}
+[data-testid="stMain"] .explore-card{border:1px solid #d8ab9b!important;border-top:5px solid #cc5c33!important;background:#FFFFFF!important}
+[data-testid="stMain"] .explore-card p,[data-testid="stMain"] .front-copy{color:#6b4030!important;font-size:15px!important}
+[data-testid="stMain"] .explore-card small{color:#824b36!important;font-weight:750!important}
+[data-testid="stMain"] [data-testid="stExpander"]{background:#fefbf9!important;border:1px solid #dab6a9!important;border-radius:10px!important}
+[data-testid="stMain"] .stButton>button{font-weight:750!important;min-height:44px!important;border-radius:9px!important}
+[data-testid="stMain"] .stButton>button p{font-weight:750!important;font-size:15px!important;color:#FFFFFF!important}
+[data-testid="stMain"] .aurora-table-title,[data-testid="stMain"] .risk-title{font-weight:800!important;font-size:20px!important;color:#FFFFFF!important}
+[data-testid="stMain"] .aurora-data,[data-testid="stMain"] .risk-table{font-size:14px!important;color:#fef9f6!important}
+[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{color:#fef9f6!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{font-size:12px!important;font-weight:800!important;letter-spacing:.035em!important}
+[data-testid="stSidebar"] .stButton>button{min-height:65px!important;border-color:#ca8c75!important;box-shadow:0 5px 12px #481f1020!important}
+[data-testid="stSidebar"] .stButton>button p{font-size:18px!important;font-weight:800!important;line-height:1.3!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:#cc5c33!important;border-left:5px solid #f7cbaf!important;outline:none!important}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#fdf4ef!important;font-size:12px!important;font-weight:750!important;letter-spacing:1px!important}
+[data-testid="stSidebar"] .brand-label{font-size:27px!important;color:#FFFFFF!important}
+[data-testid="stSidebar"] .brand-sub{color:#fcece2!important;font-size:13px!important}
+@media(max-width:650px){[data-testid="stMain"] .terminal-hero h1{font-size:29px!important}[data-testid="stMain"] [data-testid="stMetricValue"] div{font-size:28px!important}}
+</style>""",unsafe_allow_html=True)
+
+st.markdown("""<style>
+/* Warm risk-terminal preview. Orange/gold are interface accents; red carries a risk label. */
+html,body,[data-testid="stApp"],[data-testid="stAppViewContainer"],[data-testid="stMain"]{background:#FAF5ED!important}
+[data-testid="stHeader"]{background:rgba(250,245,237,.97)!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#351C11!important;font-weight:850!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label,[data-testid="stMain"] li{color:#3F2A1E}
+[data-testid="stMain"] [data-testid="stCaptionContainer"] p{color:#654C3C!important;font-size:13px!important;opacity:1!important}
+[data-testid="stMain"] [data-testid="stWidgetLabel"] p{color:#442515!important;font-size:15px!important;font-weight:750!important}
+[data-testid="stSidebar"],[data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:#281C17!important;border-right:1px solid #65432C!important}
+[data-testid="stSidebar"] .st-key-brand_fixed{background:#281C17!important;border-bottom-color:#755035!important}
+[data-testid="stSidebar"] .brand-label{color:#FFF5E8!important}
+[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#F5DAB8!important}
+[data-testid="stSidebar"] .stButton>button,[data-testid="stSidebar"] .st-key-space_nav_1 button,[data-testid="stSidebar"] .st-key-space_nav_2 button{background:#493124!important;border-color:#926544!important;box-shadow:none!important}
+[data-testid="stSidebar"] .stButton>button p{color:#FFF7EC!important;font-weight:800!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"],[data-testid="stSidebar"] .st-key-space_nav_1 button[kind="primary"],[data-testid="stSidebar"] .st-key-space_nav_2 button[kind="primary"]{background:#FFB800!important;border:1px solid #FFCB4D!important;border-left:5px solid #FF5A36!important;outline:none!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"] p{color:#281C17!important}
+.brand-logo{filter:hue-rotate(170deg) drop-shadow(0 0 14px #FFB80020)!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(110deg,#FFE5CB,#FFF9F0)!important;border-color:#D9B58C!important;border-left:7px solid #FF5A36!important;border-top:1px solid #D9B58C!important}
+[data-testid="stMain"] .terminal-hero h1{color:#351C11!important}
+[data-testid="stMain"] .terminal-hero p,[data-testid="stMain"] .terminal-eyebrow{color:#6C3E24!important}
+[data-testid="stMain"] .terminal-mode{background:#FFB800!important;color:#281C17!important;border-color:#DDA000!important;font-weight:800!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(120deg,#FFEAD3,#FFE1BB)!important;border-color:#D9B58C!important}
+[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#FFB80035,#FF5A3610)!important;border-color:#D9A357!important}
+[data-testid="stMain"] .front-copy,[data-testid="stMain"] .explore-card p{color:#5B3D2A!important}
+[data-testid="stMain"] .front-tags span{background:#FFF9ED!important;color:#65391D!important;border-color:#E7CBA5!important}
+[data-testid="stMain"] .stButton>button{background:#FF5A36!important;color:#281C17!important;border-color:#DC4828!important;font-weight:800!important}
+[data-testid="stMain"] .stButton>button p{color:#281C17!important;font-weight:800!important}
+[data-testid="stMain"] .stButton>button:hover{background:#B73D17!important;border-color:#B73D17!important}
+[data-testid="stMain"] .stButton>button:hover p{color:#FFFFFF!important}
+[data-testid="stMain"] .stButton>button:disabled{background:#E5D8C8!important;border-color:#CBBCA9!important;opacity:1!important}
+[data-testid="stMain"] .stButton>button:disabled p{color:#675645!important}
+[data-testid="stMain"] [data-testid="stMetric"]{background:#FFFFFF!important;border-color:#D7B898!important;border-top:4px solid #FF5A36!important}
+[data-testid="stMain"] [data-testid="stMetricLabel"] p{color:#654127!important;font-weight:750!important}
+[data-testid="stMain"] [data-testid="stMetricValue"] div{color:#713514!important;font-size:34px!important;font-weight:850!important}
+[data-testid="stMain"] .signal-panel{background:#FFFCF7!important;border-color:#D4B898!important;border-left:6px solid var(--signal)!important}
+[data-testid="stMain"] .signal-title{color:#351C11!important}
+[data-testid="stMain"] .signal-detail{color:#5B4130!important}
+[data-testid="stMain"] .signal-kicker{color:#745237!important}
+[data-testid="stMain"] .signal-value{color:var(--signal)!important}
+[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#FFFDF8!important;border-color:#D8BB99!important}
+[data-testid="stMain"] .explore-card{border-top:5px solid #FF5A36!important}
+[data-testid="stMain"] .explore-card small,[data-testid="stMain"] .transmission-label,[data-testid="stMain"] .transmission-note{color:#735032!important}
+[data-testid="stMain"] .transmission-node{color:#4D2C19!important}
+[data-testid="stMain"] [data-testid="stExpander"]{background:#FFFCF7!important;border-color:#D7BC9B!important}
+[data-testid="stMain"] [data-testid="stMultiSelect"]{border-left-color:#BA471F!important}
+[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#DEC3A3!important}
+[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:#493124!important;border-color:#9C6C42!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#713514!important;color:#FFF7EA!important}
+[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#493124!important}
+[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#593C2A!important}
+[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#75462B!important}
+[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{color:#FFF6E8!important;border-top-color:#8F684A!important}
+[data-testid="stMain"] .aurora-data td.terminal-identity{color:#FFD08A!important}
+[data-testid="stMain"] .journey-shell{background:linear-gradient(125deg,#281C17,#493124)!important;border-color:#91613E!important}
+[data-testid="stMain"] .journey-shell h3{color:#FFD08A!important}
+[data-testid="stMain"] .journey-shell p{color:#FFF0DB!important}
+[data-testid="stMain"] .journey-node{color:#E2CBB0!important}
+[data-testid="stMain"] .journey-active b{background:#FFB800!important;color:#281C17!important;border-color:#FFCF59!important}
+</style>""",unsafe_allow_html=True)
+
+st.markdown("""<style>
+/* Controls share the chart palette. Keep label text dark against orange/yellow. */
+[data-testid="stMain"] [data-baseweb="tag"]{background:#FFE0C2!important;color:#4C2816!important;border:1px solid #BD6A35!important}
+[data-testid="stMain"] [data-baseweb="tag"] span{color:#4C2816!important}
+[data-testid="stMain"] [data-baseweb="select"]>div,[data-testid="stMain"] [data-baseweb="input"]{background:#FFFDF8!important;border-color:#BE9871!important;color:#3F2A1E!important}
+[data-testid="stMain"] [data-baseweb="slider"] [role="slider"]{background:#B73D17!important;border-color:#B73D17!important}
+[data-testid="stMain"] [data-baseweb="radio"] input:checked+div{border-color:#B73D17!important;background:#B73D17!important}
+[data-testid="stMain"] .terminal-legend{color:#5B4130!important;font-weight:600}
+[data-testid="stMain"] .aurora-table-footer,[data-testid="stMain"] .risk-footer{color:#FFE8C9!important}
+[data-testid="stMain"] .method-intro,[data-testid="stMain"] .method-card,[data-testid="stMain"] .method-note{background:#FFF9EF!important;border-color:#D7B898!important}
+[data-testid="stMain"] .method-step{background:#FFEACD!important;border-color:#D7B898!important;color:#4F2B17!important}
 </style>""",unsafe_allow_html=True)
 
 source_context()
@@ -1145,16 +1291,16 @@ elif page.startswith('02'):
                 pass  # Rendered together below with Bloomberg × Aurora styling
             quant_historical(graph,time_col,value_col,count_col,selected) if time_col else None
         with st.expander('Chi tiết · historical liquidation'):
-            render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#094285',subtitle='')
+            render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#812c0d',subtitle='')
     if historical is not None:
         with st.expander('🔎 Raw historical liquidation records'):
-            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#094285',subtitle='')
+            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#812c0d',subtitle='')
     st.subheader('Market alignment evidence')
     market=get_data('tables/n3_liquidation_market_hourly.csv')
     if market is not None:
         market_timeline(market)
         with st.expander('Chi tiết · market alignment & quote age'):
-            render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#094285',subtitle='')
+            render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#812c0d',subtitle='')
 
 elif page.startswith('03'):
     st.subheader('🛡 Aurora Borrower Risk Intelligence')
@@ -1164,7 +1310,7 @@ elif page.startswith('03'):
         if top is not None:
             borrower_map(top, sampled=True)
             with st.expander('Chi tiết · N3 top-wallet sample'):
-                render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#277de3',subtitle='')
+                render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#e35a27',subtitle='')
     else:
         aliases={'wallet':['wallet','wallet_address','user_address','address','borrower'],
                  'health_factor':['health_factor','hf_calculated_t0','hf','health_factor_current'],
@@ -1184,7 +1330,7 @@ elif page.startswith('03'):
                 render_risk_explorer(view,key='borrower',title='Observed borrower positions')
         else:
             st.warning('Thiếu cột cần thiết để phân tích Health Factor.')
-            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#277de3',subtitle='')
+            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#e35a27',subtitle='')
     st.subheader('N3 · Health Factor & leverage evidence')
     hf_evidence=get_data('tables/n3_m6_hf_AB1B2.csv')
     if hf_evidence is not None:
@@ -1192,7 +1338,7 @@ elif page.startswith('03'):
                      labels={'hf_group': 'Health Factor group', 'wallet_share_pct': 'Wallet share (%)', 'snapshot_id': 'Snapshot'})
         quant_chart(fig, 'Phân bố người vay · đối chiếu A / B1 / B2')
         with st.expander('Chi tiết · Health Factor evidence'):
-            render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#277de3',subtitle='')
+            render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#e35a27',subtitle='')
 
 elif page.startswith('04'):
     st.subheader('Stress Simulator · precomputed research scenarios')
@@ -1284,7 +1430,7 @@ elif page.startswith('05'):
                     format_func=lambda x:{'simulated_repaid_usd':'Nợ hoàn trả (USD)','executed_liquidations':'Số thanh lý','liquidator_profit_usd':'Lợi nhuận liquidator (USD)','rounds':'Số vòng'}[x],horizontal=True,key='cascade_comparison_metric')
                 fig=px.bar(view,x=metric,y='Configuration',orientation='h',color='method',
                            hover_data=[k for k in dimensions if k in view],labels={metric:metric.replace('_',' '),'Configuration':'Cấu hình'},
-                           color_discrete_sequence=['#4b8ddb','#235c9e'])
+                           color_discrete_sequence=['#db724b','#9e4423'])
                 fig.update_traces(width=.55)
                 fig.update_yaxes(automargin=False)
                 quant_chart(fig,'Cascade · so sánh các cấu hình đã chọn',height=max(330,30*len(view)+140))
@@ -1330,22 +1476,22 @@ else:
     # Methodology: Research Command Center + Quant Blueprint (presentation only).
     st.markdown("""
     <style>
-    .method-intro{background:linear-gradient(120deg,#cce2fc,#dfedfd);border:1px solid #a2c7f1;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
-    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#255c9d;text-transform:uppercase}
-    .method-heading{font-size:29px;font-weight:850;color:#10325a;margin:9px 0}
-    .method-copy{font-size:15px;line-height:1.75;color:#3d5e84;max-width:800px}
+    .method-intro{background:linear-gradient(120deg,#fadfce,#fcebe0);border:1px solid #f1c1a2;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
+    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#9d4525;text-transform:uppercase}
+    .method-heading{font-size:29px;font-weight:850;color:#5a2410;margin:9px 0}
+    .method-copy{font-size:15px;line-height:1.75;color:#84503d;max-width:800px}
     .method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}
-    .method-card{background:#f8fbff;border:1px solid #a6c9f2;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
+    .method-card{background:#fefbf9;border:1px solid #f2c4a6;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
     .method-tag{font-size:12px;letter-spacing:1px;font-weight:850;margin-bottom:12px}
-    .method-card h3{font-size:18px;color:#10325a;margin:0 0 10px}
-    .method-card p{color:#426287;line-height:1.65;font-size:14px;margin:0}
-    .method-section{font-size:21px;font-weight:800;color:#123865;margin:25px 0 12px}
+    .method-card h3{font-size:18px;color:#5a2410;margin:0 0 10px}
+    .method-card p{color:#875542;line-height:1.65;font-size:14px;margin:0}
+    .method-section{font-size:21px;font-weight:800;color:#652812;margin:25px 0 12px}
     .method-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 20px}
-    .method-step{background:#d3e6fc;border:1px solid #a4c5ec;border-radius:13px;padding:15px 12px;color:#1c4676;font-size:13px;line-height:1.5}
-    .method-step b{display:block;font-size:15px;color:#103662;margin-bottom:5px}
+    .method-step{background:#fbe3d4;border:1px solid #ecc0a4;border-radius:13px;padding:15px 12px;color:#76341c;font-size:13px;line-height:1.5}
+    .method-step b{display:block;font-size:15px;color:#622610;margin-bottom:5px}
     .method-notes{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0}
-    .method-note{background:#f8fbff;border:1px solid #b2cef0;border-left:4px solid #508fda;border-radius:12px;padding:16px 18px;color:#3c5f87;line-height:1.65;font-size:14px}
-    .method-note strong{color:#16447a}
+    .method-note{background:#fefbf9;border:1px solid #f0cab2;border-left:4px solid #da7550;border-radius:12px;padding:16px 18px;color:#87503c;line-height:1.65;font-size:14px}
+    .method-note strong{color:#7a3116}
     @media(max-width:850px){.method-grid,.method-flow{grid-template-columns:1fr 1fr}.method-notes{grid-template-columns:1fr}}
     @media(max-width:560px){.method-grid,.method-flow{grid-template-columns:1fr}}
     </style>
@@ -1355,9 +1501,9 @@ else:
       <div class="method-copy">DeFiRisk-Lab nghiên cứu rủi ro thanh lý trong DeFi lending (Aave V3 / Compound), kết hợp dữ liệu thanh lý quan sát với kết quả mô phỏng stress và cascade đã tính sẵn.</div>
     </div>
     <div class="method-grid">
-      <div class="method-card"><div class="method-tag" style="color:#2783f1">01 / Q1 · BORROWER</div><h3>Borrower Risk</h3><p>Health Factor, tài sản thế chấp, dư nợ và nhóm vị thế khi dữ liệu hỗ trợ.</p></div>
+      <div class="method-card"><div class="method-tag" style="color:#ea612e">01 / Q1 · BORROWER</div><h3>Borrower Risk</h3><p>Health Factor, tài sản thế chấp, dư nợ và nhóm vị thế khi dữ liệu hỗ trợ.</p></div>
       <div class="method-card"><div class="method-tag" style="color:#ce8726">02 / Q2 · STRESS</div><h3>Stress Scenarios</h3><p>Cú sốc ETH, BTC và depeg; đánh giá vị thế và dư nợ có nguy cơ theo các kịch bản sẵn có.</p></div>
-      <div class="method-card"><div class="method-tag" style="color:#1e77de">03 / Q3 · CASCADE</div><h3>Liquidation Cascade</h3><p>Thực thi thanh lý theo vòng, nợ hoàn trả, lợi nhuận liquidator và slippage mô phỏng.</p></div>
+      <div class="method-card"><div class="method-tag" style="color:#de521e">03 / Q3 · CASCADE</div><h3>Liquidation Cascade</h3><p>Thực thi thanh lý theo vòng, nợ hoàn trả, lợi nhuận liquidator và slippage mô phỏng.</p></div>
     </div>
     <div class="method-section">Research workflow</div>
     <div class="method-flow">
@@ -1386,4 +1532,4 @@ else:
     for name,relative in paths.items():
         p=locate(relative,Path(relative).name)
         records.append({'Dataset':name,'File':relative,'Available':bool(p),'Bytes':p.stat().st_size if p else None})
-    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#3d618c',subtitle='')
+    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#8c523d',subtitle='')

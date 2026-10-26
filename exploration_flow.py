@@ -1,12 +1,13 @@
 """Focused wallet investigation and controlled comparisons of existing outputs."""
 from pathlib import Path
+from dashboard_theme import themed_plot, CHART_COLORS
 from html import escape
 import json
 import hashlib
 import numpy as np
 import pandas as pd
 import plotly.express as px
-px.defaults.color_discrete_sequence = ['#1773cd', '#3ba3ed', '#115292', '#61cbe4', '#D49A42', '#C65B72', '#4481b3']
+px.defaults.color_discrete_sequence = CHART_COLORS
 import streamlit as st
 from dashboard_spaces import read_source
 
@@ -23,7 +24,7 @@ def export_record(root, name, selection, records, sources, limitations, plots=No
     table=pd.DataFrame(records)
     st.download_button('Tải kết quả · CSV',table.to_csv(index=False).encode('utf-8-sig'),file_name=name+'.csv',mime='text/csv',key=name+'_csv')
     charts=''.join(fig.to_html(full_html=False,include_plotlyjs=True if i==0 else False) for i,fig in enumerate(plots or []))
-    report='<!doctype html><html lang="vi"><meta charset="utf-8"><title>DeFiRisk · exploration record</title><body style="font-family:Arial;max-width:1100px;margin:40px auto;padding:20px;color:#174068"><h1>DeFiRisk · hồ sơ khám phá</h1><h2>Lựa chọn</h2><pre>'+escape(json.dumps(selection,ensure_ascii=False,indent=2,default=str))+'</pre>'+charts+'<h2>Kết quả</h2>'+table.to_html(index=False,escape=True)+'<h2>Giới hạn</h2><p>'+escape(limitations)+'</p><h2>Nguồn và hash</h2><pre>'+escape(json.dumps(payload['sources'],ensure_ascii=False,indent=2))+'</pre></body></html>'
+    report='<!doctype html><html lang="vi"><meta charset="utf-8"><title>DeFiRisk · exploration record</title><body style="font-family:Arial;max-width:1100px;margin:40px auto;padding:20px;color:#682d17"><h1>DeFiRisk · hồ sơ khám phá</h1><h2>Lựa chọn</h2><pre>'+escape(json.dumps(selection,ensure_ascii=False,indent=2,default=str))+'</pre>'+charts+'<h2>Kết quả</h2>'+table.to_html(index=False,escape=True)+'<h2>Giới hạn</h2><p>'+escape(limitations)+'</p><h2>Nguồn và hash</h2><pre>'+escape(json.dumps(payload['sources'],ensure_ascii=False,indent=2))+'</pre></body></html>'
     st.download_button('Tải báo cáo có biểu đồ · HTML',report,file_name=name+'.html',mime='text/html',key=name+'_html')
     with st.expander('Nguồn và phạm vi hồ sơ'):
         st.code('\n'.join(sources),language=None)
@@ -60,10 +61,10 @@ def wallet_flow(root):
     status='chuyển từ HF ≥ 1 sang HF < 1' if before>=1 and after<1 else 'vẫn có HF < 1' if before<1 and after<1 else 'có HF ≥ 1 sau shock'
     st.info(f'Trong kịch bản {scenario}, ví {status}. HF thay đổi {after-before:+.3f}; đây là kết quả mô hình N4, chưa phải giao dịch thanh lý thực tế.')
     comparison=pd.DataFrame({'Trạng thái':['Trước shock','Sau shock'],'Health Factor':[before,after]})
-    fig=px.bar(comparison,x='Trạng thái',y='Health Factor',color='Trạng thái',color_discrete_sequence=['#5496d7','#2289d1'])
-    fig.add_hline(y=1,line_dash='dash',line_color='#c44d69',annotation_text='HF = 1')
+    fig=px.bar(comparison,x='Trạng thái',y='Health Factor',color='Trạng thái',color_discrete_sequence=['#d77754','#d15122'])
+    fig.add_hline(y=1,line_dash='dash',line_color='#C62828',annotation_text='HF = 1')
     fig.update_layout(height=300,showlegend=False)
-    st.plotly_chart(fig,width='stretch',key='wallet_before_after')
+    themed_plot(fig,width='stretch',key='wallet_before_after')
     st.caption('Cùng ví, snapshot và scenario. Mẫu top-wallet có chọn lọc; không dùng để ước lượng tỷ lệ toàn bộ người vay.')
     st.markdown('#### Đối chiếu thực thi · cùng ví và cú sốc')
     runs=read_source(str(Path(root)/RUNS))
@@ -134,8 +135,8 @@ def controlled_comparison(root):
     st.dataframe(pd.DataFrame(comparison),hide_index=True)
     metric=st.radio('Chỉ số biểu đồ',list(metrics),format_func=lambda k:metrics[k],horizontal=True,key='control_metric')
     bars=pd.DataFrame({'Phương án':['Đối chứng','So sánh'],'Giá trị':[arow[metric],brow[metric]]})
-    fig=px.bar(bars,x='Phương án',y='Giá trị',color='Phương án',labels={'Giá trị':metrics[metric]},color_discrete_sequence=['#5b94d3','#1e84cb'])
-    st.plotly_chart(fig,width='stretch',key='control_plot')
+    fig=px.bar(bars,x='Phương án',y='Giá trị',color='Phương án',labels={'Giá trị':metrics[metric]},color_discrete_sequence=['#d37b5b','#cb4d1e'])
+    themed_plot(fig,width='stretch',key='control_plot')
     delta=brow.simulated_repaid_usd-arow.simulated_repaid_usd
     st.info(f'Đổi {factor} từ {a} sang {b}: nợ hoàn trả mô phỏng chênh ${delta:+,.0f}. Những chiều được ghi trong bảng nguồn còn lại giữ nguyên. Chênh lệch là bằng chứng có điều kiện trong mô hình, không phải hiệu quả can thiệp thực tế.')
     st.caption('Nguồn execution_summary chưa cung cấp tổn thất ròng giao thức và slippage tổng hợp; không thay bằng lợi nhuận liquidator.')

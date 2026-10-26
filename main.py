@@ -4,12 +4,14 @@ from html import escape
 import numpy as np
 import pandas as pd
 import plotly.express as px
+px.defaults.color_discrete_sequence = ['#357CC1', '#63A7D7', '#24527F', '#82C5D5', '#D49A42', '#C65B72', '#6088A9']
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import json
 import hashlib
 import streamlit as st
 from dashboard_spaces import ecosystem, crisis_replay, scenario_journey
+from exploration_flow import wallet_flow, controlled_comparison
 
 st.set_page_config(page_title='DeFiRisk Lab | Dashboard', page_icon='📊', layout='wide')
 
@@ -492,9 +494,12 @@ with st.sidebar:
         if st.button('Methodology & limitations',key='space_methodology',width='stretch'):
             st.session_state.selected_page=PAGES[5]
             st.rerun()
-    st.markdown('''<div class="status-panel"><div class="status-title">◈ Research terminal <span class="status-pill">SNAPSHOT DATA</span></div><div class="status-desc">Observed records + precomputed scenarios · Not a live market feed</div></div>''', unsafe_allow_html=True)
     st.divider()
 
+if st.session_state.get('observatory_section') in ['Wallet Autopsy','Contagion Metro','Risk Passport']:
+    st.session_state['observatory_section']='Hệ sinh thái'
+if st.session_state.get('chamber_section')=='Save the Protocol':
+    st.session_state['chamber_section']='Scenario Journey'
 page = st.session_state.selected_page
 requested=st.session_state.pop('_requested_target',None)
 if requested==2:
@@ -502,11 +507,11 @@ if requested==2:
 elif requested in (3,4):
     st.session_state['chamber_section']='Cú sốc & phơi nhiễm' if requested==3 else 'Thực thi cascade'
 if page.startswith(('01','03')):
-    section=st.radio('The Observatory',['Hệ sinh thái','Tổng quan','Vị thế người vay'],horizontal=True,key='observatory_section',
+    section=st.radio('The Observatory',['Hệ sinh thái','Tổng quan','Vị thế người vay','Ví → shock'],horizontal=True,key='observatory_section',
         index=2 if page.startswith('03') else 0)
     page=PAGES[2] if section=='Vị thế người vay' else PAGES[0]
 elif page.startswith(('04','05')):
-    section=st.radio('The Contagion Chamber',['Scenario Journey','Cú sốc & phơi nhiễm','Thực thi cascade'],horizontal=True,key='chamber_section',
+    section=st.radio('The Contagion Chamber',['Scenario Journey','Cú sốc & phơi nhiễm','Thực thi cascade','So sánh kiểm soát'],horizontal=True,key='chamber_section',
         index=2 if page.startswith('05') else 0)
     page=PAGES[4] if section=='Thực thi cascade' else PAGES[3]
 
@@ -525,7 +530,7 @@ st.markdown("""<style>
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
  background:linear-gradient(135deg,#f5faff 0%,#edf5ff 48%,#e9f1fb 100%)!important;
 }
-[data-testid="stHeader"]{background:rgba(248,240,253,.94)!important}
+[data-testid="stHeader"]{background:rgba(238,246,255,.94)!important}
 [data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#2f4259!important}
 [data-testid="stMain"] p,[data-testid="stMain"] label{color:#435467}
 [data-testid="stMetric"]{background:linear-gradient(145deg,#fdfeff,#ecf4fd)!important;border-color:#cddaea!important;box-shadow:0 6px 20px #4f75a10D!important}
@@ -625,6 +630,7 @@ def kpi_sum(df, candidates, title, money=False):
 # Bloomberg × Aurora chart system. Presentation only; all values come from loaded data.
 def quant_style(fig, height=390, accent='#5fa4f5'):
     fig.update_layout(
+        colorway=['#357CC1', '#63A7D7', '#24527F', '#82C5D5', '#D49A42', '#C65B72'],
         template='plotly_white', paper_bgcolor='#f9fcff', plot_bgcolor='#f9fcff',
         font=dict(family='Arial, sans-serif', color='#485d75', size=12),
         height=height, margin=dict(l=42,r=40,t=38,b=48),
@@ -704,7 +710,7 @@ def quant_cascade(df):
         vals=pd.to_numeric(x['repaid_debt_usd'],errors='coerce')
         fig=go.Figure(go.Scatter(x=x['round'],y=vals,mode='lines+markers',
             line=dict(color='#9bc9ff',width=3),marker=dict(size=8,color='#bddbff'),
-            fill='tozeroy',fillcolor='rgba(175,112,255,.12)',
+            fill='tozeroy',fillcolor='rgba(72,145,218,.12)',
             hovertemplate='Round %{x}<br>Debt repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Repaid debt (USD)',tickformat='~s')
@@ -900,11 +906,16 @@ def borrower_map(frame, sampled=False):
         return
     unsafe = int((x[hf] < 1).sum())
     near = int(((x[hf] >= 1) & (x[hf] < 1.1)).sum())
-    terminal_signal('Health Factor · snapshot đang chọn', f'{unsafe:,} / {len(x):,}',
+    terminal_signal('Ví có HF < 1 · snapshot đang chọn', f'{unsafe:,} / {len(x):,} ví',
                     f'{unsafe:,} bản ghi HF < 1; {near:,} bản ghi trong vùng theo dõi 1 ≤ HF < 1.1. ' +
                     ('Chỉ áp dụng mẫu top-wallet N3.' if sampled else 'Chỉ áp dụng dữ liệu đang hiển thị.') +
                     ' HF ≥ 1.1 không bảo đảm an toàn; 1.1 là mốc theo dõi giao diện.',
                     'risk' if unsafe else 'watch' if near else 'stable')
+    h1,h2,h3=st.columns(3)
+    h1.metric('HF trung vị',f'{x[hf].median():.3f}')
+    h2.metric('HF thấp nhất',f'{x[hf].min():.3f}')
+    h3.metric('Ví trong vùng 1 ≤ HF < 1.1',f'{near:,} / {len(x):,}')
+    st.caption('HF là tỷ số, không phải phần trăm. Các chỉ số trên chỉ mô tả tập vị thế đang chọn; xem HF từng ví bằng cách rê chuột lên biểu đồ.')
     x['Risk zone'] = np.select([x[hf] < 1, x[hf] < 1.1], ['HF < 1', '1 ≤ HF < 1.1'], default='HF ≥ 1.1')
     wallet = numeric(x, ['wallet', 'wallet_address'])
     evidence_source='outputs/tables/n3_m6_top50_wallets_AB1B2.csv' if sampled else 'data/processed/fact_wallet_summary.parquet'
@@ -1042,52 +1053,56 @@ st.markdown("""<style>
 
 source_context()
 
-if page.startswith('04') and section=='Scenario Journey':
+if page.startswith('01') and section=='Ví → shock':
+    wallet_flow(ROOT)
+elif page.startswith('04') and section=='So sánh kiểm soát':
+    controlled_comparison(ROOT)
+elif page.startswith('04') and section=='Scenario Journey':
     scenario_journey(ROOT)
 elif page.startswith('01'):
     if section=='Hệ sinh thái':
         ecosystem(ROOT)
     else:
         overview_launchpad()
-    st.subheader('Snapshot intelligence · dữ liệu hiện có')
-    stress_df=get_data('n5_completion_20261026/n4_research/stress_summary.parquet')
-    summary=get_data('n5_completion_20261026/approved_package_with27/execution_summary.parquet')
-    wallets=get_data('data/processed/fact_wallet_summary.parquet','fact_wallet_summary.parquet')
-    # The full borrower snapshot may be absent/empty. Use observed N3 top-wallet
-    # evidence only as a clearly labelled fallback, never as a full population.
-    top_wallets = (get_data('tables/n3_m6_top50_wallets_AB1B2.csv')
-                   if wallets is None else None)
-    a,b,c,d=st.columns(4)
-    a.metric('Stress results', f'{len(stress_df):,}' if stress_df is not None else 'N/A')
-    b.metric('Stress scenarios',f'{stress_df.scenario_id.nunique():,}' if stress_df is not None and 'scenario_id' in stress_df else 'N/A')
-    c.metric('Cascade configurations',f'{len(summary):,}' if summary is not None else 'N/A')
-    if wallets is not None:
-        d.metric('Borrower records',f'{len(wallets):,}')
-    elif top_wallets is not None:
-        d.metric('N3 top-wallet rows',f'{len(top_wallets):,}',
-                 help='Rows in N3 top-wallet evidence across snapshots; not the total borrower population.')
-    else:
-        d.metric('Borrower records','—',
-                 help='No nonempty borrower snapshot or N3 top-wallet evidence was found in the configured data paths.')
-    if stress_df is not None and {'scenario_id','debt_at_risk_usd'}.issubset(stress_df):
-        st.subheader('📊 Stress Risk Overview')
-        chart=stress_df.groupby('scenario_id',as_index=False)['debt_at_risk_usd'].mean().nlargest(12,'debt_at_risk_usd')
-        stress_signal(stress_df)
-        snapshot_comparison(stress_df)
-        with st.expander('Chi tiết · stress scenario results'):
-            render_aurora_table(stress_df,'Stress scenario results','overview_stress',subtitle='')
-    if wallets is not None:
-        st.subheader('🛡 Borrower snapshot')
-        hf=numeric(wallets,['health_factor','hf_calculated_t0','hf','health_factor_current'])
-        debt=numeric(wallets,['total_debt_usd','debt_usd','borrowed_usd','debt_value_usd'])
-        if hf:
-            vals=pd.to_numeric(wallets[hf],errors='coerce')
-            a,b=st.columns(2)
-            a.metric('Positions with HF < 1',f'{(vals<1).sum():,}')
-            if debt: b.metric('Total recorded debt',dollars(pd.to_numeric(wallets[debt],errors='coerce').sum()))
-            quant_hf(wallets,hf)
-        with st.expander('Chi tiết · borrower snapshot'):
-            render_aurora_table(wallets.head(5000),'Borrower snapshot records','overview_wallets',subtitle='')
+        st.subheader('Snapshot intelligence · dữ liệu hiện có')
+        stress_df=get_data('n5_completion_20261026/n4_research/stress_summary.parquet')
+        summary=get_data('n5_completion_20261026/approved_package_with27/execution_summary.parquet')
+        wallets=get_data('data/processed/fact_wallet_summary.parquet','fact_wallet_summary.parquet')
+        # The full borrower snapshot may be absent/empty. Use observed N3 top-wallet
+        # evidence only as a clearly labelled fallback, never as a full population.
+        top_wallets = (get_data('tables/n3_m6_top50_wallets_AB1B2.csv')
+                       if wallets is None else None)
+        a,b,c,d=st.columns(4)
+        a.metric('Stress results', f'{len(stress_df):,}' if stress_df is not None else 'N/A')
+        b.metric('Stress scenarios',f'{stress_df.scenario_id.nunique():,}' if stress_df is not None and 'scenario_id' in stress_df else 'N/A')
+        c.metric('Cascade configurations',f'{len(summary):,}' if summary is not None else 'N/A')
+        if wallets is not None:
+            d.metric('Borrower records',f'{len(wallets):,}')
+        elif top_wallets is not None:
+            d.metric('N3 top-wallet rows',f'{len(top_wallets):,}',
+                     help='Rows in N3 top-wallet evidence across snapshots; not the total borrower population.')
+        else:
+            d.metric('Borrower records','—',
+                     help='No nonempty borrower snapshot or N3 top-wallet evidence was found in the configured data paths.')
+        if stress_df is not None and {'scenario_id','debt_at_risk_usd'}.issubset(stress_df):
+            st.subheader('📊 Stress Risk Overview')
+            chart=stress_df.groupby('scenario_id',as_index=False)['debt_at_risk_usd'].mean().nlargest(12,'debt_at_risk_usd')
+            stress_signal(stress_df)
+            snapshot_comparison(stress_df)
+            with st.expander('Chi tiết · stress scenario results'):
+                render_aurora_table(stress_df,'Stress scenario results','overview_stress',subtitle='')
+        if wallets is not None:
+            st.subheader('🛡 Borrower snapshot')
+            hf=numeric(wallets,['health_factor','hf_calculated_t0','hf','health_factor_current'])
+            debt=numeric(wallets,['total_debt_usd','debt_usd','borrowed_usd','debt_value_usd'])
+            if hf:
+                vals=pd.to_numeric(wallets[hf],errors='coerce')
+                a,b=st.columns(2)
+                a.metric('Positions with HF < 1',f'{(vals<1).sum():,}')
+                if debt: b.metric('Total recorded debt',dollars(pd.to_numeric(wallets[debt],errors='coerce').sum()))
+                quant_hf(wallets,hf)
+            with st.expander('Chi tiết · borrower snapshot'):
+                render_aurora_table(wallets.head(5000),'Borrower snapshot records','overview_wallets',subtitle='')
 
 elif page.startswith('02'):
     crisis_replay(ROOT)

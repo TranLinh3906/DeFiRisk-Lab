@@ -72,6 +72,14 @@ def ecosystem(root):
         st.metric('Debt (USD)',f'${row.debt_usd:,.0f}')
         st.metric('Collateral (USD)',f'${row.counted_collateral_usd:,.0f}')
         st.caption(f'Snapshot {sid} · block {int(row.snapshot_block)}. Click điểm ví hoặc chọn tại đây. Hover để xem panel nhanh.')
+        def investigate():
+            st.session_state['_flow_wallet']=wallet
+            st.session_state['_flow_snapshot']=sid
+            st.session_state['flow_snapshot']=sid
+            st.session_state['flow_wallet_'+sid]=wallet
+            st.session_state['observatory_section']='Ví → shock'
+        st.button('Theo dõi ví qua cú sốc →',on_click=investigate,key='network_investigate',width='stretch')
+
     with st.expander('Bằng chứng mạng và giới hạn'):
         st.code(str(source.relative_to(root)),language=None)
         st.dataframe(links.head(30),hide_index=True)

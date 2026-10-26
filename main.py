@@ -5,7 +5,11 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import json
+import hashlib
 import streamlit as st
+from dashboard_spaces import ecosystem, crisis_replay, scenario_journey
 
 st.set_page_config(page_title='DeFiRisk Lab | Dashboard', page_icon='📊', layout='wide')
 
@@ -14,20 +18,20 @@ st.markdown("""<style>
 /* Ice Blue pastel: main content only; original navy sidebar and cards untouched. */
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
 [data-testid="stMain"], [data-testid="stMainBlockContainer"] {
-  background-color:#EAF5FF !important;
+  background-color:#fdecfc !important;
 }
 [data-testid="stMain"] {
-  background:linear-gradient(145deg,#F5FAFF 0%,#EAF5FF 48%,#E1F0FD 100%) !important;
+  background:linear-gradient(145deg,#fef6fe 0%,#fdecfc 48%,#fae4f9 100%) !important;
 }
 [data-testid="stHeader"] {background:rgba(234,245,255,.94) !important;}
 /* Keep the dark navigation and its scroll region exactly as designed. */
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div,
 [data-testid="stSidebar"] [data-testid="stSidebarContent"] {
-  background-color:#0b1931 !important;
+  background-color:#250f2d !important;
 }
 
-[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#0b1931!important;border-right:1px solid #244567!important}
-[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#0a1830 0%,#142e50 52%,#0b1c35 100%)!important}
+[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#250f2d!important;border-right:1px solid #522b60!important}
+[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#240e2c 0%,#3e1a4a 52%,#280f31 100%)!important}
 [data-testid="stSidebar"] [data-testid="stSidebarUserContent"]{padding-top:0!important}
 /* Brand is sticky inside the SAME sidebar scroll flow: it cannot cover Overview. */
 [data-testid="stSidebar"] .st-key-brand_fixed{
@@ -37,169 +41,169 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
   width:100%!important;
   height:auto!important;
   z-index:100!important;
-  background:linear-gradient(160deg,#0a1830,#142b4c)!important;
+  background:linear-gradient(160deg,#240e2c,#3b1a46)!important;
   padding:12px 12px 16px!important;
   box-sizing:border-box!important;
-  border-bottom:1px solid #2b5272!important;
+  border-bottom:1px solid #5c326b!important;
 }
 [data-testid="stSidebar"] .st-key-brand_fixed > div{background:transparent!important}
-.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #37bfff55)}
-.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#f5faff;margin-top:4px}
-.brand-sub{text-align:center;color:#a9c7e9;font-size:.82rem;margin:5px 0 0}
+.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #c14beb55)}
+.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#fef6fe;margin-top:4px}
+.brand-sub{text-align:center;color:#e3afe1;font-size:.82rem;margin:5px 0 0}
 /* No spacer: brand occupies its natural height, menu follows immediately. */
 .nav-spacer{height:0!important;display:none!important}
-.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#9abce1;font-weight:800;margin:0 0 10px 8px}
-[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #050e2166;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#daa1d8;font-weight:800;margin:0 0 10px 8px}
+[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #18081e66;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 [data-testid="stSidebar"] .stButton>button:before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#ffffff24,transparent 60%);pointer-events:none}
 [data-testid="stSidebar"] .stButton>button p{font-size:1.12rem!important;font-weight:750!important;color:white!important}
 [data-testid="stSidebar"] .stButton>button:hover{filter:brightness(1.12);transform:translateX(4px);box-shadow:0 8px 22px #0008}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #7be5ff;outline-offset:2px;box-shadow:0 0 0 4px #6fd9ff2a,0 8px 22px #0008}
-[data-testid="stSidebar"] .st-key-nav_0 button{background:#1266D6!important}
-[data-testid="stSidebar"] .st-key-nav_1 button{background:#008E83!important}
-[data-testid="stSidebar"] .st-key-nav_2 button{background:#7048D4!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #f288ee;outline-offset:2px;box-shadow:0 0 0 4px #f17dec2a,0 8px 22px #0008}
+[data-testid="stSidebar"] .st-key-nav_0 button{background:#9a26c2!important}
+[data-testid="stSidebar"] .st-key-nav_1 button{background:#620e80!important}
+[data-testid="stSidebar"] .st-key-nav_2 button{background:#a956c6!important}
 [data-testid="stSidebar"] .st-key-nav_3 button{background:#C47A14!important}
 [data-testid="stSidebar"] .st-key-nav_4 button{background:#C3445B!important}
-[data-testid="stSidebar"] .st-key-nav_5 button{background:#476682!important}
-[data-testid="stSidebar"] hr{border-color:#315071}
-[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#a9c5e5!important}
-.status-panel{background:#183555;border:1px solid #355979;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#e7f3ff}
+[data-testid="stSidebar"] .st-key-nav_5 button{background:#704d7c!important}
+[data-testid="stSidebar"] hr{border-color:#5d376b}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#dfafdd!important}
+.status-panel{background:#421e4f;border:1px solid #643c72;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#fde9fc}
 .status-title{font-weight:750;font-size:.95rem;margin-bottom:5px}
-.status-desc{font-size:.76rem;color:#b5cce4;line-height:1.5}
-.status-pill{display:inline-block;background:#124d4a;color:#79f1d1;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
+.status-desc{font-size:.76rem;color:#dfbade;line-height:1.5}
+.status-pill{display:inline-block;background:#3b1847;color:#79f1d1;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
 .block-container{padding-top:1.5rem;max-width:1450px}
-[data-testid="stMetric"]{background:#151e30;border:1px solid #2a3952;padding:16px;border-radius:12px}
-[data-testid="stMetricLabel"] p{color:#b8c8e1!important}
-[data-testid="stMetricValue"] div{color:#f8fbff!important}
+[data-testid="stMetric"]{background:#28182d;border:1px solid #462e4e;padding:16px;border-radius:12px}
+[data-testid="stMetricLabel"] p{color:#ddbcdc!important}
+[data-testid="stMetricValue"] div{color:#fef9fe!important}
 h1,h2,h3{letter-spacing:-.025em}
 .demo{padding:10px 14px;border-radius:9px;background:#493c19;color:#ffe5a2;border:1px solid #796028;margin-bottom:18px}
-.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #132a441a}
+.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #35183f1a}
 .page-banner-title{color:white!important;font-size:2rem;font-weight:800;line-height:1.2;letter-spacing:-.025em}
 .page-banner-sub{color:#fff!important;opacity:.9;font-size:.97rem;margin-top:7px}
 
 /* Aurora Risk Intelligence data explorer */
-.risk-shell{background:linear-gradient(150deg,#0b1930,#112843 75%,#0b1b32);border:1px solid #29476b;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #0a1c3433;color:#eaf5ff}
+.risk-shell{background:linear-gradient(150deg,#250f2c,#34163e 75%,#260f2e);border:1px solid #573064;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #270e3033;color:#fdecfc}
 .risk-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.risk-title{font-size:1.38rem;font-weight:800;color:#f7fbff}.risk-kicker{font-size:.73rem;color:#90b2d5;letter-spacing:.1em;margin-top:3px}
-.risk-tag{background:#204566;border:1px solid #366b8d;border-radius:30px;padding:6px 12px;color:#9fe7fa;font-size:.74rem;font-weight:700}
+.risk-title{font-size:1.38rem;font-weight:800;color:#fef8fe}.risk-kicker{font-size:.73rem;color:#ce97cc;letter-spacing:.1em;margin-top:3px}
+.risk-tag{background:#50275f;border:1px solid #723f84;border-radius:30px;padding:6px 12px;color:#f1a8ee;font-size:.74rem;font-weight:700}
 .risk-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:17px}
-.risk-kpi{background:#192d48;border:1px solid #2c4562;border-radius:13px;padding:14px;min-width:0}
-.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#a0b9d7;letter-spacing:.06em;margin-top:5px}
-.risk-composition{background:#152a45;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #2c4562}
-.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#dbeafd}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#334761}
-.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#c0d3e9}
-.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #2d4866;background:#102139}
-.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#e8f3ff;font-size:.82rem}
-.risk-table th{background:#1d3654;color:#a5c5e7;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
-.risk-table td{padding:13px 12px;border-top:1px solid #2a415d;white-space:nowrap;font-variant-numeric:tabular-nums}
-.risk-table tbody tr:nth-child(even){background:#152a44}.risk-table tbody tr:hover{background:#204063}
-.risk-wallet{color:#70d4ff;font-weight:700}.risk-muted{color:#91aac6;font-size:.72rem;margin-top:4px}
-.risk-hf-track{height:5px;background:#354c66;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
+.risk-kpi{background:#3a1e43;border:1px solid #51315d;border-radius:13px;padding:14px;min-width:0}
+.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#d2a6d0;letter-spacing:.06em;margin-top:5px}
+.risk-composition{background:#361a40;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #51315d}
+.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#fadef9}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#53385c}
+.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#e5c4e4}
+.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #543360;background:#2c1435}
+.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#fdeafc;font-size:.82rem}
+.risk-table th{background:#43224e;color:#e0acde;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
+.risk-table td{padding:13px 12px;border-top:1px solid #4d2f58;white-space:nowrap;font-variant-numeric:tabular-nums}
+.risk-table tbody tr:nth-child(even){background:#361a3f}.risk-table tbody tr:hover{background:#4e275c}
+.risk-wallet{color:#f17eec;font-weight:700}.risk-muted{color:#c196bf;font-size:.72rem;margin-top:4px}
+.risk-hf-track{height:5px;background:#573a61;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
 .risk-pill{padding:5px 9px;border-radius:20px;font-weight:800;font-size:.68rem;display:inline-block}
-.risk-footer{color:#8da8c9;font-size:.76rem;margin-top:12px}
-.risk-shell .risk-empty{padding:25px;text-align:center;color:#b9cbe0}
+.risk-footer{color:#c393c1;font-size:.76rem;margin-top:12px}
+.risk-shell .risk-empty{padding:25px;text-align:center;color:#dcbddb}
 @media(max-width:760px){.risk-kpis{grid-template-columns:1fr}.risk-number{font-size:1.4rem}.risk-shell{padding:12px}}
 
 /* Reusable Aurora tables across every dashboard page */
-.aurora-table-shell{background:linear-gradient(145deg,#0b1930,#142a47);border:1px solid #2a486a;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #10243a30;color:#edf6ff}
-.aurora-table-title{font-size:1.25rem;font-weight:800;color:#f5faff;margin-bottom:5px}
-.aurora-table-sub{font-size:.77rem;color:#a2bddc;margin-bottom:17px}
-.aurora-scroll{overflow:auto;border:1px solid #36516d;border-radius:12px;max-height:530px}
-.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#eaf5ff;font-variant-numeric:tabular-nums}
-.aurora-data th{position:sticky;top:0;background:#213c5b;color:#b9d5ef;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
-.aurora-data td{padding:13px;border-top:1px solid #294360;white-space:nowrap}
-.aurora-data tbody tr:nth-child(even){background:#152b47}.aurora-data tbody tr:hover{background:#234461}
-.aurora-table-footer{font-size:.74rem;color:#a1b8d4;margin-top:12px}
+.aurora-table-shell{background:linear-gradient(145deg,#250f2c,#371942);border:1px solid #563064;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #2d143630;color:#fdeffd}
+.aurora-table-title{font-size:1.25rem;font-weight:800;color:#fef6fe;margin-bottom:5px}
+.aurora-table-sub{font-size:.77rem;color:#d6a8d4;margin-bottom:17px}
+.aurora-scroll{overflow:auto;border:1px solid #5c3c67;border-radius:12px;max-height:530px}
+.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#fdecfc;font-variant-numeric:tabular-nums}
+.aurora-data th{position:sticky;top:0;background:#492755;color:#eabee8;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.aurora-data td{padding:13px;border-top:1px solid #4f2e5a;white-space:nowrap}
+.aurora-data tbody tr:nth-child(even){background:#381a42}.aurora-data tbody tr:hover{background:#4e295b}
+.aurora-table-footer{font-size:.74rem;color:#cfa6cd;margin-top:12px}
 
 /* Bloomberg x Aurora | TABLE-ONLY OVERRIDES: original navigation, logo and charts untouched */
-.aurora-table-shell,.risk-shell{background:#203A55!important;border:1px solid #6486A5!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #07152a24!important;padding:17px!important}
-.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#f3f7ff!important}
+.aurora-table-shell,.risk-shell{background:#452550!important;border:1px solid #916b9e!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #1f0a2724!important;padding:17px!important}
+.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#fef4fd!important}
 .aurora-table-title:before{content:'▮';color:#f3ae4d;margin-right:9px}
-.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#92aac5!important;letter-spacing:.045em!important}
-.aurora-scroll,.risk-table-wrap{border:1px solid #29435c!important;border-radius:7px!important;background:#264560!important;scrollbar-color:#8EABC4 #264560}
-.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#e8f0fa!important;font-variant-numeric:tabular-nums!important}
-.aurora-data th,.risk-table th{background:#345B79!important;color:#E7F5FF!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #7194B2!important}
-.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #496985!important;line-height:1.45!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#2B4C68!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#3B6684!important}
-.aurora-data td.terminal-num{text-align:right;color:#f1f5fd}
+.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#c097be!important;letter-spacing:.045em!important}
+.aurora-scroll,.risk-table-wrap{border:1px solid #4c2e57!important;border-radius:7px!important;background:#4e2c5a!important;scrollbar-color:#bf93bd #4e2c5a}
+.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#f8eaf8!important;font-variant-numeric:tabular-nums!important}
+.aurora-data th,.risk-table th{background:#643b72!important;color:#fde9fc!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #9e78ab!important}
+.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #734f7f!important;line-height:1.45!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#553162!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#6e427d!important}
+.aurora-data td.terminal-num{text-align:right;color:#fcf2fb}
 .aurora-data th.terminal-num{text-align:right}
-.aurora-data td.terminal-identity{color:#78c9f9;font-weight:650}
+.aurora-data td.terminal-identity{color:#ec85e8;font-weight:650}
 .aurora-data td.terminal-alert{color:#ff899a;font-weight:700}
 .aurora-data td.terminal-safe{color:#75dfb4;font-weight:650}
-.aurora-data td.terminal-muted{color:#a8bdd5}
-.aurora-table-footer,.risk-footer{color:#91abc6!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
-.risk-kpis{gap:8px!important}.risk-kpi{background:#315471!important;border:1px solid #6485A1!important;border-radius:7px!important;padding:11px!important}
+.aurora-data td.terminal-muted{color:#d0accf}
+.aurora-table-footer,.risk-footer{color:#c196bf!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
+.risk-kpis{gap:8px!important}.risk-kpi{background:#5d376b!important;border:1px solid #8e6a9b!important;border-radius:7px!important;padding:11px!important}
 .risk-number{font-family:'Cascadia Code',Consolas,monospace;font-size:1.35rem!important}
-.risk-composition{background:#315471!important;border-radius:7px!important;border-color:#2a425b!important}
+.risk-composition{background:#5d376b!important;border-radius:7px!important;border-color:#4c2f56!important}
 .risk-pill{border-radius:4px!important;padding:4px 7px!important;letter-spacing:.03em!important}
-.risk-tag{border-radius:4px!important;background:#163c34!important;border-color:#276a55!important;color:#78e2b6!important}
+.risk-tag{border-radius:4px!important;background:#301a38!important;border-color:#276a55!important;color:#78e2b6!important}
 .risk-wallet{font-family:'Cascadia Code',Consolas,monospace!important}
 /* Native widgets outside terminal tables retain the existing design. */
 
 /* CONCEPT 01 · CLASSIC CLEAN / all six pages. Sidebar, data and logic unchanged. */
 [data-testid="stMain"]{
- background:radial-gradient(ellipse at 90% 0%,#D9EEFF 0%,transparent 46%),
- linear-gradient(160deg,#F4FAFF 0%,#EAF5FF 60%,#E7F2FC 100%)!important;
+ background:radial-gradient(ellipse at 90% 0%,#fbddfa 0%,transparent 46%),
+ linear-gradient(160deg,#fef5fe 0%,#fdecfc 60%,#fae9f9 100%)!important;
 }
 .block-container{max-width:1450px;padding-top:1.55rem}
 .page-banner{background-image:linear-gradient(110deg,rgba(255,255,255,.13),transparent 70%)!important;
- border-radius:18px!important;box-shadow:0 10px 24px #4D87B72B!important;padding:23px 28px!important}
+ border-radius:18px!important;box-shadow:0 10px 24px #9658ac2B!important;padding:23px 28px!important}
 .page-banner-title{font-size:1.83rem!important;letter-spacing:-.025em!important}
 .page-banner-sub{font-size:.96rem!important}
 [data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{
- color:#173454!important;letter-spacing:-.03em!important;font-weight:800!important}
+ color:#411d4e!important;letter-spacing:-.03em!important;font-weight:800!important}
 [data-testid="stMain"] h2{font-size:1.55rem!important}
 [data-testid="stMain"] h3{font-size:1.25rem!important}
 [data-testid="stMetric"]{
- background:linear-gradient(155deg,#FFFFFF,#EDF7FF)!important;
- border:1px solid #C9E0F2!important;border-radius:15px!important;
- box-shadow:0 7px 20px #5085AC14!important;padding:19px 21px!important;
+ background:linear-gradient(155deg,#FFFFFF,#fdeffd)!important;
+ border:1px solid #eecded!important;border-radius:15px!important;
+ box-shadow:0 7px 20px #9059a314!important;padding:19px 21px!important;
  min-height:112px!important}
-[data-testid="stMetricLabel"] p{color:#54718D!important;font-size:.85rem!important;font-weight:650!important}
-[data-testid="stMetricValue"] div{color:#153A65!important;font-weight:800!important;font-size:2rem!important}
-[data-testid="stMetricDelta"]{color:#098C82!important}
+[data-testid="stMetricLabel"] p{color:#7b5a87!important;font-size:.85rem!important;font-weight:650!important}
+[data-testid="stMetricValue"] div{color:#4c1d5d!important;font-weight:800!important;font-size:2rem!important}
+[data-testid="stMetricDelta"]{color:#64167f!important}
 [data-testid="stMain"] [data-testid="stRadio"]>label,
 [data-testid="stMain"] [data-testid="stSelectbox"]>label,
 [data-testid="stMain"] [data-testid="stMultiSelect"]>label{
- color:#365675!important;font-weight:650!important}
+ color:#623c6f!important;font-weight:650!important}
 [data-testid="stMain"] [data-baseweb="select"]>div,
 [data-testid="stMain"] [data-testid="stNumberInput"] input{
- background:#FFFFFF!important;border:1px solid #C8DFEF!important;border-radius:10px!important}
+ background:#FFFFFF!important;border:1px solid #ebccea!important;border-radius:10px!important}
 [data-testid="stMain"] .stButton>button:not([kind="primary"]){
- border-radius:10px!important;border-color:#BBD7EB!important;
- background:#F7FBFF!important;color:#285B89!important}
+ border-radius:10px!important;border-color:#e6c0e5!important;
+ background:#fef8fe!important;color:#6b327f!important}
 .aurora-table-shell,.risk-shell{
- background:linear-gradient(160deg,#274F71,#315C7D)!important;
- border:1px solid #7BA4C1!important;border-radius:17px!important;
- box-shadow:0 12px 26px #487DA32B!important}
+ background:linear-gradient(160deg,#5a2e6a,#663975)!important;
+ border:1px solid #ab82ba!important;border-radius:17px!important;
+ box-shadow:0 12px 26px #87519a2B!important}
 .aurora-table-title,.risk-title{color:#FFFFFF!important;font-size:1.17rem!important}
-.aurora-scroll,.risk-table-wrap{background:#284E6D!important;border-color:#7A9FBA!important}
-.aurora-data th,.risk-table th{background:#3B6788!important;color:#F1F9FF!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#355D7A!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#477794!important}
-.aurora-data td,.risk-table td{border-top-color:#547993!important}
-.risk-kpi,.risk-composition{background:#365F7D!important;border-color:#7397B1!important}
-.aurora-table-footer,.risk-footer{color:#D5E8F8!important}
+.aurora-scroll,.risk-table-wrap{background:#582f66!important;border-color:#a680b4!important}
+.aurora-data th,.risk-table th{background:#704380!important;color:#fef2fd!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#653c73!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#7c4f8c!important}
+.aurora-data td,.risk-table td{border-top-color:#805a8d!important}
+.risk-kpi,.risk-composition{background:#673d76!important;border-color:#9e79ab!important}
+.aurora-table-footer,.risk-footer{color:#f4d9f3!important}
 @media(max-width:780px){.page-banner-title{font-size:1.5rem!important}[data-testid="stMetricValue"] div{font-size:1.5rem!important}}
 
 
 /* MICRO PATCH: section titles + filter labels ONLY (no layout/data changes). */
 [data-testid="stMain"] [data-testid="stHeadingWithActionElements"] h3 {
   display:inline-block!important;
-  background:linear-gradient(90deg,#D9EEFF,#F1F8FF)!important;
-  border-left:5px solid #2686C9!important;
-  border-bottom:1px solid #C0DBEF!important;
+  background:linear-gradient(90deg,#fbddfa,#fef2fd)!important;
+  border-left:5px solid #9736b9!important;
+  border-bottom:1px solid #eac5e9!important;
   border-radius:0 12px 12px 0!important;
   padding:11px 18px!important;
-  color:#123D68!important;
+  color:#4e1b5f!important;
   font-size:1.52rem!important;
   font-weight:850!important;
-  box-shadow:0 4px 14px #538AB51B!important;
+  box-shadow:0 4px 14px #975dab1B!important;
 }
 [data-testid="stMain"] [data-testid="stSelectbox"] > label p,
 [data-testid="stMain"] [data-testid="stMultiSelect"] > label p,
 [data-testid="stMain"] [data-testid="stRadio"] > label p {
-  color:#185684!important;
+  color:#632379!important;
   font-weight:800!important;
   font-size:.94rem!important;
   letter-spacing:.012em!important;
@@ -217,8 +221,8 @@ def risk_level(hf):
     if hf < 1.0:
         return 'High', '#ffbd65', '#57402b'
     if hf < 1.2:
-        return 'Watch', '#7dbdff', '#203e61'
-    return 'Healthy', '#67dfbd', '#184a47'
+        return 'Watch', '#f28aee', '#4d265a'
+    return 'Healthy', '#67dfbd', '#3b1d45'
 
 
 def compact_money(value):
@@ -239,7 +243,7 @@ def _sync_table_page(page_key, selector_key):
     st.session_state[page_key] = int(st.session_state[selector_key])
 
 
-def render_aurora_table(df, title, key, accent='#1266D6', subtitle='', formats=None):
+def render_aurora_table(df, title, key, accent='#9a26c2', subtitle='', formats=None):
     """Reusable styled table for all non-wallet datasets, preserving full data for export."""
     df = df.copy().reset_index(drop=True)
     formats = formats or {}
@@ -388,14 +392,14 @@ def render_risk_explorer(data, key='borrower', hf_col='health_factor', title='Bo
     pct = lambda n: 100*n/total if total else 0
     composition = ''.join(
         f'<div style="width:{pct(n):.4f}%;background:{color}"></div>'
-        for n, color in [(critical, '#f16b85'), (high, '#f5b451'), (watch, '#6bbaff'), (healthy, '#29bea7')]
+        for n, color in [(critical, '#f16b85'), (high, '#f5b451'), (watch, '#f07aeb'), (healthy, '#9038af')]
     )
-    accent = '#7048D4' if key == 'borrower' else '#C47A14'
+    accent = '#a956c6' if key == 'borrower' else '#C47A14'
     html = f'''<div class="risk-shell" style="border-top:4px solid {accent}">
       <div class="risk-head"><div><div class="risk-title">▮ {escape(title)}</div>
       <div class="risk-kicker">BORROWER ANALYTICS / AAVE V3</div></div><span class="risk-tag">● RESEARCH DATA</span></div>
       <div class="risk-kpis">
-        <div class="risk-kpi"><div class="risk-number" style="color:#70d9ff">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
+        <div class="risk-kpi"><div class="risk-number" style="color:#f17eec">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
         <div class="risk-kpi"><div class="risk-number" style="color:#ff8ca1">{at_risk:,}</div><div class="risk-label">HF BELOW 1</div></div>
         <div class="risk-kpi"><div class="risk-number" style="color:#ffc37a">{compact_money(debt_at_risk)}</div><div class="risk-label">DEBT WITH HF < 1</div></div>
       </div>
@@ -403,8 +407,8 @@ def render_risk_explorer(data, key='borrower', hf_col='health_factor', title='Bo
         <div class="risk-track">{composition}</div>
         <div class="risk-legend"><span style="color:#ff8ba0">● Critical {pct(critical):.0f}%</span>
         <span style="color:#ffc37a">● High {pct(high):.0f}%</span>
-        <span style="color:#8dc8ff">● Watch {pct(watch):.0f}%</span>
-        <span style="color:#73e3ca">● Healthy {pct(healthy):.0f}%</span></div></div>
+        <span style="color:#f498f0">● Watch {pct(watch):.0f}%</span>
+        <span style="color:#d87ed4">● Healthy {pct(healthy):.0f}%</span></div></div>
       <div class="risk-table-wrap"><table class="risk-table"><thead><tr>
         <th>Wallet</th><th>Debt</th><th>Collateral</th><th>Health factor</th><th>E-Mode</th><th>Strategy</th><th>Risk</th>
       </tr></thead><tbody>'''
@@ -475,29 +479,93 @@ with st.sidebar:
     with st.container(key='brand_fixed'):
         st.markdown(f'<img class="brand-logo" src="data:image/webp;base64,{LOGO_BASE64}" alt="DeFiRisk Lab logo">', unsafe_allow_html=True)
         st.markdown('<div class="brand-label">DeFiRisk Lab</div><div class="brand-sub">AAVE V3  /  RISK INTELLIGENCE</div>', unsafe_allow_html=True)
-    st.markdown('<div class="nav-heading">WORKSPACE</div>', unsafe_allow_html=True)
-    for idx, item in enumerate(PAGES):
-        active = st.session_state.selected_page == item
-        label = f'{PAGE_ICONS[idx]}   {item}'
-        if st.button(label, key=f'nav_{idx}', type='primary' if active else 'secondary', width='stretch'):
-            st.session_state.selected_page = item
+    st.markdown('<div class="nav-heading">RISK INTELLIGENCE TERMINAL</div>', unsafe_allow_html=True)
+    spaces=[('◉','The Observatory','01 · Overview'),('◷','Crisis Time Machine','02 · Historical'),('⌁','Contagion Chamber','04 · Stress Simulator')]
+    current=st.session_state.selected_page
+    active_space=0 if current.startswith(('01','03')) else 1 if current.startswith('02') else 2
+    for idx,(icon,title,target) in enumerate(spaces):
+        st.caption(['OBSERVE / EXPLORE','REPLAY / EVIDENCE','SHOCK / EXECUTION'][idx])
+        if st.button(icon+'  '+title,key='space_nav_'+str(idx),type='primary' if active_space==idx and not current.startswith('06') else 'secondary',width='stretch'):
+            st.session_state.selected_page=target
             st.rerun()
-    st.markdown('''<div class="status-panel"><div class="status-title">✦ System status <span class="status-pill">UI READY</span></div><div class="status-desc">Research outputs · File availability checked per page</div></div>''', unsafe_allow_html=True)
+    with st.expander('Research desk'):
+        if st.button('Methodology & limitations',key='space_methodology',width='stretch'):
+            st.session_state.selected_page=PAGES[5]
+            st.rerun()
+    st.markdown('''<div class="status-panel"><div class="status-title">◈ Research terminal <span class="status-pill">SNAPSHOT DATA</span></div><div class="status-desc">Observed records + precomputed scenarios · Not a live market feed</div></div>''', unsafe_allow_html=True)
     st.divider()
 
 page = st.session_state.selected_page
+requested=st.session_state.pop('_requested_target',None)
+if requested==2:
+    st.session_state['observatory_section']='Vị thế người vay'
+elif requested in (3,4):
+    st.session_state['chamber_section']='Cú sốc & phơi nhiễm' if requested==3 else 'Thực thi cascade'
+if page.startswith(('01','03')):
+    section=st.radio('The Observatory',['Hệ sinh thái','Tổng quan','Vị thế người vay'],horizontal=True,key='observatory_section',
+        index=2 if page.startswith('03') else 0)
+    page=PAGES[2] if section=='Vị thế người vay' else PAGES[0]
+elif page.startswith(('04','05')):
+    section=st.radio('The Contagion Chamber',['Scenario Journey','Cú sốc & phơi nhiễm','Thực thi cascade'],horizontal=True,key='chamber_section',
+        index=2 if page.startswith('05') else 0)
+    page=PAGES[4] if section=='Thực thi cascade' else PAGES[3]
 
-PAGE_COLORS = ['#1266D6','#008E83','#7048D4','#C47A14','#C3445B','#476682']
+
+PAGE_COLORS = ['#9a26c2','#620e80','#a956c6','#C47A14','#C3445B','#704d7c']
 PAGE_SUBTITLES = [
-    'Protocol health & risk summary',
-    'Market prices & liquidation events',
+    'The Observatory / ecosystem & borrower exposure',
+    'The Crisis Time Machine / observed market replay',
     'Health Factor, borrower exposure & leverage',
-    'Market shock scenarios & debt at risk',
-    'Liquidation cascade & sensitivity analysis',
+    'The Contagion Chamber / market shocks & exposure',
+    'The Contagion Chamber / execution & cascade rounds',
     'Research assumptions, formulas & limitations',
 ]
+# Pastel rose/lilac preview theme.
+st.markdown("""<style>
+html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+ background:linear-gradient(135deg,#FFF5FA 0%,#F5EDFF 48%,#faeaf9 100%)!important;
+}
+[data-testid="stHeader"]{background:rgba(248,240,253,.94)!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#453157!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label{color:#584565}
+[data-testid="stMetric"]{background:linear-gradient(145deg,#FFFDFE,#F5EDFC)!important;border-color:#DECEE9!important;box-shadow:0 6px 20px #7B539D0D!important}
+[data-testid="stMetricValue"] div{color:#513469!important}
+[data-testid="stMetricLabel"] p{color:#70567F!important}
+[data-testid="stExpander"]{background:#FFF9FE88;border-radius:12px}
+[data-testid="stMultiSelect"]{border-left-color:#AF80BF!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#FFFAFD,#EFE3FA)!important;border-color:#DAC5E6!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#FCE8F2,#EDE0FA 65%,#E3D7F6)!important;border-color:#D9C2E7!important}
+[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#C494E270,#F1C8DF20)!important;border-color:#CBA6E1!important}
+[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#FFFAFDEB!important;border-color:#DFCCE8!important}
+[data-testid="stMain"] .signal-panel{border-left-color:var(--signal)!important}
+[data-testid="stMain"] .explore-card{border-top-color:var(--accent)!important}
+[data-testid="stMain"] .front-copy,[data-testid="stMain"] .terminal-hero p{color:#70567F!important}
+[data-testid="stMain"] .front-tags span{color:#684B7D!important;background:#FFFFFFA0!important}
+[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#E0CCE9!important}
+</style>""",unsafe_allow_html=True)
+
 page_index = PAGES.index(page)
-st.markdown(f'<div class="page-banner" style="background:{PAGE_COLORS[page_index]}"><div class="page-banner-title">{PAGE_ICONS[page_index]} {page.upper()}</div><div class="page-banner-sub">{PAGE_SUBTITLES[page_index]}</div></div>', unsafe_allow_html=True)
+st.markdown("""<style>
+.terminal-nav-group{color:#c098be;font-size:10px;font-weight:700;letter-spacing:1.6px;margin:20px 0 8px}
+.terminal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#fef9fe,#f8e2f7);border:1px solid #e5bde3;border-top:3px solid #974fb1;border-radius:6px 6px 18px 18px;padding:26px 28px;margin-bottom:18px;box-shadow:0 10px 28px #6e3c8012}
+.terminal-eyebrow{font:700 11px monospace;letter-spacing:2px;color:#7b5a87;margin-bottom:10px}
+.terminal-hero h1{margin:0!important;font-size:29px!important;color:#411c4e!important}
+.terminal-hero p{margin:8px 0 0;color:#775783;font-size:14px}
+.terminal-mode{font:700 11px monospace;letter-spacing:1px;border:1px solid #d9b6d7;padding:9px 12px;border-radius:6px;color:#663a76;white-space:nowrap;background:#ffffff90}
+.signal-panel{border:1px solid #e6c8e5;border-left:4px solid var(--signal);background:#fefafe;border-radius:10px;display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 21px;margin:12px 0 20px;box-shadow:0 6px 20px #5f2f7008}
+.signal-kicker{font:700 10px monospace;letter-spacing:1.5px;color:#7c5d87;margin-bottom:6px}
+.signal-title{font-weight:750;font-size:18px;color:#492356}.signal-value{font:700 28px monospace;color:var(--signal);align-self:center}
+.signal-detail{font-size:12px;color:#7c5e87;line-height:1.6;margin-top:6px}
+.terminal-legend{font-size:11px;color:#775782;display:flex;gap:18px;flex-wrap:wrap;margin:-5px 0 20px}
+.terminal-dot{width:7px;height:7px;display:inline-block;border-radius:50%;margin-right:5px;box-shadow:0 0 7px currentColor}
+[data-testid="stPlotlyChart"]{border:1px solid #eecaec;border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
+[data-testid="stMultiSelect"]{border-left:2px solid #9670d1;padding-left:9px}
+@media(max-width:650px){.terminal-hero{padding:20px;align-items:flex-start;flex-direction:column}.signal-panel{grid-template-columns:1fr}.terminal-hero h1{font-size:24px!important}}
+</style>""", unsafe_allow_html=True)
+mode = 'SIMULATION / PRECOMPUTED' if page_index in (3, 4) else 'OBSERVED / SNAPSHOTS' if page_index in (1, 2) else 'RESEARCH / CONTEXT'
+hero_accent = '#9270cf' if page_index in (3, 4) else '#974fb1'
+st.markdown(f'<div class="terminal-hero" style="border-top-color:{hero_accent}"><div><div class="terminal-eyebrow">DEFIRISK LAB / ETHEREUM LENDING</div><h1>{escape(page.split(" · ",1)[-1])}</h1><p>{escape(PAGE_SUBTITLES[page_index])}</p></div><div class="terminal-mode" style="color:{hero_accent}">{mode}</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="terminal-legend"><span><i class="terminal-dot" style="color:#218b88;background:#218b88"></i>Ổn định tương đối</span><span><i class="terminal-dot" style="color:#aa751b;background:#aa751b"></i>Cần theo dõi</span><span><i class="terminal-dot" style="color:#c34963;background:#c34963"></i>Vị thế có nguy cơ</span><span><i class="terminal-dot" style="color:#8460c0;background:#8460c0"></i>Kết quả mô phỏng</span></div>', unsafe_allow_html=True)
 
 # All research tables are read locally. No synthetic fallback.
 ROOT = Path(__file__).resolve().parent
@@ -541,7 +609,7 @@ def numeric(df, names):
 def show_table(df, filename):
     """Shared terminal renderer for Stress / Cascade, preserving raw export and filters."""
     key = 'terminal_' + ''.join(ch if ch.isalnum() else '_' for ch in filename)
-    accent = '#C47A14' if 'stress' in filename else '#C3445B' if 'cascade' in filename else '#1266D6'
+    accent = '#C47A14' if 'stress' in filename else '#C3445B' if 'cascade' in filename else '#9a26c2'
     render_aurora_table(df, filename.replace('_', ' ').removesuffix('.csv').title(),
                         key, accent=accent, subtitle='')
 
@@ -555,23 +623,23 @@ def kpi_sum(df, candidates, title, money=False):
 
 
 # Bloomberg × Aurora chart system. Presentation only; all values come from loaded data.
-def quant_style(fig, height=390, accent='#55B9FF'):
+def quant_style(fig, height=390, accent='#ee66e9'):
     fig.update_layout(
-        template='plotly_white', paper_bgcolor='#F8FCFF', plot_bgcolor='#F8FCFF',
-        font=dict(family='Arial, sans-serif', color='#345878', size=12),
+        template='plotly_white', paper_bgcolor='#FFF9FD', plot_bgcolor='#FFF9FD',
+        font=dict(family='Arial, sans-serif', color='#624A73', size=12),
         height=height, margin=dict(l=42,r=40,t=38,b=48),
-        hoverlabel=dict(bgcolor='#244D70',font_color='#FFFFFF',font_size=12),
+        hoverlabel=dict(bgcolor='#592c68',font_color='#FFFFFF',font_size=12),
         legend=dict(orientation='h',y=1.13,x=0,font=dict(size=11)),
-        xaxis=dict(gridcolor='#DCEAF5',zeroline=False,showline=False),
-        yaxis=dict(gridcolor='#DCEAF5',zeroline=False,showline=False),
+        xaxis=dict(gridcolor='#EBDFF1',zeroline=False,showline=False),
+        yaxis=dict(gridcolor='#EBDFF1',zeroline=False,showline=False),
     )
     return fig
 
-def quant_chart(fig, title, accent='#55B9FF', height=390):
+def quant_chart(fig, title, accent='#ee66e9', height=390):
     st.markdown(
-        f'<div style="background:linear-gradient(120deg,#FFFFFF,#EFF8FF);border:1px solid #C6E0F2;'
+        f'<div style="background:linear-gradient(120deg,#FFFDFE,#F1E6FA);border:1px solid #DECCE9;'
         f'border-left:4px solid {accent};border-radius:15px 15px 0 0;'
-        f'padding:16px 20px 10px;color:#193D61;font-weight:800;font-size:1.08rem">'
+        f'padding:16px 20px 10px;color:#4b205a;font-weight:800;font-size:1.08rem">'
         f'{escape(title)}</div>',unsafe_allow_html=True)
     quant_style(fig,height,accent)
     st.plotly_chart(fig,use_container_width=True,config={'displaylogo':False})
@@ -589,7 +657,7 @@ def quant_stress(df, title='Stress · Debt at risk ranking', max_bars=19):
     x=x.nlargest(max_bars,'debt_at_risk_usd').sort_values('debt_at_risk_usd')
     vals=x['debt_at_risk_usd'].to_numpy()
     q1,q2=np.quantile(vals,[.5,.8])
-    colors=['#FF7890' if v>=q2 else '#F4B65F' if v>=q1 else '#53B9FF' for v in vals]
+    colors=['#FF7890' if v>=q2 else '#F4B65F' if v>=q1 else '#ee64e8' for v in vals]
     fig=go.Figure(go.Bar(x=vals,y=x['scenario_id'].astype(str),orientation='h',
         marker=dict(color=colors,line=dict(width=0)),
         customdata=np.array(x['scenario_id'].astype(str))[:,None],
@@ -607,17 +675,17 @@ def quant_historical(df,time_col,value_col,count_col,selected):
     if value_col:
         x[value_col]=pd.to_numeric(x[value_col],errors='coerce')
         fig=go.Figure(go.Scatter(x=x[time_col],y=x[value_col],mode='lines+markers',
-            line=dict(color='#37D9C2',width=3),marker=dict(size=7,color='#7BFCE5'),
+            line=dict(color='#a747c9',width=3),marker=dict(size=7,color='#ef88eb'),
             fill='tozeroy',fillcolor='rgba(55,217,194,.10)',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_yaxes(title='Debt repaid (USD)',tickformat='~s')
-        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#37D9C2',380)
+        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#a747c9',380)
     if count_col:
         x[count_col]=pd.to_numeric(x[count_col],errors='coerce')
-        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#55B9FF',
+        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#ee66e9',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Events: %{y:,.0f}<extra></extra>'))
         fig.update_yaxes(title='Liquidation events',rangemode='tozero')
-        quant_chart(fig,'Historical · Liquidation events','#55B9FF',320)
+        quant_chart(fig,'Historical · Liquidation events','#ee66e9',320)
 
 def quant_cascade(df):
     x=df.copy().sort_values('round')
@@ -627,7 +695,7 @@ def quant_cascade(df):
     if 'executed_liquidations' in x:
         vals=pd.to_numeric(x['executed_liquidations'],errors='coerce')
         fig=go.Figure(go.Bar(x=x['round'],y=vals,
-            marker=dict(color=['#F5A84C' if v>0 else '#536B87' for v in vals]),
+            marker=dict(color=['#F5A84C' if v>0 else '#775882' for v in vals]),
             hovertemplate='Round %{x}<br>Liquidations: %{y:,.0f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Executed liquidations',rangemode='tozero')
@@ -645,15 +713,343 @@ def quant_cascade(df):
 def quant_hf(df,hf):
     values=pd.to_numeric(df[hf],errors='coerce').dropna()
     if values.empty:return
-    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#9A7BFF',
+    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#f288ee',
         hovertemplate='Health Factor: %{x:.2f}<br>Positions: %{y}<extra></extra>'))
     fig.add_vline(x=1,line=dict(color='#FF7890',width=2,dash='dash'))
     fig.update_xaxes(title='Health Factor')
     fig.update_yaxes(title='Borrower positions')
-    quant_chart(fig,'Borrower · Health Factor distribution','#9A7BFF',360)
+    quant_chart(fig,'Borrower · Health Factor distribution','#f288ee',360)
 
-if page.startswith('01'):
-    st.subheader('✦ Protocol Risk Overview')
+SNAPSHOT_NAMES = {26179841: 'A · Calibration', 20458637: 'B1 · Aug 2024', 23543615: 'B2 · Oct 2025'}
+
+
+def overview_launchpad():
+    st.markdown("""<style>
+.research-front{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8e7f7,#f4d9f3 65%,#f9eaf8);border:1px solid #ebcbea;border-radius:26px;padding:32px 34px;margin:10px 0 22px;min-height:215px}
+.research-front:after{content:'';position:absolute;right:-25px;bottom:-235px;width:440px;height:440px;border-radius:50%;background:linear-gradient(170deg,#e07edc70,#fbdcfa10);border:1px solid #db95d8;pointer-events:none}
+.research-front h2{font-size:36px!important;letter-spacing:-1.2px!important;max-width:650px;position:relative;z-index:1;margin:12px 0!important}
+.front-copy{max-width:590px;font-size:14px;color:#765881;line-height:1.7;position:relative;z-index:1}
+.front-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}.front-tags span{background:#ffffffa0;border:1px solid #ffffff;padding:6px 12px;border-radius:30px;font-size:11px;color:#6b4479}
+.explore-card{border:1px solid #ecceeb;border-radius:18px;padding:21px;background:#ffffffa0;min-height:145px;border-top:3px solid var(--accent);margin-bottom:7px}
+.explore-card small{font:11px monospace;color:#8b7195}.explore-card h3{margin:12px 0 8px!important;font-size:23px!important}.explore-card p{font-size:13px;color:#82668c;line-height:1.6;margin-bottom:0}
+.transmission{border:1px solid #ead4e9;background:#fefafeb0;border-radius:20px;padding:22px 26px;margin:22px 0}.transmission-label{font:11px monospace;letter-spacing:1.5px;color:#866692}.transmission-flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}.transmission-node{text-align:center;font-size:13px;font-weight:650;color:#5b3867}.transmission-node b{display:block;font-size:24px;color:var(--accent);margin-bottom:9px}.transmission-arrow{color:#c1a2c0}.transmission-note{font-size:11px;color:#897391}
+@media(max-width:650px){.research-front{padding:24px}.research-front h2{font-size:28px!important}.transmission-flow{flex-wrap:wrap}.transmission-node{font-size:11px}.research-front:after{opacity:.3}}
+</style>
+<div class="research-front"><div class="terminal-eyebrow">DEFIRISK LAB / RESEARCH TERMINAL</div><h2>Explore the risk<br>behind DeFi.</h2><div class="front-copy">Từ vị thế người vay đến cú sốc thị trường và thực thi thanh lý. Khám phá bằng chứng theo snapshot, đối chiếu các kịch bản và lần theo cơ chế truyền rủi ro.</div><div class="front-tags"><span>Aave V3</span><span>Compound III · nghiên cứu</span><span>Historical snapshots</span><span>Precomputed scenarios</span></div></div>
+""", unsafe_allow_html=True)
+    cards = [('01 / EXPOSURE', 'Wallet risk', 'Khám phá Health Factor, dư nợ và mức tập trung của mẫu vị thế.', '#279b9c', 2),
+             ('02 / MARKET SHOCK', 'Stress impact', 'Chọn cú sốc có sẵn, so sánh mức phơi nhiễm giữa A / B1 / B2.', '#9770d0', 3),
+             ('03 / EXECUTION', 'Cascade', 'Theo dõi thanh lý theo vòng và so sánh cấu hình thực thi.', '#d17e59', 4)]
+    for col, (tag, title, text, color, target) in zip(st.columns(3), cards):
+        with col:
+            st.markdown(f'<div class="explore-card" style="--accent:{color}"><small>{tag}</small><h3>{title}</h3><p>{text}</p></div>', unsafe_allow_html=True)
+            if st.button('Khám phá '+title+' ↗', key='explore_'+str(target), width='stretch'):
+                st.session_state['_requested_target']=target
+                st.session_state.selected_page = PAGES[target]
+                st.rerun()
+    st.markdown("""<div class="transmission"><div class="transmission-label">RISK TRANSMISSION / CONCEPTUAL FRAMEWORK</div><div class="transmission-flow"><div class="transmission-node" style="--accent:#279b9c"><b>◈</b>Borrowers</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#c39744"><b>≋</b>Liquidations</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#ce6178"><b>▥</b>DEX impact</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#9371c7"><b>⌘</b>Contagion</div></div><div class="transmission-note">Sơ đồ cơ chế nghiên cứu, không phải kết quả chứng minh lây lan thực tế. Xem Methodology để đọc giả định và giới hạn.</div></div>""", unsafe_allow_html=True)
+
+
+def scenario_explorer(stress):
+    with st.container(border=True):
+        st.subheader('Scenario Explorer')
+        st.caption('Chọn nhiều snapshot, nhóm và mốc có dữ liệu để so sánh. Để trống = tất cả trong phạm vi hiện tại.')
+        options = sorted(stress.snapshot_block.dropna().unique().tolist())
+        blocks = st.multiselect('Historical snapshots', options, default=options[:1],
+                         format_func=lambda value: SNAPSHOT_NAMES.get(value,str(value)), key='explorer_multi_snapshots')
+        available = stress.loc[stress.snapshot_block.isin(blocks)].copy() if blocks else stress.copy()
+        def family(name):
+            if name.startswith('eth_drop_'): return 'ETH giảm giá'
+            if name.startswith('btc_drop_'): return 'BTC giảm giá'
+            if name.startswith('depeg_'): return 'Depeg'
+            if name.startswith('stablecoin_drop_'): return 'Stablecoin giảm giá'
+            return 'Cú sốc kết hợp'
+        available['_family'] = available.scenario_id.astype(str).map(family)
+        groups = [g for g in ['ETH giảm giá','BTC giảm giá','Depeg','Stablecoin giảm giá','Cú sốc kết hợp']
+                  if g in available['_family'].values]
+        selected_groups = st.multiselect('Nhóm cú sốc', groups, default=groups[:1], key='explorer_multi_families')
+        choices = available.loc[available['_family'].isin(selected_groups)].copy() if selected_groups else available.copy()
+        ids = choices.scenario_id.astype(str).drop_duplicates().tolist()
+        def description(row):
+            if str(row.scenario_id).startswith('stablecoin_drop_'):
+                return 'Stablecoin −' + str(row.scenario_id).rsplit('_',1)[-1] + '%'
+            values = [('ETH',row.eth_shock),('Depeg',row.depeg_shock),('BTC',row.btc_shock)]
+            return ' · '.join(f'{label} {float(value)*100:+g}%' for label,value in values if abs(float(value))>1e-9) or str(row.scenario_id)
+        labels = {str(row.scenario_id): description(row) for row in choices.itertuples()}
+        key='explorer_multi_scenarios'
+        if key in st.session_state:
+            st.session_state[key]=[v for v in st.session_state[key] if v in ids]
+        st.caption('Kéo hai đầu để lấy một dải mốc; ghim thêm mốc rời bên dưới. Các mốc đều thuộc nhóm đã chọn, không phải tổ hợp tự ghép.')
+        slider_key='explorer_range_' + '_'.join(ids)
+        if len(ids)>1:
+            first,last=st.select_slider('Dải mốc so sánh',ids,value=(ids[0],ids[0]),
+                format_func=lambda value: labels[value],key=slider_key)
+            range_ids=ids[ids.index(first):ids.index(last)+1]
+        else:
+            range_ids=ids
+        pinned = st.multiselect('Ghim thêm mốc rời', ids, default=[],
+                                  format_func=lambda value: labels[value], key=key)
+        selected=list(dict.fromkeys(range_ids+pinned))
+        matches = choices.loc[choices.scenario_id.astype(str).isin(selected)].copy()
+        st.caption(f'{matches.snapshot_block.nunique()} snapshot · {matches.scenario_id.nunique()} kịch bản · {len(matches)} kết quả. Không cộng giữa các kịch bản.')
+        st.markdown('**Mốc đang xem:** '+ ' / '.join(labels[v] for v in selected))
+        with st.expander('Danh sách tổ hợp thực tế đang so sánh'):
+            st.dataframe(matches.drop(columns='_family')[['snapshot_block','scenario_id','eth_shock','btc_shock','depeg_shock']],hide_index=True)
+        return matches.drop(columns='_family')
+
+
+def terminal_signal(title, value, detail, tone='neutral', simulation=False):
+    colors = {'stable':'#218b88', 'watch':'#aa751b', 'risk':'#c34963', 'neutral':'#865a96'}
+    color = colors.get(tone, colors['neutral'])
+    kind = 'SIMULATED / ' if simulation else 'OBSERVED / '
+    st.markdown(f'<div class="signal-panel" style="--signal:{color}"><div><div class="signal-kicker" style="color:{"#8460c0" if simulation else "#7c5d87"}">{kind}SELECTION INTELLIGENCE</div><div class="signal-title">{escape(title)}</div><div class="signal-detail">{escape(detail)}</div></div><div class="signal-value">{escape(str(value))}</div></div>', unsafe_allow_html=True)
+
+
+def stress_signal(frame):
+    if 'debt_at_risk_pct' not in frame:
+        return
+    values = pd.to_numeric(frame.debt_at_risk_pct, errors='coerce').dropna()
+    if values.empty:
+        return
+    value = values.max()
+    terminal_signal('Dư nợ có nguy cơ · kịch bản cao nhất đang chọn', f'{value:.2f}%',
+                    'Giá trị lớn nhất trong lựa chọn, không cộng giữa các snapshot/kịch bản. Màu đỏ khi có dư nợ được mô hình đánh dấu có nguy cơ; không phải xếp hạng rủi ro đã nghiệm thu.',
+                    'risk' if value > 0 else 'stable', simulation=True)
+
+
+def source_context():
+    config = ROOT / 'config/n5_research_artifacts.json'
+    try:
+        bundle = json.loads(config.read_text()).get('current_bundle', 'Not configured')
+    except (OSError, ValueError):
+        bundle = 'Not configured'
+    with st.expander('Nguồn dữ liệu & phạm vi', expanded=False):
+        st.write(f'**Release chính thức:** `{bundle}`')
+        st.write('Overview / Stress: N4 research stress summary. Cascade: N5 approved_package_with27. '
+                 'Đây là các đầu ra chẩn đoán/mô phỏng tính sẵn; không đại diện toàn bộ kết luận release.')
+        st.caption('Historical: dữ liệu thanh lý quan sát. Borrower: snapshot đầy đủ nếu có; nếu thiếu, chỉ hiển thị mẫu top-wallet N3 có nhãn riêng. A, B1, B2 là các thời điểm khác nhau.')
+
+    enabled=st.toggle('Research Evidence Mode',key='research_evidence_mode',
+                      help='Hiển thị nguồn, thời điểm snapshot, dữ liệu gốc và QA theo trang hiện tại.')
+    if enabled:
+        with st.container(border=True):
+            st.markdown('### Research evidence / nguồn và giới hạn')
+            paths_by_page={0:['outputs/n5_completion_20261026/n4_research/stress_summary.parquet'],
+                1:['outputs/tables/n3_liquidations_daily.csv','outputs/tables/n3_liquidation_market_hourly.csv'],
+                2:['data/processed/fact_wallet_summary.parquet','outputs/tables/n3_m6_top50_wallets_AB1B2.csv'],
+                3:['outputs/n5_completion_20261026/n4_research/stress_summary.parquet'],
+                4:['outputs/n5_completion_20261026/approved_package_with27/execution_summary.parquet','outputs/n5_completion_20261026/approved_package_with27/execution_rounds.parquet']}
+            for relative in paths_by_page.get(page_index,[]):
+                path=ROOT/relative
+                if not path.is_file():
+                    st.warning('Không tìm thấy nguồn: '+relative)
+                    continue
+                st.code(relative,language=None)
+                data=load_table(str(path))
+                st.caption(f'{len(data):,} dòng · {len(data.columns)} cột · SHA-256: '+hashlib.sha256(path.read_bytes()).hexdigest())
+                st.dataframe(data.head(8),hide_index=True)
+                st.download_button('Tải nguồn · '+path.name,path.read_bytes(),file_name=path.name,key='evidence_download_'+relative)
+            snapshot_config=ROOT/'config/snapshots.json'
+            if snapshot_config.is_file():
+                with st.expander('Snapshot block / timestamp UTC / cửa sổ sự kiện'):
+                    st.json(json.loads(snapshot_config.read_text()))
+            qa_paths=['outputs/tables/n3_m6_quality_AB1B2.json'] if page_index==2 else ['outputs/tables/n3_liquidations_final_quality.json'] if page_index==1 else ['outputs/n5_official_release_20261026/metadata/scientific_consistency.json']
+            for relative in qa_paths:
+                path=ROOT/relative
+                if path.is_file():
+                    with st.expander('QA tham chiếu · '+path.name):
+                        st.code(relative,language=None)
+                        st.json(json.loads(path.read_text()))
+                        st.caption('QA thuộc nguồn/gói được ghi tên; không tự xác nhận mọi bảng trên trang đã nghiệm thu.')
+            st.caption('Nguồn tính toán: scripts/n5_prepare_handoff.py; scripts/n5_run_approved_package.py; dữ liệu N3 và config/snapshots.json. Thời điểm snapshot là thời điểm dữ liệu; giờ sửa file không được dùng thay timestamp thị trường. Mẫu top-wallet không đại diện toàn bộ người vay; mô phỏng có điều kiện không chứng minh nhân quả. Split-Reality không phải kiểm định sai số dự báo vì hai đại lượng có định nghĩa khác nhau.')
+
+
+def snapshot_comparison(frame):
+    if not {'snapshot_block', 'debt_at_risk_usd', 'scenario_id'}.issubset(frame):
+        return
+    x = frame.copy()
+    x['Snapshot'] = x.snapshot_block.map(SNAPSHOT_NAMES).fillna(x.snapshot_block.astype(str))
+    # Keep each scenario and snapshot distinct; do not sum alternative scenarios.
+    fig = px.bar(x, x='scenario_id', y='debt_at_risk_usd', color='Snapshot',
+                 barmode='group', color_discrete_sequence=['#a043c0', '#9866CE', '#E59A3D'],
+                 labels={'scenario_id': 'Scenario', 'debt_at_risk_usd': 'Debt at risk (USD)'})
+    fig.update_xaxes(tickangle=-40)
+    quant_chart(fig, 'Cùng cú sốc · khác thời điểm', height=450)
+    st.caption('Mỗi cột là một kịch bản tại một snapshot; các kịch bản là giả định thay thế, không cộng thành tổng tổn thất.')
+
+
+def borrower_map(frame, sampled=False):
+    hf = numeric(frame, ['health_factor', 'hf_calculated_t0', 'hf_value', 'hf'])
+    debt = numeric(frame, ['debt_usd', 'total_debt_usd'])
+    collateral = numeric(frame, ['collateral_usd', 'counted_collateral_usd', 'total_collateral_usd'])
+    if not hf or not debt:
+        return
+    x = frame.copy()
+    for col in [hf, debt] + ([collateral] if collateral else []):
+        x[col] = pd.to_numeric(x[col], errors='coerce')
+    x = x.replace([np.inf, -np.inf], np.nan).dropna(subset=[hf, debt])
+    x = x[(x[debt] > 0) & (x[hf] >= 0)]
+    if collateral:
+        x[collateral] = x[collateral].fillna(0).clip(lower=0)
+    if 'snapshot_id' in x:
+        options = sorted(x.snapshot_id.dropna().astype(str).unique())
+        chosen = st.selectbox('Snapshot · borrower map', options, key='borrower_map_snapshot')
+        x = x[x.snapshot_id.astype(str) == chosen]
+    if x.empty:
+        st.info('Không có vị thế phù hợp để vẽ bản đồ rủi ro.')
+        return
+    unsafe = int((x[hf] < 1).sum())
+    near = int(((x[hf] >= 1) & (x[hf] < 1.1)).sum())
+    terminal_signal('Health Factor · snapshot đang chọn', f'{unsafe:,} / {len(x):,}',
+                    f'{unsafe:,} bản ghi HF < 1; {near:,} bản ghi trong vùng theo dõi 1 ≤ HF < 1.1. ' +
+                    ('Chỉ áp dụng mẫu top-wallet N3.' if sampled else 'Chỉ áp dụng dữ liệu đang hiển thị.') +
+                    ' HF ≥ 1.1 không bảo đảm an toàn; 1.1 là mốc theo dõi giao diện.',
+                    'risk' if unsafe else 'watch' if near else 'stable')
+    x['Risk zone'] = np.select([x[hf] < 1, x[hf] < 1.1], ['HF < 1', '1 ≤ HF < 1.1'], default='HF ≥ 1.1')
+    wallet = numeric(x, ['wallet', 'wallet_address'])
+    evidence_source='outputs/tables/n3_m6_top50_wallets_AB1B2.csv' if sampled else 'data/processed/fact_wallet_summary.parquet'
+    x['Evidence source']=evidence_source
+    x['Evidence scope']='Top-wallet sample' if sampled else 'Borrower snapshot'
+    hover_fields=[c for c in ['snapshot_id','snapshot_block',hf,debt,collateral,'Evidence source','Evidence scope'] if c and c in x]
+    st.caption('Risk X-Ray · rê chuột lên điểm ví để xem chỉ số, snapshot và nguồn bằng chứng.')
+    fig = px.scatter(x, x=hf, y=debt, color='Risk zone', hover_data=hover_fields,
+                     size=collateral if collateral and x[collateral].max() > 0 else None,
+                     size_max=38, log_y=True, hover_name=wallet,
+                     color_discrete_map={'HF < 1': '#E76A83', '1 ≤ HF < 1.1': '#D99430', 'HF ≥ 1.1': '#289FAD'},
+                     labels={hf: 'Health Factor', debt: 'Debt (USD · log scale)'})
+    fig.add_vline(x=1, line_dash='dash', line_color='#E76A83', annotation_text='HF = 1')
+    quant_chart(fig, 'Bản đồ vị thế · mức an toàn và quy mô dư nợ', height=430)
+    st.caption(('Mẫu top-wallet N3, không phải toàn bộ người vay. ' if sampled else '') +
+               'Mỗi điểm là một bản ghi vị thế; kích thước theo collateral nếu có. Trục dư nợ dùng thang log; HF ≥ 1 không có nghĩa không còn rủi ro.')
+
+
+def stress_heatmap(frame):
+    required = {'snapshot_block', 'scenario_id', 'debt_at_risk_pct'}
+    if not required.issubset(frame) or frame.empty:
+        return
+    if frame.duplicated(['snapshot_block', 'scenario_id']).any():
+        st.info('Có nhiều kết quả cho cùng snapshot/kịch bản; hãy lọc thêm trước khi so sánh.')
+        return
+    x = frame.pivot(index='scenario_id', columns='snapshot_block', values='debt_at_risk_pct')
+    x = x.rename(columns=SNAPSHOT_NAMES)
+    fig = go.Figure(go.Heatmap(z=x.to_numpy(), x=x.columns.tolist(), y=x.index.tolist(),
+        colorscale=[[0, '#fbf0fa'], [.45, '#a76cbc'], [1, '#CE5873']],
+        colorbar=dict(title='Debt at risk %'),
+        hovertemplate='Snapshot: %{x}<br>Scenario: %{y}<br>Debt at risk: %{z:.2f}%<extra></extra>'))
+    quant_chart(fig, 'Stress landscape · tỷ lệ dư nợ có nguy cơ', height=max(360, 26*len(x)+100))
+    st.caption('Đơn vị theo debt_at_risk_pct của đầu ra N4. Ô trống là thiếu dữ liệu; không thay bằng 0. Đây là lưới snapshot × scenario, không phải lưới CF chưa có trong bảng nguồn.')
+
+
+def market_timeline(frame):
+    required = {'hour_utc', 'debt_repaid_usd', 'eth_usd_price'}
+    if not required.issubset(frame):
+        return
+    x = frame.copy()
+    x['hour_utc'] = pd.to_datetime(x.hour_utc, utc=True, errors='coerce')
+    x = x.dropna(subset=['hour_utc']).sort_values('hour_utc')
+    fig = make_subplots(specs=[[{'secondary_y': True}]])
+    fig.add_trace(go.Bar(x=x.hour_utc, y=x.debt_repaid_usd, name='Liquidation debt repaid', marker_color='#a35dbc'), secondary_y=False)
+    fig.add_trace(go.Scatter(x=x.hour_utc, y=x.eth_usd_price, name='ETH price', line=dict(color='#DA9543', width=2)), secondary_y=True)
+    fig.update_yaxes(title_text='Debt repaid (USD)', secondary_y=False)
+    fig.update_yaxes(title_text='ETH price (USD)', secondary_y=True, showgrid=False)
+    fig.update_xaxes(title='UTC')
+    quant_chart(fig, 'Bối cảnh thị trường · ETH và thanh lý theo giờ', height=410)
+    st.caption('Hai trục có thang đo riêng. Diễn biến cùng thời điểm không chứng minh quan hệ nhân quả; xem quote age trong bảng nguồn.')
+
+
+def split_reality(frame):
+    with st.expander('Split-Reality · quan sát lịch sử ↔ mô phỏng', expanded=False):
+        st.caption('Hai góc nhìn cùng bối cảnh snapshot. Cú sốc bên phải là giả định được chọn, không khẳng định đã xảy ra bên trái.')
+        choices=frame.reset_index(drop=True)
+        i=st.selectbox('Cấu hình đối chiếu',list(range(len(choices))),
+            format_func=lambda n: str(SNAPSHOT_NAMES.get(choices.iloc[n].snapshot_block,choices.iloc[n].snapshot_block))+' · '+str(choices.iloc[n].scenario_id),key='split_focus')
+        row=choices.iloc[i]
+        left,right=st.columns(2)
+        with left:
+            st.markdown('#### Observed / sự kiện thực tế')
+            config=json.loads((ROOT/'config/snapshots.json').read_text())['snapshots']
+            sid=next((k for k,v in config.items() if v.get('block')==int(row.snapshot_block)),None)
+            meta=config.get(sid,{})
+            start=pd.to_datetime(meta.get('target_utc'),utc=True)
+            end=pd.to_datetime(meta.get('window_end_exclusive_utc'),utc=True) if meta.get('window_end_exclusive_utc') else start+pd.Timedelta(hours=24)
+            path=ROOT/'data/n3_history_2024_2026/final/n3_liquidations_observed.parquet'
+            if path.is_file() and pd.notna(start):
+                observed=load_table(str(path)).copy()
+                times=pd.to_datetime(observed.event_timestamp,utc=True,errors='coerce')
+                observed=observed.loc[(times>=start)&(times<end)].copy()
+                st.caption(f'Cửa sổ UTC: {start} → {end} (cuối loại trừ).')
+                if observed.empty:
+                    st.info('Không có bản ghi nguồn trong cửa sổ này; không diễn giải là không có thanh lý.')
+                else:
+                    observed['hour']=pd.to_datetime(observed.event_timestamp,utc=True).dt.floor('h')
+                    total=pd.to_numeric(observed.debt_repaid_usd,errors='coerce').sum(min_count=1)
+                    st.metric('Debt repaid quan sát (USD)',f'${total:,.0f}' if pd.notna(total) else 'Chưa có giá USD')
+                    st.caption(f'{len(observed):,} sự kiện trong tập nguồn; giá USD có thể thiếu.')
+                    agg=observed.groupby('hour').debt_repaid_usd.sum(min_count=1).reset_index()
+                    fig=px.bar(agg,x='hour',y='debt_repaid_usd',labels={'hour':'UTC','debt_repaid_usd':'Observed repaid USD'},color_discrete_sequence=['#289b9c'])
+                    quant_chart(fig,'Observed liquidation events',height=320)
+                st.caption('Nguồn: '+str(path.relative_to(ROOT)))
+            else:
+                st.info('Chưa có nguồn lịch sử tương ứng.')
+        with right:
+            st.markdown('#### Simulated / cú sốc giả định')
+            st.write(f'**{row.scenario_id}**')
+            st.metric('Debt at risk mô phỏng (USD)',f'${row.debt_at_risk_usd:,.0f}')
+            st.write(f'ETH {row.eth_shock:+.0%} · BTC {row.btc_shock:+.0%} · Depeg {row.depeg_shock:+.0%}')
+            st.metric('Debt at risk (%)',f'{row.debt_at_risk_pct:.2f}%')
+            st.caption('Nguồn: outputs/n5_completion_20261026/n4_research/stress_summary.parquet')
+            st.info('Debt at risk là phơi nhiễm trong kịch bản, khác với debt repaid quan sát. Không lấy chênh lệch hai số làm sai số dự báo hoặc bằng chứng nhân quả.')
+
+
+def method_comparison(summary, selected_row):
+    view = summary.copy()
+    dimensions = ['snapshot_id', 'snapshot_block', 'scenario_id', 'variant', 'ordering', 'pair_rule',
+                  'seed', 'oracle_feedback', 'freeze_proven', 'pool_state', 'gas_usd', 'fee_policy']
+    for key in dimensions:
+        if key in view:
+            value = selected_row[key]
+            view = view[view[key].isna()] if pd.isna(value) else view[view[key] == value]
+    if 'method' not in view or view.method.nunique() < 2 or view.method.duplicated().any():
+        st.caption('Chưa có nhiều method với cùng toàn bộ điều kiện để so sánh trực tiếp.')
+        return
+    fig = px.bar(view, x='method', y='simulated_repaid_usd', color='method',
+                 color_discrete_sequence=['#a043c0', '#9866CE', '#E59A3D'],
+                 labels={'method': 'Method', 'simulated_repaid_usd': 'Simulated repaid debt (USD)'})
+    quant_chart(fig, 'Cùng điều kiện · so sánh phương pháp thực thi', height=330)
+    st.caption('Giữ nguyên snapshot, scenario, variant, seed, phí, gas và các điều kiện đã chọn. Không diễn giải chênh lệch method thành bằng chứng causal feedback.')
+
+
+st.markdown("""<style>
+[data-testid="stSidebar"], [data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(155deg,#28172F,#402346 55%,#30203D)!important;border-right-color:#6D4277!important}
+[data-testid="stSidebar"] .st-key-brand_fixed{background:linear-gradient(150deg,#2B1935,#46274B)!important;border-bottom-color:#805184!important}
+[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#684481,#88528F)!important;border-color:#B18ABC55!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#B24E90,#8654B8)!important;outline-color:#E9B0DB!important;box-shadow:0 0 0 4px #C783C529,0 8px 22px #1D0F2922!important}
+[data-testid="stSidebar"] .st-key-space_nav_1 button{background:linear-gradient(110deg,#8050A3,#A86B9D)!important}
+[data-testid="stSidebar"] .st-key-space_nav_2 button{background:linear-gradient(110deg,#965176,#7954A0)!important}
+[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#DDBEE5!important}
+[data-testid="stSidebar"] .status-panel{background:#503357!important;border-color:#81598A!important}
+[data-testid="stSidebar"] .status-desc{color:#E0CEE7!important}
+.brand-logo{filter:hue-rotate(65deg) drop-shadow(0 0 18px #D4A0DD55)!important}
+[data-testid="stMain"] .stButton>button{background:#F4E5F4!important;color:#6C3E77!important;border-color:#D6B7DC!important}
+[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:linear-gradient(155deg,#55345F,#6C4271)!important;border-color:#AC84B4!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#805589!important;color:#FFF6FD!important}
+[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#68436E!important}
+[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#734D7A!important}
+[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{border-top-color:#926A99!important}
+[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#8C6094!important}
+[data-testid="stMain"] .aurora-data td.terminal-identity{color:#F0BEE7!important}
+</style>""",unsafe_allow_html=True)
+
+source_context()
+
+if page.startswith('04') and section=='Scenario Journey':
+    scenario_journey(ROOT)
+elif page.startswith('01'):
+    if section=='Hệ sinh thái':
+        ecosystem(ROOT)
+    else:
+        overview_launchpad()
+    st.subheader('Snapshot intelligence · dữ liệu hiện có')
     stress_df=get_data('n5_completion_20261026/n4_research/stress_summary.parquet')
     summary=get_data('n5_completion_20261026/approved_package_with27/execution_summary.parquet')
     wallets=get_data('data/processed/fact_wallet_summary.parquet','fact_wallet_summary.parquet')
@@ -676,11 +1072,13 @@ if page.startswith('01'):
     if stress_df is not None and {'scenario_id','debt_at_risk_usd'}.issubset(stress_df):
         st.subheader('📊 Stress Risk Overview')
         chart=stress_df.groupby('scenario_id',as_index=False)['debt_at_risk_usd'].mean().nlargest(12,'debt_at_risk_usd')
-        quant_stress(chart, 'Overview · Highest-risk scenarios', 12)
-        render_aurora_table(stress_df,'Stress scenario results','overview_stress',subtitle='')
+        stress_signal(stress_df)
+        snapshot_comparison(stress_df)
+        with st.expander('Chi tiết · stress scenario results'):
+            render_aurora_table(stress_df,'Stress scenario results','overview_stress',subtitle='')
     if wallets is not None:
         st.subheader('🛡 Borrower snapshot')
-        hf=numeric(wallets,['health_factor','hf','health_factor_current'])
+        hf=numeric(wallets,['health_factor','hf_calculated_t0','hf','health_factor_current'])
         debt=numeric(wallets,['total_debt_usd','debt_usd','borrowed_usd','debt_value_usd'])
         if hf:
             vals=pd.to_numeric(wallets[hf],errors='coerce')
@@ -688,10 +1086,12 @@ if page.startswith('01'):
             a.metric('Positions with HF < 1',f'{(vals<1).sum():,}')
             if debt: b.metric('Total recorded debt',dollars(pd.to_numeric(wallets[debt],errors='coerce').sum()))
             quant_hf(wallets,hf)
-        render_aurora_table(wallets.head(5000),'Borrower snapshot records','overview_wallets',subtitle='')
+        with st.expander('Chi tiết · borrower snapshot'):
+            render_aurora_table(wallets.head(5000),'Borrower snapshot records','overview_wallets',subtitle='')
 
 elif page.startswith('02'):
-    st.subheader('🕒 Historical Liquidation Intelligence')
+    crisis_replay(ROOT)
+    st.subheader('Historical evidence · tổng hợp nguồn N3')
     daily=get_data('tables/n3_liquidations_daily.csv')
     hourly=get_data('tables/n3_liquidations_hourly.csv')
     historical=get_data('data/processed/fact_historical_liquidations.parquet','fact_historical_liquidations.parquet')
@@ -715,14 +1115,17 @@ elif page.startswith('02'):
                 graph[count_col]=pd.to_numeric(graph[count_col],errors='coerce')
                 pass  # Rendered together below with Bloomberg × Aurora styling
             quant_historical(graph,time_col,value_col,count_col,selected) if time_col else None
-        render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#008E83',subtitle='')
+        with st.expander('Chi tiết · historical liquidation'):
+            render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#620e80',subtitle='')
     if historical is not None:
         with st.expander('🔎 Raw historical liquidation records'):
-            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#008E83',subtitle='')
+            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#620e80',subtitle='')
     st.subheader('Market alignment evidence')
     market=get_data('tables/n3_liquidation_market_hourly.csv')
     if market is not None:
-        render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#008E83',subtitle='')
+        market_timeline(market)
+        with st.expander('Chi tiết · market alignment & quote age'):
+            render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#620e80',subtitle='')
 
 elif page.startswith('03'):
     st.subheader('🛡 Aurora Borrower Risk Intelligence')
@@ -730,10 +1133,12 @@ elif page.startswith('03'):
     if wallets is None:
         top=get_data('tables/n3_m6_top50_wallets_AB1B2.csv')
         if top is not None:
-            render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#7048D4',subtitle='')
+            borrower_map(top, sampled=True)
+            with st.expander('Chi tiết · N3 top-wallet sample'):
+                render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#a956c6',subtitle='')
     else:
         aliases={'wallet':['wallet','wallet_address','user_address','address','borrower'],
-                 'health_factor':['health_factor','hf','health_factor_current'],
+                 'health_factor':['health_factor','hf_calculated_t0','hf','health_factor_current'],
                  'debt_usd':['debt_usd','total_debt_usd','borrowed_usd','debt_value_usd'],
                  'collateral_usd':['collateral_usd','total_collateral_usd','collateral_value_usd']}
         view=wallets.copy()
@@ -745,27 +1150,40 @@ elif page.startswith('03'):
             for col in ['health_factor','debt_usd','collateral_usd']:
                 view[col]=pd.to_numeric(view[col],errors='coerce')
             view=view.dropna(subset=['wallet','health_factor','debt_usd','collateral_usd'])
-            render_risk_explorer(view,key='borrower',title='Observed borrower positions')
+            borrower_map(view)
+            with st.expander('Khám phá vị thế · bảng, bộ lọc và xuất CSV'):
+                render_risk_explorer(view,key='borrower',title='Observed borrower positions')
         else:
             st.warning('Thiếu cột cần thiết để phân tích Health Factor.')
-            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#7048D4',subtitle='')
+            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#a956c6',subtitle='')
     st.subheader('N3 · Health Factor & leverage evidence')
     hf_evidence=get_data('tables/n3_m6_hf_AB1B2.csv')
     if hf_evidence is not None:
-        render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#7048D4',subtitle='')
+        fig = px.bar(hf_evidence, x='hf_group', y='wallet_share_pct', color='snapshot_id', barmode='group',
+                     labels={'hf_group': 'Health Factor group', 'wallet_share_pct': 'Wallet share (%)', 'snapshot_id': 'Snapshot'})
+        quant_chart(fig, 'Phân bố người vay · đối chiếu A / B1 / B2')
+        with st.expander('Chi tiết · Health Factor evidence'):
+            render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#a956c6',subtitle='')
 
 elif page.startswith('04'):
     st.subheader('Stress Simulator · precomputed research scenarios')
     stress=get_data('n5_completion_20261026/n4_research/stress_summary.parquet')
     if stress is not None:
         view=stress.copy()
-        for col,label in [('snapshot_block','Snapshot block'),('scenario_id','Scenario')]:
-            if col in view and view[col].notna().any():
-                options=['All']+sorted(view[col].dropna().astype(str).unique().tolist())
-                chosen=st.selectbox(label,options,key='stress_'+col)
-                if chosen!='All': view=view[view[col].astype(str)==chosen]
-        if view.empty: pass
+        mode=st.radio('Chế độ khám phá',['Scenario Explorer','So sánh nhiều tiêu chí'],horizontal=True,key='stress_exploration_mode')
+        if mode=='Scenario Explorer':
+            view=scenario_explorer(stress)
         else:
+            st.caption('Chọn nhiều giá trị để so sánh. Để trống một bộ lọc nghĩa là lấy tất cả giá trị của tiêu chí đó.')
+            for col,label in [('snapshot_block','Snapshot block'),('scenario_id','Scenario')]:
+                if col in stress and stress[col].notna().any():
+                    options=sorted(stress[col].dropna().astype(str).unique().tolist())
+                    chosen=st.multiselect(label,options,key='stress_multi_'+col, placeholder='Tất cả')
+                    if chosen: view=view[view[col].astype(str).isin(chosen)]
+        if view.empty:
+            st.info('Không có dữ liệu khớp các tiêu chí đã chọn.')
+        else:
+            stress_signal(view)
             a,b,c=st.columns(3)
             a.metric('Output rows',f'{len(view):,}')
             b.metric('Scenarios',f'{view.scenario_id.nunique():,}' if 'scenario_id' in view else 'N/A')
@@ -774,88 +1192,131 @@ elif page.startswith('04'):
                 chart=view.copy()
                 chart['case_label']=chart['scenario_id'].astype(str) if 'scenario_id' in chart else chart.index.astype(str)
                 if 'snapshot_block' in chart: chart['case_label']=chart['snapshot_block'].astype(str)+' · '+chart['case_label']
-                quant_stress(chart,'Stress · Debt at risk by scenario')
+                chart['scenario_id'] = chart['case_label']
+                quant_stress(chart,'Stress · Debt at risk by snapshot & scenario', max_bars=len(chart))
             else: c.metric('Debt at risk','N/A')
-            show_table(view,'stress_summary.csv')
+            stress_heatmap(view)
+            split_reality(view)
+            with st.expander('Chi tiết · stress results & export'):
+                show_table(view,'stress_summary.csv')
 
 elif page.startswith('05'):
     st.subheader('Liquidation Cascade · N5 execution results')
     summary=get_data('n5_completion_20261026/approved_package_with27/execution_summary.parquet')
     rounds=get_data('n5_completion_20261026/approved_package_with27/execution_rounds.parquet')
     if summary is not None and rounds is not None:
-        keys=['snapshot_id','scenario_id','variant','method']
+        st.caption('Mỗi tiêu chí có thể chọn nhiều giá trị; để trống = tất cả. Mỗi cấu hình được so sánh riêng, không cộng các kịch bản thay thế.')
+        dimensions = ['snapshot_id','scenario_id','variant','method','ordering','pair_rule','seed',
+                      'oracle_feedback','freeze_proven','pool_state','gas_usd','fee_policy','snapshot_block']
         view=summary.copy()
         cols=st.columns(4)
-        selected={}
-        for i,(key,label) in enumerate(zip(keys,['Snapshot','Scenario','Variant','Method'])):
+        for i,(key,label) in enumerate(zip(dimensions[:4],['Snapshot','Scenario','Variant','Method'])):
             opts=sorted(view[key].dropna().astype(str).unique().tolist()) if key in view else []
-            if not opts:
-                st.stop()
-            choice=cols[i].selectbox(label,opts,key='n5_'+key)
-            selected[key]=choice
-            view=view[view[key].astype(str)==choice]
-        # Additional dimensions must be selected explicitly to avoid silently taking first row.
-        for key in ['ordering','pair_rule','seed','oracle_feedback','freeze_proven','pool_state','gas_usd','fee_policy','snapshot_block']:
-            if key in view and view[key].nunique(dropna=False)>1:
-                options=sorted(view[key].dropna().astype(str).unique().tolist())
-                choice=st.selectbox(key.replace('_',' ').title(),options,key='n5_extra_'+key)
-                view=view[view[key].astype(str)==choice]
-        if view.empty: pass
-        elif len(view)!=1:
-            st.warning(f'Còn {len(view)} kết quả khác nhau. Hiển thị bảng để tránh chọn nhầm KPI.')
-            show_table(view,'cascade_summary_filtered.csv')
+            widget_key='n5_valid_multi_'+key
+            if widget_key in st.session_state:
+                st.session_state[widget_key]=[v for v in st.session_state[widget_key] if v in opts]
+            chosen=cols[i].multiselect(label,opts,default=opts[:1],key=widget_key,placeholder='Tất cả lựa chọn phù hợp')
+            if chosen: view=view[view[key].astype(str).isin(chosen)]
+        st.caption('Bộ lọc từ trái sang phải: các mục phía sau chỉ hiện giá trị có kết quả theo lựa chọn phía trước. Giá trị cũ không còn phù hợp được bỏ; ô trống lấy tất cả giá trị phù hợp.')
+        with st.expander('Điều kiện bổ sung · chọn nhiều giá trị'):
+            for key in dimensions[4:]:
+                if key in summary and summary[key].nunique(dropna=False)>1:
+                    opts=sorted(view[key].dropna().astype(str).unique().tolist())
+                    widget_key='n5_valid_multi_'+key
+                    if widget_key in st.session_state:
+                        st.session_state[widget_key]=[v for v in st.session_state[widget_key] if v in opts]
+                    chosen=st.multiselect(key.replace('_',' ').title(),opts,key=widget_key,placeholder='Tất cả lựa chọn phù hợp')
+                    if chosen: view=view[view[key].astype(str).isin(chosen)]
+        if view.empty:
+            st.info('Không có cấu hình khớp tổ hợp đã chọn. Hãy bỏ bớt điều kiện hoặc chọn thêm giá trị.')
         else:
-            r=view.iloc[0]
-            a,b,c,d=st.columns(4)
-            a.metric('Executed liquidations',f'{int(r["executed_liquidations"]):,}')
-            b.metric('Simulated repaid debt',f'${r["simulated_repaid_usd"]:,.0f}')
-            c.metric('Liquidator profit',f'${r["liquidator_profit_usd"]:,.0f}')
-            d.metric('Rounds',f'{int(r["rounds"]):,}')
-            st.caption(f'Initial eligible wallets: {r.get("initial_eligible_wallets","N/A")} · Unknown candidate attempts: {r.get("unknown_candidate_attempts","N/A")} · Hit round limit: {r.get("hit_round_limit","N/A")}')
-            rr=rounds.copy()
-            for key,val in selected.items(): rr=rr[rr[key].astype(str)==val]
-            if 'snapshot_block' in rr and 'snapshot_block' in view:
-                rr=rr[rr.snapshot_block.astype(str)==str(r['snapshot_block'])]
-            if rr.empty: pass
+            view=view.copy()
+            max_executed = pd.to_numeric(view['executed_liquidations'], errors='coerce').max()
+            unknown = pd.to_numeric(view['unknown_candidate_attempts'], errors='coerce').max()
+            terminal_signal('Thanh lý thực thi · cấu hình cao nhất đang chọn', f'{max_executed:,.0f}',
+                            f'{len(view):,} cấu hình được giữ riêng. Số lần thử chưa rõ kết quả lớn nhất: {unknown:,.0f}. Đây là thực thi mô phỏng, không phải sự kiện on-chain hay bằng chứng lây lan nhân quả.',
+                            'risk' if max_executed > 0 else 'watch' if unknown > 0 else 'neutral', simulation=True)
+            varying=[key for key in dimensions if key in view and view[key].nunique(dropna=False)>1]
+            label_keys=varying or ['snapshot_id','scenario_id','variant','method']
+            view['Configuration detail']=view.apply(lambda row: ' · '.join(f'{key}={row[key]}' for key in label_keys),axis=1)
+            view['Configuration']=['C'+str(i+1).zfill(2)+' · '+str(row.snapshot_id)+' · '+str(row.method) for i,(_,row) in enumerate(view.iterrows())]
+            if len(view)==1:
+                r=view.iloc[0]
+                a,b,c,d=st.columns(4)
+                a.metric('Executed liquidations',f'{int(r["executed_liquidations"]):,}')
+                b.metric('Simulated repaid debt',f'${r["simulated_repaid_usd"]:,.0f}')
+                c.metric('Liquidator profit',f'${r["liquidator_profit_usd"]:,.0f}')
+                d.metric('Rounds',f'{int(r["rounds"]):,}')
             else:
-                # Distinguish multiple runs with same shared dimensions; do not aggregate as one run.
-                if rr.duplicated(['round']).any():
-                    st.warning('Có nhiều bản ghi cho cùng một vòng trong lựa chọn này. Không cộng dồn các run khác nhau.')
-                    show_table(rr,'cascade_rounds_ambiguous.csv')
-                else:
-                    rr=rr.sort_values('round')
-                    quant_cascade(rr)
-                    pass  # Included in quant_cascade above
-                    show_table(rr,'cascade_rounds.csv')
-            st.subheader('Execution transactions')
-            if st.checkbox('Tải bảng giao dịch chi tiết (48.114 dòng toàn bộ file)',value=False):
+                st.metric('Cấu hình đang so sánh',f'{len(view):,}')
+                st.caption('KPI hiển thị riêng theo cấu hình trong biểu đồ/bảng, không lấy tổng giữa các lần chạy.')
+            if 1<len(view)<=36:
+                metric=st.radio('Chỉ số so sánh',['simulated_repaid_usd','executed_liquidations','liquidator_profit_usd','rounds'],
+                    format_func=lambda x:{'simulated_repaid_usd':'Nợ hoàn trả (USD)','executed_liquidations':'Số thanh lý','liquidator_profit_usd':'Lợi nhuận liquidator (USD)','rounds':'Số vòng'}[x],horizontal=True,key='cascade_comparison_metric')
+                fig=px.bar(view,x=metric,y='Configuration',orientation='h',color='method',
+                           hover_data=[k for k in dimensions if k in view],labels={metric:metric.replace('_',' '),'Configuration':'Cấu hình'},
+                           color_discrete_sequence=['#8d72c6','#7e3f94'])
+                fig.update_traces(width=.55)
+                fig.update_yaxes(automargin=False)
+                quant_chart(fig,'Cascade · so sánh các cấu hình đã chọn',height=max(330,30*len(view)+140))
+            elif len(view)>36:
+                st.info('Đã chọn hơn 36 cấu hình. Bảng vẫn chứa đầy đủ kết quả; lọc hẹp hơn để xem biểu đồ dễ đọc.')
+            if len(view)==1:
+                st.caption('Một cấu hình đang chọn: xem KPI và diễn biến theo vòng bên dưới. Chọn thêm snapshot/kịch bản để mở biểu đồ so sánh.')
+            with st.expander('Chi tiết · tất cả cấu hình đã chọn & xuất CSV',expanded=len(view)>36):
+                show_table(view,'cascade_summary_filtered.csv')
+            # Match full available run identity. If round data lacks distinguishing
+            # dimensions, never assign those rows to an arbitrary selected run.
+            shared=[k for k in dimensions if k in rounds and k in view]
+            all_unique=not summary.duplicated(shared).any()
+            if all_unique:
+                rr=rounds.merge(view[shared+['Configuration']],on=shared,how='inner',validate='many_to_one')
+                if rr.empty:
+                    st.info('Không có dữ liệu vòng chạy cho lựa chọn này.')
+                elif rr.duplicated(['Configuration','round']).any():
+                    st.warning('Dữ liệu vòng chạy bị trùng cấu hình/vòng; chỉ hiển thị bảng để tránh cộng nhầm.')
+                elif len(view)<=36:
+                    for value,title in [('executed_liquidations','Thanh lý theo vòng'),('repaid_debt_usd','Nợ hoàn trả theo vòng (USD)')]:
+                        fig=px.line(rr.sort_values('round'),x='round',y=value,color='Configuration',markers=True,
+                                    labels={'round':'Vòng thực thi',value:title})
+                        fig.update_xaxes(dtick=1)
+                        quant_chart(fig,'Cascade · '+title,height=380)
+                if not rr.empty:
+                    with st.expander('Chi tiết · vòng chạy của từng cấu hình'):
+                        show_table(rr,'cascade_rounds.csv')
+            else:
+                st.info('Bảng vòng chạy thiếu chiều phân biệt các cấu hình nguồn; không ghép hoặc cộng các run khác nhau.')
+            if st.checkbox('Tải giao dịch của các cấu hình đã chọn',value=False,key='cascade_load_transactions'):
                 tx=get_data('n5_completion_20261026/approved_package_with27/execution_transactions.parquet')
                 if tx is not None:
-                    for key,val in selected.items(): tx=tx[tx[key].astype(str)==val]
-                    if 'snapshot_block' in tx: tx=tx[tx.snapshot_block.astype(str)==str(r['snapshot_block'])]
-                    st.metric('Matching transaction rows',f'{len(tx):,}')
-                    if not tx.empty: show_table(tx,'cascade_transactions.csv')
+                    tx_keys=[k for k in dimensions if k in tx and k in view]
+                    if summary.duplicated(tx_keys).any():
+                        st.warning('Giao dịch thiếu chiều định danh để ghép chính xác cấu hình; chưa hiển thị nhằm tránh nhầm run.')
+                    else:
+                        tx=tx.merge(view[tx_keys+['Configuration']],on=tx_keys,how='inner',validate='many_to_one')
+                        st.metric('Matching transaction rows',f'{len(tx):,}')
+                        if not tx.empty: show_table(tx,'cascade_transactions.csv')
 
 else:
     # Methodology: Research Command Center + Quant Blueprint (presentation only).
     st.markdown("""
     <style>
-    .method-intro{background:linear-gradient(120deg,#d8ecfc,#eaf5ff);border:1px solid #b8d5ed;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
-    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#35749e;text-transform:uppercase}
-    .method-heading{font-size:29px;font-weight:850;color:#173653;margin:9px 0}
-    .method-copy{font-size:15px;line-height:1.75;color:#47617a;max-width:800px}
+    .method-intro{background:linear-gradient(120deg,#f8dcf7,#fdecfc);border:1px solid #e8bde6;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
+    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#7e4093;text-transform:uppercase}
+    .method-heading{font-size:29px;font-weight:850;color:#411d4d;margin:9px 0}
+    .method-copy{font-size:15px;line-height:1.75;color:#6a4c75;max-width:800px}
     .method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}
-    .method-card{background:#f8fcff;border:1px solid #bcd8ee;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
+    .method-card{background:#fef9fe;border:1px solid #e9c1e7;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
     .method-tag{font-size:12px;letter-spacing:1px;font-weight:850;margin-bottom:12px}
-    .method-card h3{font-size:18px;color:#173653;margin:0 0 10px}
-    .method-card p{color:#536f88;line-height:1.65;font-size:14px;margin:0}
-    .method-section{font-size:21px;font-weight:800;color:#1b3f5c;margin:25px 0 12px}
+    .method-card h3{font-size:18px;color:#411d4d;margin:0 0 10px}
+    .method-card p{color:#785883;line-height:1.65;font-size:14px;margin:0}
+    .method-section{font-size:21px;font-weight:800;color:#482156;margin:25px 0 12px}
     .method-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 20px}
-    .method-step{background:#e2f0fa;border:1px solid #b9d5e9;border-radius:13px;padding:15px 12px;color:#264c6c;font-size:13px;line-height:1.5}
-    .method-step b{display:block;font-size:15px;color:#183d5a;margin-bottom:5px}
+    .method-step{background:#f8e4f7;border:1px solid #e4bee3;border-radius:13px;padding:15px 12px;color:#562d65;font-size:13px;line-height:1.5}
+    .method-step b{display:block;font-size:15px;color:#461f53;margin-bottom:5px}
     .method-notes{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0}
-    .method-note{background:#f8fcff;border:1px solid #c6dced;border-left:4px solid #6ca8d0;border-radius:12px;padding:16px 18px;color:#46647d;line-height:1.65;font-size:14px}
-    .method-note strong{color:#204e70}
+    .method-note{background:#fef9fe;border:1px solid #e9cae8;border-left:4px solid #b176c6;border-radius:12px;padding:16px 18px;color:#6c4b78;line-height:1.65;font-size:14px}
+    .method-note strong{color:#572868}
     @media(max-width:850px){.method-grid,.method-flow{grid-template-columns:1fr 1fr}.method-notes{grid-template-columns:1fr}}
     @media(max-width:560px){.method-grid,.method-flow{grid-template-columns:1fr}}
     </style>
@@ -896,4 +1357,4 @@ else:
     for name,relative in paths.items():
         p=locate(relative,Path(relative).name)
         records.append({'Dataset':name,'File':relative,'Available':bool(p),'Bytes':p.stat().st_size if p else None})
-    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#476682',subtitle='')
+    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#704d7c',subtitle='')

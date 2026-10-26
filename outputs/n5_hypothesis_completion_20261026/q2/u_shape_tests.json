@@ -1,0 +1,209 @@
+[
+  {
+    "depth_scale": 0.5,
+    "feedback_mode": "fixed",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": -7.681285901585699e-05,
+    "beta2_ci95": [
+      -0.0001461628438833272,
+      -1.64301976528572e-05
+    ],
+    "left_boundary_slope_ci95": [
+      2.8811927413558292e-05,
+      0.000162593316464826
+    ],
+    "right_boundary_slope_ci95": [
+      -8.202511573241103e-05,
+      1.5405289716970533e-05
+    ],
+    "turning_point": 0.8111987792822277,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 135359,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 0.5,
+    "feedback_mode": "full_sensitivity",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": 0.007542642248623868,
+    "beta2_ci95": [
+      -0.00755695476367268,
+      0.027770829754332357
+    ],
+    "left_boundary_slope_ci95": [
+      -0.020988712908955175,
+      0.005867184876911908
+    ],
+    "right_boundary_slope_ci95": [
+      -0.006437121735665302,
+      0.02320880916423567
+    ],
+    "turning_point": 0.5947151702429335,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 167176,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 0.5,
+    "feedback_mode": "predictive_proxy",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": -7.681285901585699e-05,
+    "beta2_ci95": [
+      -0.0001461628438833272,
+      -1.64301976528572e-05
+    ],
+    "left_boundary_slope_ci95": [
+      2.8811927413558292e-05,
+      0.000162593316464826
+    ],
+    "right_boundary_slope_ci95": [
+      -8.202511573241103e-05,
+      1.5405289716970533e-05
+    ],
+    "turning_point": 0.8111987792822277,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 135359,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 1.0,
+    "feedback_mode": "fixed",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": 5.3752983641900594e-05,
+    "beta2_ci95": [
+      -8.035540076150868e-05,
+      0.00021288550368526313
+    ],
+    "left_boundary_slope_ci95": [
+      -0.00010831191001636093,
+      0.00016762040387820377
+    ],
+    "right_boundary_slope_ci95": [
+      1.5847212265029365e-05,
+      0.00024183610725100893
+    ],
+    "turning_point": -0.07629922134410645,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 135560,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 1.0,
+    "feedback_mode": "full_sensitivity",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": 0.008727469666148473,
+    "beta2_ci95": [
+      -0.007330363347339376,
+      0.02829147444373467
+    ],
+    "left_boundary_slope_ci95": [
+      -0.024282599380773075,
+      0.005709932062861878
+    ],
+    "right_boundary_slope_ci95": [
+      -0.006876772222627503,
+      0.021488350323387646
+    ],
+    "turning_point": 0.63894961078439,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 168324,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 1.0,
+    "feedback_mode": "predictive_proxy",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": 5.3752983641900594e-05,
+    "beta2_ci95": [
+      -8.035540076150868e-05,
+      0.00021288550368526313
+    ],
+    "left_boundary_slope_ci95": [
+      -0.00010831191001636093,
+      0.00016762040387820377
+    ],
+    "right_boundary_slope_ci95": [
+      1.5847212265029365e-05,
+      0.00024183610725100893
+    ],
+    "turning_point": -0.07629922134410645,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 135560,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 2.0,
+    "feedback_mode": "fixed",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": -0.00018546081857029003,
+    "beta2_ci95": [
+      -0.0005071351060386894,
+      1.3342202141029364e-05
+    ],
+    "left_boundary_slope_ci95": [
+      3.996724062255795e-05,
+      0.0005187542378549163
+    ],
+    "right_boundary_slope_ci95": [
+      -0.00029108917313533974,
+      0.00010194703661909523
+    ],
+    "turning_point": 0.8237362442733359,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 128771,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 2.0,
+    "feedback_mode": "full_sensitivity",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": 0.010387881947310239,
+    "beta2_ci95": [
+      -0.0022579273025460722,
+      0.03318953295506836
+    ],
+    "left_boundary_slope_ci95": [
+      -0.06081648325195416,
+      0.0053184151457011655
+    ],
+    "right_boundary_slope_ci95": [
+      -0.010663314306032803,
+      0.004620346942465872
+    ],
+    "turning_point": 1.0840035575806681,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 163719,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  },
+  {
+    "depth_scale": 2.0,
+    "feedback_mode": "predictive_proxy",
+    "blocks": 18,
+    "cf_levels": 9,
+    "beta2": -0.00018546081857029003,
+    "beta2_ci95": [
+      -0.0005071351060386894,
+      1.3342202141029364e-05
+    ],
+    "left_boundary_slope_ci95": [
+      3.996724062255795e-05,
+      0.0005187542378549163
+    ],
+    "right_boundary_slope_ci95": [
+      -0.00029108917313533974,
+      0.00010194703661909523
+    ],
+    "turning_point": 0.8237362442733359,
+    "u_shape_supported_on_grid": false,
+    "unknown_domain_attempts": 128771,
+    "inference": "paired_snapshot_scenario_block_stability_on_selected_grid_not_iid_population_ANOVA"
+  }
+]

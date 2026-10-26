@@ -1,0 +1,6 @@
+{
+  "expected_days": 366,
+  "observed_days": 366,
+  "missing": [],
+  "policy": "no_imputation_no_returns_across_calendar_gaps"
+}

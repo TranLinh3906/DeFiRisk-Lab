@@ -1,0 +1,14 @@
+[
+  {
+    "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\compound\\exposures_usd.parquet",
+    "sha256": "abf7c8c0885f0bc59cdbf4519a32ce9aa469d919b013d19227f7466fe62370d0"
+  },
+  {
+    "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_reserve_config.parquet",
+    "sha256": "2de1b8e4c1ee8f9fdb7b0b1fff29c25faae717e874c591611fe505094845eca4"
+  },
+  {
+    "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\research_review_fix_20261026\\comet_state\\comet_state.json",
+    "sha256": "6818cd7d7074bfc5c3346a0dbc2b0390c424614acd9671c3c05fd1edb70e4bcf"
+  }
+]

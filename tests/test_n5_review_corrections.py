@@ -74,7 +74,8 @@ def test_compound_weth_numeraire_requires_exact_snapshot_and_preserves_native():
     assert exposure.value_usd.item() == 2
 
 
-def test_mc_executes_exact_pairs_and_includes_zero_scenarios_in_es():
+@pytest.mark.parametrize('cached', [False, True])
+def test_mc_executes_exact_pairs_and_includes_zero_scenarios_in_es(cached):
     rows = []
     for name in ['a', 'b']:
         rows.extend([dict(snapshot_block=10, wallet_address=name, token_address='eth', symbol='WETH',
@@ -88,7 +89,8 @@ def test_mc_executes_exact_pairs_and_includes_zero_scenarios_in_es():
     snap = load_snapshot(pd.DataFrame(rows), baseline)
     curve = BoundedCurve(pd.DataFrame(dict(trade_size_usd=[1., 1e6], impact_pct=[.001, .01])))
     scenarios = pd.DataFrame(dict(scenario_id=[f's{i}' for i in range(100)], eth_shock=[-.3] + [0.] * 99, depeg_shock=0.))
-    risk, _, _, execution = mc_exact(snap, scenarios, {('eth', 'usd'): dict(curve=curve, pool_address='p', fee_rate=0)})
+    risk, _, _, execution = mc_exact(snap, scenarios, {('eth', 'usd'): dict(curve=curve, pool_address='p', fee_rate=0)},
+                                    reuse_identical_shocks=cached)
     np.testing.assert_allclose(risk.probability_bad_debt, .01)
     np.testing.assert_allclose(risk.es99_bad_debt_usd, 50)
     np.testing.assert_allclose(risk.mean_bad_debt_usd, .5)
@@ -119,6 +121,12 @@ def test_comet_absorb_credits_supply_and_resells_from_protocol_inventory():
     blocked, s = simulate_comet(p, cfg, dict(state, isAbsorbPaused=True), {}, routes(), gas_usd=0)
     assert blocked[0]['action'] == 'absorb_blocked_paused'
     assert s['final_reserves_base'] == 1000
+    events_tight, tight = simulate_comet(p, cfg, state, {}, routes(), gas_usd=0,
+                                        initial_pool_volumes={'pool': 950.})
+    assert tight['collateral_purchases'] == 0
+    assert tight['unknown_inventory_routes'] == 1
+    assert any(e['action']=='buy_unknown_quote_domain' for e in events_tight)
+    assert tight['final_reserves_base'] == 910
 
 
 def test_weighted_token_pair_betweenness_counts_tied_paths_and_retains_leaf_wallet():

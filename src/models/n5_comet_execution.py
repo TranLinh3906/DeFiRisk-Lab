@@ -8,7 +8,7 @@ import math
 import pandas as pd
 
 
-def simulate_comet(exposures, config, market_state, returns, routes, *, gas_usd=5.0):
+def simulate_comet(exposures, config, market_state, returns, routes, *, gas_usd=5.0, initial_pool_volumes=None):
     """Absorb eligible overlap accounts, then offer whole inventory for resale.
 
     Inventory trade size and liquidator ordering are explicit counterfactuals.
@@ -16,6 +16,9 @@ def simulate_comet(exposures, config, market_state, returns, routes, *, gas_usd=
     """
     if market_state is None:
         return [], dict(status='missing_observed_reserves_pause_and_storefront_state')
+    initial_flows=dict(initial_pool_volumes or {})
+    if any(not math.isfinite(v) or v<0 for v in initial_flows.values()):
+        raise ValueError('Invalid initial cumulative pool volume')
     block = int(market_state['snapshot_block'])
     market = market_state['market_id']
     p = exposures[exposures.snapshot_block.eq(block) & exposures.market_id.eq(market)].copy()
@@ -67,7 +70,7 @@ def simulate_comet(exposures, config, market_state, returns, routes, *, gas_usd=
         events.append(dict(action='absorb', wallet_address=address, debt_cleared_usd=debt,
             borrower_base_supply_credit_usd=credit_usd, reserves_delta_base=reserve_delta,
             seized_collateral_usd=float(collateral.stressed_value.sum())))
-    sold, unknown = {}, 0
+    sold, unknown = initial_flows.copy(), 0
     for token, qty in sorted(inventory.items()):
         if qty <= 0 or reserves >= target or market_state['isBuyPaused']:
             continue
@@ -105,6 +108,7 @@ def simulate_comet(exposures, config, market_state, returns, routes, *, gas_usd=
     return events, dict(status='conditional_absorb_and_inventory_resale',
         initial_reserves_base=initial_reserves, final_reserves_base=reserves,
         target_reserves_base=target, absorbed_accounts=sum(e['action'] == 'absorb' for e in events),
+        initial_pool_volumes_snapshot_usd=initial_flows,final_pool_volumes_snapshot_usd=sold,
         collateral_purchases=sum(e['action'] == 'buy_collateral' for e in events),
         unknown_inventory_routes=unknown, residual_inventory_tokens=inventory,
         interpretation='overlap_accounts_only_whole_inventory_offers_not_full_contract_emulation')

@@ -1,0 +1,22 @@
+{
+  "expected_days": 92,
+  "observed_days": 90,
+  "missing": [
+    {
+      "date": "2022-05-19 00:00:00+00:00",
+      "asset": "ETH",
+      "reason": "no_past_quote_within_one_hour"
+    },
+    {
+      "date": "2022-05-19 00:00:00+00:00",
+      "asset": "STETH",
+      "reason": "no_past_quote_within_one_hour"
+    },
+    {
+      "date": "2022-07-22 00:00:00+00:00",
+      "asset": "ETH",
+      "reason": "no_past_quote_within_one_hour"
+    }
+  ],
+  "policy": "no_imputation_no_returns_across_calendar_gaps"
+}

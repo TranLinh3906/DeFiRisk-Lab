@@ -4,7 +4,7 @@ DEX execution costs are observations. Passing a DEX marginal cost into the
 oracle is an explicit counterfactual, never a claim about Chainlink updates.
 """
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import math
 
 import numpy as np
@@ -54,11 +54,14 @@ class ExecutionResult:
     transactions: list
     rounds: list
     summary: dict
+    first_eligible_round: dict = field(default_factory=dict)
+    first_executed_round: dict = field(default_factory=dict)
 
 
 def execute(wallets, assets, multipliers, routes, *, cf_rule='baseline_aave',
             depth_scale=1.0, feedback=0.0, feedback_cap=0.15, gas=5.0,
-            max_rounds=100, initial_eligible=None):
+            max_rounds=100, initial_eligible=None, fixed_cf=None,
+            feedback_by_token=None, blocked_sellers=frozenset(), disabled_pairs=frozenset()):
     """Exact collateral/debt pairs, cumulative pool flow, no order splitting.
 
     feedback=0 reproduces the approved fixed-oracle policy. Positive feedback
@@ -69,6 +72,10 @@ def execute(wallets, assets, multipliers, routes, *, cf_rule='baseline_aave',
         raise ValueError('Invalid depth/feedback')
     if not 0 <= feedback_cap < 1 or gas < 0 or not math.isfinite(gas) or max_rounds < 1:
         raise ValueError('Invalid execution settings')
+    if fixed_cf is not None and (not math.isfinite(fixed_cf) or not 0 < fixed_cf <= 1):
+        raise ValueError('Fixed CF must be in (0,1]')
+    if feedback_by_token is not None and any(not math.isfinite(v) or not 0 <= v <= 1 for v in feedback_by_token.values()):
+        raise ValueError('Token feedback coefficients must be in [0,1]')
     shocked = {t: a.price_usd * multipliers[t] for t, a in assets.items()}
     if any(not math.isfinite(p) or p <= 0 for p in shocked.values()):
         raise ValueError('Invalid prices')
@@ -97,14 +104,18 @@ def execute(wallets, assets, multipliers, routes, *, cf_rule='baseline_aave',
         repaid = 0.0
         unprofitable = 0
         for w in active:
+            if w.wallet in blocked_sellers:
+                continue
             hf = health_factor(w, assets, prices)
-            cap = close_factor(hf, cf_rule) * debt_value(w, prices)
+            cap = (fixed_cf if fixed_cf is not None else close_factor(hf, cf_rule)) * debt_value(w, prices)
             choices = []
             for ct, cq in sorted(w.collateral.items()):
                 if cq <= 0 or not w.collateral_enabled.get(ct, True):
                     continue
                 bonus = w.effective_bonus.get(ct, assets[ct].liquidation_bonus)
                 for dt, dq in sorted(w.debt.items()):
+                    if (ct, dt) in disabled_pairs:
+                        continue
                     repay = min(cap, dq * prices[dt], cq * prices[ct] / (1 + bonus))
                     if repay < 0.01:
                         continue
@@ -154,7 +165,8 @@ def execute(wallets, assets, multipliers, routes, *, cf_rule='baseline_aave',
             for token, pools in token_pools.items():
                 # Shared token price: largest modeled dislocation among the
                 # selected pools; this aggregation is a declared sensitivity.
-                drop = min(feedback_cap, feedback * max(c.marginal_cost(sold[p]) for p, c in pools.items()))
+                transmission = feedback if feedback_by_token is None else feedback_by_token.get(token, 0.0)
+                drop = min(feedback_cap, transmission * max(c.marginal_cost(sold[p]) for p, c in pools.items()))
                 target = shocked[token] * (1 - drop)
                 if target < prices[token] - 1e-12:
                     prices[token] = target
@@ -169,18 +181,20 @@ def execute(wallets, assets, multipliers, routes, *, cf_rule='baseline_aave',
     r1 = rounds[0]['repaid_debt_usd'] if rounds else 0.0
     total = sum(t['repaid_debt_usd'] for t in txs)
     summary = dict(cf_rule=cf_rule, depth_scale=depth_scale, oracle_feedback=bool(feedback),
+        fixed_cf=fixed_cf,
         feedback_passthrough=feedback, feedback_cap=feedback_cap, rounds=len(rounds), stop_reason=stop_reason,
         initial_eligible_wallets=len(initial), newly_eligible_round_ge_2=nseq,
         first_executed_round_ge_2=sum(r >= 2 for r in first_executed.values()),
         executed_liquidations=len(txs), executed_wallets=len(first_executed),
         round_1_repaid_usd=r1, simulated_repaid_usd=total,
+        round_1_sold_collateral_usd=sum(t['sold_usd'] for t in txs if t['round'] == 1),
         cascade_amplification_factor=total / r1 if r1 else None,
         outside_quote_domain_attempts=outside, unsupported_route_attempts=unsupported,
         post_execution_bad_debt_usd=loss, post_execution_bdr_pct=100 * loss / debt0 if debt0 else None,
         liquidator_profit_usd=sum(t['liquidator_profit_usd'] for t in txs),
         mean_slippage_pct=float(np.mean([t['slippage_pct'] for t in txs])) if txs else 0.0,
         research_acceptance='conditional_model_not_empirical_causality')
-    return ExecutionResult(full_state, prices, txs, rounds, summary)
+    return ExecutionResult(full_state, prices, txs, rounds, summary, first_eligible, first_executed)
 
 
 def degree_preserving_swap(matrix, *, seed, swaps_per_edge=3):

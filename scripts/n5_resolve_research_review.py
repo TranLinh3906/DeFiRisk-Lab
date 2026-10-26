@@ -57,7 +57,7 @@ def load_snapshot(positions, baseline):
                 wallets=ordered, token_ids=token_ids, c=c, d=d, wc=wc)
 
 
-def mc_exact(snapshot, shocks, routes, *, progress=None):
+def mc_exact(snapshot, shocks, routes, *, progress=None, scenario_sink=None, reuse_identical_shocks=False):
     """Screen HF in batches, then execute every eligible wallet/token pair.
 
     Unscreened wallets have HF>=1 and cannot change under fixed oracle. They
@@ -88,6 +88,7 @@ def mc_exact(snapshot, shocks, routes, *, progress=None):
         raise ValueError('No common equity strata')
     scen_rows, execution_rows = [], []
     wallet_lookup = {w.wallet: i for i, w in enumerate(wallets)}
+    scenario_cache = {}
     for start in range(0, ns, 128):
         block = shocks.iloc[start:start + 128]
         eth = 1 + block.eth_shock.to_numpy(float)
@@ -101,18 +102,28 @@ def mc_exact(snapshot, shocks, routes, *, progress=None):
             pre = np.maximum(0, debt[:, j] - coll[:, j])
             losses = pre.copy()
             multipliers = {t: float(mults[group[k], j]) for k, t in enumerate(snapshot['token_ids'])}
-            result = execute([wallets[i] for i in idx], snapshot['assets'], multipliers, routes,
-                             initial_eligible={wallets[i].wallet for i in idx})
-            if result.summary['stop_reason'] == 'round_limit':
-                raise RuntimeError('Monte Carlo hit round limit')
-            for w in result.wallets:
-                losses[wallet_lookup[w.wallet]] = max(0.0, debt_value(w, result.prices) - collateral_value(w, result.prices))
+            cache_key = (float(row.eth_shock), float(row.depeg_shock))
+            if reuse_identical_shocks and cache_key in scenario_cache:
+                losses, summary = scenario_cache[cache_key]
+            else:
+                result = execute([wallets[i] for i in idx], snapshot['assets'], multipliers, routes,
+                                 initial_eligible={wallets[i].wallet for i in idx})
+                if result.summary['stop_reason'] == 'round_limit':
+                    raise RuntimeError('Monte Carlo hit round limit')
+                for w in result.wallets:
+                    losses[wallet_lookup[w.wallet]] = max(0.0, debt_value(w, result.prices) - collateral_value(w, result.prices))
+                summary = result.summary.copy()
+                if reuse_identical_shocks:
+                    scenario_cache[cache_key] = (losses.copy(), summary.copy())
+            if scenario_sink is not None:
+                scenario_sink(row.scenario_id, losses, pre)
+            summary = dict(summary, post_execution_bdr_pct=100 * float(losses.sum()) / float(b.debt_usd.sum()))
             pre_sum += pre
             loss_sum += losses
             pbd_count += losses > 0
             for i in np.flatnonzero(losses > 0):
                 nonzero[i].append(float(losses[i]))
-            execution_rows.append(dict(scenario_id=row.scenario_id, **result.summary))
+            execution_rows.append(dict(scenario_id=row.scenario_id, **summary))
             for flag in [False, True]:
                 matching = [m for _, f, m in strata if f == flag]
                 for stage, data in [('pre_execution', pre), ('post_execution', losses)]:

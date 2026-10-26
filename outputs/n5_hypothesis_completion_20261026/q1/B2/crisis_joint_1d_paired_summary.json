@@ -1,0 +1,40 @@
+{
+  "snapshot_id": "B2",
+  "distribution": "crisis_joint_1d",
+  "calibration_pairs": 87,
+  "cutoff": "2025-10-09T23:59:59Z",
+  "horizon_days": 1,
+  "observed_min_depeg_return": -0.03238484609157499,
+  "pairs": 316,
+  "max_absolute_log_equity_gap": 0.09276250339473391,
+  "matched_outcomes": [
+    {
+      "metric": "probability_bad_debt",
+      "mean_loop_minus_nonloop": -0.00217626582278481,
+      "ci95_low": -0.00402879746835443,
+      "ci95_high": -0.00075,
+      "paired_wilcoxon_p": 0.006655605482949377,
+      "inference": "descriptive_matched_wallet_association_under_shared_shocks"
+    },
+    {
+      "metric": "mean_bad_debt_ratio_t0",
+      "mean_loop_minus_nonloop": -8.089234612289129e-05,
+      "ci95_low": -0.00013993199958378907,
+      "ci95_high": -2.8124750206722855e-05,
+      "paired_wilcoxon_p": 0.011718685599768628,
+      "inference": "descriptive_matched_wallet_association_under_shared_shocks"
+    }
+  ],
+  "es99_looping": 0.0,
+  "es99_non_looping": 2595.3936477642264,
+  "es99_diff": -2595.3936477642264,
+  "es99_diff_ci95": [
+    -2595.3936477642264,
+    -2470.6183320226555
+  ],
+  "bootstrap_unit": "paired_shared_scenario",
+  "n_boot": 1000,
+  "median_looping": 0.0,
+  "median_non_looping": 0.0,
+  "tail_to_median_ratio_status": "undefined_if_median_is_zero_no_epsilon_substitution"
+}

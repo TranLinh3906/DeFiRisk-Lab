@@ -22,6 +22,9 @@ outputs_backup_*/
 *.backup_*
 *.tmp
 *checkpoint*
+# Exception: checkpoint files hashed in the official release manifests must be published.
+!outputs/n5_official_release_20261026/**/*checkpoint*
+!outputs/n5_hypothesis_completion_20261026/**/*checkpoint*
 _archive_old_liquidation_runs/
 
 # Export archives

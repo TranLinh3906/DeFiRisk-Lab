@@ -1,0 +1,308 @@
+[
+  {
+    "snapshot_id": "A",
+    "scope": "100k-1m",
+    "test": "mann_whitney_bdr",
+    "statistic": 100467.0,
+    "p_value": 0.4966220768571553,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "100k-1m",
+    "test": "ks_initial_hf",
+    "statistic": 0.9168424224163905,
+    "p_value": 8.85128161531704e-64,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 8.85128161531704e-63
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "10k-100k",
+    "test": "mann_whitney_bdr",
+    "statistic": 377265.0,
+    "p_value": 0.5152564048345667,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "10k-100k",
+    "test": "ks_initial_hf",
+    "statistic": 0.9271359271359272,
+    "p_value": 6.215138431184515e-116,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 6.836652274302967e-115
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "1m-10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 4746.0,
+    "p_value": 0.6521607346621214,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "1m-10m",
+    "test": "ks_initial_hf",
+    "statistic": 0.8851744186046512,
+    "p_value": 4.1786623443225773e-13,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 3.342929875458062e-12
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "<10k",
+    "test": "mann_whitney_bdr",
+    "statistic": 310440.0,
+    "p_value": 0.282371028783711,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "<10k",
+    "test": "ks_initial_hf",
+    "statistic": 0.8046927076389814,
+    "p_value": 2.167094733671891e-54,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.950385260304702e-53
+  },
+  {
+    "snapshot_id": "A",
+    "scope": ">=10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 245.0,
+    "p_value": 0.7165186450500252,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "A",
+    "scope": ">=10m",
+    "test": "ks_initial_hf",
+    "statistic": 0.9801980198019802,
+    "p_value": 4.144428354852585e-07,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 2.9010998483968095e-06
+  },
+  {
+    "snapshot_id": "A",
+    "scope": "equal_common_equity_strata",
+    "test": "paired_scenario_es99_bootstrap",
+    "statistic": -477.03749970130923,
+    "ci95_low": -576.832281098893,
+    "ci95_high": -377.51081768581565,
+    "p_value": 0.000999000999000999,
+    "n_boot": 1000,
+    "interpretation": "conditional_scenario_uncertainty_not_causal_wallet_effect",
+    "p_value_holm": 0.005994005994005994
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "100k-1m",
+    "test": "mann_whitney_bdr",
+    "statistic": 96079.5,
+    "p_value": 1.0,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "100k-1m",
+    "test": "ks_initial_hf",
+    "statistic": 0.8058638939628121,
+    "p_value": 1.3154498334572906e-65,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.4469948168030197e-64
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "10k-100k",
+    "test": "mann_whitney_bdr",
+    "statistic": 137160.0,
+    "p_value": 0.8300564940749217,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "10k-100k",
+    "test": "ks_initial_hf",
+    "statistic": 0.7415403672398718,
+    "p_value": 1.767174457967603e-44,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.767174457967603e-43
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "1m-10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 10665.0,
+    "p_value": 1.0,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "1m-10m",
+    "test": "ks_initial_hf",
+    "statistic": 0.8481012658227849,
+    "p_value": 1.0347110739310132e-32,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 9.312399665379119e-32
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "<10k",
+    "test": "mann_whitney_bdr",
+    "statistic": 103890.0,
+    "p_value": 0.6228366198522648,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "<10k",
+    "test": "ks_initial_hf",
+    "statistic": 0.6203911417888985,
+    "p_value": 2.2795313918257165e-22,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.823625113460573e-21
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": ">=10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 145.0,
+    "p_value": 1.0,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": ">=10m",
+    "test": "ks_initial_hf",
+    "statistic": 1.0,
+    "p_value": 2.84541689412218e-07,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.991791825885526e-06
+  },
+  {
+    "snapshot_id": "B1",
+    "scope": "equal_common_equity_strata",
+    "test": "paired_scenario_es99_bootstrap",
+    "statistic": -0.84430518367973,
+    "ci95_low": -1.22454719697214,
+    "ci95_high": -0.5276381447926876,
+    "p_value": 0.000999000999000999,
+    "n_boot": 1000,
+    "interpretation": "conditional_scenario_uncertainty_not_causal_wallet_effect",
+    "p_value_holm": 0.005994005994005994
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "100k-1m",
+    "test": "mann_whitney_bdr",
+    "statistic": 227810.0,
+    "p_value": 0.5192250239504838,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "100k-1m",
+    "test": "ks_initial_hf",
+    "statistic": 0.8842214525310578,
+    "p_value": 2.13129867662017e-86,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 2.344428544282187e-85
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "10k-100k",
+    "test": "mann_whitney_bdr",
+    "statistic": 341572.5,
+    "p_value": 0.5029042293268333,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "10k-100k",
+    "test": "ks_initial_hf",
+    "statistic": 0.8593625933345473,
+    "p_value": 1.5284444530384332e-79,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 1.5284444530384332e-78
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "1m-10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 29524.0,
+    "p_value": 0.418887766547675,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "1m-10m",
+    "test": "ks_initial_hf",
+    "statistic": 0.8443465491923642,
+    "p_value": 3.252900537254032e-34,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 2.6023204298032254e-33
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "<10k",
+    "test": "mann_whitney_bdr",
+    "statistic": 251923.0,
+    "p_value": 0.30633167469757294,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "<10k",
+    "test": "ks_initial_hf",
+    "statistic": 0.8240251392658191,
+    "p_value": 2.580738014313584e-54,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 2.3226642128822257e-53
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": ">=10m",
+    "test": "mann_whitney_bdr",
+    "statistic": 1225.0,
+    "p_value": 0.6587304034898224,
+    "interpretation": "descriptive_wallet_association_shared_scenarios",
+    "p_value_holm": 1.0
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": ">=10m",
+    "test": "ks_initial_hf",
+    "statistic": 0.876,
+    "p_value": 6.8742760073721326e-09,
+    "interpretation": "baseline_distribution_difference",
+    "p_value_holm": 4.811993205160493e-08
+  },
+  {
+    "snapshot_id": "B2",
+    "scope": "equal_common_equity_strata",
+    "test": "paired_scenario_es99_bootstrap",
+    "statistic": -422.24689688743507,
+    "ci95_low": -504.81658902487226,
+    "ci95_high": -339.9342824625877,
+    "p_value": 0.000999000999000999,
+    "n_boot": 1000,
+    "interpretation": "conditional_scenario_uncertainty_not_causal_wallet_effect",
+    "p_value_holm": 0.005994005994005994
+  }
+]

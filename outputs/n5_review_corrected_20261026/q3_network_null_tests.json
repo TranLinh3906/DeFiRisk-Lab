@@ -1,0 +1,38 @@
+{
+  "A": {
+    "observed_score": 0.003084886283570989,
+    "null_mean": 0.0019876775047818016,
+    "n_null": 100,
+    "upper_tail_randomization_p": 0.09900990099009901,
+    "null": "role_layer_bipartite_double_edge_swap",
+    "preserves": "wallet_and_token_degrees_and_wallet_edge_weight_multisets",
+    "does_not_preserve": "token_weighted_strengths",
+    "interpretation": "exposure_network_sensitivity_not_realized_liquidation_transmission",
+    "power_law_conclusion": "not_established",
+    "protocol_mechanism": "Aave_and_Compound_exposure_layers"
+  },
+  "B1": {
+    "observed_score": 0.006557954589837468,
+    "null_mean": 0.0040082272660102,
+    "n_null": 100,
+    "upper_tail_randomization_p": 0.009900990099009901,
+    "null": "role_layer_bipartite_double_edge_swap",
+    "preserves": "wallet_and_token_degrees_and_wallet_edge_weight_multisets",
+    "does_not_preserve": "token_weighted_strengths",
+    "interpretation": "exposure_network_sensitivity_not_realized_liquidation_transmission",
+    "power_law_conclusion": "not_established",
+    "protocol_mechanism": "Aave_and_Compound_exposure_layers"
+  },
+  "B2": {
+    "observed_score": 0.0044319095538637035,
+    "null_mean": 0.0025429161514187843,
+    "n_null": 100,
+    "upper_tail_randomization_p": 0.04950495049504951,
+    "null": "role_layer_bipartite_double_edge_swap",
+    "preserves": "wallet_and_token_degrees_and_wallet_edge_weight_multisets",
+    "does_not_preserve": "token_weighted_strengths",
+    "interpretation": "exposure_network_sensitivity_not_realized_liquidation_transmission",
+    "power_law_conclusion": "not_established",
+    "protocol_mechanism": "Aave_and_Compound_exposure_layers"
+  }
+}

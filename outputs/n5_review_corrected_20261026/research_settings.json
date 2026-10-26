@@ -1,0 +1,29 @@
+{
+  "mc_draws": 10000,
+  "seed": 42,
+  "depth_scales": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "cf_rules": [
+    "baseline_aave",
+    "fixed_50",
+    "fixed_100",
+    "dynamic_linear"
+  ],
+  "feedback_passthrough": [
+    0.0,
+    1.0
+  ],
+  "feedback_cap": 0.15,
+  "max_rounds": 100,
+  "gas_usd": 5.0,
+  "feedback_model": "sold_token_oracle_equals_initial_shocked_price_times_one_minus_capped_marginal_cost",
+  "feedback_status": "unvalidated_counterfactual_sensitivity",
+  "depth_model": "scale_snapshot_trade_notional_by_inverse_depth",
+  "compound_scope": "USD_normalized_overlap_absorb_and_conditional_inventory_resale_with_observed_market_state",
+  "mc_scope": "exact_token_pair_fixed_oracle_post_execution",
+  "stress_scope": "deterministic_scenarios_no_real_world_probabilities",
+  "holdout_scope": "A_calibrated_MC_on_B1_B2_is_retrospective_counterfactual_not_out_of_sample"
+}

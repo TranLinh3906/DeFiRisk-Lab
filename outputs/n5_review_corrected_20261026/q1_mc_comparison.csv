@@ -1,0 +1,13 @@
+is_recursive_loop,loss_stage,scenario_count,common_strata,mean_loss_per_100k,es99_loss_per_100k,probability_bad_debt,interpretation,snapshot_id
+False,post_execution,10000,5,5.499580148046509,477.03749970130923,0.00020094254818649423,conditional_on_calibrated_scenarios_and_selected_routes,A
+False,pre_execution,10000,5,5.498557301990454,476.9352150957039,0.00020094254818649423,conditional_on_calibrated_scenarios_and_selected_routes,A
+True,post_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,A
+True,pre_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,A
+False,post_execution,10000,5,0.008443051836797307,0.84430518367973,9.988124484108293e-07,conditional_on_calibrated_scenarios_and_selected_routes,B1
+False,pre_execution,10000,5,0.007131766028610434,0.7131766028610428,6.70943595951813e-07,conditional_on_calibrated_scenarios_and_selected_routes,B1
+True,post_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B1
+True,pre_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B1
+False,post_execution,10000,5,5.087293126067062,422.24689688743507,0.00017783677847832337,conditional_on_calibrated_scenarios_and_selected_routes,B2
+False,pre_execution,10000,5,5.087293126067065,422.24689688743524,0.00017783677847832337,conditional_on_calibrated_scenarios_and_selected_routes,B2
+True,post_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B2
+True,pre_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B2

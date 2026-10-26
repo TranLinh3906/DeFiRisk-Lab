@@ -1,0 +1,19 @@
+kpi_id,artifact,field,technical_status,research_acceptance,limitation
+M01,A|B1|B2/baseline_wallet_kpis.parquet,net_equity_usd,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M02,A|B1|B2/baseline_wallet_kpis.parquet,effective_leverage,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M03,A|B1|B2/baseline_wallet_kpis.parquet,health_factor,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M04,A|B1|B2/baseline_wallet_kpis.parquet,dist_to_liq_pct,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M05,A|B1|B2/mc_wallet_risk.parquet,probability_bad_debt,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M06,A|B1|B2/mc_wallet_risk.parquet,mean_bad_debt_usd,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M07,A|B1|B2/mc_wallet_risk.parquet,mean_bad_debt_ratio_t0,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M08,A|B1|B2/mc_wallet_risk.parquet,mean_loss_per_100k,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M09,A|B1|B2/mc_wallet_risk.parquet,es99_loss_per_100k,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M10,q2_shock_depth_cf_feedback_grid.csv,simulated_repaid_usd,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M11,q2_shock_depth_cf_feedback_grid.csv,mean_slippage_pct,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M12,q2_shock_depth_cf_feedback_grid.csv,first_executed_round_ge_2,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M13,q2_shock_depth_cf_feedback_grid.csv,cascade_amplification_factor,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M14,q2_execution_rounds.parquet,supported_unprofitable_wallets,proxy_only,pending,Nonprofitability proxy is not proven causal freeze
+M15,q3_transitions.csv,initially_healthy_first_executed_round_ge_2,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M16,q3_comet_absorb_buy_ledger.parquet,debt_cleared_usd,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M17,A|B1|B2/network_wallet_nodes.parquet,degree,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis
+M18,q3_network_null_tests.json,observed_score,conditional_output_available,pending,Numerical checks and mapping do not establish the research hypothesis

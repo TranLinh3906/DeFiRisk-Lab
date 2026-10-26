@@ -192,7 +192,7 @@ def check_reconstructed_hf(positions, risk, zero, tiny, *, tolerance=.005):
         baseline_eligibility_disagreements=int(out.baseline_eligibility_disagreement.sum()))
 
 
-def adapt_compound_partial(positions, config):
+def adapt_compound_partial(positions, config, *, oracle_prices=None):
     """Keep Comet market/role identity; base supply is NOT collateral.
 
     No Aave bonus/close-factor or absorb execution is imposed on Comet balances.
@@ -222,7 +222,13 @@ def adapt_compound_partial(positions, config):
     out['is_debt'] = out.asset_role.eq('base_borrow')
     out['coverage_status'] = 'partial'
     out['validation_status'] = 'unvalidated'
-    return out.drop(columns=['_merge'])
+    out = out.drop(columns=['_merge'])
+    if out.market_id.eq('compound_v3_ethereum_weth').any():
+        if oracle_prices is None:
+            raise ValueError('WETH-numeraire Comet market requires same-snapshot USD oracle prices')
+        from src.models.n5_corrected_research import normalize_compound_usd
+        out = normalize_compound_usd(out, oracle_prices)
+    return out
 
 
 def track_compound_flows(exposures, events):

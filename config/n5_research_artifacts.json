@@ -1,0 +1,12 @@
+{
+  "version": "20261026_review_corrected",
+  "current_bundle": "outputs/n5_review_corrected_20261026",
+  "report": "outputs/n5_review_corrected_20261026/REPORT.md",
+  "validation": "outputs/n5_review_corrected_20261026/validation.json",
+  "kpi_acceptance": "outputs/n5_review_corrected_20261026/kpi_acceptance.csv",
+  "manifest": "outputs/n5_review_corrected_20261026/manifest.json",
+  "research_acceptance": "pending_external_validation_of_feedback_and_protocol_execution",
+  "historical_bundle": "outputs/n5_q1_q3_empirical_20261026",
+  "historical_bundle_status": "superseded_for_research_conclusions_preserved_for_provenance",
+  "note": "Numerical regression checks, KPI mapping and scientific acceptance are distinct. Read assumptions and limitations in the current report."
+}

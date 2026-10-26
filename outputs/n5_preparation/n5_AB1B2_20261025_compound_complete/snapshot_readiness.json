@@ -1,0 +1,67 @@
+{
+  "status": "passed_structure",
+  "snapshots": {
+    "A": {
+      "snapshot_block": 26179841,
+      "status": "passed_structure",
+      "missing": [],
+      "errors": [],
+      "rows": {
+        "positions_long": 73637,
+        "reserve_config": 67,
+        "oracle_prices": 67,
+        "emode_membership": 189,
+        "account_reference": 87286,
+        "protocol_reconciliation": 67,
+        "borrower_positions": 73637,
+        "hf_reconciliation": 28493
+      },
+      "research_acceptance": "pending"
+    },
+    "B1": {
+      "snapshot_block": 20458637,
+      "status": "passed_structure",
+      "missing": [],
+      "errors": [],
+      "rows": {
+        "positions_long": 30968,
+        "reserve_config": 33,
+        "oracle_prices": 33,
+        "emode_membership": 7,
+        "account_reference": 21262,
+        "protocol_reconciliation": 33,
+        "borrower_positions": 30968,
+        "hf_reconciliation": 12047
+      },
+      "research_acceptance": "pending"
+    },
+    "B2": {
+      "snapshot_block": 23543615,
+      "status": "passed_structure",
+      "missing": [],
+      "errors": [],
+      "rows": {
+        "positions_long": 73417,
+        "reserve_config": 55,
+        "oracle_prices": 55,
+        "emode_membership": 111,
+        "account_reference": 62622,
+        "protocol_reconciliation": 55,
+        "borrower_positions": 73417,
+        "hf_reconciliation": 27985
+      },
+      "research_acceptance": "pending"
+    }
+  },
+  "stale_labels": {
+    "positions_long": [],
+    "reserve_config": [],
+    "oracle_prices": [],
+    "emode_membership": [],
+    "account_reference": [],
+    "protocol_reconciliation": [],
+    "borrower_positions": [],
+    "hf_reconciliation": []
+  },
+  "limitation": "Config identity only; no independent chain/hash verification or data relabeling"
+}

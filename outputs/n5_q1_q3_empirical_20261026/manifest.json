@@ -1,0 +1,1007 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T03:39:35.580480+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\scenarios.yaml",
+      "bytes": 880,
+      "sha256": "2a3fb3368d4937881ac5b455d3543d0db76111b6517f617f6962f7dcaece0875",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n4_research.json",
+      "bytes": 342,
+      "sha256": "a54b9d0858289e2728d3c6bb73c08e18a7fee262521c60b19797dec578792cdc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_tolerances.json",
+      "bytes": 573,
+      "sha256": "8c676167b1b5c2b815a5d566b87436b66b499e759fb8021eb26fafd9e2030dec",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\kpi_dictionary.csv",
+      "bytes": 8544,
+      "sha256": "8cb28ead8e2cd340ff7354c9a6b224a344e1a529f831c185d9a75ff0972a53ca",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+      "bytes": 12538550,
+      "sha256": "5d68a6c7808c0fd53829a51594a2fd09646144558b658253d6962f2da3451fe9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "bytes": 20340,
+      "sha256": "92da30b2ba2361ef78f347930f3120a6863df5125ba95169a3da829c18a467aa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "bytes": 23372,
+      "sha256": "08ab31c76f1b4285d394f69de2119b47dd564fefc84a326faecf03e94dcda386",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+      "bytes": 16043,
+      "sha256": "13830b776dba80619cd13d216b53e627a637380c4e1c42d5d0b132a0919ef9df",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\protocol_reconciliation.parquet",
+      "bytes": 23204,
+      "sha256": "0d3de699edfd96fbadcc3f09fbba5e84becfc448939dbb24835219ef45ec71b9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\history_validation\\account_reference_supplemented.parquet",
+      "bytes": 10366235,
+      "sha256": "10522be020df16e0a09ec830fc8150cd24bd2c5674e0625bcd0e0e9ec89f164a",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\emode_replay\\wallet_equity_strata.parquet",
+      "bytes": 4997935,
+      "sha256": "c0c8a700f87c3c0664424586f5ff434e38d42fe11b4fa3b8e4ac5f80bf68567a",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\calibration_market\\mc_scenario_inputs.parquet",
+      "bytes": 263322,
+      "sha256": "98935bfb5db3dedce0936261a87fbfad125766ebd77a6f13c3c0a4f601486ca8",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\execution_summary.parquet",
+      "bytes": 25276,
+      "sha256": "f32fe084bbb22ca60f6e51f52e6dcf1f888e4fc7f13419f82290428e02f42174",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\execution_rounds.parquet",
+      "bytes": 58178,
+      "sha256": "fa20d8ffb93956cd804cb4098ed2e26985a103826774125c28b92bd00c5aa71d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\execution_transactions.parquet",
+      "bytes": 2140381,
+      "sha256": "cb1c496da1e6d7a1a1db592e3e8612481001061a138f44fc889cab3c24177aea",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\curve_points_with_quantization_audit.parquet",
+      "bytes": 9402,
+      "sha256": "454a551e3df7a93146517578a5b11f92195f40a30b52990773c631fbfa780236",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v1\\n3_multivolume_rpc_verified_only.parquet",
+      "bytes": 19163,
+      "sha256": "fdca59ccbc4a71ff6f1330eb2aa4f5a7a821ebda1987fd3292bd252588b68724",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v2_with_27\\n3_targeted_27_rpc_verified_only.parquet",
+      "bytes": 16897,
+      "sha256": "11ea484f4eef65f087b2c147ad294543c0b471286e6bcf0c851dc6663a2dbafc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\merge_report.json",
+      "bytes": 15651,
+      "sha256": "2697385be3efa89ee6cd59d21ab793a4802610af00939076a1ff92928bef2e1f",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_positions_long.parquet",
+      "bytes": 147867,
+      "sha256": "82b2a5ea4586d73690e8ce382499c3d3a8511a9c147e93012a71b16a88f9ea1c",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_account_reference.parquet",
+      "bytes": 102880,
+      "sha256": "67dc1ee7ae0c5f6cc2cfde57c7382ff98916c5136fad25adc8a874c24dbef579",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_reserve_config.parquet",
+      "bytes": 15056,
+      "sha256": "2de1b8e4c1ee8f9fdb7b0b1fff29c25faae717e874c591611fe505094845eca4",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_overlap_wallets.parquet",
+      "bytes": 99967,
+      "sha256": "ebea0a427e9445da7d84d1cef0d0f792afd569ff5c4675e7e97a4f88b15020b1",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_run_q1_q3_empirical.py",
+      "bytes": 49168,
+      "sha256": "bc5c13666bd7204926120c3194039096774fd028e9a9dfb2e1c744a2627ad6b0",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "A/baseline_wallet_kpis.parquet",
+      "bytes": 2182641,
+      "sha256": "10626fa93a500bf885f6534e3fcf049e4aa2bcca72ddfc64d8d201e3566ffde5",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_network_edges_candidate.parquet",
+      "bytes": 11834289,
+      "sha256": "145fac935e4897dd8d513cd5cfae1aaa97de6d506e909a8b14027e5d8e04b301",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/graph_node_metrics_candidate.parquet",
+      "bytes": 1741320,
+      "sha256": "9db9d98c5e3ba0ef82c90848e67156c0bdb70d5cb0471342997e312649aac6f1",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/baseline_wallet_kpis.parquet",
+      "bytes": 1071681,
+      "sha256": "ad3a2b3571ac3dbd496ce8e2faabf5f9add46134a75b3b3bbd322f5f39be0706",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/graph_network_edges_candidate.parquet",
+      "bytes": 4433425,
+      "sha256": "3b4036ff1d22a282d177cbca18791db09de2578e4e60200a51458765f450ef60",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/graph_node_metrics_candidate.parquet",
+      "bytes": 749019,
+      "sha256": "622d496a8fa8613ba8ab43408300f68d41608396e27870a0d94ea64bc6f7b7bd",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/baseline_wallet_kpis.parquet",
+      "bytes": 2326747,
+      "sha256": "b7d479ff3fc6892d8750d202cef206a7418588d08b2c49e186ad889d1c1815e2",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/graph_network_edges_candidate.parquet",
+      "bytes": 11583281,
+      "sha256": "4624001366bdcbb78921ee897dce7358ff2853952f0448c3e0454df5667c4758",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/graph_node_metrics_candidate.parquet",
+      "bytes": 1714067,
+      "sha256": "347f77bc12dccd39e0e1b33145129738b95c3e69e107d5c62117ad35853523c5",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "compound/exposures_complete.parquet",
+      "bytes": 156739,
+      "sha256": "434e6c8b7f061b5323bcbd7db48836dd660864b13359b26e4982b9e22f280003",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_compound_price_stress.parquet",
+      "bytes": 115997,
+      "sha256": "e3f9bd5fac345959fed6ac416bb618d7299378762486bbefae617ef0000e16d8",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_explicit_withdrawal_ledger.parquet",
+      "bytes": 27728,
+      "sha256": "d3ddeb6e8c46a9dc87c2f96d164818244284bbafca185d710ead9fe86c804b79",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_explicit_withdrawal_summary.csv",
+      "bytes": 1976,
+      "sha256": "0595302c065dd8df191e2a1ea4ac905480987c985da0621f1f4e9c1c34a4076b",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q2_cf_counterfactual_summary.parquet",
+      "bytes": 29133,
+      "sha256": "18975e034697a3c576b62f60c1cd3a12fce55dfd26101ecc51ec49c5e9162a53",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q2_cf_counterfactual_summary.csv",
+      "bytes": 45352,
+      "sha256": "11e503f63296bc0d148b593258ca4a0e41157f29065ac8ebab2727688b36703e",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q2_cf_counterfactual_rounds.parquet",
+      "bytes": 23808,
+      "sha256": "df3af9a89c664a2833dcc396d34c148b10d7dbc7615a69a67738e6932db022db",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q2_cf_counterfactual_rounds.csv",
+      "bytes": 59900,
+      "sha256": "8b26ee8de8867913730299298f4aa373ecf2f5d071d04c42e79d5b6e2ead3a79",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q2_cf_policy_aggregate.csv",
+      "bytes": 2712,
+      "sha256": "51cfbc38694a6bcd8386ce3dec17de6ce1550c026c8e31f724544ea220648b27",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_mc10000_wallet_risk.parquet",
+      "bytes": 3020747,
+      "sha256": "2a034c84d4966633330f24f65a8b9e0a5a9329c71af02dbf50184892e0ffa256",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_mc10000_equity_strata.parquet",
+      "bytes": 7878,
+      "sha256": "e696579184c8a6e762a2136266c4eee85e390e57686fd664ce7aab082470a7ba",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_mc10000_matched_comparison.parquet",
+      "bytes": 7010,
+      "sha256": "e9a19e7e02f372d9f652136d51872902f7b8ea632aeb00de0440a8191a9a752b",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_mc10000_matched_comparison.csv",
+      "bytes": 989,
+      "sha256": "0548413874094f1675bfa8159b3bcf63a8aaebf807e7785e2f3b96e545b8f224",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_mc10000_equity_strata.csv",
+      "bytes": 2688,
+      "sha256": "05be87515fa014ab345b22cba6c9cf0afa0e3aaa493e39bb69e19a3be96efbf0",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_wallet_losses.parquet",
+      "bytes": 29292972,
+      "sha256": "22a76fa107b9e394e4c5864cb89fd33312037bedb28e7c1124451e4b59a63787",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_wallet_risk.parquet",
+      "bytes": 2186370,
+      "sha256": "d8f9c81a4c643a95f6e94c18d5821829cdbead7e916d209d2988ec282b91ceba",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_equity_strata.parquet",
+      "bytes": 8968,
+      "sha256": "e0384f6a9eee93ee1211ddb96278ab0af9d898a9739687c83a6111cf5f99aca2",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_matched_comparison.parquet",
+      "bytes": 6351,
+      "sha256": "78fc4ab85ec0cc8ade88bf57d1d39c696a8cc067a59860503a39d21c1986cd9e",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q1_stress_matched_comparison.csv",
+      "bytes": 989,
+      "sha256": "a79a648ba30b6a8e6ccd28dcacbb7371ef08ba76ac1283fbf2e08c9917627207",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_cascade_transitions.parquet",
+      "bytes": 34160698,
+      "sha256": "38b2cb2809883dfb3e9ca13b38b2e4d74acdafaa364df7d23e1aea12d4cf22a7",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_cascade_transitions_summary.csv",
+      "bytes": 7524,
+      "sha256": "f084284a80d9b3b544ad1c957784294edfea4ec5df663b33ff309ed8292144ae",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_debtrank.json",
+      "bytes": 3226,
+      "sha256": "1fe8f3c4e679356e246eab6626ddd5e5ccc885134113ffbdbbd3d209c5f9f109",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_debtrank_nodes.parquet",
+      "bytes": 5674,
+      "sha256": "3627a9ba269cdce3c6b221fbc6838af5faafbd7db453b482e0faf206af958e3f",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "q3_debtrank_nodes.csv",
+      "bytes": 2664,
+      "sha256": "a8b4d582c8475feca5d038196aaa84b921fe6641762518c5f2d254a8b544ec5a",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "execution/cascade_summary.parquet",
+      "bytes": 14216,
+      "sha256": "214e45d89c32dc40250ca2fe2cb1ab88cd8e0963823fbcff5cc488287df16290",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "execution/cascade_rounds.parquet",
+      "bytes": 12200,
+      "sha256": "7b6a919875de3a2afceef2fe0069a6f894280420054d9b414e20d2137566384e",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "kpi_mapping.csv",
+      "bytes": 11509,
+      "sha256": "0cf0dbd37b1e67224550bfa161ad76cd757e0c55df8c79664658ad4285c64a4d",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "kpi_artifact_qa.json",
+      "bytes": 3569,
+      "sha256": "8c920ca1fac442b010cfbdc6e5f0d47fde08d91a4327a59b2ebbe9be50070480",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 21148,
+      "sha256": "d616db4dc8fcdb5ca2a4e987bcc981c6dc34439197619f0f1c4f4a2a0ae5cce0",
+      "data_kind": "empirical_research_candidate",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "empirical_q1_q3_completed_on_approved_cohort",
+    "cohort_wallets": 50311,
+    "snapshots": {
+      "A": 19664,
+      "B1": 9675,
+      "B2": 20972
+    },
+    "q1_mc_scenarios": 10000,
+    "q1_stress_scenarios": 19,
+    "q1_mc_matched_comparison": [
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 5.498557301990454,
+        "es99_loss_per_100k": 476.935215095704,
+        "probability_bad_debt": 0.00020094254818649423,
+        "probability_hf_lt_1": 0.001837127875052867,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      },
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 0.0,
+        "es99_loss_per_100k": 0.0,
+        "probability_bad_debt": 0.0,
+        "probability_hf_lt_1": 4.590163934426229e-06,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 0.007131766028610431,
+        "es99_loss_per_100k": 0.7131766028610426,
+        "probability_bad_debt": 6.70943595951813e-07,
+        "probability_hf_lt_1": 0.0026194194283417666,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 0.0,
+        "es99_loss_per_100k": 0.0,
+        "probability_bad_debt": 0.0,
+        "probability_hf_lt_1": 0.0,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 5.087293126067065,
+        "es99_loss_per_100k": 422.24689688743524,
+        "probability_bad_debt": 0.00017783677847832337,
+        "probability_hf_lt_1": 0.0016527943760695691,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 0.0,
+        "es99_loss_per_100k": 0.0,
+        "probability_bad_debt": 0.0,
+        "probability_hf_lt_1": 0.00019506849315068493,
+        "matching": "equal_common_equity_strata",
+        "scenario_source": "mc_10000_calibrated_daily_t_copula"
+      }
+    ],
+    "q1_stress_matched_comparison": [
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 127.276025704958,
+        "es99_loss_per_100k": 1562.123985639068,
+        "probability_bad_debt": 0.00491284903116822,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      },
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 242.5221128678993,
+        "es99_loss_per_100k": 2708.284760857087,
+        "probability_bad_debt": 0.014413081885040471,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 894.5478655738997,
+        "es99_loss_per_100k": 9393.161234030678,
+        "probability_bad_debt": 0.0244489960629004,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 211.9344556131484,
+        "es99_loss_per_100k": 2354.490697951033,
+        "probability_bad_debt": 0.0073883572567783095,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "is_recursive_loop": false,
+        "common_strata": 5,
+        "mean_loss_per_100k": 175.7921861766904,
+        "es99_loss_per_100k": 2120.4719583299106,
+        "probability_bad_debt": 0.0065218943440290555,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "is_recursive_loop": true,
+        "common_strata": 5,
+        "mean_loss_per_100k": 213.26066111158835,
+        "es99_loss_per_100k": 2206.476794756436,
+        "probability_bad_debt": 0.007725634135151076,
+        "matching": "equal_common_equity_strata",
+        "acceptance": "fixture_or_conditional_scenario_only"
+      }
+    ],
+    "q2_cf_counterfactual_runs": 228,
+    "q2_cf_policy_aggregate": [
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "cf_rule": "baseline_aave",
+        "scenarios": 19,
+        "total_executed_liquidations": 1228,
+        "total_round_1_liquidations": 1141,
+        "total_round_ge_2_liquidations": 87,
+        "mean_round_1_repaid_usd": 1956684.5885974558,
+        "mean_simulated_repaid_usd": 2073113.700978023,
+        "mean_cascade_amplification": 1.080545706608546,
+        "mean_liquidator_profit_usd": 63450.106290557094,
+        "mean_slippage_pct": 0.39228598911721313,
+        "max_slippage_pct": 4.01603363262487,
+        "total_outside_quote_domain_attempts": 8098,
+        "mean_post_execution_bad_debt_usd": 5575509.590237986,
+        "mean_post_execution_bdr_pct": 0.05914144364023093
+      },
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "cf_rule": "dynamic_linear",
+        "scenarios": 19,
+        "total_executed_liquidations": 1229,
+        "total_round_1_liquidations": 1137,
+        "total_round_ge_2_liquidations": 92,
+        "mean_round_1_repaid_usd": 2186128.872735556,
+        "mean_simulated_repaid_usd": 2293571.111833718,
+        "mean_cascade_amplification": 1.1017563223366744,
+        "mean_liquidator_profit_usd": 55733.60554012221,
+        "mean_slippage_pct": 0.4595393345777299,
+        "max_slippage_pct": 4.015809276608625,
+        "total_outside_quote_domain_attempts": 7982,
+        "mean_post_execution_bad_debt_usd": 5575443.707496927,
+        "mean_post_execution_bdr_pct": 0.05914074479820507
+      },
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "cf_rule": "fixed_100",
+        "scenarios": 19,
+        "total_executed_liquidations": 1240,
+        "total_round_1_liquidations": 1150,
+        "total_round_ge_2_liquidations": 90,
+        "mean_round_1_repaid_usd": 1941015.3729002606,
+        "mean_simulated_repaid_usd": 2102427.052248801,
+        "mean_cascade_amplification": 1.0935920989901677,
+        "mean_liquidator_profit_usd": 67549.88433236576,
+        "mean_slippage_pct": 0.41005807700451236,
+        "max_slippage_pct": 4.015809276608625,
+        "total_outside_quote_domain_attempts": 8108,
+        "mean_post_execution_bad_debt_usd": 5575524.44977182,
+        "mean_post_execution_bdr_pct": 0.059141601260672354
+      },
+      {
+        "snapshot_id": "A",
+        "snapshot_block": 26179841,
+        "cf_rule": "fixed_50",
+        "scenarios": 19,
+        "total_executed_liquidations": 1247,
+        "total_round_1_liquidations": 1143,
+        "total_round_ge_2_liquidations": 104,
+        "mean_round_1_repaid_usd": 1976451.0092391595,
+        "mean_simulated_repaid_usd": 2098013.802361792,
+        "mean_cascade_amplification": 1.0824193543997278,
+        "mean_liquidator_profit_usd": 63044.2975796409,
+        "mean_slippage_pct": 0.3960432865998942,
+        "max_slippage_pct": 4.015994626916981,
+        "total_outside_quote_domain_attempts": 8285,
+        "mean_post_execution_bad_debt_usd": 5575244.161673007,
+        "mean_post_execution_bdr_pct": 0.05913862814359116
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "cf_rule": "baseline_aave",
+        "scenarios": 19,
+        "total_executed_liquidations": 1449,
+        "total_round_1_liquidations": 1392,
+        "total_round_ge_2_liquidations": 57,
+        "mean_round_1_repaid_usd": 3300279.7913543293,
+        "mean_simulated_repaid_usd": 3326956.8578091566,
+        "mean_cascade_amplification": 1.0053222478052586,
+        "mean_liquidator_profit_usd": 116399.24875423606,
+        "mean_slippage_pct": 0.5953896101358892,
+        "max_slippage_pct": 4.859454663282761,
+        "total_outside_quote_domain_attempts": 19613,
+        "mean_post_execution_bad_debt_usd": 18162720.564602073,
+        "mean_post_execution_bdr_pct": 0.3094855858161367
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "cf_rule": "dynamic_linear",
+        "scenarios": 19,
+        "total_executed_liquidations": 1433,
+        "total_round_1_liquidations": 1372,
+        "total_round_ge_2_liquidations": 61,
+        "mean_round_1_repaid_usd": 3178060.691707339,
+        "mean_simulated_repaid_usd": 3201536.072441381,
+        "mean_cascade_amplification": 1.0049108810672944,
+        "mean_liquidator_profit_usd": 110389.18977089373,
+        "mean_slippage_pct": 0.6126372177906334,
+        "max_slippage_pct": 4.85985874147054,
+        "total_outside_quote_domain_attempts": 20022,
+        "mean_post_execution_bad_debt_usd": 18162729.408774037,
+        "mean_post_execution_bdr_pct": 0.3094857365173343
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "cf_rule": "fixed_100",
+        "scenarios": 19,
+        "total_executed_liquidations": 1467,
+        "total_round_1_liquidations": 1411,
+        "total_round_ge_2_liquidations": 56,
+        "mean_round_1_repaid_usd": 3464815.345362676,
+        "mean_simulated_repaid_usd": 3489929.8111044704,
+        "mean_cascade_amplification": 1.0050754685053216,
+        "mean_liquidator_profit_usd": 123134.85775764423,
+        "mean_slippage_pct": 0.5825116070083729,
+        "max_slippage_pct": 4.859454663282761,
+        "total_outside_quote_domain_attempts": 19704,
+        "mean_post_execution_bad_debt_usd": 18162358.5567703,
+        "mean_post_execution_bdr_pct": 0.30947941734564316
+      },
+      {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "cf_rule": "fixed_50",
+        "scenarios": 19,
+        "total_executed_liquidations": 1496,
+        "total_round_1_liquidations": 1429,
+        "total_round_ge_2_liquidations": 67,
+        "mean_round_1_repaid_usd": 3305482.108934515,
+        "mean_simulated_repaid_usd": 3339772.1507877447,
+        "mean_cascade_amplification": 1.0070310493901156,
+        "mean_liquidator_profit_usd": 116484.38411321065,
+        "mean_slippage_pct": 0.597630791471786,
+        "max_slippage_pct": 4.859454663282761,
+        "total_outside_quote_domain_attempts": 20084,
+        "mean_post_execution_bad_debt_usd": 18161347.499391757,
+        "mean_post_execution_bdr_pct": 0.30946218932718744
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "cf_rule": "baseline_aave",
+        "scenarios": 19,
+        "total_executed_liquidations": 1061,
+        "total_round_1_liquidations": 977,
+        "total_round_ge_2_liquidations": 84,
+        "mean_round_1_repaid_usd": 6533575.894691246,
+        "mean_simulated_repaid_usd": 6702761.426860707,
+        "mean_cascade_amplification": 1.027861633305629,
+        "mean_liquidator_profit_usd": 173346.39479580923,
+        "mean_slippage_pct": 0.6628688598811053,
+        "max_slippage_pct": 4.184184013411873,
+        "total_outside_quote_domain_attempts": 15058,
+        "mean_post_execution_bad_debt_usd": 12917923.831571108,
+        "mean_post_execution_bdr_pct": 0.05956104973290024
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "cf_rule": "dynamic_linear",
+        "scenarios": 19,
+        "total_executed_liquidations": 1064,
+        "total_round_1_liquidations": 982,
+        "total_round_ge_2_liquidations": 82,
+        "mean_round_1_repaid_usd": 6047828.651561561,
+        "mean_simulated_repaid_usd": 6302573.712559849,
+        "mean_cascade_amplification": 1.0474384669500492,
+        "mean_liquidator_profit_usd": 159749.1892800574,
+        "mean_slippage_pct": 0.6521024637973407,
+        "max_slippage_pct": 4.18326654142242,
+        "total_outside_quote_domain_attempts": 14718,
+        "mean_post_execution_bad_debt_usd": 12915585.363199547,
+        "mean_post_execution_bdr_pct": 0.05955026768829361
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "cf_rule": "fixed_100",
+        "scenarios": 19,
+        "total_executed_liquidations": 1049,
+        "total_round_1_liquidations": 966,
+        "total_round_ge_2_liquidations": 83,
+        "mean_round_1_repaid_usd": 7591225.568490347,
+        "mean_simulated_repaid_usd": 7781604.97402764,
+        "mean_cascade_amplification": 1.027461696592167,
+        "mean_liquidator_profit_usd": 180378.94418708072,
+        "mean_slippage_pct": 0.6788805752777914,
+        "max_slippage_pct": 4.18326654142242,
+        "total_outside_quote_domain_attempts": 15070,
+        "mean_post_execution_bad_debt_usd": 12917923.831571108,
+        "mean_post_execution_bdr_pct": 0.05956104973290024
+      },
+      {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "cf_rule": "fixed_50",
+        "scenarios": 19,
+        "total_executed_liquidations": 1173,
+        "total_round_1_liquidations": 1059,
+        "total_round_ge_2_liquidations": 114,
+        "mean_round_1_repaid_usd": 5996701.659338901,
+        "mean_simulated_repaid_usd": 6195307.325306177,
+        "mean_cascade_amplification": 1.0344256506059433,
+        "mean_liquidator_profit_usd": 172625.70600252599,
+        "mean_slippage_pct": 0.6542724672337632,
+        "max_slippage_pct": 4.184123518060463,
+        "total_outside_quote_domain_attempts": 16146,
+        "mean_post_execution_bad_debt_usd": 12910343.454621445,
+        "mean_post_execution_bdr_pct": 0.05952609866689461
+      }
+    ],
+    "q3_compound_complete_exposure_rows": 3185,
+    "q3_compound_overlap_cohort_wallets": 797,
+    "q3_withdrawal_summary": [
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 17,
+        "withdrawn_tokens": 177040.75356500002,
+        "withdrawn_usd": 177034.6173324815
+      },
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 14,
+        "withdrawn_tokens": 254.79929039612966,
+        "withdrawn_usd": 254.79929039612966
+      },
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 34,
+        "withdrawn_tokens": 28515.66175925,
+        "withdrawn_usd": 28507.831643687525
+      },
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 2553.9197893684495,
+        "withdrawn_usd": 2553.9197893684495
+      },
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 38,
+        "withdrawn_tokens": 37059.333491749996,
+        "withdrawn_usd": 37053.527776565184
+      },
+      {
+        "scenario_id": "overlap_withdraw_25pct",
+        "withdrawal_fraction": 0.25,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 0.8271200740839629,
+        "withdrawn_usd": 0.8271200740839629
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 17,
+        "withdrawn_tokens": 354081.50713000004,
+        "withdrawn_usd": 354069.234664963
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 14,
+        "withdrawn_tokens": 509.5985807922593,
+        "withdrawn_usd": 509.5985807922593
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 34,
+        "withdrawn_tokens": 57031.3235185,
+        "withdrawn_usd": 57015.66328737505
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 5107.839578736899,
+        "withdrawn_usd": 5107.839578736899
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 38,
+        "withdrawn_tokens": 74118.66698349999,
+        "withdrawn_usd": 74107.05555313037
+      },
+      {
+        "scenario_id": "overlap_withdraw_50pct",
+        "withdrawal_fraction": 0.5,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 1.6542401481679259,
+        "withdrawn_usd": 1.6542401481679259
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 17,
+        "withdrawn_tokens": 708163.0142600001,
+        "withdrawn_usd": 708138.469329926
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 20458637,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 14,
+        "withdrawn_tokens": 1019.1971615845187,
+        "withdrawn_usd": 1019.1971615845187
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 34,
+        "withdrawn_tokens": 114062.647037,
+        "withdrawn_usd": 114031.3265747501
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 23543615,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 10215.679157473798,
+        "withdrawn_usd": 10215.679157473798
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_usdc",
+        "overlap_wallets_withdrawing": 38,
+        "withdrawn_tokens": 148237.33396699998,
+        "withdrawn_usd": 148214.11110626074
+      },
+      {
+        "scenario_id": "overlap_withdraw_100pct",
+        "withdrawal_fraction": 1.0,
+        "snapshot_block": 26179841,
+        "market_id": "compound_v3_ethereum_weth",
+        "overlap_wallets_withdrawing": 20,
+        "withdrawn_tokens": 3.3084802963358517,
+        "withdrawn_usd": 3.3084802963358517
+      }
+    ],
+    "q3_debtrank_scores": {
+      "A": {
+        "unweighted_incremental_score": 0.44714570982362833,
+        "capacity_weighted_incremental_score": 0.06613977370098992
+      },
+      "B1": {
+        "unweighted_incremental_score": 0.5228695567604211,
+        "capacity_weighted_incremental_score": 0.08259022043343257
+      },
+      "B2": {
+        "unweighted_incremental_score": 0.44318475185597694,
+        "capacity_weighted_incremental_score": 0.0662488310633855
+      }
+    },
+    "kpi_checks_passed": 18,
+    "kpi_checks_total": 18,
+    "limitations": "Q1 MC uses 10,000 Student-t copula scenarios from 365 daily market returns (max 1-day ETH drop -14.34%, depeg -0.56%), complemented by 19 post-execution tail stress scenarios (-10% to -50% ETH, -1% to -10% depeg). Q3 bounded execution holds oracle prices fixed after initial shock (no endogenous DEX->oracle feedback). Compound III Q3 evaluates Comet price-only eligibility and explicit base-supply withdrawals without inventing collateral absorption."
+  }
+}

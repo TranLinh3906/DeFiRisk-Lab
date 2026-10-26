@@ -1,0 +1,11 @@
+{
+  "status": "completed_current_data_planned_quotes_pending",
+  "primary_method": "linear",
+  "primary_scenario_snapshot_runs": 57,
+  "planned_quotes_received": 0,
+  "planned_quotes_pending": 27,
+  "primary_runs_hit_round_limit": 0,
+  "execution_round_limit": 100,
+  "research_acceptance": "not_official_cascade; fixed oracle and assumed gas/fees/pool reset",
+  "next_step": "Collect pending quotes then rerun with --additional-quotes and --require-complete-quotes"
+}

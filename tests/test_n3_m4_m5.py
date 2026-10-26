@@ -1,7 +1,8 @@
 """Run: python -m unittest discover -s tests -v (from repository root)."""
 import importlib.util
 import json
-import tempfile
+from contextlib import contextmanager
+from uuid import uuid4
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -10,6 +11,19 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+@contextmanager
+def workspace_temp():
+    # Ordinary mkdir inherits workspace ACLs; Windows sandbox rejects 0700 temp dirs.
+    directory = ROOT / 'outputs' / ('n3_test_' + uuid4().hex)
+    directory.mkdir()
+    try:
+        yield str(directory)
+    finally:
+        for child in directory.iterdir():
+            child.unlink()
+        directory.rmdir()
 
 
 def load(name, path):
@@ -86,7 +100,7 @@ class DescriptiveTest(unittest.TestCase):
     def test_generated_figures(self):
         ev, pr, reg = example()
         out = ana.build(ev, pr, reg)
-        with tempfile.TemporaryDirectory() as d:
+        with workspace_temp() as d:
             with patch.object(ana, "OUT_FIGS", Path(d)):
                 ana.plot_results(out, overwrite=False)
             pngs = list(Path(d).glob("*.png"))
@@ -117,7 +131,7 @@ class DexTest(unittest.TestCase):
         self.assertEqual(val["status"], "quote_failed_at_small_trade")
 
     def test_N2_steth_proxy_same_block(self):
-        with tempfile.TemporaryDirectory() as d:
+        with workspace_temp() as d:
             reg_path = Path(d)/"tokens.csv"
             reg_path.write_text("token_address,symbol,decimals\n" + f"{WSTETH},wstETH,18\n", encoding="utf-8")
             oracle = pd.DataFrame({"snapshot_block":[10], "token_address":[WSTETH], "price_usd":[3000.]})

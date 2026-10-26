@@ -1,0 +1,40 @@
+{
+  "raw_quote_replays": 27,
+  "raw_output_mismatches": 0,
+  "qa": {
+    "status": "passed_internal_quote_checks",
+    "verified_quotes": 111,
+    "directions": 12,
+    "max_raw_recalculation_error_pct": 0.0,
+    "rpc_requeried": false,
+    "checkpoint_present": false,
+    "quantization_policy": "conservative_raw_unit_bound",
+    "quantization_adjustments": [
+      {
+        "snapshot_id": "A",
+        "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "trade_size_usd": 118.29509340226456,
+        "raw_impact_pct": -0.00027577752215179885,
+        "model_upper_impact_pct": 0.0001335362887711078,
+        "reference_input_raw": "100000000000000"
+      },
+      {
+        "snapshot_id": "B1",
+        "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "trade_size_usd": 119.53738894049222,
+        "raw_impact_pct": -0.00012348951161644806,
+        "model_upper_impact_pct": 0.00024889772404224075,
+        "reference_input_raw": "100000000000000"
+      },
+      {
+        "snapshot_id": "B2",
+        "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "trade_size_usd": 152.34701397376162,
+        "raw_impact_pct": -5.059161873877116e-05,
+        "model_upper_impact_pct": 0.00017840966274329517,
+        "reference_input_raw": "100000000000000"
+      }
+    ],
+    "limitation": "Verifies supplied raw quote fields; no independent RPC replay or provenance beyond supplied files"
+  }
+}

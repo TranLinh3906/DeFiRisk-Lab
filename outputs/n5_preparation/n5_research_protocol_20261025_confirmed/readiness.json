@@ -1,0 +1,107 @@
+{
+  "status": "prepared_not_simulated",
+  "estimation": {
+    "df": 4,
+    "seed": 42,
+    "scenarios": 10000,
+    "rho": 0.09449334346449424,
+    "calibration_pairs": 365,
+    "method": "Pearson correlation of rank-transformed t quantiles; empirical simple-return marginals",
+    "validation_status": "candidate_pending_N3_price_confirmation"
+  },
+  "calibration_first_return": "2025-10-13 00:00:00+00:00",
+  "calibration_last_return": "2026-10-12 00:00:00+00:00",
+  "calibration_source": "Daily market reference, asynchronous STETH/USDT quotes; pending N3 confirmation",
+  "peak_300_block_candidates": {
+    "B1": {
+      "status": "retrospective_candidate",
+      "start_block": 20459042,
+      "end_block": 20459341,
+      "event_count": 644,
+      "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+      "duration": "300 blocks is not assumed to equal exactly one hour",
+      "role": "primary",
+      "rule_status": "user_confirmed",
+      "source_completeness": "pending_independent_verification"
+    },
+    "B2": {
+      "status": "retrospective_candidate",
+      "start_block": 23549924,
+      "end_block": 23550223,
+      "event_count": 648,
+      "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+      "duration": "300 blocks is not assumed to equal exactly one hour",
+      "role": "primary",
+      "rule_status": "user_confirmed",
+      "source_completeness": "pending_independent_verification"
+    }
+  },
+  "full_event_windows": {
+    "B1": {
+      "events": 1830,
+      "unique_wallets": 1152,
+      "first_hour_wallets": 177,
+      "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+      "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+      "duration_hours": 24.00027777777778,
+      "hit_rate": null,
+      "status": "observations_only",
+      "source_completeness": "unverified"
+    },
+    "B2": {
+      "events": 902,
+      "unique_wallets": 623,
+      "first_hour_wallets": 0,
+      "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+      "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+      "duration_hours": 48.000277777777775,
+      "hit_rate": null,
+      "status": "observations_only",
+      "source_completeness": "unverified"
+    }
+  },
+  "confirmed_decisions": {
+    "version": "20261025_user_confirmed",
+    "confirmed_on_local_date": "2026-10-25",
+    "confirmed_snapshot_blocks": {
+      "B1": 20458637
+    },
+    "holdout": {
+      "primary_peak_selection": "maximum_liquidation_event_count",
+      "peak_window_blocks": 300,
+      "tie_break": "earliest_event_start",
+      "secondary_peak_selection": "first_oracle_eth_decline",
+      "secondary_eth_return_threshold": -0.05,
+      "full_event_windows_source": "config/snapshots.json",
+      "price_source": "chainlink_oracle_and_aligned_depeg",
+      "report_wallet_and_initial_debt_weighted_hit_rates": true,
+      "source_completeness_status": "pending_independent_verification"
+    },
+    "note": "User confirmed B1=20458637 and max-event-count primary peak; oracle -5% remains secondary. These decisions do not approve data completeness or model acceptance."
+  },
+  "secondary_window": {
+    "selection": "first_oracle_eth_decline",
+    "eth_return_threshold": -0.05,
+    "status": "blocked_missing_chainlink_history"
+  },
+  "decisions_pending": [
+    "Daily close timing/source confirmation by N3; DebtRank node capacities/topology"
+  ],
+  "missing_inputs": [
+    "Chainlink AnswerUpdated history and feed/proxy/decimals provenance for holdout",
+    "Timestamp/block-aligned stETH/ETH depeg history during holdout",
+    "Evidence distinguishing gas/liquidator freezes from prediction failures"
+  ],
+  "rules": {
+    "min_debt_usd": 100,
+    "mc_samples": 10000,
+    "seed": 42,
+    "df": 4,
+    "equity_normalization_usd": 100000,
+    "es99_tail_scenarios": 100,
+    "looping": "category1 + enabled LST collateral + WETH debt + leverage>=3",
+    "collateral_priority": "max(liquidation_bonus - DEX_slippage)",
+    "hit_rate": "report wallet count AND t0 debt-weighted; do not remove misses without evidence"
+  },
+  "output_simulation_results": "NOT_GENERATED: scenarios are inputs, not simulated losses or acceptance"
+}

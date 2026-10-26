@@ -31,11 +31,12 @@ def normalize(df):
     p['price_type']=p.price_type.astype(str).str.strip().str.lower()
     p['source']=p.source.astype(str).str.strip()
     p['price_value']=pd.to_numeric(p.price_value,errors='coerce')
+    nonpositive_price=p.price_value.le(0) & ~p.price_type.eq('depeg_metric')
     p['effective_timestamp_utc']=p.reference_timestamp.fillna(p.timestamp)
     p['quote_age_sec_at_observation']=(p.timestamp-p.effective_timestamp_utc).dt.total_seconds()
     bad=pd.Series(False,index=p.index)
     for term in (p.timestamp.isna(),p.effective_timestamp_utc.isna(),p.price_value.isna(),
-                 ~np.isfinite(p.price_value),p.price_value<=0,
+                 ~np.isfinite(p.price_value),nonpositive_price,
                  p.quote_age_sec_at_observation.lt(0),p.asset.eq(''),p.quote_asset.eq('')):
         bad|=term
     p['qa_valid']=~bad
@@ -43,7 +44,7 @@ def normalize(df):
     conditions=[(p.timestamp.isna(),'invalid_timestamp'),
                 (p.effective_timestamp_utc.isna(),'invalid_reference_timestamp'),
                 (p.price_value.isna() | ~np.isfinite(p.price_value),'invalid_numeric_price'),
-                (p.price_value<=0,'nonpositive_price'),
+                (nonpositive_price,'nonpositive_price'),
                 (p.quote_age_sec_at_observation<0,'future_reference_timestamp')]
     for cond,label in conditions:
         p.loc[cond,'qa_invalid_reason']=label

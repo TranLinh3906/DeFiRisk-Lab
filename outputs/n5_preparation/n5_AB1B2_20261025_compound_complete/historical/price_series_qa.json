@@ -1,0 +1,90 @@
+[
+  {
+    "source": "data\\n3_history_2024_2026\\final\\market_daily_continuous.parquet",
+    "asset": "BTC",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\market_daily_continuous.parquet",
+    "asset": "ETH",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\market_crashes_hourly.parquet",
+    "asset": "BTC",
+    "rows": 240,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-08-03T00:00:00+00:00",
+    "end_utc": "2025-10-12T23:00:00+00:00",
+    "largest_gap_hours": 10225.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\market_crashes_hourly.parquet",
+    "asset": "ETH",
+    "rows": 240,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-08-03T00:00:00+00:00",
+    "end_utc": "2025-10-12T23:00:00+00:00",
+    "largest_gap_hours": 10225.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\token_prices_continuous.parquet",
+    "asset": "STETH",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\token_prices_continuous.parquet",
+    "asset": "USDC",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\token_prices_continuous.parquet",
+    "asset": "USDT",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  },
+  {
+    "source": "data\\n3_history_2024_2026\\final\\token_prices_continuous.parquet",
+    "asset": "WSTETH",
+    "rows": 1024,
+    "duplicate_timestamps": 0,
+    "invalid_prices": 0,
+    "start_utc": "2024-01-01T00:00:00+00:00",
+    "end_utc": "2026-10-20T00:00:00+00:00",
+    "largest_gap_hours": 24.0,
+    "limitation": "Source reference prices; not event-time execution or snapshot oracle"
+  }
+]

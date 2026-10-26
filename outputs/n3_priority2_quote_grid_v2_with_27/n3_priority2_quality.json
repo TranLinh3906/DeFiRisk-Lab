@@ -1,0 +1,14 @@
+{
+  "base_verified_quotes": 84,
+  "targeted_batch_requested": 27,
+  "targeted_batch_verified": 27,
+  "targeted_batch_not_quoted": 0,
+  "combined_verified_quotes_all": 111,
+  "combined_verified_quotes_positive_calibration": 108,
+  "usdc_6dec_quantization_sub160_quotes": 3,
+  "bracket_anchor_points": 24,
+  "checkpoint_file": "outputs\\n3_priority2_quote_grid_v2_with_27\\n3_targeted_27_verified_quotes_checkpoint.jsonl",
+  "input_dex_sha256": "da35729009bfd7b85aea2ebe7f9cb24fc2e7f348ef9ca0c173cfd62622adf896",
+  "input_batch_csv_sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+  "created_utc": "2026-10-26T01:37:19.632421+00:00"
+}

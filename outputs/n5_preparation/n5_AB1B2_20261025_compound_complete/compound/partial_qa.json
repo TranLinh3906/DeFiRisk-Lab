@@ -1,0 +1,17 @@
+{
+  "table_qa_status": "passed",
+  "account_reconciliation_mismatches": 0,
+  "rows": {
+    "positions": 3185,
+    "accounts": 2083,
+    "config": 77,
+    "overlap": 1916
+  },
+  "complete": true,
+  "expected_queries": 137050,
+  "covered_queries": 137050,
+  "missing_queries": 0,
+  "missing_unique_wallets": 0,
+  "validation_status": "unvalidated",
+  "limitation": "Complete target-query coverage; not all Compound users. No bridge simulation."
+}

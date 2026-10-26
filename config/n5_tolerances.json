@@ -1,0 +1,11 @@
+{
+  "version": "20261025_user_supplied",
+  "min_simulation_debt_usd": 100.0,
+  "dust_basis": "aave_reference_initial_debt",
+  "wallet_balance_max_absolute_error_usd": 100.0,
+  "protocol_debt_max_relative_error": 0.01,
+  "protocol_comparison": "strictly_less_than",
+  "hf_max_median_absolute_error": 0.005,
+  "hf_comparison": "strictly_less_than",
+  "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+}

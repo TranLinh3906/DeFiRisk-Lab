@@ -1,0 +1,438 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-25T16:39:20.282547+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+      "bytes": 12538550,
+      "sha256": "5d68a6c7808c0fd53829a51594a2fd09646144558b658253d6962f2da3451fe9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "bytes": 20340,
+      "sha256": "92da30b2ba2361ef78f347930f3120a6863df5125ba95169a3da829c18a467aa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "bytes": 23372,
+      "sha256": "08ab31c76f1b4285d394f69de2119b47dd564fefc84a326faecf03e94dcda386",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+      "bytes": 16043,
+      "sha256": "13830b776dba80619cd13d216b53e627a637380c4e1c42d5d0b132a0919ef9df",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\account_reference.parquet",
+      "bytes": 10362651,
+      "sha256": "0b4a324f773f1b5256c76c3a8522371d2bb808cefed02a6cc78c97f4a6e58e13",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\protocol_reconciliation.parquet",
+      "bytes": 23204,
+      "sha256": "0d3de699edfd96fbadcc3f09fbba5e84becfc448939dbb24835219ef45ec71b9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\snapshot_metadata.json",
+      "bytes": 7867,
+      "sha256": "a242d88b024b8da5545abbaf4b6273500f3cc70ae8afb5f3e854b9d7e20b23e7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\marts\\borrower_risk.parquet",
+      "bytes": 4644046,
+      "sha256": "b6f952a59a1876042c5b6aae22b9c7f7a3538e15c2050e26204d0d6911db1972",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_tolerances.json",
+      "bytes": 562,
+      "sha256": "e03af1c8e69f3db32a38e472dbdc55626297be786ede3bd301d47ef6679734b6",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_apply_tolerances.py",
+      "bytes": 5902,
+      "sha256": "46b505b8b497cba726e7e6bd9f5f39330330dc75c4abf87e772b994331cebb7d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\research_tolerances.py",
+      "bytes": 7728,
+      "sha256": "f3cc2e767f669528b5cd636f9bac30dddd96f16fe8078cce4bd4474dd3589bed",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\stress_test.py",
+      "bytes": 22822,
+      "sha256": "a2c32df79b1a0faa62036e87800375d5bc7e8a6debd89c46b0a9ff16850e8158",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_inputs.py",
+      "bytes": 9124,
+      "sha256": "95cd3351032c6a22d5a3e9a20fc96ec973e112405e65f5bee82a086cef3bf5aa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cascade.py",
+      "bytes": 17261,
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\scenarios.yaml",
+      "bytes": 880,
+      "sha256": "2a3fb3368d4937881ac5b455d3543d0db76111b6517f617f6962f7dcaece0875",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "A/simulation_positions.parquet",
+      "bytes": 1696058,
+      "sha256": "cbef8533f4d4600dc641deac464bdf1747bad056414927680a0bb9cb3d16cf93",
+      "data_kind": "simulation_input_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/wallet_cohort.parquet",
+      "bytes": 1418467,
+      "sha256": "ff9d671731d332528779bdf1003f768f477c1ee0c4df1f30a31f5f3b278b69b1",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/wallet_checks.parquet",
+      "bytes": 2732942,
+      "sha256": "fa2d12a32b4da212a2d427444f66e7ea6d0f1859a4307ddb52b57148fd261f00",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/zero_shock_filtered.parquet",
+      "bytes": 1385854,
+      "sha256": "dc1358ed27d76af890b1495a30ef62d6a4334e0cb825ca637457d1587f93524f",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/stress_positions_filtered.parquet",
+      "bytes": 6642246,
+      "sha256": "f76e6b0c587be23f59197fb780014b85d452a097cd83a9699da4e537d2e21be9",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/stress_summary_filtered.parquet",
+      "bytes": 5616,
+      "sha256": "dc90c47cd2afcf22a75648d69c0773330ff89df9b4f259d7669c7d7e451c8953",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "A/validation.json",
+      "bytes": 1833,
+      "sha256": "528aa2285dacf6f476e68f380fc0fd1742cff29ce48dd29038a7dcd8805bb94d",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/simulation_positions.parquet",
+      "bytes": 805417,
+      "sha256": "fa1c1b3a6c1f8a701bbf0c3e1e075fe313c331faf996f285774eebf9d7c0d342",
+      "data_kind": "simulation_input_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/wallet_cohort.parquet",
+      "bytes": 610886,
+      "sha256": "5c88667e905766970fcc4475957c997662c4e5411c483d32cd48b711d6a65e69",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/wallet_checks.parquet",
+      "bytes": 1361621,
+      "sha256": "c369c3e9b7202e90e630baa719a0e7f7dde1b156ad23f6b381078cc3e82309ab",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/zero_shock_filtered.parquet",
+      "bytes": 682869,
+      "sha256": "394b54db78bf0ad68fc2c017cc417df1226713feacfad340565fb8ba32132a44",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/stress_positions_filtered.parquet",
+      "bytes": 2946664,
+      "sha256": "dff60a0346ac350f06e475c16cebbd887171b03a2afff9974da5561099c1307a",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/stress_summary_filtered.parquet",
+      "bytes": 5617,
+      "sha256": "7a79622e9abed8240a4a708d8f3e9c491b7eb39a70ab78bb2923709750290ca1",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B1/validation.json",
+      "bytes": 1827,
+      "sha256": "1aaa22f37442c5a33e4410808fb4680b0f613bd1795bd5551e10d9aaca68db94",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/simulation_positions.parquet",
+      "bytes": 1810143,
+      "sha256": "9a069a393c499ce06ca6f1ca97102eaf2539da4287e83aa139064ed6d92b94f2",
+      "data_kind": "simulation_input_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/wallet_cohort.parquet",
+      "bytes": 1398519,
+      "sha256": "db8aa785457fc2259db363c8f1f84733bfb94a69834c1d7b53f08a8b68c975e3",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/wallet_checks.parquet",
+      "bytes": 2965463,
+      "sha256": "6539c76e44793976fdaec16f58aea5ea829c234fb9cef588049468c748f6953a",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/zero_shock_filtered.parquet",
+      "bytes": 1477873,
+      "sha256": "5496a628e39bbe6655a6415b36c2d44bb0e3226646090571da2bbb4b3a0aa9f7",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/stress_positions_filtered.parquet",
+      "bytes": 7055162,
+      "sha256": "cc1617c7cfd27d2ed7d39385d7ea5e252fc91bd1d6103307539f20b6a90f343b",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/stress_summary_filtered.parquet",
+      "bytes": 5615,
+      "sha256": "779daeb5fcb131b5b6e6915c6e5aca80f58fe5eae0516c9349f25213ff485ddd",
+      "data_kind": "observed_input_counterfactual_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "B2/validation.json",
+      "bytes": 1834,
+      "sha256": "60bbfd8167409d6170c4956c6cb9d6fe617eab8933aca5a582c0664fe31db2d2",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 6821,
+      "sha256": "ff8821cff3da78d7630235b5b5cf3251ad71e3bddf1ea074efaa14ad29820683",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "tolerance_policy": {
+      "version": "20261025_user_supplied",
+      "min_simulation_debt_usd": 100.0,
+      "dust_basis": "aave_reference_initial_debt",
+      "wallet_balance_max_absolute_error_usd": 100.0,
+      "protocol_debt_max_relative_error": 0.01,
+      "protocol_comparison": "strictly_less_than",
+      "hf_max_median_absolute_error": 0.005,
+      "hf_comparison": "strictly_less_than",
+      "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+    },
+    "snapshots": {
+      "A": {
+        "status": "passed",
+        "snapshot_block": 26179841,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 7.818007409899549e-11,
+            "absolute_error_usd": 0.7370414733886719,
+            "calculated_full_t0_debt_usd": 9427484969.034634,
+            "protocol_debt_usd": 9427484968.297592,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 1.1920928955078125e-07,
+            "max_collateral_absolute_error_usd": 5.960464477539063e-08
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.779465463869201e-12,
+            "individual_wallets_ge_005": 0
+          },
+          "n4_hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.779465463869201e-12,
+            "invalid_or_missing_wallets": 0
+          }
+        },
+        "included_wallets": 19664,
+        "excluded_dust_wallets": 8829,
+        "excluded_reference_debt_usd": 69527.24243968999,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates",
+        "stress_scenarios_run": 19
+      },
+      "B1": {
+        "status": "passed",
+        "snapshot_block": 20458637,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 5.980060192270619e-13,
+            "absolute_error_usd": 0.003509521484375,
+            "calculated_full_t0_debt_usd": 5868705952.005379,
+            "protocol_debt_usd": 5868705952.008888,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 4.470348358154297e-08,
+            "max_collateral_absolute_error_usd": 5.960464477539063e-08
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.801447879756779e-12,
+            "individual_wallets_ge_005": 2
+          },
+          "n4_hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.801447879756779e-12,
+            "invalid_or_missing_wallets": 0
+          }
+        },
+        "included_wallets": 9675,
+        "excluded_dust_wallets": 2372,
+        "excluded_reference_debt_usd": 25342.30730185,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates",
+        "stress_scenarios_run": 19
+      },
+      "B2": {
+        "status": "passed",
+        "snapshot_block": 23543615,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 1.0088755983891774e-12,
+            "absolute_error_usd": 0.021881103515625,
+            "calculated_full_t0_debt_usd": 21688604175.320942,
+            "protocol_debt_usd": 21688604175.342823,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 0.0036466818694407266,
+            "max_collateral_absolute_error_usd": 1.1920928955078125e-07
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.0292322549787514e-11,
+            "individual_wallets_ge_005": 0
+          },
+          "n4_hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.0292322549787514e-11,
+            "invalid_or_missing_wallets": 0
+          }
+        },
+        "included_wallets": 20972,
+        "excluded_dust_wallets": 7013,
+        "excluded_reference_debt_usd": 61261.27792747,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates",
+        "stress_scenarios_run": 19
+      }
+    },
+    "research_acceptance": "pending_other_gates",
+    "input_gate_status": "passed"
+  }
+}

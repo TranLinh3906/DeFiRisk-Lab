@@ -1,0 +1,129 @@
+{
+  "B1": {
+    "status": "passed_sample_grid",
+    "samples": 718,
+    "tokens": 10,
+    "rows": 7180,
+    "step_blocks": 10,
+    "last_block": 20465806,
+    "sampled_minima": {
+      "DAI": {
+        "min_price_usd": 0.99948777,
+        "block": 20465507,
+        "timestamp": "2024-08-05T22:59:59+00:00"
+      },
+      "GHO": {
+        "min_price_usd": 1.0,
+        "block": 20458637,
+        "timestamp": "2024-08-04T23:59:59+00:00"
+      },
+      "USDC": {
+        "min_price_usd": 0.99996534,
+        "block": 20458637,
+        "timestamp": "2024-08-04T23:59:59+00:00"
+      },
+      "USDT": {
+        "min_price_usd": 0.99953723,
+        "block": 20458637,
+        "timestamp": "2024-08-04T23:59:59+00:00"
+      },
+      "WBTC": {
+        "min_price_usd": 49753.90958419,
+        "block": 20462507,
+        "timestamp": "2024-08-05T12:56:59+00:00"
+      },
+      "WETH": {
+        "min_price_usd": 2189.88508,
+        "block": 20460567,
+        "timestamp": "2024-08-05T06:26:47+00:00"
+      },
+      "cbETH": {
+        "min_price_usd": 2360.74125237,
+        "block": 20460567,
+        "timestamp": "2024-08-05T06:26:47+00:00"
+      },
+      "rETH": {
+        "min_price_usd": 2437.34544106,
+        "block": 20460567,
+        "timestamp": "2024-08-05T06:26:47+00:00"
+      },
+      "weETH": {
+        "min_price_usd": 2287.6067017,
+        "block": 20460567,
+        "timestamp": "2024-08-05T06:26:47+00:00"
+      },
+      "wstETH": {
+        "min_price_usd": 2572.50822704,
+        "block": 20460567,
+        "timestamp": "2024-08-05T06:26:47+00:00"
+      }
+    },
+    "limitation": "Sampled getAssetPrice, not complete AnswerUpdated history; extrema between samples unknown"
+  },
+  "B2": {
+    "status": "passed_sample_grid",
+    "samples": 1432,
+    "tokens": 11,
+    "rows": 15752,
+    "step_blocks": 10,
+    "last_block": 23557920,
+    "sampled_minima": {
+      "DAI": {
+        "min_price_usd": 0.99839115,
+        "block": 23550805,
+        "timestamp": "2025-10-11T00:08:35+00:00"
+      },
+      "GHO": {
+        "min_price_usd": 1.0,
+        "block": 23543615,
+        "timestamp": "2025-10-09T23:59:59+00:00"
+      },
+      "USDC": {
+        "min_price_usd": 0.99979105,
+        "block": 23543615,
+        "timestamp": "2025-10-09T23:59:59+00:00"
+      },
+      "USDT": {
+        "min_price_usd": 1.00005282,
+        "block": 23543615,
+        "timestamp": "2025-10-09T23:59:59+00:00"
+      },
+      "WBTC": {
+        "min_price_usd": 106499.17920746,
+        "block": 23549975,
+        "timestamp": "2025-10-10T21:21:23+00:00"
+      },
+      "WETH": {
+        "min_price_usd": 3456.7046,
+        "block": 23549985,
+        "timestamp": "2025-10-10T21:23:23+00:00"
+      },
+      "cbBTC": {
+        "min_price_usd": 106490.25,
+        "block": 23549975,
+        "timestamp": "2025-10-10T21:21:23+00:00"
+      },
+      "cbETH": {
+        "min_price_usd": 3846.05164059,
+        "block": 23549985,
+        "timestamp": "2025-10-10T21:23:23+00:00"
+      },
+      "rETH": {
+        "min_price_usd": 3967.45712777,
+        "block": 23549985,
+        "timestamp": "2025-10-10T21:23:23+00:00"
+      },
+      "weETH": {
+        "min_price_usd": 3728.98107473,
+        "block": 23549985,
+        "timestamp": "2025-10-10T21:23:23+00:00"
+      },
+      "wstETH": {
+        "min_price_usd": 4203.3144426,
+        "block": 23549985,
+        "timestamp": "2025-10-10T21:23:23+00:00"
+      }
+    },
+    "limitation": "Sampled getAssetPrice, not complete AnswerUpdated history; extrema between samples unknown"
+  }
+}

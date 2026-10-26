@@ -1,0 +1,7 @@
+{
+  "grid_quotes": 111,
+  "depth_anchors": 24,
+  "mismatches": 0,
+  "max_absolute_impact_difference_pp": 1.4210854715202004e-14,
+  "scope": "Independent archive eth_call replay; negative tiny-reference impacts retained raw and modeled only under explicit quantization policy"
+}

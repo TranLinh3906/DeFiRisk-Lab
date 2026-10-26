@@ -1,0 +1,113 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T00:47:07.365839+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\execution_summary.parquet",
+      "bytes": 13384,
+      "sha256": "5788626e4cbf4a7b787ae8428a6e4bdba900e88d03f0bfa5635a5bc937c5a0d3",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\planned_quote_inventory.parquet",
+      "bytes": 15398,
+      "sha256": "61d68b11640a88ccae55f26e7e9777a4c3cce9cf86ac324d6bcf2b9d21da9e33",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\quote_domain_limits.parquet",
+      "bytes": 6001,
+      "sha256": "031ea5ec8d5e97e8674bf03e924b0670a3ddeb64704c4b1b684552751a64f67b",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\unscorable_execution_attempts.parquet",
+      "bytes": 35388088,
+      "sha256": "946bad17b995ff962264ffb618547ff5414111e507555fc4ff84129bb2aec26c",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\summary.json",
+      "bytes": 9184,
+      "sha256": "6d2f561cd0e3bd996c54c7d1f4671a4788e2745c64273a93d848dc101b2972ce",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_bounded_scope_current_20261026\\manifest.json",
+      "bytes": 20042,
+      "sha256": "04085a3aca45a5fcd1281b633a7a13a8174a139327f0b63b02e872fa6cda833d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_report_bounded_scope.py",
+      "bytes": 3545,
+      "sha256": "f4a79b93e6ff2bb899ab07ace1d22de3b1625b59ee87f04621fc8d0bc854e804",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "primary_execution_summary.csv",
+      "bytes": 5829,
+      "sha256": "177ac28ab0286e6494ba3bfdb3a9f59d44d8eb26881f86fdaa62e033d703e020",
+      "data_kind": "bounded_run_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "planned_quote_inventory.csv",
+      "bytes": 14643,
+      "sha256": "841443787bb35ad0adbeb4e072c84f78e821911f0f4f94f44e88ece586eeac63",
+      "data_kind": "bounded_run_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "quote_domain_limits.csv",
+      "bytes": 1587,
+      "sha256": "d4cb6be27f5f9e4209a6b5019548aeee0437e74b77718d26f1ef362c24427432",
+      "data_kind": "bounded_run_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "unsupported_candidates.csv",
+      "bytes": 13983,
+      "sha256": "24b6bfb4bdbe608d285cf7eef2bf8e704d0eeee2db8721da4f5622c2a7e79404",
+      "data_kind": "bounded_run_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 478,
+      "sha256": "c8af70ac7f8e2629471fa322880c68876425f0288caa9819847a00d8162eda54",
+      "data_kind": "bounded_run_status",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "completed_current_data_planned_quotes_pending",
+    "primary_method": "linear",
+    "primary_scenario_snapshot_runs": 57,
+    "planned_quotes_received": 0,
+    "planned_quotes_pending": 27,
+    "primary_runs_hit_round_limit": 0,
+    "execution_round_limit": 100,
+    "research_acceptance": "not_official_cascade; fixed oracle and assumed gas/fees/pool reset",
+    "next_step": "Collect pending quotes then rerun with --additional-quotes and --require-complete-quotes"
+  }
+}

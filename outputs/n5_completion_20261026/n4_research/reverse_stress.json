@@ -1,0 +1,151 @@
+{
+  "snapshots": {
+    "20458637": {
+      "snapshot_block": 20458637,
+      "baseline_protocol_debt_usd": 5868680609.698063,
+      "baseline_cohort_debt_usd": 5868680609.698063,
+      "denominator_scope": "supplied initial cohort; legacy protocol-named fields are aliases, not reserve totals",
+      "search_grid": {
+        "eth_min": 0.0,
+        "eth_max_drop": 0.6,
+        "eth_step": 0.01,
+        "depeg_min": 0.0,
+        "depeg_max_drop": 0.2,
+        "depeg_step": 0.005
+      },
+      "targets": [
+        {
+          "target": "10%",
+          "target_debt_usd": 586868060.9698063,
+          "target_debt_pct_of_protocol": 10.0,
+          "target_debt_pct_of_cohort_t0": 10.0,
+          "eth_shock_required": -0.25,
+          "lst_depeg_shock_required": -0.08,
+          "minimum_shock_type": "lst_depeg",
+          "minimum_shock": -0.08,
+          "reached_within_search_grid": true
+        },
+        {
+          "target": "25%",
+          "target_debt_usd": 1467170152.4245157,
+          "target_debt_pct_of_protocol": 25.0,
+          "target_debt_pct_of_cohort_t0": 25.0,
+          "eth_shock_required": -0.47,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": "eth",
+          "minimum_shock": -0.47,
+          "reached_within_search_grid": true
+        },
+        {
+          "target": "50%",
+          "target_debt_usd": 2934340304.8490314,
+          "target_debt_pct_of_protocol": 50.0,
+          "target_debt_pct_of_cohort_t0": 50.0,
+          "eth_shock_required": null,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": null,
+          "minimum_shock": null,
+          "reached_within_search_grid": false
+        }
+      ]
+    },
+    "23543615": {
+      "snapshot_block": 23543615,
+      "baseline_protocol_debt_usd": 21688542914.372986,
+      "baseline_cohort_debt_usd": 21688542914.372986,
+      "denominator_scope": "supplied initial cohort; legacy protocol-named fields are aliases, not reserve totals",
+      "search_grid": {
+        "eth_min": 0.0,
+        "eth_max_drop": 0.6,
+        "eth_step": 0.01,
+        "depeg_min": 0.0,
+        "depeg_max_drop": 0.2,
+        "depeg_step": 0.005
+      },
+      "targets": [
+        {
+          "target": "10%",
+          "target_debt_usd": 2168854291.437299,
+          "target_debt_pct_of_protocol": 10.0,
+          "target_debt_pct_of_cohort_t0": 10.0,
+          "eth_shock_required": -0.57,
+          "lst_depeg_shock_required": -0.04,
+          "minimum_shock_type": "lst_depeg",
+          "minimum_shock": -0.04,
+          "reached_within_search_grid": true
+        },
+        {
+          "target": "25%",
+          "target_debt_usd": 5422135728.593246,
+          "target_debt_pct_of_protocol": 25.0,
+          "target_debt_pct_of_cohort_t0": 25.0,
+          "eth_shock_required": null,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": null,
+          "minimum_shock": null,
+          "reached_within_search_grid": false
+        },
+        {
+          "target": "50%",
+          "target_debt_usd": 10844271457.186493,
+          "target_debt_pct_of_protocol": 50.0,
+          "target_debt_pct_of_cohort_t0": 50.0,
+          "eth_shock_required": null,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": null,
+          "minimum_shock": null,
+          "reached_within_search_grid": false
+        }
+      ]
+    },
+    "26179841": {
+      "snapshot_block": 26179841,
+      "baseline_protocol_debt_usd": 9427415441.792242,
+      "baseline_cohort_debt_usd": 9427415441.792242,
+      "denominator_scope": "supplied initial cohort; legacy protocol-named fields are aliases, not reserve totals",
+      "search_grid": {
+        "eth_min": 0.0,
+        "eth_max_drop": 0.6,
+        "eth_step": 0.01,
+        "depeg_min": 0.0,
+        "depeg_max_drop": 0.2,
+        "depeg_step": 0.005
+      },
+      "targets": [
+        {
+          "target": "10%",
+          "target_debt_usd": 942741544.1792243,
+          "target_debt_pct_of_protocol": 10.0,
+          "target_debt_pct_of_cohort_t0": 10.0,
+          "eth_shock_required": -0.44,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": "eth",
+          "minimum_shock": -0.44,
+          "reached_within_search_grid": true
+        },
+        {
+          "target": "25%",
+          "target_debt_usd": 2356853860.4480605,
+          "target_debt_pct_of_protocol": 25.0,
+          "target_debt_pct_of_cohort_t0": 25.0,
+          "eth_shock_required": null,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": null,
+          "minimum_shock": null,
+          "reached_within_search_grid": false
+        },
+        {
+          "target": "50%",
+          "target_debt_usd": 4713707720.896121,
+          "target_debt_pct_of_protocol": 50.0,
+          "target_debt_pct_of_cohort_t0": 50.0,
+          "eth_shock_required": null,
+          "lst_depeg_shock_required": null,
+          "minimum_shock_type": null,
+          "minimum_shock": null,
+          "reached_within_search_grid": false
+        }
+      ]
+    }
+  }
+}

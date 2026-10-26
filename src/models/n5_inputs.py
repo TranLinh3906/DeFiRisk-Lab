@@ -14,6 +14,31 @@ def read_rows(path: str | Path) -> list[dict]:
     return pq.read_table(path).to_pylist()
 
 
+def resolve_account_reference(directory, required_snapshots=None):
+    """Select one complete snapshot-matching source, never merge legacy labels.
+
+    N3's old A/B recovery keeps A/B1/B2 in account_referenceAB1B2.parquet.
+    Validate label AND block before falling back; no source renaming or writes.
+    """
+    import json
+    import pyarrow.parquet as pq
+    directory=Path(directory)
+    if required_snapshots is None:
+        metadata=json.loads((directory/'snapshot_metadata.json').read_text(encoding='utf-8'))
+        required_snapshots={label:snap['snapshot_block'] for label,snap in metadata['snapshots'].items()}
+    errors=[]
+    for name in ['account_reference.parquet','account_referenceAB1B2.parquet']:
+        path=directory/name
+        if not path.is_file():continue
+        rows=pq.read_table(path,columns=['snapshot_id','snapshot_block']).to_pylist()
+        observed={}
+        for row in rows:observed.setdefault(row['snapshot_id'],set()).add(row['snapshot_block'])
+        if all(observed.get(label)=={block} for label,block in required_snapshots.items()):
+            return path
+        errors.append(f'{name}: {observed}')
+    raise ValueError('No complete account reference matches configured snapshots: '+ '; '.join(errors))
+
+
 def number(value, name, low=0.0, high=math.inf) -> float:
     if isinstance(value, bool):
         raise ValueError(f"{name}: boolean is not a number")

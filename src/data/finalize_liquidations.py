@@ -184,6 +184,10 @@ def finalize(priced: pd.DataFrame, *, max_lag_minutes: int = 60) -> tuple[pd.Dat
         'total_events_in_input': int(len(df)),
         'fact_ready_events': int(len(fact)),
         'fact_ready_pct': round(100 * len(fact) / len(df), 2) if len(df) else None,
+        'valuation_coverage_pct': round(100 * len(fact) / len(df), 2) if len(df) else None,
+        'valuation_coverage_status': ('NO_EVENTS' if not len(df) else
+                                      'PASS' if len(fact) / len(df) >= .85 else 'WARNING_LOW_COVERAGE'),
+        'coverage_interpretation': 'Priced share of supplied events, not independent chain-log completeness or predictive hit-rate',
         'events_excluded': int(len(df) - len(fact)),
         'reasons': {str(k): int(v) for k, v in df['n3_validation_status'].value_counts().items()},
         'unique_event_pk': not bool(df.duplicated(['tx_hash', 'log_index']).any()),

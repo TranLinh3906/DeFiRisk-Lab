@@ -1,0 +1,264 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-25T18:04:38.518376+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_price_timeseries.parquet",
+      "bytes": 26088,
+      "sha256": "7407d12ca58916079cf90b7c7818a413861f22bce235045c506e616c01aad417",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\tables\\n3_gas_profit_freeze_proof.parquet",
+      "bytes": 19057,
+      "sha256": "d0da95fbda91a332803769fb80f42d9bbfea776ad6d4f8b482e1889a713e9e77",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "sha256": "20d67d570585df11755c62d91262da01efe8c692c62c51b7506e4934ea453f07",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_liquidations_priced.parquet",
+      "bytes": 29336,
+      "sha256": "8ddfe8795d7e2af19a8c39ec989df273e13c169c526431394c8acc59e345201b",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "bytes": 23372,
+      "sha256": "08ab31c76f1b4285d394f69de2119b47dd564fefc84a326faecf03e94dcda386",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\lido_ratios.parquet",
+      "bytes": 4627,
+      "sha256": "4e9e59f93b0fc62bb56ba8af287a3ad4e3eddb40d3ebed52fb9d9313e72eeeeb",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\token_registry.csv",
+      "bytes": 3725,
+      "sha256": "69a96326e0dc4501388017eb1dbf1af2dc9618732f1ae03e8d7a44560307c9dc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\snapshot_metadata.json",
+      "bytes": 7867,
+      "sha256": "a242d88b024b8da5545abbaf4b6273500f3cc70ae8afb5f3e854b9d7e20b23e7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\tables\\n3_gas_profit_freeze_summary.json",
+      "bytes": 412,
+      "sha256": "b7ee44d513d0469a7d93aadcdfd427d001243ece44186f01391bcb8253bfbba8",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\n3_price_timeseries.py",
+      "bytes": 16152,
+      "sha256": "3165aafc65b71e5e282f6750e10642129936663c41762b8f18e36022e8ec6505",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\n3_gas_profit_freeze.py",
+      "bytes": 6053,
+      "sha256": "88131cbdb6b1ad16f8c15a684e9bd079f9292022145c5fc463a6cd8c16f5c9b5",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\finalize_liquidations.py",
+      "bytes": 25249,
+      "sha256": "9f89af8a1a30e8b33aa5ad2ebab6e03488b28a393af1f39906e2601961e61a7e",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_priority3_price_qa.py",
+      "bytes": 9844,
+      "sha256": "1010202ada75aa6d2b476ae3c575b82b2dd6a7e23c997f67f1113478f61692b4",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_review_n3_completion.py",
+      "bytes": 6641,
+      "sha256": "440e50f6750ae29a2321e37e76a5df69b49ac7d514c508de3d0c2ac8fd6e2b42",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "depeg_metrics_verified.parquet",
+      "bytes": 10569,
+      "sha256": "62834c76e837c86623edb3365737a104a1064521d39fd20a015d883512008647",
+      "data_kind": "diagnostic_unvalidated",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "prices_rebuilt_candidate.parquet",
+      "bytes": 26531,
+      "sha256": "15ab708943cb9b27fbb993672eb934e77665bfbd652941a5591e4fc3106ece2f",
+      "data_kind": "diagnostic_unvalidated",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "gas_assumption_review.parquet",
+      "bytes": 21412,
+      "sha256": "419b03c45df10eb526c811e53ec3323a9d0d1e4b8effbb41944fd9d838e003f0",
+      "data_kind": "diagnostic_unvalidated",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "valuation_fact_candidate.parquet",
+      "bytes": 15795,
+      "sha256": "b31637dbbf1beacb02e176dbdb0447898f7899e79405ea9e94a92e29ffec2359",
+      "data_kind": "diagnostic_unvalidated",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 4320,
+      "sha256": "5f67ca4e933471985b972646cdc0ebff8835cb3a7588b706a47e98a394ab8391",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "price_integration_qa.json",
+      "bytes": 266,
+      "sha256": "23e289da48dc3833b284edd0b485752db1fc6c57b6e5f51a726d0ebb2a70fb7d",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "partial_completion_verified",
+    "depeg": {
+      "rows": 96,
+      "formula_verified": true,
+      "start": "2026-10-12 00:00:00+00:00",
+      "end": "2026-10-15 23:00:00+00:00",
+      "unit": "percentage_points_relative_to_parity_1",
+      "holdout_scope": {
+        "B1": {
+          "depeg_rows_in_holdout": 0,
+          "status": "no_holdout_depeg_rows"
+        },
+        "B2": {
+          "depeg_rows_in_holdout": 0,
+          "status": "no_holdout_depeg_rows"
+        }
+      }
+    },
+    "gas": {
+      "original_flagged_frozen_events": 24,
+      "original_events": 42,
+      "start": "2026-10-12 09:17:11+00:00",
+      "end": "2026-10-15 17:16:35+00:00",
+      "assumed_gas_cost_usd": 60.0,
+      "observed_holdout_event_key_overlap": 0,
+      "reviewed_assumptions": {
+        "generated_at_utc": "2026-10-25T18:04:38.381257+00:00",
+        "total_analyzed_events": 42,
+        "analysis_status": "assumption_diagnostic_not_freeze_proof",
+        "frozen_events_count": null,
+        "frozen_events_pct": null,
+        "unprofitable_under_assumptions_count": 24,
+        "unprofitable_under_assumptions_pct": 57.14,
+        "assumptions": {
+          "avg_gas_units_per_liquidation": 400000,
+          "assumed_gas_price_gwei": 50.0,
+          "assumed_eth_price_usd": 3000.0
+        },
+        "conclusion": "These events executed. Negative estimated margin indicates assumption limitations, not confirmed freezes. Actual gas, DEX proceeds, fees and eligible-but-unexecuted positions are needed."
+      },
+      "acceptance": "not_freeze_proof; observed executed events cannot demonstrate nonexecution"
+    },
+    "valuation_coverage": {
+      "status": "fact-ready subset; full event coverage NOT guaranteed",
+      "created_utc": "2026-10-25T18:04:38.404033+00:00",
+      "source_price_type": "DefiLlama historical market reference; NOT Aave oracle",
+      "study_scope": "Aave V3 Ethereum; B1/B2 holdouts require approved N1/N2 blocks and verified event windows",
+      "research_design_alignment": {
+        "Q1": "background market liquidation evidence, not looping identification",
+        "Q2": "realized debt repaid and collateral seized; NOT counterfactual CF/bad debt",
+        "Q3": "realized token liquidation events for depeg validation; needs price and N2 position joins"
+      },
+      "total_events_in_input": 42,
+      "fact_ready_events": 42,
+      "fact_ready_pct": 100.0,
+      "valuation_coverage_pct": 100.0,
+      "valuation_coverage_status": "PASS",
+      "coverage_interpretation": "Priced share of supplied events, not independent chain-log completeness or predictive hit-rate",
+      "events_excluded": 0,
+      "reasons": {
+        "ok": 42
+      },
+      "unique_event_pk": true,
+      "min_time_utc": "2026-10-12 09:17:11+00:00",
+      "max_time_utc": "2026-10-15 17:16:35+00:00",
+      "fact_fields": [
+        "tx_hash",
+        "log_index",
+        "event_block",
+        "event_timestamp",
+        "protocol_id",
+        "wallet_address",
+        "liquidator_address",
+        "collateral_token_address",
+        "debt_token_address",
+        "debt_repaid_usd",
+        "collateral_seized_usd"
+      ],
+      "total_debt_repaid_usd_priced_subset": 4190879.8515807292,
+      "total_collateral_seized_usd_priced_subset": 4392171.927269707,
+      "max_quote_lag_minutes": 60,
+      "caveat": "Event-time USD uses market reference. Do not treat collateral_seized_usd as execution proceeds or claim system totals without independent block-window coverage and N2/N1 snapshot checks.",
+      "event_collection_coverage": "NOT_VERIFIED_INDEPENDENTLY",
+      "canonical_contract_written": false
+    },
+    "source_repairs": [
+      "Restored complete finalizer after upstream IndentationError; pricing coverage is not chain-log completeness",
+      "Allow signed depeg metrics in QA, retain positive-only constraints for actual prices/ratios",
+      "Gas estimate marked assumption-only with nullable freeze labels; unknown monetary inputs rejected",
+      "Price integration guards restored and quality-output/overwrite backup honored"
+    ],
+    "remaining": [
+      "B1/B2-aligned depeg series",
+      "Independent on-chain log collection completeness evidence",
+      "Actual transaction gas/effective price, ETH quote, execution costs and eligible-but-unexecuted positions",
+      "Missing oracle token/feed history and full Q1/Q3 simulation gates"
+    ]
+  }
+}

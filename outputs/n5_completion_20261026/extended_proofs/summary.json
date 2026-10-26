@@ -1,0 +1,95 @@
+{
+  "wallets": [
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0x00dbcc59e6bb596cf2a1cff9326c5f80618875c3",
+      "call_ok": true,
+      "total_collateral_base_usd": 3e-05,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 1,
+      "first_borrow_block_after_snapshot": 23555714
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0x5895d114a4992f4ce71d61293f7d4fde93fcd695",
+      "call_ok": true,
+      "total_collateral_base_usd": 0.0,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 2,
+      "first_borrow_block_after_snapshot": 23549984
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0xa98e339f5a0f135792286d481b4e23d91a667d3f",
+      "call_ok": true,
+      "total_collateral_base_usd": 0.0,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 2,
+      "first_borrow_block_after_snapshot": 23549983
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0xb2633e23645fcf4857567c90e96f82e1c7ba6725",
+      "call_ok": true,
+      "total_collateral_base_usd": 2.64223355,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 1,
+      "first_borrow_block_after_snapshot": 23551389
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0xb3445d5413abf63df1112a4a517de2602f249785",
+      "call_ok": true,
+      "total_collateral_base_usd": 0.0,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 1,
+      "first_borrow_block_after_snapshot": 23549984
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "wallet_address": "0xfa0253943c3ff0e43898cba5a7a0da9d17c27995",
+      "call_ok": true,
+      "total_collateral_base_usd": 0.0,
+      "total_debt_base_usd": 0.0,
+      "health_factor_reported": null,
+      "classification": "no_debt_at_snapshot",
+      "borrow_events_after_snapshot": 2,
+      "first_borrow_block_after_snapshot": 23549984
+    }
+  ],
+  "reserve_configs_replayed": 155,
+  "feeds": {
+    "B1": {
+      "feed_addresses": 77,
+      "dependency_edges": 88,
+      "answer_updated_events": 1965,
+      "oracle_source_changes": 0,
+      "graph_closed_for_supported_getters": true,
+      "limits": "Native ratios, time-dependent caps and unrecognized adapter interfaces are not reconstructed from AnswerUpdated alone; direct all-token Aave oracle samples and exact peak-block samples are separate observations"
+    },
+    "B2": {
+      "feed_addresses": 107,
+      "dependency_edges": 154,
+      "answer_updated_events": 2157,
+      "oracle_source_changes": 0,
+      "graph_closed_for_supported_getters": true,
+      "limits": "Native ratios, time-dependent caps and unrecognized adapter interfaces are not reconstructed from AnswerUpdated alone; direct all-token Aave oracle samples and exact peak-block samples are separate observations"
+    }
+  }
+}

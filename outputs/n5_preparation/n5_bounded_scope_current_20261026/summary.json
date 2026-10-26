@@ -1,0 +1,207 @@
+{
+  "status": "diagnostic_not_official_cascade",
+  "input_gates": {
+    "A": {
+      "status": "passed",
+      "snapshot_block": 26179841,
+      "protocol_id": "aave_v3_ethereum",
+      "policy": {
+        "version": "20261025_user_supplied",
+        "min_simulation_debt_usd": 100.0,
+        "dust_basis": "aave_reference_initial_debt",
+        "wallet_balance_max_absolute_error_usd": 100.0,
+        "protocol_debt_max_relative_error": 0.01,
+        "protocol_comparison": "strictly_less_than",
+        "hf_max_median_absolute_error": 0.005,
+        "hf_comparison": "strictly_less_than",
+        "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+      },
+      "gates": {
+        "protocol_debt": {
+          "status": "passed",
+          "relative_error": 7.818007409899549e-11,
+          "absolute_error_usd": 0.7370414733886719,
+          "calculated_full_t0_debt_usd": 9427484969.034634,
+          "protocol_debt_usd": 9427484968.297592,
+          "scope": "full pre-dust initial borrower universe"
+        },
+        "wallet_balances": {
+          "status": "passed",
+          "failed_debt_wallets": 0,
+          "failed_collateral_wallets": 0,
+          "max_debt_absolute_error_usd": 1.1920928955078125e-07,
+          "max_collateral_absolute_error_usd": 5.960464477539063e-08
+        },
+        "hf_median": {
+          "status": "passed",
+          "median_absolute_error": 1.779465463869201e-12,
+          "individual_wallets_ge_005": 0
+        }
+      },
+      "included_wallets": 19664,
+      "excluded_dust_wallets": 8829,
+      "excluded_reference_debt_usd": 69527.24243968999,
+      "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+    },
+    "B1": {
+      "status": "passed",
+      "snapshot_block": 20458637,
+      "protocol_id": "aave_v3_ethereum",
+      "policy": {
+        "version": "20261025_user_supplied",
+        "min_simulation_debt_usd": 100.0,
+        "dust_basis": "aave_reference_initial_debt",
+        "wallet_balance_max_absolute_error_usd": 100.0,
+        "protocol_debt_max_relative_error": 0.01,
+        "protocol_comparison": "strictly_less_than",
+        "hf_max_median_absolute_error": 0.005,
+        "hf_comparison": "strictly_less_than",
+        "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+      },
+      "gates": {
+        "protocol_debt": {
+          "status": "passed",
+          "relative_error": 5.980060192270619e-13,
+          "absolute_error_usd": 0.003509521484375,
+          "calculated_full_t0_debt_usd": 5868705952.005379,
+          "protocol_debt_usd": 5868705952.008888,
+          "scope": "full pre-dust initial borrower universe"
+        },
+        "wallet_balances": {
+          "status": "passed",
+          "failed_debt_wallets": 0,
+          "failed_collateral_wallets": 0,
+          "max_debt_absolute_error_usd": 4.470348358154297e-08,
+          "max_collateral_absolute_error_usd": 5.960464477539063e-08
+        },
+        "hf_median": {
+          "status": "passed",
+          "median_absolute_error": 1.801447879756779e-12,
+          "individual_wallets_ge_005": 2
+        }
+      },
+      "included_wallets": 9675,
+      "excluded_dust_wallets": 2372,
+      "excluded_reference_debt_usd": 25342.30730185,
+      "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+    },
+    "B2": {
+      "status": "passed",
+      "snapshot_block": 23543615,
+      "protocol_id": "aave_v3_ethereum",
+      "policy": {
+        "version": "20261025_user_supplied",
+        "min_simulation_debt_usd": 100.0,
+        "dust_basis": "aave_reference_initial_debt",
+        "wallet_balance_max_absolute_error_usd": 100.0,
+        "protocol_debt_max_relative_error": 0.01,
+        "protocol_comparison": "strictly_less_than",
+        "hf_max_median_absolute_error": 0.005,
+        "hf_comparison": "strictly_less_than",
+        "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+      },
+      "gates": {
+        "protocol_debt": {
+          "status": "passed",
+          "relative_error": 1.0088755983891774e-12,
+          "absolute_error_usd": 0.021881103515625,
+          "calculated_full_t0_debt_usd": 21688604175.320942,
+          "protocol_debt_usd": 21688604175.342823,
+          "scope": "full pre-dust initial borrower universe"
+        },
+        "wallet_balances": {
+          "status": "passed",
+          "failed_debt_wallets": 0,
+          "failed_collateral_wallets": 0,
+          "max_debt_absolute_error_usd": 0.0036466818694407266,
+          "max_collateral_absolute_error_usd": 1.1920928955078125e-07
+        },
+        "hf_median": {
+          "status": "passed",
+          "median_absolute_error": 1.0292322549787514e-11,
+          "individual_wallets_ge_005": 0
+        }
+      },
+      "included_wallets": 20972,
+      "excluded_dust_wallets": 7013,
+      "excluded_reference_debt_usd": 61261.27792747,
+      "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+    }
+  },
+  "quote_qa": {
+    "status": "passed_internal_quote_checks",
+    "verified_quotes": 84,
+    "directions": 12,
+    "max_raw_recalculation_error_pct": 0.0,
+    "rpc_requeried": false,
+    "checkpoint_present": false,
+    "limitation": "Verifies supplied raw quote fields; no independent RPC replay or provenance beyond supplied files"
+  },
+  "scenario_snapshot_pairs": 57,
+  "execution_runs": 171,
+  "heldout_scored_rows": 108,
+  "heldout_unscorable_rows": 54,
+  "heldout_mae_pp": {
+    "linear": 0.006533103736867811,
+    "power": 0.00392565328261576
+  },
+  "scope": {
+    "version": "20261026_user_selected_bounded_run",
+    "snapshots": {
+      "A": 26179841,
+      "B1": 20458637,
+      "B2": 23543615
+    },
+    "routes": [
+      {
+        "token_in_address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+        "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "pool_address": "0x109830a1aaad605bbf02a9dfa7b0b92ec2fb7daa"
+      },
+      {
+        "token_in_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "token_out_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+      },
+      {
+        "token_in_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "pool_address": "0xcbcdf9626bc03e24f779434178a73a0b4bad62ed"
+      }
+    ],
+    "primary_method": "linear",
+    "sensitivity_method": "power",
+    "max_rounds": 100,
+    "domain_policy": "validated_observation_bounds_only",
+    "outside_domain_policy": "unknown_do_not_split_or_extrapolate",
+    "same_token_repayment": "identity_no_dex_required",
+    "oracle_feedback": false,
+    "gas_cost_usd_assumed": 5.0,
+    "extra_fee_rate_assumed": 0.0005,
+    "pool_state": "cumulative_within_round_reset_between_rounds_assumed",
+    "pending_quote_requests": "outputs/n5_preparation/n3_quote_handoff_20261026/n3_quote_first_batch_27.csv",
+    "pending_quote_requests_sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+    "research_acceptance": "pending_separate_protocol_liquidity_gas_oracle_validation"
+  },
+  "primary_method": "linear",
+  "planned_quotes_received": 0,
+  "planned_quotes_pending": 27,
+  "bounded_run_status": "completed_current_data_planned_quotes_pending",
+  "execution_assumptions": {
+    "max_rounds": 100,
+    "gas_usd_per_liquidation": 5.0,
+    "extra_fee_rate": 0.0005,
+    "oracle_feedback": false,
+    "curve_coordinate": "input token quantity valued at snapshot oracle USD",
+    "pool_state": "cumulative sales within each round; reset between rounds",
+    "routing": "exact collateral to debt token only; same-token identity needs no DEX",
+    "ordering": "sorted wallet address",
+    "policy": "research baseline_aave, not complete versioned protocol emulator",
+    "depeg_scope": "N4 scenario mapper, including all listed LSTs",
+    "quote_curve_shock_assumption": "pool token depth unchanged; quoted impact invariant to external shock"
+  },
+  "coverage": "Missing routes/out-of-domain candidates remain unknown, not observed freeze; results are restricted execution diagnostics",
+  "demand_interpretation": "No-impact full-pair research demand is a candidate sizing baseline, not a guaranteed upper bound",
+  "quote_request_rule": "Adjacent-size ratio >4 is exploratory prioritization, not acceptance tolerance",
+  "remaining": "Validate new quotes, shock-state liquidity, routing, gas and oracle feedback before official cascade acceptance"
+}

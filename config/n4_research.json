@@ -1,0 +1,7 @@
+{
+  "version": "20261026_shared_research_cohort",
+  "scenario_overrides": {"depeg_assets": ["STETH", "WSTETH"]},
+  "reverse_targets": ["10%", "25%", "50%"],
+  "percentage_denominator": "initial_filtered_cohort_debt",
+  "explanation": "A stETH/ETH depeg affects STETH/WSTETH; other LSTs receive ETH shock and explicit token overrides only."
+}

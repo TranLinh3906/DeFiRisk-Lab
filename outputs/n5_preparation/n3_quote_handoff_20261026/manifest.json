@@ -1,0 +1,45 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T00:33:46.289010+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_readable_20261026_final\\n3_existing_routes_only.csv",
+      "bytes": 15472,
+      "sha256": "7668be0f1dc6638dcab83fe4f82275a194cede50c2f8ac1b2c5c632d0f3b8679",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\manifest.json",
+      "bytes": 16467,
+      "sha256": "dbcb0b49a7025e585b1a938a2f498af4d90de165c410d3b3f6373a2d8ec9e484",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "n3_quote_first_batch_27.csv",
+      "bytes": 14039,
+      "sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+      "data_kind": "proposed_targeted_requests",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "scope_decisions_8.csv",
+      "bytes": 3975,
+      "sha256": "e3873929d54bac92d9596a84cac110298bfb2c0b0ff3377b64f177ef3a2eabef",
+      "data_kind": "pending_scope_decision",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "proposed_first_batch": 27,
+    "pending_scope_decisions": 8,
+    "source_unchanged_since_review": true,
+    "notes": "Proposed 27 targeted quotes: 18 sparse intervals and 9 below-min observations. No RPC or external message. Snapshot USD must be converted to input amount; N3 retains raw amounts, spot reference, block/hash, decimals, fee convention and failed requests. New routes await N4/N5 approval; existing power fit repair belongs to N5."
+  }
+}

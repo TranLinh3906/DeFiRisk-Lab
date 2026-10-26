@@ -1,0 +1,15 @@
+{
+  "status": "observed_asof_daily_calibration",
+  "daily_levels": 366,
+  "paired_returns": 365,
+  "estimation": {
+    "df": 4,
+    "seed": 42,
+    "scenarios": 10000,
+    "rho": 0.011649250340390336,
+    "calibration_pairs": 365,
+    "method": "Pearson correlation of rank-transformed t quantiles; empirical simple-return marginals",
+    "validation_status": "observed_asof_market_inputs_checked; scenario_estimation_not_loss_model_acceptance"
+  },
+  "scope": "Market reference quotes within each daily close, potentially asynchronous; not oracle, not realized Monte Carlo loss results"
+}

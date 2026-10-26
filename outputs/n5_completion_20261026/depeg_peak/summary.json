@@ -1,0 +1,5 @@
+{
+  "rows": 600,
+  "blocks_per_snapshot": 300,
+  "scope": "Every peak block observed; full windows also have hourly observations"
+}

@@ -1,0 +1,242 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T00:19:35.415144+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\snapshot_metadata.json",
+      "bytes": 7867,
+      "sha256": "a242d88b024b8da5545abbaf4b6273500f3cc70ae8afb5f3e854b9d7e20b23e7",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_market_ratios.parquet",
+      "bytes": 5129,
+      "sha256": "8d80deade76a488c70adc61b2ed9f0d125e68cc9e3b2386171fb66b74fd24665",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "sha256": "20d67d570585df11755c62d91262da01efe8c692c62c51b7506e4934ea453f07",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_peak300_liquidation_QA_FINAL\\n3_peak300_liquidation_quality.json",
+      "bytes": 1459,
+      "sha256": "b6e0a85e7246a1146b2395d35177d9a5cc31e71ee325527f418dc0f971eba7ff",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_gas_inputs_FINAL\\n3_gas_executed_liquidations.csv",
+      "bytes": 7877,
+      "sha256": "dc67a491015a8293b5d8246e6caacddef6ef2b3f8d2691ba0dfc490bc94b2c43",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_gas_inputs_FINAL\\n3_gas_evidence_quality.json",
+      "bytes": 560,
+      "sha256": "62d8942d30be79b3581356bcb0c6cd6449306ad96bb45383870b76322d93d637",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_review_n3_historical_delivery.py",
+      "bytes": 5908,
+      "sha256": "fb27787f210288e10dbc94961df2d719b849dce36bf48ce1df427f888d98ef76",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_depeg_b1_b2_qa.py",
+      "bytes": 7423,
+      "sha256": "2d1ead31b21532aeb09353663445b5a44a75ef5d25699e8a4959345e6ebfb636",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_peak300_liquidation_qa.py",
+      "bytes": 4747,
+      "sha256": "3fcf4b80b4b8e22383ff34a5be4c045137a386fae9e7abbf1dbd494b32322b03",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_gas_freeze_evidence_inputs.py",
+      "bytes": 7808,
+      "sha256": "4f0ae7a38b8e93fd18be122100063555ab2fece810313a9e5cf00c14e8414e93",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\fetch_liquidations.py",
+      "bytes": 15592,
+      "sha256": "81783910a1ec63f5eb1703f9c87d8867d017f3480c8f75427411db6fba555139",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research_protocol.py",
+      "bytes": 6480,
+      "sha256": "30da10e333e2e7322a152bb60af56f94adad8dd73e58972b04e54fa3e1b7a8dc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_snapshots.py",
+      "bytes": 4993,
+      "sha256": "96ec1d28a84bcd0fe197b9f077d5de12d0701fe4bee4170e63aa4778a44683a2",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\liquidations\\crash_2024_08\\data\\staging\\n3_liquidations_etherscan.parquet",
+      "bytes": 301525,
+      "sha256": "c976072c9c3d8aa40241bfa3538b0ab48ade0ac82449cc11027495d550e4506d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\liquidations\\crash_2024_08\\outputs\\tables\\n3_etherscan_quality.json",
+      "bytes": 813,
+      "sha256": "496bb61ca12acbaad77bf4ac7f19c80adf87a16c28cd5ea1392f7fe2d5ba9f44",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\liquidations\\crash_2025_10\\data\\staging\\n3_liquidations_etherscan.parquet",
+      "bytes": 148547,
+      "sha256": "697902db6d2c5dde7f880f4ea6e0f6ffa928cfabf0fcff357fefba4398cc30bf",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\liquidations\\crash_2025_10\\outputs\\tables\\n3_etherscan_quality.json",
+      "bytes": 811,
+      "sha256": "9eb9d62c08de6fe9955bf66f59395684eb21910f2f18ce68c0c4de71beb05811",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "depeg_full_window_qa.csv",
+      "bytes": 13804,
+      "sha256": "1ad613b9b8fa7f885bc09b06e11bb5d587e5d0cc2ff9ba1655a2267049feb7c6",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "approved_peak300_events.parquet",
+      "bytes": 187676,
+      "sha256": "d43dcc6588dedb7ff3f12285a6f1f2c2696244f7d104015cfb7f66297e2b58de",
+      "data_kind": "observed_local_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2733,
+      "sha256": "99b0b5bb4e064b607e969568762be0433b83039625d13742e8d8c73ff67f5db7",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "diagnostic_pending_acceptance",
+    "snapshots": {
+      "B1": {
+        "depeg": {
+          "snapshot_id": "B1",
+          "snapshot_block": 20458637,
+          "snapshot_utc": "2024-08-04T23:59:59+00:00",
+          "window_hours": 24,
+          "market_obs_near_window": 25,
+          "suspected_non_market_obs": 0,
+          "expected_hour_bins": 25,
+          "covered_hour_bins": 25,
+          "coverage_pct": 100.0,
+          "market_ratio_asof_snapshot_available": true,
+          "status": "PASS_OBSERVATION_QA"
+        },
+        "ratio_values": [
+          0.995
+        ],
+        "last_ratio_utc": "2024-08-05T23:00:00+00:00",
+        "approved_peak": {
+          "status": "retrospective_candidate",
+          "start_block": 20459042,
+          "end_block": 20459341,
+          "event_count": 644,
+          "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+          "duration": "300 blocks is not assumed to equal exactly one hour"
+        },
+        "local_peak_event_rows": 644,
+        "local_peak_wallets": 467,
+        "delivered_peak_matches": false,
+        "independent_log_completeness": "not_proven_by_local_count_agreement"
+      },
+      "B2": {
+        "depeg": {
+          "snapshot_id": "B2",
+          "snapshot_block": 23543615,
+          "snapshot_utc": "2025-10-09T23:59:59+00:00",
+          "window_hours": 48,
+          "market_obs_near_window": 26,
+          "suspected_non_market_obs": 0,
+          "expected_hour_bins": 49,
+          "covered_hour_bins": 26,
+          "coverage_pct": 53.061,
+          "market_ratio_asof_snapshot_available": true,
+          "status": "INCOMPLETE_MARKET_SERIES"
+        },
+        "ratio_values": [
+          0.995
+        ],
+        "last_ratio_utc": "2025-10-11T00:00:00+00:00",
+        "approved_peak": {
+          "status": "retrospective_candidate",
+          "start_block": 23549924,
+          "end_block": 23550223,
+          "event_count": 648,
+          "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+          "duration": "300 blocks is not assumed to equal exactly one hour"
+        },
+        "local_peak_event_rows": 648,
+        "local_peak_wallets": 434,
+        "delivered_peak_matches": false,
+        "independent_log_completeness": "not_proven_by_local_count_agreement"
+      }
+    },
+    "ratios_total": 98,
+    "ratios_unique": 1,
+    "provenance": "Source label alone does not verify raw historical quote provenance; constant values require reconciliation",
+    "gas": {
+      "delivered_txs": 16,
+      "rows_with_receipt_fields": 0,
+      "rows_with_usd_gas": 0,
+      "freeze_proven": false
+    },
+    "limitation": "No RPC or external verification. Corrected peak rows are local candidates, not proof of exhaustive logs."
+  }
+}

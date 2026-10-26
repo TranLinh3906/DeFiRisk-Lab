@@ -18,11 +18,11 @@ except ImportError:  # pragma: no cover - exercised by direct script execution
     from stress_test import MARTS, PROCESSED, _calculate_wallets, _load_model_inputs, _prepare_positions
 
 
-def _risk_metrics(positions: pd.DataFrame, eth_shock: float, depeg_shock: float) -> pd.DataFrame:
+def _risk_metrics(positions: pd.DataFrame, eth_shock: float, depeg_shock: float, scenario_params=None) -> pd.DataFrame:
     """Aggregate risk independently for each snapshot block."""
     result = _calculate_wallets(
         positions,
-        {"eth_shock": eth_shock, "depeg_shock": depeg_shock},
+        dict(scenario_params or {},eth_shock=eth_shock,depeg_shock=depeg_shock),
         "cliff_scan",
     )
     result["_at_risk"] = result["hf_after"] < 1.0
@@ -34,6 +34,8 @@ def _risk_metrics(positions: pd.DataFrame, eth_shock: float, depeg_shock: float)
             "debt_at_risk_usd": float(snap.loc[at_risk, "debt_usd"].sum()),
             "positions_at_risk": int(snap.loc[at_risk, "wallet"].nunique()),
             "total_protocol_debt_usd": float(snap["debt_usd"].sum()),
+            "total_cohort_debt_after_shock_usd":float(snap['debt_usd'].sum()),
+            "baseline_cohort_debt_usd":float(positions.loc[positions.snapshot_block.eq(block),'debt_usd_t0'].sum()),
         })
     return pd.DataFrame(rows)
 
@@ -54,7 +56,8 @@ def _drop_grid(max_drop: float, step: float) -> np.ndarray:
 
 
 def find_liquidation_cliff(
-    positions_df: pd.DataFrame, max_drop: float = 0.60, step: float = 0.01
+    positions_df: pd.DataFrame, max_drop: float = 0.60, step: float = 0.01, *,
+    tolerances=None, account_reference=None, scenario_params=None
 ) -> pd.DataFrame:
     """Scan ETH price drops and measure risk levels and marginal debt growth.
 
@@ -64,10 +67,14 @@ def find_liquidation_cliff(
     positive marginal increase on the scan grid.
     """
     positions = _prepare_positions(positions_df)
+    if tolerances is not None:
+        from src.models.research_tolerances import filter_simulation_positions
+        if account_reference is None:raise ValueError('Research cohort requires account reference')
+        positions,_=filter_simulation_positions(positions,account_reference,tolerances)
     drops = _drop_grid(max_drop, step)
     rows: list[dict[str, float | int]] = []
     for drop in drops:
-        metrics = _risk_metrics(positions, -float(drop), 0.0)
+        metrics = _risk_metrics(positions, -float(drop), 0.0,scenario_params)
         for _, metric in metrics.iterrows():
             rows.append({
                 "snapshot_block": int(metric["snapshot_block"]),
@@ -75,6 +82,8 @@ def find_liquidation_cliff(
                 "debt_at_risk_usd": metric["debt_at_risk_usd"],
                 "positions_at_risk": metric["positions_at_risk"],
                 "total_protocol_debt_usd": metric["total_protocol_debt_usd"],
+                "total_cohort_debt_after_shock_usd":metric['total_cohort_debt_after_shock_usd'],
+                "baseline_cohort_debt_usd":metric['baseline_cohort_debt_usd'],
             })
     curve = pd.DataFrame(rows)
     curve = curve.sort_values(["snapshot_block", "eth_drop_pct"]).reset_index(drop=True)
@@ -132,7 +141,8 @@ def _first_reaching_shock(curve: pd.DataFrame, target_usd: float, shock_col: str
     return float(reached.iloc[0][shock_col]) if not reached.empty else None
 
 
-def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[Any]) -> dict[str, Any]:
+def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[Any], *,
+    tolerances=None,account_reference=None,scenario_params=None) -> dict[str, Any]:
     """Find minimum sampled ETH-only or depeg-only shock for each risk target.
 
     Targets can be dollar amounts (e.g. ``100_000_000``), percentage strings
@@ -140,6 +150,10 @@ def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[An
     targets use total baseline protocol debt across the supplied snapshots.
     """
     positions = _prepare_positions(positions_df)
+    if tolerances is not None:
+        from src.models.research_tolerances import filter_simulation_positions
+        if account_reference is None:raise ValueError('Research cohort requires account reference')
+        positions,_=filter_simulation_positions(positions,account_reference,tolerances)
     eth_drops = _drop_grid(0.60, 0.01)
     depeg_drops = _drop_grid(0.20, 0.005)
     blocks = sorted(positions["snapshot_block"].dropna().unique().tolist())
@@ -147,11 +161,11 @@ def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[An
     for block in blocks:
       snapshot_positions = positions[positions["snapshot_block"].eq(block)]
       eth_curve = pd.concat([
-          pd.DataFrame({"eth_shock": [-float(drop)]}).join(_risk_metrics(snapshot_positions, -float(drop), 0.0).drop(columns="snapshot_block"))
+          pd.DataFrame({"eth_shock": [-float(drop)]}).join(_risk_metrics(snapshot_positions, -float(drop), 0.0,scenario_params).drop(columns="snapshot_block"))
           for drop in eth_drops
       ], ignore_index=True)
       depeg_curve = pd.concat([
-          pd.DataFrame({"depeg_shock": [-float(drop)]}).join(_risk_metrics(snapshot_positions, 0.0, -float(drop)).drop(columns="snapshot_block"))
+          pd.DataFrame({"depeg_shock": [-float(drop)]}).join(_risk_metrics(snapshot_positions, 0.0, -float(drop),scenario_params).drop(columns="snapshot_block"))
           for drop in depeg_drops
       ], ignore_index=True)
       baseline_debt = float(eth_curve.iloc[0]["total_protocol_debt_usd"])
@@ -170,6 +184,7 @@ def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[An
             "target": label,
             "target_debt_usd": float(target_usd),
             "target_debt_pct_of_protocol": float(target_usd / baseline_debt * 100.0) if baseline_debt else 0.0,
+            "target_debt_pct_of_cohort_t0":float(target_usd / baseline_debt * 100.0) if baseline_debt else 0.0,
             "eth_shock_required": eth_shock,
             "lst_depeg_shock_required": depeg_shock,
             "minimum_shock_type": minimum_type,
@@ -178,6 +193,8 @@ def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[An
         })
       output["snapshots"][str(int(block))] = {
           "snapshot_block": int(block), "baseline_protocol_debt_usd": baseline_debt,
+          "baseline_cohort_debt_usd":baseline_debt,
+          "denominator_scope":'supplied initial cohort; legacy protocol-named fields are aliases, not reserve totals',
           "search_grid": {"eth_min": 0.0, "eth_max_drop": 0.60, "eth_step": 0.01,
                           "depeg_min": 0.0, "depeg_max_drop": 0.20, "depeg_step": 0.005},
           "targets": results,
@@ -185,7 +202,7 @@ def run_reverse_stress(positions_df: pd.DataFrame, target_debt_usd_list: list[An
     return output
 
 
-def main() -> None:
+def _legacy_main() -> None:
     """Load project positions and export the ETH liquidation cliff curve."""
     positions, baseline = _load_model_inputs()
     curve = find_liquidation_cliff(positions)
@@ -207,6 +224,11 @@ def main() -> None:
     print(f"Largest sampled marginal debt increase: "
           f"${curve['marginal_debt_at_risk_usd_per_pct'].max():,.2f} per percentage point")
     print("Cliff candidates:", curve.loc[curve["is_cliff"], ["snapshot_block", "eth_drop_pct"]].to_dict("records"))
+
+
+def main() -> None:
+    from src.models.n4_research import main as research_main
+    research_main()
 
 
 if __name__ == "__main__":

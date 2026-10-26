@@ -13,5 +13,8 @@
     "--tb=short"
   ],
   "exit_code": 0,
-  "stdout_sha256": "64161cf75373305c576d9fd7d9e32dbf8f78419b226d5ba53fcae02297323618"
+  "stdout_sha256": "6d6fa2bf03f99ebb7f13548e966a9deb35dab1cf8ce487c8ec6369f5b4174f1f",
+  "source_commit": "cdb7f550d6f5570eec0c9d145c7ad06abb6eaa21",
+  "source_ref": "github.com/TranLinh3906/DeFiRisk-Lab main",
+  "clean_checkout_verified": true
 }

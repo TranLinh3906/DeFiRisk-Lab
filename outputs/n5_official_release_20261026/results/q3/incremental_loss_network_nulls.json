@@ -1,0 +1,98 @@
+{
+  "A": {
+    "status": "tested",
+    "tests": [
+      {
+        "null": "exact_degree",
+        "draws": 999,
+        "observed_spearman": 0.022000467252076668,
+        "positive_association_randomization_p": 0.003,
+        "permutable_wallets": 19663,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "exposure_decile",
+        "draws": 999,
+        "observed_spearman": 0.022000467252076668,
+        "positive_association_randomization_p": 0.026,
+        "permutable_wallets": 19664,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "degree_and_exposure_decile",
+        "draws": 999,
+        "observed_spearman": 0.022000467252076668,
+        "positive_association_randomization_p": 0.02,
+        "permutable_wallets": 19655,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      }
+    ]
+  },
+  "B1": {
+    "status": "tested",
+    "tests": [
+      {
+        "null": "exact_degree",
+        "draws": 999,
+        "observed_spearman": 0.02720123815108146,
+        "positive_association_randomization_p": 0.006,
+        "permutable_wallets": 9674,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "exposure_decile",
+        "draws": 999,
+        "observed_spearman": 0.02720123815108146,
+        "positive_association_randomization_p": 0.087,
+        "permutable_wallets": 9675,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "degree_and_exposure_decile",
+        "draws": 999,
+        "observed_spearman": 0.02720123815108146,
+        "positive_association_randomization_p": 0.055,
+        "permutable_wallets": 9670,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      }
+    ]
+  },
+  "B2": {
+    "status": "tested",
+    "tests": [
+      {
+        "null": "exact_degree",
+        "draws": 999,
+        "observed_spearman": -0.0021796999401361645,
+        "positive_association_randomization_p": 1.0,
+        "permutable_wallets": 20970,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "exposure_decile",
+        "draws": 999,
+        "observed_spearman": -0.0021796999401361645,
+        "positive_association_randomization_p": 1.0,
+        "permutable_wallets": 20972,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      },
+      {
+        "null": "degree_and_exposure_decile",
+        "draws": 999,
+        "observed_spearman": -0.0021796999401361645,
+        "positive_association_randomization_p": 1.0,
+        "permutable_wallets": 20954,
+        "preserves": "network_topology_and_token_strengths;_degree_exact_only_when_degree_stratified",
+        "inference": "conditional_network_label_association_not_causal_effect"
+      }
+    ]
+  }
+}

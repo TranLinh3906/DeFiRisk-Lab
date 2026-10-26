@@ -1,0 +1,22 @@
+def test_empirical_q1_q3_bundle_manifest_and_kpis():
+    from pathlib import Path
+    import json
+    from src.models.n5_readiness import verify_manifest
+    from src.models.n5_kpis import validate_kpi_artifacts
+
+    out_dir = Path("outputs/n5_q1_q3_empirical_20261026")
+    assert out_dir.exists()
+    assert verify_manifest(out_dir) == []
+    summary = json.loads((out_dir / "summary.json").read_text(encoding="utf-8"))
+    assert summary["status"] == "empirical_q1_q3_completed_on_approved_cohort"
+    assert summary["cohort_wallets"] == 50311
+    assert summary["q1_mc_scenarios"] == 10000
+    assert summary["q1_stress_scenarios"] == 19
+    assert summary["q2_cf_counterfactual_runs"] == 228
+    assert len(summary["q2_cf_policy_aggregate"]) == 12
+    assert summary["kpi_checks_passed"] == 18
+    assert summary["kpi_checks_total"] == 18
+    mapping = pd.read_csv(out_dir / "kpi_mapping.csv", encoding="utf-8-sig")
+    checks = validate_kpi_artifacts(mapping, out_dir)
+    assert all(r["artifact_check"] == "passed_mapping_only" and not r["errors"] for r in checks)
+

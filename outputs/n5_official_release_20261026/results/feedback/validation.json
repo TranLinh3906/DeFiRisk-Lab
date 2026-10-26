@@ -1,0 +1,21 @@
+{
+  "train_snapshot": "B1",
+  "test_snapshot": "B2",
+  "training_rows": 296,
+  "held_out_rows": 296,
+  "first_held_out_timestamp": "2025-10-10 21:11:47+00:00",
+  "last_training_timestamp": "2024-08-05 02:20:59+00:00",
+  "summed_lagged_DEX_coefficient": 4.4070072756510526e-11,
+  "hac_ci95": [
+    -9.716684876729278e-11,
+    1.8530699428031384e-10
+  ],
+  "held_out_rmse": 2.4307085600994787e-13,
+  "zero_change_baseline_rmse": 2.426873739331409e-13,
+  "predictive_improvement": false,
+  "positive_predictive_transmission_supported": false,
+  "calibrated_predictive_proxy": 0.0,
+  "positive_ci_upper_sensitivity": 1.8530699428031384e-10,
+  "causal_identification": "not_established_observational_lagged_proxy",
+  "selection": "retrospective_max_event_peak_fixed_by_prior_protocol_not_tuned_on_fit"
+}

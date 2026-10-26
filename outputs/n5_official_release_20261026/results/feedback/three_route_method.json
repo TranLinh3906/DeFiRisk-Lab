@@ -1,0 +1,18 @@
+{
+  "estimator": "lagged_relative_pair_log_return_OLS_HAC10",
+  "protocol": "B1_train_B2_heldout",
+  "rule": "positive_lower_CI_and_better_heldout_RMSE_and_variation_above_quote_resolution",
+  "code_versions": [
+    {
+      "original_path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_validate_route_feedback.py",
+      "archived_path": "source_versions/2d3cc51e2f717f07e9f2bbd86450ff92cdfcf42ddcd54eb2c92580b0fa77f0fe.py",
+      "sha256": "2d3cc51e2f717f07e9f2bbd86450ff92cdfcf42ddcd54eb2c92580b0fa77f0fe"
+    },
+    {
+      "original_path": "scripts\\n5_collect_dex_feedback.py",
+      "archived_path": "source_versions/d0e74f18b776546af38e2cd7642b3baabe196ccd01461125c25fcf131121b7d1.py",
+      "sha256": "d0e74f18b776546af38e2cd7642b3baabe196ccd01461125c25fcf131121b7d1"
+    }
+  ],
+  "note": "all three selected routes tested; no claim of causal identification"
+}

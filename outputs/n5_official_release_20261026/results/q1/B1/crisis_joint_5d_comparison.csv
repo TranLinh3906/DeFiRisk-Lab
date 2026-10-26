@@ -1,0 +1,5 @@
+is_recursive_loop,loss_stage,scenario_count,common_strata,mean_loss_per_100k,es99_loss_per_100k,probability_bad_debt,interpretation,snapshot_id,distribution
+False,post_execution,10000,5,124.55174738600324,2362.0123510258345,0.004994865884845367,conditional_on_calibrated_scenarios_and_selected_routes,B1,crisis_joint_5d
+False,pre_execution,10000,5,115.5966722007873,2308.3001574068817,0.004802642364283104,conditional_on_calibrated_scenarios_and_selected_routes,B1,crisis_joint_5d
+True,post_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B1,crisis_joint_5d
+True,pre_execution,10000,5,0.0,0.0,0.0,conditional_on_calibrated_scenarios_and_selected_routes,B1,crisis_joint_5d

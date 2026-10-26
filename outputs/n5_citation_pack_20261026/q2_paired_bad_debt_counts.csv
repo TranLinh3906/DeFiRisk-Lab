@@ -1,0 +1,4 @@
+﻿feedback_mode,paired_cases,sale_and_newly_eligible_increase,bad_debt_increase,bad_debt_decrease,bad_debt_unchanged,comparison,minimum_delta_bad_debt_usd,maximum_delta_bad_debt_usd,artifact
+fixed,54,0,24,12,18,CF100 minus CF50; paired snapshot/scenario/depth; USD tolerance 1e-8,-18352.686392916832,52695.93085863976,outputs/n5_official_release_20261026/results/q2/h2a_paired_contrasts.csv
+full_sensitivity,54,17,31,13,10,CF100 minus CF50; paired snapshot/scenario/depth; USD tolerance 1e-8,-2478631.0645401832,1777208.6258903092,outputs/n5_official_release_20261026/results/q2/h2a_paired_contrasts.csv
+predictive_proxy,54,0,24,12,18,CF100 minus CF50; paired snapshot/scenario/depth; USD tolerance 1e-8,-18352.686392916832,52695.93085863976,outputs/n5_official_release_20261026/results/q2/h2a_paired_contrasts.csv

@@ -1,0 +1,22 @@
+{
+  "original_test_source_sha256": "767222dd7877033fb0bf0df4d0917491fd4f50ade8134a286aee02702ceb2658",
+  "git_head": "9dc6bfdc59a593d450767f0ec83d813745551521",
+  "reproduced_check": "verify_manifest(outputs/n5_q1_q3_empirical_20261026) == []",
+  "reproduced_assertion_would_fail": false,
+  "current_legacy_manifest_errors": [],
+  "original_test_reproduced_status": "passed",
+  "reproduction_traceback": null,
+  "baseline_audit_input_failures": [
+    {
+      "manifest": "outputs\\n5_q1_q3_empirical_20261026\\manifest.json",
+      "scope": "inputs",
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_run_q1_q3_empirical.py",
+      "expected": "b360f84fa6d5722c46630d3cf10b505914a8ac0fd28fbbe0637add7906444997",
+      "actual": "b8a6679627b7e8a1f1e55ce7af665066d6590ef49a3642c993a4abb4d07536b3",
+      "reason": "hash_mismatch"
+    }
+  ],
+  "interpretation": "historical_test_currently_passes; initial_failure_cause_not_reconstructable_without_original_traceback; file_verifier_does_not_check_inputs",
+  "resolution": "replace obsolete integration target with official frozen results and stronger input/parent checks; preserve model tests",
+  "original_run_traceback_available": false
+}

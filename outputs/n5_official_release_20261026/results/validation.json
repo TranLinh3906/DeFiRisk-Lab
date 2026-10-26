@@ -1,0 +1,13 @@
+{
+  "expected_mc_scenarios": 120000,
+  "actual_mc_scenarios": 120000,
+  "dense_cf_rows": 1458,
+  "expected_dense_cf_rows": 1458,
+  "fixed_zero_induced": true,
+  "no_round_limits": true,
+  "all_six_hypotheses_have_explicit_test_and_conclusion": true,
+  "temporal_training_precedes_test": true,
+  "all_three_routes_validated": true,
+  "route_proxy_parameters_match_executed_scenarios": true,
+  "scientific_acceptance": "hypothesis_specific_conditional;_causal_feedback_not_identified"
+}

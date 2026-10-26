@@ -82,6 +82,154 @@
       "scenario_source": "mc_10000_calibrated_daily_t_copula"
     }
   ],
+  "q1_mc_post_cascade_matched_comparison": [
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 10.319094657621092,
+      "es99_loss_per_100k": 648.6028586089373,
+      "probability_bad_debt": 0.0004082085840656864,
+      "probability_hf_lt_1": 0.0024655626176886066,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 0.0,
+      "es99_loss_per_100k": 0.0,
+      "probability_bad_debt": 0.0,
+      "probability_hf_lt_1": 0.015646317780580073,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 0.017319428352436207,
+      "es99_loss_per_100k": 1.731942835243619,
+      "probability_bad_debt": 2.1068373951252462e-06,
+      "probability_hf_lt_1": 0.0032065097727322204,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 0.0,
+      "es99_loss_per_100k": 0.0,
+      "probability_bad_debt": 0.0,
+      "probability_hf_lt_1": 0.007705462121212121,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 10.811330471658867,
+      "es99_loss_per_100k": 593.4889895227711,
+      "probability_bad_debt": 0.0003906991826302976,
+      "probability_hf_lt_1": 0.002306389084004124,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 0.0,
+      "es99_loss_per_100k": 0.0,
+      "probability_bad_debt": 0.0,
+      "probability_hf_lt_1": 0.02522909792226519,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_daily_t_copula_with_cascade"
+    }
+  ],
+  "q1_crisis_mc_matched_comparison": [
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 45.96403110439895,
+      "es99_loss_per_100k": 1707.1018071241526,
+      "probability_bad_debt": 0.0018893498550943525,
+      "probability_hf_lt_1": 0.007614960328532728,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 81.80266232048936,
+      "es99_loss_per_100k": 2542.180610526037,
+      "probability_bad_debt": 0.006622416261334294,
+      "probability_hf_lt_1": 0.0708862128145079,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 272.7128985337748,
+      "es99_loss_per_100k": 9954.96607852195,
+      "probability_bad_debt": 0.008355408932088172,
+      "probability_hf_lt_1": 0.025391632879280337,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 74.72240258919054,
+      "es99_loss_per_100k": 1946.1573901641161,
+      "probability_bad_debt": 0.005516974747474748,
+      "probability_hf_lt_1": 0.05380287121212122,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "is_recursive_loop": false,
+      "common_strata": 5,
+      "mean_loss_per_100k": 60.19754533917285,
+      "es99_loss_per_100k": 2251.478694011768,
+      "probability_bad_debt": 0.0022372561717532552,
+      "probability_hf_lt_1": 0.008974428176356285,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "is_recursive_loop": true,
+      "common_strata": 5,
+      "mean_loss_per_100k": 86.01195877047255,
+      "es99_loss_per_100k": 2088.392984570481,
+      "probability_bad_debt": 0.0054578554106311855,
+      "probability_hf_lt_1": 0.09512593878219834,
+      "matching": "equal_common_equity_strata",
+      "scenario_source": "mc_10000_crisis_tail_t_copula_with_cascade"
+    }
+  ],
   "q1_stress_matched_comparison": [
     {
       "snapshot_id": "A",
@@ -150,7 +298,109 @@
       "acceptance": "fixture_or_conditional_scenario_only"
     }
   ],
+  "q1_hypothesis_tests_overall": [
+    {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "scope": "all_common_strata",
+      "n_looping_wallets": 263,
+      "n_non_looping_wallets": 19401,
+      "median_hf_looping": 1.0327003053263053,
+      "median_hf_non_looping": 2.0158296603870487,
+      "ks_hf_stat": 0.8698722558105763,
+      "ks_hf_pvalue": 1.6712613070262915e-229,
+      "stress_mean_bdr_looping_pct": 0.01877342746729851,
+      "stress_mean_bdr_non_looping_pct": 0.06329441682800069,
+      "mwu_stress_bdr_stat": 2630193.5,
+      "mwu_stress_bdr_pvalue_one_sided": 0.016500348885999987,
+      "mwu_stress_bdr_pvalue_two_sided": 0.03300069777199997,
+      "crisis_mc_mean_bdr_looping_pct": 0.0056717846329447175,
+      "crisis_mc_mean_bdr_non_looping_pct": 0.01846290178917265,
+      "mwu_crisis_mc_bdr_stat": 2622240.0,
+      "mwu_crisis_mc_bdr_pvalue_one_sided": 0.0627511428441539,
+      "mwu_crisis_mc_bdr_pvalue_two_sided": 0.1255022856883078,
+      "stress_es99_looping_per_100k": 2551.0306732472254,
+      "stress_es99_non_looping_per_100k": 1775.5576607169417,
+      "stress_es99_diff": 775.4730125302838,
+      "stress_es99_boot_ci95_low": -1775.5576607169417,
+      "stress_es99_boot_ci95_high": 2337.3583302957163,
+      "stress_es99_boot_pvalue_one_sided": 0.267,
+      "crisis_mc_es99_looping_per_100k": 2135.794541918275,
+      "crisis_mc_es99_non_looping_per_100k": 2466.5899994954816,
+      "crisis_mc_es99_diff": -330.79545757720643,
+      "crisis_mc_es99_boot_ci95_low": -1196.4233869141278,
+      "crisis_mc_es99_boot_ci95_high": 662.5346343234851,
+      "crisis_mc_es99_boot_pvalue_one_sided": 0.7635
+    },
+    {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "scope": "all_common_strata",
+      "n_looping_wallets": 289,
+      "n_non_looping_wallets": 9381,
+      "median_hf_looping": 1.069996322634893,
+      "median_hf_non_looping": 1.6135127095320478,
+      "ks_hf_stat": 0.7160980986009784,
+      "ks_hf_pvalue": 4.248163059070816e-145,
+      "stress_mean_bdr_looping_pct": 0.021018398984911806,
+      "stress_mean_bdr_non_looping_pct": 0.4559436052538239,
+      "mwu_stress_bdr_stat": 1090513.0,
+      "mwu_stress_bdr_pvalue_one_sided": 0.9999999999999101,
+      "mwu_stress_bdr_pvalue_two_sided": 1.7988050899750492e-13,
+      "crisis_mc_mean_bdr_looping_pct": 0.007226815694396809,
+      "crisis_mc_mean_bdr_non_looping_pct": 0.13454357880143494,
+      "mwu_crisis_mc_bdr_stat": 1097829.0,
+      "mwu_crisis_mc_bdr_pvalue_one_sided": 0.999999999997013,
+      "mwu_crisis_mc_bdr_pvalue_two_sided": 5.975333240751422e-12,
+      "stress_es99_looping_per_100k": 3054.5744655261005,
+      "stress_es99_non_looping_per_100k": 13091.21209088759,
+      "stress_es99_diff": -10036.637625361489,
+      "stress_es99_boot_ci95_low": -13091.21209088759,
+      "stress_es99_boot_ci95_high": 1004.1910274023626,
+      "stress_es99_boot_pvalue_one_sided": 0.901,
+      "crisis_mc_es99_looping_per_100k": 2530.710520932949,
+      "crisis_mc_es99_non_looping_per_100k": 13657.977306537652,
+      "crisis_mc_es99_diff": -11127.266785604703,
+      "crisis_mc_es99_boot_ci95_low": -12270.078419136844,
+      "crisis_mc_es99_boot_ci95_high": -9859.562214575504,
+      "crisis_mc_es99_boot_pvalue_one_sided": 1.0
+    },
+    {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "scope": "all_common_strata",
+      "n_looping_wallets": 317,
+      "n_non_looping_wallets": 20655,
+      "median_hf_looping": 1.031542980894787,
+      "median_hf_non_looping": 2.0612692055298925,
+      "ks_hf_stat": 0.8408006860492375,
+      "ks_hf_pvalue": 2.8664574131398476e-248,
+      "stress_mean_bdr_looping_pct": 0.020353366740780292,
+      "stress_mean_bdr_non_looping_pct": 0.08489664595738985,
+      "mwu_stress_bdr_stat": 3270682.0,
+      "mwu_stress_bdr_pvalue_one_sided": 0.5249723940638701,
+      "mwu_stress_bdr_pvalue_two_sided": 0.9500711173361864,
+      "crisis_mc_mean_bdr_looping_pct": 0.008051026006747997,
+      "crisis_mc_mean_bdr_non_looping_pct": 0.023554400723233233,
+      "mwu_crisis_mc_bdr_stat": 3258593.0,
+      "mwu_crisis_mc_bdr_pvalue_one_sided": 0.6053124404313762,
+      "mwu_crisis_mc_bdr_pvalue_two_sided": 0.7893886273935422,
+      "stress_es99_looping_per_100k": 2704.0665240197236,
+      "stress_es99_non_looping_per_100k": 2450.2263143282125,
+      "stress_es99_diff": 253.84020969151106,
+      "stress_es99_boot_ci95_low": -2290.639199812096,
+      "stress_es99_boot_ci95_high": 2474.551762750692,
+      "stress_es99_boot_pvalue_one_sided": 0.267,
+      "crisis_mc_es99_looping_per_100k": 2747.7305306213425,
+      "crisis_mc_es99_non_looping_per_100k": 3107.3044709353367,
+      "crisis_mc_es99_diff": -359.57394031399417,
+      "crisis_mc_es99_boot_ci95_low": -1393.465150502883,
+      "crisis_mc_es99_boot_ci95_high": 763.6089672673062,
+      "crisis_mc_es99_boot_pvalue_one_sided": 0.752
+    }
+  ],
   "q2_cf_counterfactual_runs": 228,
+  "q2_2d_grid_runs": 432,
   "q2_cf_policy_aggregate": [
     {
       "snapshot_id": "A",
@@ -369,6 +619,194 @@
       "mean_post_execution_bdr_pct": 0.05952609866689461
     }
   ],
+  "q2_two_way_anova": {
+    "fixed_oracle": [
+      {
+        "response": "round_1_repaid_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.17309481445897285,
+        "p_value_cf_rule": 0.9144997860292511,
+        "f_stat_depth_scale": 15.585327391834026,
+        "p_value_depth_scale": 5.025716467220555e-07,
+        "f_stat_interaction": 0.011430330138839921,
+        "p_value_interaction": 0.9999932613489895,
+        "eta_sq_cf_rule": 0.0022026115565894813,
+        "eta_sq_depth_scale": 0.13221432940777397,
+        "eta_sq_interaction": 0.0002908992662562892
+      },
+      {
+        "response": "simulated_repaid_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.1904870369304673,
+        "p_value_cf_rule": 0.9027982526687991,
+        "f_stat_depth_scale": 14.83212652868503,
+        "p_value_depth_scale": 9.679764592813714e-07,
+        "f_stat_interaction": 0.011462134736415313,
+        "p_value_interaction": 0.9999932054414818,
+        "eta_sq_cf_rule": 0.002438967849764322,
+        "eta_sq_depth_scale": 0.12660556970185197,
+        "eta_sq_interaction": 0.00029351895606406417
+      },
+      {
+        "response": "mean_slippage_pct",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.07730721662829791,
+        "p_value_cf_rule": 0.9722041340625949,
+        "f_stat_depth_scale": 1.838019216718663,
+        "p_value_depth_scale": 0.1617577969133239,
+        "f_stat_interaction": 0.3412464559198423,
+        "p_value_interaction": 0.9143668217173747,
+        "eta_sq_cf_rule": 0.001104623205712741,
+        "eta_sq_depth_scale": 0.017508660190552017,
+        "eta_sq_interaction": 0.009751968070166107
+      },
+      {
+        "response": "round_ge_2_liquidations",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.6641610987379359,
+        "p_value_cf_rule": 0.5749714829856802,
+        "f_stat_depth_scale": 0.23486219376391967,
+        "p_value_depth_scale": 0.7908932985147256,
+        "f_stat_interaction": 0.0013803823311063018,
+        "p_value_interaction": 0.9999999878523422,
+        "eta_sq_cf_rule": 0.009650208591207075,
+        "eta_sq_depth_scale": 0.002275019483794066,
+        "eta_sq_interaction": 4.01136936689171e-05
+      },
+      {
+        "response": "newly_liquidatable_wallets_r_ge_2",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.0,
+        "p_value_cf_rule": 1.0,
+        "f_stat_depth_scale": 0.0,
+        "p_value_depth_scale": 1.0,
+        "f_stat_interaction": 0.0,
+        "p_value_interaction": 1.0,
+        "eta_sq_cf_rule": 0.0,
+        "eta_sq_depth_scale": 0.0,
+        "eta_sq_interaction": 0.0
+      },
+      {
+        "response": "r1_freeze_debt_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.5314703280088048,
+        "p_value_cf_rule": 0.6611836121298893,
+        "f_stat_depth_scale": 4.346503755170516,
+        "p_value_depth_scale": 0.014172596557725375,
+        "f_stat_interaction": 0.06764626215647261,
+        "p_value_interaction": 0.9987726137849937,
+        "eta_sq_cf_rule": 0.0074264591080970095,
+        "eta_sq_depth_scale": 0.04049035377246142,
+        "eta_sq_interaction": 0.0018904995189583992
+      },
+      {
+        "response": "post_execution_bad_debt_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 5.674435228057344e-07,
+        "p_value_cf_rule": 0.9999999994071076,
+        "f_stat_depth_scale": 0.0002510585488295072,
+        "p_value_depth_scale": 0.9997489732726252,
+        "f_stat_interaction": 1.021649129765475e-07,
+        "p_value_interaction": 1.0,
+        "eta_sq_cf_rule": 8.344737054222136e-09,
+        "eta_sq_depth_scale": 2.4613522356527214e-06,
+        "eta_sq_interaction": 3.0048429515641665e-09
+      }
+    ],
+    "endogenous_oracle_feedback": [
+      {
+        "response": "round_1_repaid_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.17309481445897285,
+        "p_value_cf_rule": 0.9144997860292511,
+        "f_stat_depth_scale": 15.585327391834026,
+        "p_value_depth_scale": 5.025716467220555e-07,
+        "f_stat_interaction": 0.011430330138839921,
+        "p_value_interaction": 0.9999932613489895,
+        "eta_sq_cf_rule": 0.0022026115565894813,
+        "eta_sq_depth_scale": 0.13221432940777397,
+        "eta_sq_interaction": 0.0002908992662562892
+      },
+      {
+        "response": "simulated_repaid_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 1.393086102134555,
+        "p_value_cf_rule": 0.24600909508250912,
+        "f_stat_depth_scale": 24.03275670250965,
+        "p_value_depth_scale": 4.245287276628726e-10,
+        "f_stat_interaction": 0.6965411194886161,
+        "p_value_interaction": 0.6526870267334297,
+        "eta_sq_cf_rule": 0.016047898852130732,
+        "eta_sq_depth_scale": 0.1845663610257309,
+        "eta_sq_interaction": 0.016047854349814705
+      },
+      {
+        "response": "mean_slippage_pct",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.3133945970173061,
+        "p_value_cf_rule": 0.8156889796085092,
+        "f_stat_depth_scale": 4.26904027317361,
+        "p_value_depth_scale": 0.015266101975528605,
+        "f_stat_interaction": 0.3793610340524569,
+        "p_value_interaction": 0.891642254777717,
+        "eta_sq_cf_rule": 0.004357656937525292,
+        "eta_sq_depth_scale": 0.03957314120924377,
+        "eta_sq_interaction": 0.010549800523677627
+      },
+      {
+        "response": "round_ge_2_liquidations",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.8167704281306079,
+        "p_value_cf_rule": 0.4859259884744369,
+        "f_stat_depth_scale": 2.8978093305488395,
+        "p_value_depth_scale": 0.057417308102494985,
+        "f_stat_interaction": 0.5200775229705904,
+        "p_value_interaction": 0.7927383140859038,
+        "eta_sq_cf_rule": 0.0113774077123032,
+        "eta_sq_depth_scale": 0.02691050597218607,
+        "eta_sq_interaction": 0.01448909954877785
+      },
+      {
+        "response": "newly_liquidatable_wallets_r_ge_2",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.5435112235702453,
+        "p_value_cf_rule": 0.6530529140274288,
+        "f_stat_depth_scale": 7.271840320669352,
+        "p_value_depth_scale": 0.0008899697935824172,
+        "f_stat_interaction": 0.1806635464747463,
+        "p_value_interaction": 0.9818972517910541,
+        "eta_sq_cf_rule": 0.007369370731584385,
+        "eta_sq_depth_scale": 0.06573171494279781,
+        "eta_sq_interaction": 0.004899168936787038
+      },
+      {
+        "response": "r1_freeze_debt_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 0.5314703280088048,
+        "p_value_cf_rule": 0.6611836121298893,
+        "f_stat_depth_scale": 4.346503755170516,
+        "p_value_depth_scale": 0.014172596557725375,
+        "f_stat_interaction": 0.06764626215647261,
+        "p_value_interaction": 0.9987726137849937,
+        "eta_sq_cf_rule": 0.0074264591080970095,
+        "eta_sq_depth_scale": 0.04049035377246142,
+        "eta_sq_interaction": 0.0018904995189583992
+      },
+      {
+        "response": "post_execution_bad_debt_usd",
+        "n_obs": 216,
+        "f_stat_cf_rule": 1.1242536758285442,
+        "p_value_cf_rule": 0.3402854635699942,
+        "f_stat_depth_scale": 0.5370591877908683,
+        "p_value_depth_scale": 0.5852885847460835,
+        "f_stat_interaction": 0.35943218791054254,
+        "p_value_interaction": 0.9037941283263111,
+        "eta_sq_cf_rule": 0.016014745564067998,
+        "eta_sq_depth_scale": 0.005100193091194278,
+        "eta_sq_interaction": 0.01024006442795296
+      }
+    ]
+  },
   "q3_compound_complete_exposure_rows": 3185,
   "q3_compound_overlap_cohort_wallets": 797,
   "q3_withdrawal_summary": [
@@ -547,6 +985,236 @@
     "B2": {
       "unweighted_incremental_score": 0.44318475185597694,
       "capacity_weighted_incremental_score": 0.0662488310633855
+    }
+  },
+  "q3_network_centrality_and_null_tests": {
+    "A": {
+      "snapshot_id": "A",
+      "snapshot_block": 26179841,
+      "power_law_wallet_exposure": {
+        "n_total": 19664,
+        "n_tail": 3933,
+        "xmin": 272089.6152805693,
+        "alpha_mle": 1.6908702586727444,
+        "ks_distance": 0.03492563212127536,
+        "vuong_z_vs_exponential": 10.707328259123605,
+        "vuong_pvalue": 9.403656455314278e-27,
+        "power_law_preferred_over_exponential": true
+      },
+      "power_law_betweenness_centrality": {
+        "n_total": 19232,
+        "n_tail": 3847,
+        "xmin": 8.736313771772505e-09,
+        "alpha_mle": 1.3113816921585817,
+        "ks_distance": 0.04642617393474008,
+        "vuong_z_vs_exponential": 13.890988632467316,
+        "vuong_pvalue": 7.183687787229597e-44,
+        "power_law_preferred_over_exponential": true
+      },
+      "top_1pct_wallets_betweenness_share": 0.9938115734160654,
+      "ols_log_bad_debt_on_centrality": {
+        "r_squared": 0.002960514366230349,
+        "coefficients": {
+          "intercept": {
+            "beta": -0.15250157612870838,
+            "std_err": 0.03722505481561523,
+            "t_stat": -4.09674550874635,
+            "p_value": 4.206776828781875e-05
+          },
+          "log_weighted_betweenness": {
+            "beta": 0.017464754847661967,
+            "std_err": 0.009338539334592983,
+            "t_stat": 1.870180573418676,
+            "p_value": 0.06147359544196219
+          },
+          "log_eigenvector_centrality": {
+            "beta": -0.023499839661409182,
+            "std_err": 0.011318869065657874,
+            "t_stat": -2.076164988312225,
+            "p_value": 0.03789165773077259
+          },
+          "log_weighted_degree_usd": {
+            "beta": 0.022081856527834405,
+            "std_err": 0.0038642215838634347,
+            "t_stat": 5.714438483560522,
+            "p_value": 1.1165938354659439e-08
+          },
+          "is_cross_protocol_bridge": {
+            "beta": 0.005594118557383852,
+            "std_err": 0.04110325220974592,
+            "t_stat": 0.136099171151655,
+            "p_value": 0.8917442762987724
+          }
+        }
+      },
+      "spearman_betweenness_vs_liq_transition": {
+        "rho": 0.03619592477614958,
+        "p_value": 3.833662887957579e-07
+      },
+      "spearman_eigenvector_vs_bad_debt": {
+        "rho": -0.007078748151263452,
+        "p_value": 0.3209094321140762
+      },
+      "degree_preserving_null_network_comparison": {
+        "n_null_networks": 100,
+        "observed_token_network_debtrank": 0.03130821348285229,
+        "null_mean_debtrank": 0.013449770109892617,
+        "null_std_debtrank": 0.003107397454435821,
+        "z_score_vs_null": 5.747074082031792,
+        "p_value_vs_null": 9.080095370120483e-09
+      }
+    },
+    "B1": {
+      "snapshot_id": "B1",
+      "snapshot_block": 20458637,
+      "power_law_wallet_exposure": {
+        "n_total": 9675,
+        "n_tail": 1935,
+        "xmin": 518310.19719954696,
+        "alpha_mle": 1.6873922912571082,
+        "ks_distance": 0.038945368674063785,
+        "vuong_z_vs_exponential": 10.157533574886473,
+        "vuong_pvalue": 3.0673781454052786e-24,
+        "power_law_preferred_over_exponential": true
+      },
+      "power_law_betweenness_centrality": {
+        "n_total": 9442,
+        "n_tail": 1889,
+        "xmin": 9.175961160278159e-08,
+        "alpha_mle": 1.341781144835363,
+        "ks_distance": 0.05784669772768625,
+        "vuong_z_vs_exponential": 14.554760632002196,
+        "vuong_pvalue": 5.447628547199077e-48,
+        "power_law_preferred_over_exponential": true
+      },
+      "top_1pct_wallets_betweenness_share": 0.9557669206409698,
+      "ols_log_bad_debt_on_centrality": {
+        "r_squared": 0.007314322154388098,
+        "coefficients": {
+          "intercept": {
+            "beta": 0.6578422933310487,
+            "std_err": 0.2371945206997764,
+            "t_stat": 2.7734295522100094,
+            "p_value": 0.005557514179423583
+          },
+          "log_weighted_betweenness": {
+            "beta": -0.08162978539821013,
+            "std_err": 0.03136154411856692,
+            "t_stat": -2.6028624448336073,
+            "p_value": 0.009259015787051275
+          },
+          "log_eigenvector_centrality": {
+            "beta": 0.18494362341360948,
+            "std_err": 0.04695309613718587,
+            "t_stat": 3.9389015555704328,
+            "p_value": 8.243061077439137e-05
+          },
+          "log_weighted_degree_usd": {
+            "beta": -0.027221625041241315,
+            "std_err": 0.02702715291623697,
+            "t_stat": -1.007195435109538,
+            "p_value": 0.31386606789037236
+          },
+          "is_cross_protocol_bridge": {
+            "beta": 0.05571750386165851,
+            "std_err": 0.12770796497085216,
+            "t_stat": 0.43628840123147666,
+            "p_value": 0.6626372362038718
+          }
+        }
+      },
+      "spearman_betweenness_vs_liq_transition": {
+        "rho": -0.0008403362954299558,
+        "p_value": 0.9341329133306707
+      },
+      "spearman_eigenvector_vs_bad_debt": {
+        "rho": -0.005202828052010797,
+        "p_value": 0.6088639842280799
+      },
+      "degree_preserving_null_network_comparison": {
+        "n_null_networks": 100,
+        "observed_token_network_debtrank": 0.044701656901716603,
+        "null_mean_debtrank": 0.022186709828403803,
+        "null_std_debtrank": 0.0022810756392877803,
+        "z_score_vs_null": 9.870320249591828,
+        "p_value_vs_null": 5.598557840930169e-23
+      }
+    },
+    "B2": {
+      "snapshot_id": "B2",
+      "snapshot_block": 23543615,
+      "power_law_wallet_exposure": {
+        "n_total": 20972,
+        "n_tail": 4195,
+        "xmin": 595876.945885224,
+        "alpha_mle": 1.643887054807391,
+        "ks_distance": 0.03475302201309716,
+        "vuong_z_vs_exponential": 9.480564717274655,
+        "vuong_pvalue": 2.529106126244464e-21,
+        "power_law_preferred_over_exponential": true
+      },
+      "power_law_betweenness_centrality": {
+        "n_total": 20481,
+        "n_tail": 4097,
+        "xmin": 1.4163842034673644e-08,
+        "alpha_mle": 1.3016132208307785,
+        "ks_distance": 0.04614640085753918,
+        "vuong_z_vs_exponential": 23.278897119553317,
+        "vuong_pvalue": 7.253688585220287e-120,
+        "power_law_preferred_over_exponential": true
+      },
+      "top_1pct_wallets_betweenness_share": 0.9693763384390046,
+      "ols_log_bad_debt_on_centrality": {
+        "r_squared": 0.002878602660714158,
+        "coefficients": {
+          "intercept": {
+            "beta": -0.059312134752022766,
+            "std_err": 0.040171363340694696,
+            "t_stat": -1.4764780136784141,
+            "p_value": 0.13983063132973517
+          },
+          "log_weighted_betweenness": {
+            "beta": -0.022672588919154572,
+            "std_err": 0.010095560759277443,
+            "t_stat": -2.2457978768855718,
+            "p_value": 0.024727328612373867
+          },
+          "log_eigenvector_centrality": {
+            "beta": 0.02438726934797511,
+            "std_err": 0.011634460862724808,
+            "t_stat": 2.096123716923448,
+            "p_value": 0.03608317340501207
+          },
+          "log_weighted_degree_usd": {
+            "beta": 0.011481191597955456,
+            "std_err": 0.004028885478166432,
+            "t_stat": 2.8497190253172966,
+            "p_value": 0.0043800509936377735
+          },
+          "is_cross_protocol_bridge": {
+            "beta": 0.0005402658434994349,
+            "std_err": 0.041022587988464004,
+            "t_stat": 0.013169960014501363,
+            "p_value": 0.9894923213017741
+          }
+        }
+      },
+      "spearman_betweenness_vs_liq_transition": {
+        "rho": 0.016124287313202142,
+        "p_value": 0.019538951777124353
+      },
+      "spearman_eigenvector_vs_bad_debt": {
+        "rho": 0.0034324775278790015,
+        "p_value": 0.6191514186576809
+      },
+      "degree_preserving_null_network_comparison": {
+        "n_null_networks": 100,
+        "observed_token_network_debtrank": 0.03147418963990398,
+        "null_mean_debtrank": 0.016934601016904794,
+        "null_std_debtrank": 0.0032719018418431545,
+        "z_score_vs_null": 4.443772865389086,
+        "p_value_vs_null": 8.839492358230696e-06
+      }
     }
   },
   "kpi_checks_passed": 18,

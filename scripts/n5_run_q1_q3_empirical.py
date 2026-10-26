@@ -340,7 +340,13 @@ def _simulate_q2_cf_policy(
     return summary_row, rounds_out
 
 
-def main() -> None:
+def legacy_main() -> None:
+    # Retain the pre-review draft without loading it in the reviewed CLI.
+    from scripts.n5_statistical_tests import (
+        compute_q1_hypothesis_tests, compute_q3_network_centrality_and_null_tests,
+        generate_crisis_tail_copula_shocks, simulate_q2_2d_grid_and_anova,
+        vectorized_mc_with_cascade,
+    )
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--output-dir", type=Path, default=Path("outputs/n5_q1_q3_empirical_20261026"))
     ap.add_argument("--overwrite", action="store_true", help="Overwrite existing output directory")
@@ -383,6 +389,7 @@ def main() -> None:
         compound_root / "n3_compound_account_reference.parquet",
         compound_root / "n3_compound_reserve_config.parquet",
         compound_root / "n3_compound_overlap_wallets.parquet",
+        Path("scripts/n5_statistical_tests.py"),
         Path(__file__),
     ]
     hashes_before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in input_paths}
@@ -441,6 +448,9 @@ def main() -> None:
         artifacts[rel] = kind
 
     mc_wallet_parts, mc_strata_parts, mc_matched_parts = [], [], []
+    mc_casc_matched_parts = []
+    crisis_mc_wallet_parts, crisis_mc_strata_parts, crisis_mc_matched_parts = [], [], []
+    q1_hypothesis_test_rows = []
     stress_loss_parts, stress_wallet_parts, stress_strata_parts, stress_matched_parts = [], [], [], []
     q2_cf_summary_rows, q2_cf_round_rows = [], []
     transition_parts, transition_summary_rows = [], []
@@ -448,6 +458,10 @@ def main() -> None:
     debtrank_node_parts = []
     portfolios = {}
     baselines = {}
+    selected_pos_by_snap = {}
+    routes_by_snap = {}
+    init_debt_by_snap = {}
+    crisis_mc_shocks = generate_crisis_tail_copula_shocks(mc_shocks, n=10000, df=4.0, rho=0.65, seed=20261026)
 
     for sid, snap in snapshots_cfg["snapshots"].items():
         block = int(snap["block"])
@@ -511,6 +525,34 @@ def main() -> None:
                 "fee_rate": fee_lookup[identity],
             }
         initial_cohort_debt_usd = float(eq_sub["debt_usd"].sum())
+        selected_pos_by_snap[sid] = selected_pos
+        routes_by_snap[sid] = routes
+        init_debt_by_snap[sid] = initial_cohort_debt_usd
+
+        # 1b. Vectorized 10,000-scenario Monte Carlo WITH multi-round liquidation cascade (Daily & Crisis Tail Copula)
+        _, _, m_mc_casc = vectorized_mc_with_cascade(
+            selected_pos,
+            eq_sub,
+            mc_shocks,
+            depeg_symbols,
+            eth_symbols,
+            routes,
+            scenario_source_label="mc_10000_daily_t_copula_with_cascade",
+        )
+        mc_casc_matched_parts.append(m_mc_casc)
+
+        w_cmc, s_cmc, m_cmc = vectorized_mc_with_cascade(
+            selected_pos,
+            eq_sub,
+            crisis_mc_shocks,
+            depeg_symbols,
+            eth_symbols,
+            routes,
+            scenario_source_label="mc_10000_crisis_tail_t_copula_with_cascade",
+        )
+        crisis_mc_wallet_parts.append(w_cmc)
+        crisis_mc_strata_parts.append(s_cmc)
+        crisis_mc_matched_parts.append(m_cmc)
         tx_snap = exec_tx[exec_tx["snapshot_id"].eq(sid) & exec_tx["variant"].eq("primary")]
         snap_losses = []
         for scen_id, params in scenarios_cfg.items():
@@ -663,6 +705,11 @@ def main() -> None:
         stress_strata_parts.append(s_st)
         stress_matched_parts.append(m_st)
 
+        # Q1 Statistical Hypothesis Tests (Mann-Whitney U, KS test, Bootstrap ES99)
+        q1_hypothesis_test_rows.extend(
+            compute_q1_hypothesis_tests(eq_sub, snap_losses_df, w_st, w_cmc)
+        )
+
         # 3. Q3 M18: Token-Protocol Bipartite Exposure Network DebtRank
         # Build token -> protocol -> borrower group exposure network for top 10 tokens + Aave protocol node
         token_agg = (
@@ -743,7 +790,8 @@ def main() -> None:
 
     # 4. Q3 M16: Compound III Cross-Protocol Exposure, Price Stress & Explicit Base Supply Withdrawals
     _, comp_tables = inspect_compound(compound_root)
-    comp_exposures = adapt_compound_partial(comp_tables["positions"], comp_tables["config"])
+    comp_exposures = adapt_compound_partial(comp_tables["positions"], comp_tables["config"],
+                                          oracle_prices=pd.DataFrame(raw['oracle_prices']))
     comp_exposures["coverage_status"] = "complete_target_queries"
     save_parquet("compound/exposures_complete.parquet", comp_exposures)
 
@@ -850,6 +898,42 @@ def main() -> None:
     save_parquet("q3_debtrank_nodes.parquet", q3_debtrank_nodes_df)
     save_csv("q3_debtrank_nodes.csv", q3_debtrank_nodes_df)
 
+    # Save extended Q1 Post-Cascade MC, Crisis Tail Copula MC, and Statistical Hypothesis Tests
+    q1_mc_casc_matched = pd.concat(mc_casc_matched_parts, ignore_index=True)
+    q1_crisis_mc_wallets = pd.concat(crisis_mc_wallet_parts, ignore_index=True)
+    q1_crisis_mc_strata = pd.concat(crisis_mc_strata_parts, ignore_index=True)
+    q1_crisis_mc_matched = pd.concat(crisis_mc_matched_parts, ignore_index=True)
+    q1_hyp_tests_df = pd.DataFrame(q1_hypothesis_test_rows)
+
+    save_csv("q1_mc10000_post_cascade_matched_comparison.csv", q1_mc_casc_matched)
+    save_parquet("q1_crisis_mc10000_wallet_risk.parquet", q1_crisis_mc_wallets)
+    save_csv("q1_crisis_mc10000_equity_strata.csv", q1_crisis_mc_strata)
+    save_csv("q1_crisis_mc10000_matched_comparison.csv", q1_crisis_mc_matched)
+    save_csv("q1_hypothesis_tests.csv", q1_hyp_tests_df)
+    save_json("q1_hypothesis_tests.json", q1_hypothesis_test_rows)
+
+    # Save extended Q2 2D Grid (4 CF rules x 3 DEX Depth Scales x 2 Oracle Modes = 432 runs) & Two-Way ANOVA
+    q2_2d_grid_df, q2_anova_report = simulate_q2_2d_grid_and_anova(
+        portfolios, scenarios_cfg, depeg_symbols, routes_by_snap, init_debt_by_snap
+    )
+    save_parquet("q2_liquidity_cf_2d_grid.parquet", q2_2d_grid_df)
+    save_csv("q2_liquidity_cf_2d_grid.csv", q2_2d_grid_df)
+    save_json("q2_anova_and_surface_tests.json", q2_anova_report)
+
+    # Save extended Q3 Network Centrality, Power-Law Fit, Regression & 100 Degree-Preserving Null Networks
+    q3_top_centrality_df, q3_network_stats_report = compute_q3_network_centrality_and_null_tests(
+        selected_pos_by_snap,
+        baselines,
+        q1_stress_losses,
+        q3_transitions_df,
+        comp_exposures,
+        depeg_symbols,
+        eth_symbols,
+    )
+    save_parquet("q3_whale_bridge_centrality_top200.parquet", q3_top_centrality_df)
+    save_csv("q3_whale_bridge_centrality_top200.csv", q3_top_centrality_df)
+    save_json("q3_network_centrality_and_null_tests.json", q3_network_stats_report)
+
     # Copy approved execution summary & rounds for M06, M07, M10-M14 mapping verification
     exec_primary_summary = exec_summary[exec_summary["variant"].eq("primary")].copy()
     exec_primary_rounds = exec_rounds[exec_rounds["variant"].eq("primary")].copy()
@@ -897,9 +981,16 @@ def main() -> None:
         "q1_mc_scenarios": int(len(mc_shocks)),
         "q1_stress_scenarios": int(len(scenarios_cfg)),
         "q1_mc_matched_comparison": q1_mc_matched.to_dict("records"),
+        "q1_mc_post_cascade_matched_comparison": q1_mc_casc_matched.to_dict("records"),
+        "q1_crisis_mc_matched_comparison": q1_crisis_mc_matched.to_dict("records"),
         "q1_stress_matched_comparison": q1_stress_matched.to_dict("records"),
+        "q1_hypothesis_tests_overall": [
+            r for r in q1_hypothesis_test_rows if r["scope"] == "all_common_strata"
+        ],
         "q2_cf_counterfactual_runs": int(len(q2_cf_summary_df)),
+        "q2_2d_grid_runs": int(len(q2_2d_grid_df)),
         "q2_cf_policy_aggregate": q2_cf_policy_agg_df.to_dict("records"),
+        "q2_two_way_anova": q2_anova_report["two_way_anova"],
         "q3_compound_complete_exposure_rows": int(len(comp_exposures)),
         "q3_compound_overlap_cohort_wallets": int(len(overlap_wallets_in_cohort)),
         "q3_withdrawal_summary": withdrawal_summary_df.to_dict("records"),
@@ -910,6 +1001,7 @@ def main() -> None:
             }
             for sid, r in debtrank_reports.items()
         },
+        "q3_network_centrality_and_null_tests": q3_network_stats_report,
         "kpi_checks_passed": int(sum(r["artifact_check"] != "failed" for r in kpi_checks)),
         "kpi_checks_total": int(len(kpi_checks)),
         "limitations": (
@@ -932,6 +1024,19 @@ def main() -> None:
         "kpi_checks_passed": f"{summary['kpi_checks_passed']}/{summary['kpi_checks_total']}",
         "q3_debtrank_scores": summary["q3_debtrank_scores"],
     }, indent=2))
+
+
+def main() -> None:
+    # The original and in-progress extensions remain in legacy_main for
+    # comparison. The CLI publishes the reviewed, token-exact pipeline.
+    from scripts.n5_resolve_research_review import main as reviewed_main
+    reviewed_main()
+    # Publish the structural diagnostics and full-cohort system denominators.
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument('--output-dir', type=Path, default=Path('outputs/n5_review_corrected_20261026'))
+    args, _ = parser.parse_known_args()
+    from scripts.n5_finalize_structural_review import main as finalize_main
+    finalize_main(['--bundle', str(args.output_dir)])
 
 
 if __name__ == "__main__":

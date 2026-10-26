@@ -328,7 +328,8 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
     accounts['coverage_status'] = accounts.snapshot_block.map(lambda b: 'complete_target_queries' if b in complete_blocks else 'partial')
     write_table('compound/bridge_accounts_partial_candidate.parquet', accounts)
     summary['compound'] = compound_report
-    exposures = adapt_compound_partial(tables['positions'], tables['config'])
+    exposures = adapt_compound_partial(tables['positions'], tables['config'],
+                                      oracle_prices=pd.DataFrame(raw['oracle_prices']))
     exposures['coverage_status'] = exposures.snapshot_block.map(lambda b: 'complete_target_queries' if b in complete_blocks else 'partial')
     write_table('compound/exposures_partial.parquet', exposures)
     unchanged, _ = track_compound_flows(exposures, [])

@@ -1,0 +1,215 @@
+{
+  "A": {
+    "outcome": "log1p_mean_BDR_percent_under_shared_MC_scenarios",
+    "observations": 19664,
+    "design_rank": 7,
+    "coefficients": [
+      {
+        "variable": "intercept",
+        "coefficient": -0.005157863782126109,
+        "hc3_std_error": 0.00037095618052405656,
+        "p_value": 9.619972704669166e-44
+      },
+      {
+        "variable": "weighted_token_pair_betweenness",
+        "coefficient": -0.007452421447808755,
+        "hc3_std_error": 0.008971382794431583,
+        "p_value": 0.40615990697790794
+      },
+      {
+        "variable": "eigenvector",
+        "coefficient": -0.00479768507732198,
+        "hc3_std_error": 0.0029396626438750705,
+        "p_value": 0.10268435110930965
+      },
+      {
+        "variable": "log_exposure_usd",
+        "coefficient": 0.004260813730625511,
+        "hc3_std_error": 0.0002670846825552256,
+        "p_value": 6.18013481975971e-57
+      },
+      {
+        "variable": "cross_protocol_bridge",
+        "coefficient": -0.001122143090469067,
+        "hc3_std_error": 0.00018428657449555495,
+        "p_value": 1.1564053651875283e-09
+      },
+      {
+        "variable": "log_equity",
+        "coefficient": -0.004285080420470916,
+        "hc3_std_error": 0.00026785323360029056,
+        "p_value": 3.0395313342917135e-57
+      },
+      {
+        "variable": "initial_hf_capped_10",
+        "coefficient": 0.000732945053619369,
+        "hc3_std_error": 4.6717659589219635e-05,
+        "p_value": 3.896992500371448e-55
+      }
+    ],
+    "interpretation": "descriptive_conditional_association_not_causal;_HC3_does_not_remove_network_dependence",
+    "power_law_exposure": {
+      "status": "diagnostic_only",
+      "xmin": 273934.9874786081,
+      "xmin_policy": "positive_sample_80th_percentile",
+      "n_tail": 3933,
+      "alpha": 1.6920128500575582,
+      "ks_distance": 0.03398666398508288,
+      "ks_parametric_bootstrap_p": 0.0033222591362126247,
+      "n_boot": 300,
+      "log_likelihood_pareto_minus_shifted_exponential": 5219.232160233478,
+      "conclusion": "not_a_proof_of_power_law_or_causal_network_transmission"
+    },
+    "power_law_betweenness": {
+      "status": "diagnostic_only",
+      "xmin": 0.034482758620689655,
+      "xmin_policy": "positive_sample_80th_percentile",
+      "n_tail": 49,
+      "alpha": 5.339928222504621,
+      "ks_distance": 0.8367346938775511,
+      "ks_parametric_bootstrap_p": 0.0033222591362126247,
+      "n_boot": 300,
+      "log_likelihood_pareto_minus_shifted_exponential": 42.24423192300074,
+      "conclusion": "not_a_proof_of_power_law_or_causal_network_transmission"
+    }
+  },
+  "B1": {
+    "outcome": "log1p_mean_BDR_percent_under_shared_MC_scenarios",
+    "observations": 9670,
+    "design_rank": 7,
+    "coefficients": [
+      {
+        "variable": "intercept",
+        "coefficient": -1.823102549761574e-05,
+        "hc3_std_error": 1.0154795842921068e-05,
+        "p_value": 0.07263526082035478
+      },
+      {
+        "variable": "weighted_token_pair_betweenness",
+        "coefficient": 7.690618624634425e-05,
+        "hc3_std_error": 4.938689086447015e-05,
+        "p_value": 0.11945133681421206
+      },
+      {
+        "variable": "eigenvector",
+        "coefficient": -6.553602224388634e-05,
+        "hc3_std_error": 4.1987258167480825e-05,
+        "p_value": 0.11859071244781683
+      },
+      {
+        "variable": "log_exposure_usd",
+        "coefficient": 1.3677839232944435e-05,
+        "hc3_std_error": 6.8931471507440476e-06,
+        "p_value": 0.047254409142475716
+      },
+      {
+        "variable": "cross_protocol_bridge",
+        "coefficient": -6.668948429783113e-06,
+        "hc3_std_error": 3.5764530796871666e-06,
+        "p_value": 0.06225625499966267
+      },
+      {
+        "variable": "log_equity",
+        "coefficient": -1.3857943101477426e-05,
+        "hc3_std_error": 6.922212663774162e-06,
+        "p_value": 0.045317707060902115
+      },
+      {
+        "variable": "initial_hf_capped_10",
+        "coefficient": 3.044643021680424e-06,
+        "hc3_std_error": 1.5440680330349237e-06,
+        "p_value": 0.048657246104393016
+      }
+    ],
+    "interpretation": "descriptive_conditional_association_not_causal;_HC3_does_not_remove_network_dependence",
+    "power_law_exposure": {
+      "status": "diagnostic_only",
+      "xmin": 524594.9387807127,
+      "xmin_policy": "positive_sample_80th_percentile",
+      "n_tail": 1934,
+      "alpha": 1.684437984722691,
+      "ks_distance": 0.03967660669322315,
+      "ks_parametric_bootstrap_p": 0.0033222591362126247,
+      "n_boot": 300,
+      "log_likelihood_pareto_minus_shifted_exponential": 1579.6176464424098,
+      "conclusion": "not_a_proof_of_power_law_or_causal_network_transmission"
+    },
+    "power_law_betweenness": {
+      "status": "diagnostic_only",
+      "xmin": 0.05714285714285714,
+      "xmin_policy": "positive_sample_80th_percentile",
+      "n_tail": 29,
+      "alpha": 5.1495867582155945,
+      "ks_distance": 0.8275862068965517,
+      "ks_parametric_bootstrap_p": 0.0033222591362126247,
+      "n_boot": 300,
+      "log_likelihood_pareto_minus_shifted_exponential": 19.08970034297535,
+      "conclusion": "not_a_proof_of_power_law_or_causal_network_transmission"
+    }
+  },
+  "B2": {
+    "outcome": "log1p_mean_BDR_percent_under_shared_MC_scenarios",
+    "observations": 20972,
+    "design_rank": 7,
+    "coefficients": [
+      {
+        "variable": "intercept",
+        "coefficient": -0.0030836302635942935,
+        "hc3_std_error": 0.0002578184945184651,
+        "p_value": 7.322358914436949e-33
+      },
+      {
+        "variable": "weighted_token_pair_betweenness",
+        "coefficient": 0.011352438263409243,
+        "hc3_std_error": 0.012121746697169056,
+        "p_value": 0.34900866414748805
+      },
+      {
+        "variable": "eigenvector",
+        "coefficient": -0.0042293925182382616,
+        "hc3_std_error": 0.002065184889657205,
+        "p_value": 0.04057746593512409
+      },
+      {
+        "variable": "log_exposure_usd",
+        "coefficient": 0.002827680067372383,
+        "hc3_std_error": 0.00019305404544669018,
+        "p_value": 2.4376226666517806e-48
+      },
+      {
+        "variable": "cross_protocol_bridge",
+        "coefficient": -0.0013513109965092324,
+        "hc3_std_error": 0.00016884234318105692,
+        "p_value": 1.272898688065125e-15
+      },
+      {
+        "variable": "log_equity",
+        "coefficient": -0.0028842199127001927,
+        "hc3_std_error": 0.0001971245798198385,
+        "p_value": 3.0605969326636345e-48
+      },
+      {
+        "variable": "initial_hf_capped_10",
+        "coefficient": 0.0004908891264226627,
+        "hc3_std_error": 3.4086714237862944e-05,
+        "p_value": 8.507996486333607e-47
+      }
+    ],
+    "interpretation": "descriptive_conditional_association_not_causal;_HC3_does_not_remove_network_dependence",
+    "power_law_exposure": {
+      "status": "diagnostic_only",
+      "xmin": 598634.700142938,
+      "xmin_policy": "positive_sample_80th_percentile",
+      "n_tail": 4195,
+      "alpha": 1.6424545873946585,
+      "ks_distance": 0.03426511373134178,
+      "ks_parametric_bootstrap_p": 0.0033222591362126247,
+      "n_boot": 300,
+      "log_likelihood_pareto_minus_shifted_exponential": 4685.467005728409,
+      "conclusion": "not_a_proof_of_power_law_or_causal_network_transmission"
+    },
+    "power_law_betweenness": {
+      "status": "insufficient_nonconstant_tail"
+    }
+  }
+}

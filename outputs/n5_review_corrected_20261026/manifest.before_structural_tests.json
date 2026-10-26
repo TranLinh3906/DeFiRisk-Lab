@@ -1,0 +1,324 @@
+{
+  "version": "n5_review_corrected_v1",
+  "created_utc": "2026-10-26T06:47:39.255869+00:00",
+  "validation_status": "numerical_regression_and_invariant_checks_passed",
+  "research_acceptance": "pending_external_validation_of_feedback_and_protocol_execution",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\n4_research\\simulation_positions.parquet",
+      "sha256": "9ead73c77e88233d7eec6e1bfef53f5c3aeaaba7af5952035b815cca7272b49f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\calibration_market\\mc_scenario_inputs.parquet",
+      "sha256": "98935bfb5db3dedce0936261a87fbfad125766ebd77a6f13c3c0a4f601486ca8"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\curve_points_with_quantization_audit.parquet",
+      "sha256": "454a551e3df7a93146517578a5b11f92195f40a30b52990773c631fbfa780236"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_q1_q3_empirical_20261026\\compound\\exposures_complete.parquet",
+      "sha256": "434e6c8b7f061b5323bcbd7db48836dd660864b13359b26e4982b9e22f280003"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "sha256": "08ab31c76f1b4285d394f69de2119b47dd564fefc84a326faecf03e94dcda386"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\scenarios.yaml",
+      "sha256": "2a3fb3368d4937881ac5b455d3543d0db76111b6517f617f6962f7dcaece0875"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n4_research.json",
+      "sha256": "a54b9d0858289e2728d3c6bb73c08e18a7fee262521c60b19797dec578792cdc"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_execution_scope_approved.json",
+      "sha256": "9fe35a51c4f4a89cc67e15d86023beef9379c9688814ef6cb857b56778299421"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_resolve_research_review.py",
+      "sha256": "652f3b2f2cbe43f75505359150f22f25a44f0e44479eafc429ac83ab958b341e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_corrected_research.py",
+      "sha256": "bf0713c9c06e68e48a89372d954096a1dfcc76214ed9dc2addbd2f9b956987a9"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research.py",
+      "sha256": "5e2f2dd0da399671a5457ec34842e67b8d5e7354679e841b0699350bdb4ef814"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cascade.py",
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\stress_test.py",
+      "sha256": "d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_impact_review.py",
+      "sha256": "a431b1bc4c4885bafaafd02f71750492a036e8f0956525f999e10e832d136c86"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_n3_update.py",
+      "sha256": "9e61cf1dad070d01be9c5c2c07ee875631135573ab61d3095e38950c6e840740"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_comet_execution.py",
+      "sha256": "c035dbddac4bf833bd733c576d08f3570a0d1ab5dbf1e48c9c76e4b795a90f7f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_review_report.py",
+      "sha256": "9a07b9154a5618fce39176eb24cf92a25ef4fe24395fac77d356ca0297bc79a2"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_collect_comet_state.py",
+      "sha256": "546f61f2e5fbd24604457adb74d76de80ba9341367173f6e77b720d6c27a6b1e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\compound_consolidated_A_B1_B2_20261025_complete\\n3_compound_reserve_config.parquet",
+      "sha256": "2de1b8e4c1ee8f9fdb7b0b1fff29c25faae717e874c591611fe505094845eca4"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\research_review_fix_20261026\\comet_state\\comet_state.json",
+      "sha256": "6818cd7d7074bfc5c3346a0dbc2b0390c424614acd9671c3c05fd1edb70e4bcf"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\research_review_fix_20261026\\comet_state\\rpc_checkpoint.jsonl",
+      "sha256": "c2194846c28068bac470efacf3c218e202de231c59e813811f377cec62845cac"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_q1_q3_empirical_20261026\\A\\baseline_wallet_kpis.parquet",
+      "sha256": "10626fa93a500bf885f6534e3fcf049e4aa2bcca72ddfc64d8d201e3566ffde5"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_q1_q3_empirical_20261026\\B1\\baseline_wallet_kpis.parquet",
+      "sha256": "ad3a2b3571ac3dbd496ce8e2faabf5f9add46134a75b3b3bbd322f5f39be0706"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_q1_q3_empirical_20261026\\B2\\baseline_wallet_kpis.parquet",
+      "sha256": "b7d479ff3fc6892d8750d202cef206a7418588d08b2c49e186ad889d1c1815e2"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v1\\n3_multivolume_rpc_verified_only.parquet",
+      "sha256": "fdca59ccbc4a71ff6f1330eb2aa4f5a7a821ebda1987fd3292bd252588b68724"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v2_with_27\\n3_targeted_27_rpc_verified_only.parquet",
+      "sha256": "11ea484f4eef65f087b2c147ad294543c0b471286e6bcf0c851dc6663a2dbafc"
+    }
+  ],
+  "files": [
+    {
+      "path": "kpi_acceptance.csv",
+      "bytes": 3015,
+      "sha256": "9fd598800820b8de37e80e86b530882ec2e5a100bb55deec0d489dc70f12f83b"
+    },
+    {
+      "path": "mc_scenarios.parquet",
+      "bytes": 263322,
+      "sha256": "98935bfb5db3dedce0936261a87fbfad125766ebd77a6f13c3c0a4f601486ca8"
+    },
+    {
+      "path": "q1_hypothesis_tests.json",
+      "bytes": 9099,
+      "sha256": "759a3caabbc7d4813e84857d6ff9c030e054efec8710fd4a922cc1a1e502db2e"
+    },
+    {
+      "path": "q1_mc_comparison.csv",
+      "bytes": 1629,
+      "sha256": "754e624232a3e11592cef3e7bf15b41f7aa3c54264c7cf781a30e39347ae1133"
+    },
+    {
+      "path": "q2_execution_rounds.parquet",
+      "bytes": 41569,
+      "sha256": "e1394b37d06d2e57c053dd6f6834b89ff43a08290e4b89c93a3e69f3ca15aca4"
+    },
+    {
+      "path": "q2_paired_policy_contrasts.csv",
+      "bytes": 14760,
+      "sha256": "5889f4d72e0d6b0ce1498773318bfbbdb00671a7fd37009ea63c560dd3588f91"
+    },
+    {
+      "path": "q2_shock_depth_cf_feedback_grid.csv",
+      "bytes": 363190,
+      "sha256": "d666b10246506c35003a8a9f44c8bae3032a0822bc74fb4319259574840247f3"
+    },
+    {
+      "path": "q3_comet_absorb_buy_ledger.parquet",
+      "bytes": 42618,
+      "sha256": "704dff61bdf7878882419a712d9ea799359da493db2849c6da5823cb641785ee"
+    },
+    {
+      "path": "q3_comet_absorb_buy_summaries.json",
+      "bytes": 303069,
+      "sha256": "d79ed7d5cf816e05c270b3f429f69dadb230aa7e41b16f6cf40d9ff8af991777"
+    },
+    {
+      "path": "q3_compound_price_stress.parquet",
+      "bytes": 245416,
+      "sha256": "0b2db99755515375ff8f3e6bb808e8cd3f01d7f81f8691c2016f6f52a60be936"
+    },
+    {
+      "path": "q3_network_null_tests.json",
+      "bytes": 1711,
+      "sha256": "04642d2b05eabe281e8c52a2cf81fa7fc7232620ddf11dcd5b021c2872a76eb0"
+    },
+    {
+      "path": "q3_transitions.csv",
+      "bytes": 4484,
+      "sha256": "1c91a40a852683779f2170df380779114f6061d57410683d122dcb548d5da28a"
+    },
+    {
+      "path": "q3_withdrawal_scenarios.csv",
+      "bytes": 1928,
+      "sha256": "1cd67da4d4a446f1ee9381f39adf21c5c04ba425778909b093a89952c658bebf"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5509,
+      "sha256": "179ba5a4c8b4707f49a120bd544cf212e0535b4c75dbcfc56c5df06611a7a4d1"
+    },
+    {
+      "path": "research_settings.json",
+      "bytes": 907,
+      "sha256": "17cf2c243c572efe5e59827949574d59fee6d27bf5e3974d7e2ebfb3da1d6883"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 398,
+      "sha256": "f33055e9e12cf0f709cc102ca18aa91be92fe0044549b71a800c2418f8ffd8d3"
+    },
+    {
+      "path": "wallet_numerical_checks.json",
+      "bytes": 565,
+      "sha256": "8c5110b03bae85b8bf22e3110040cc085892614cbf0e75ffb7323ea21f7f74f8"
+    },
+    {
+      "path": "A/baseline_wallet_kpis.parquet",
+      "bytes": 2182641,
+      "sha256": "10626fa93a500bf885f6534e3fcf049e4aa2bcca72ddfc64d8d201e3566ffde5"
+    },
+    {
+      "path": "A/grid_checkpoint.csv",
+      "bytes": 117552,
+      "sha256": "7ab4b6b3863d65d374825dd48d42ee10908c786f3de2444e20796968f8fa520c"
+    },
+    {
+      "path": "A/mc_execution.csv",
+      "bytes": 1859575,
+      "sha256": "382c5b093ba9df251eac0bc31b35ef163c8fddf1cd23382f9075f1caa8ab1593"
+    },
+    {
+      "path": "A/mc_scenario_losses.parquet",
+      "bytes": 131385,
+      "sha256": "fd786b5a3049c934b7ada9a23251531d09520bc04009a241a9749e3e64b92be3"
+    },
+    {
+      "path": "A/mc_wallet_risk.parquet",
+      "bytes": 1225968,
+      "sha256": "329adee435e0d740bf3a18263b658ea2c3e9fdf64ca5a5cf172e4a70b684dd31"
+    },
+    {
+      "path": "A/network_wallet_nodes.parquet",
+      "bytes": 1198628,
+      "sha256": "45c61e00f977387c322f8e6e9d28844d09854310915d0b358b5cb8c799c22355"
+    },
+    {
+      "path": "A/null_networks.csv",
+      "bytes": 4304,
+      "sha256": "82efb54509857fc68a92d98cc33908ea03be20fbc844fe36d00fc3dba30b56fc"
+    },
+    {
+      "path": "B1/baseline_wallet_kpis.parquet",
+      "bytes": 1071681,
+      "sha256": "ad3a2b3571ac3dbd496ce8e2faabf5f9add46134a75b3b3bbd322f5f39be0706"
+    },
+    {
+      "path": "B1/grid_checkpoint.csv",
+      "bytes": 126397,
+      "sha256": "e4ae16b8e27ccca3eab567950d832573432218debc77bd62acb2f100fea36b51"
+    },
+    {
+      "path": "B1/mc_execution.csv",
+      "bytes": 2276095,
+      "sha256": "9b2e894de573133dd106b6f8c5772d97f452c431e00bfd05ab758c94b0fb31aa"
+    },
+    {
+      "path": "B1/mc_scenario_losses.parquet",
+      "bytes": 117500,
+      "sha256": "60db17253fbb92c0c560d21273326a955f69f55fcc7a11aa9449494c653b3613"
+    },
+    {
+      "path": "B1/mc_wallet_risk.parquet",
+      "bytes": 604934,
+      "sha256": "da27e2e1e0ecdbf9bbaf8cece995a4968c40494f81d110d607ff1e8fec8e4e49"
+    },
+    {
+      "path": "B1/network_wallet_nodes.parquet",
+      "bytes": 590668,
+      "sha256": "04641a8276bd9856dd7150d39213453c17aaf37910af63760e496095b76f730f"
+    },
+    {
+      "path": "B1/null_networks.csv",
+      "bytes": 4271,
+      "sha256": "31d88cb1da03b3732a300554c97176abdb98cccdd698717b9b255205e4b35112"
+    },
+    {
+      "path": "B2/baseline_wallet_kpis.parquet",
+      "bytes": 2326747,
+      "sha256": "b7d479ff3fc6892d8750d202cef206a7418588d08b2c49e186ad889d1c1815e2"
+    },
+    {
+      "path": "B2/grid_checkpoint.csv",
+      "bytes": 120205,
+      "sha256": "4f50ea0b6cb0ab4d5c0a98c8ea3f132ee9fe911f9de435b6127deba3a97773a0"
+    },
+    {
+      "path": "B2/mc_execution.csv",
+      "bytes": 1774279,
+      "sha256": "7595ab58ab08c6eb59907b84d46ad3f13956e3d0f4fbe3d012601a1d3b8537a1"
+    },
+    {
+      "path": "B2/mc_scenario_losses.parquet",
+      "bytes": 128928,
+      "sha256": "0d04a93ca3edc62365370b34afa49a791c19c1b2d20209f6a2a4a94ee122429c"
+    },
+    {
+      "path": "B2/mc_wallet_risk.parquet",
+      "bytes": 1305324,
+      "sha256": "0572559d214c532952ade45117ba6629dc66ace294a144f824e32fddae928920"
+    },
+    {
+      "path": "B2/network_wallet_nodes.parquet",
+      "bytes": 1278186,
+      "sha256": "0dc16475aa0ce0ff156f50cf010c17819a3ba7ca90203e36f6949db75e85b1c6"
+    },
+    {
+      "path": "B2/null_networks.csv",
+      "bytes": 4309,
+      "sha256": "6895c08efb25983186b6b95ed36b7ef051d7b0218d34734ff899632af7dc4687"
+    },
+    {
+      "path": "compound/exposures_usd.parquet",
+      "bytes": 189420,
+      "sha256": "abf7c8c0885f0bc59cdbf4519a32ce9aa469d919b013d19227f7466fe62370d0"
+    },
+    {
+      "path": "figures/q1_pre_post_es99.png",
+      "bytes": 106557,
+      "sha256": "c7757fb1189d7c0dd2e21c699cb325839c055a444abd5d9b79ec59996e2d224a"
+    },
+    {
+      "path": "figures/q2_depth_cf_sensitivity.png",
+      "bytes": 211883,
+      "sha256": "5a910feec5b55c5a3def499e7739371279455d4bd8dc7bb586218aced59fe8df"
+    },
+    {
+      "path": "figures/q3_null_networks.png",
+      "bytes": 62371,
+      "sha256": "1f6f3ad7c12f37a572037a70524e85a1c20f1f878b29bca12fefd368fb548d79"
+    }
+  ]
+}

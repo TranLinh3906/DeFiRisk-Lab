@@ -1,0 +1,230 @@
+{
+  "A": {
+    "snapshot_id": "A",
+    "snapshot_block": 26179841,
+    "power_law_wallet_exposure": {
+      "n_total": 19664,
+      "n_tail": 3933,
+      "xmin": 272089.6152805693,
+      "alpha_mle": 1.6908702586727444,
+      "ks_distance": 0.03492563212127536,
+      "vuong_z_vs_exponential": 10.707328259123605,
+      "vuong_pvalue": 9.403656455314278e-27,
+      "power_law_preferred_over_exponential": true
+    },
+    "power_law_betweenness_centrality": {
+      "n_total": 19232,
+      "n_tail": 3847,
+      "xmin": 8.736313771772505e-09,
+      "alpha_mle": 1.3113816921585817,
+      "ks_distance": 0.04642617393474008,
+      "vuong_z_vs_exponential": 13.890988632467316,
+      "vuong_pvalue": 7.183687787229597e-44,
+      "power_law_preferred_over_exponential": true
+    },
+    "top_1pct_wallets_betweenness_share": 0.9938115734160654,
+    "ols_log_bad_debt_on_centrality": {
+      "r_squared": 0.002960514366230349,
+      "coefficients": {
+        "intercept": {
+          "beta": -0.15250157612870838,
+          "std_err": 0.03722505481561523,
+          "t_stat": -4.09674550874635,
+          "p_value": 4.206776828781875e-05
+        },
+        "log_weighted_betweenness": {
+          "beta": 0.017464754847661967,
+          "std_err": 0.009338539334592983,
+          "t_stat": 1.870180573418676,
+          "p_value": 0.06147359544196219
+        },
+        "log_eigenvector_centrality": {
+          "beta": -0.023499839661409182,
+          "std_err": 0.011318869065657874,
+          "t_stat": -2.076164988312225,
+          "p_value": 0.03789165773077259
+        },
+        "log_weighted_degree_usd": {
+          "beta": 0.022081856527834405,
+          "std_err": 0.0038642215838634347,
+          "t_stat": 5.714438483560522,
+          "p_value": 1.1165938354659439e-08
+        },
+        "is_cross_protocol_bridge": {
+          "beta": 0.005594118557383852,
+          "std_err": 0.04110325220974592,
+          "t_stat": 0.136099171151655,
+          "p_value": 0.8917442762987724
+        }
+      }
+    },
+    "spearman_betweenness_vs_liq_transition": {
+      "rho": 0.03619592477614958,
+      "p_value": 3.833662887957579e-07
+    },
+    "spearman_eigenvector_vs_bad_debt": {
+      "rho": -0.007078748151263452,
+      "p_value": 0.3209094321140762
+    },
+    "degree_preserving_null_network_comparison": {
+      "n_null_networks": 100,
+      "observed_token_network_debtrank": 0.03130821348285229,
+      "null_mean_debtrank": 0.013449770109892617,
+      "null_std_debtrank": 0.003107397454435821,
+      "z_score_vs_null": 5.747074082031792,
+      "p_value_vs_null": 9.080095370120483e-09
+    }
+  },
+  "B1": {
+    "snapshot_id": "B1",
+    "snapshot_block": 20458637,
+    "power_law_wallet_exposure": {
+      "n_total": 9675,
+      "n_tail": 1935,
+      "xmin": 518310.19719954696,
+      "alpha_mle": 1.6873922912571082,
+      "ks_distance": 0.038945368674063785,
+      "vuong_z_vs_exponential": 10.157533574886473,
+      "vuong_pvalue": 3.0673781454052786e-24,
+      "power_law_preferred_over_exponential": true
+    },
+    "power_law_betweenness_centrality": {
+      "n_total": 9442,
+      "n_tail": 1889,
+      "xmin": 9.175961160278159e-08,
+      "alpha_mle": 1.341781144835363,
+      "ks_distance": 0.05784669772768625,
+      "vuong_z_vs_exponential": 14.554760632002196,
+      "vuong_pvalue": 5.447628547199077e-48,
+      "power_law_preferred_over_exponential": true
+    },
+    "top_1pct_wallets_betweenness_share": 0.9557669206409698,
+    "ols_log_bad_debt_on_centrality": {
+      "r_squared": 0.007314322154388098,
+      "coefficients": {
+        "intercept": {
+          "beta": 0.6578422933310487,
+          "std_err": 0.2371945206997764,
+          "t_stat": 2.7734295522100094,
+          "p_value": 0.005557514179423583
+        },
+        "log_weighted_betweenness": {
+          "beta": -0.08162978539821013,
+          "std_err": 0.03136154411856692,
+          "t_stat": -2.6028624448336073,
+          "p_value": 0.009259015787051275
+        },
+        "log_eigenvector_centrality": {
+          "beta": 0.18494362341360948,
+          "std_err": 0.04695309613718587,
+          "t_stat": 3.9389015555704328,
+          "p_value": 8.243061077439137e-05
+        },
+        "log_weighted_degree_usd": {
+          "beta": -0.027221625041241315,
+          "std_err": 0.02702715291623697,
+          "t_stat": -1.007195435109538,
+          "p_value": 0.31386606789037236
+        },
+        "is_cross_protocol_bridge": {
+          "beta": 0.05571750386165851,
+          "std_err": 0.12770796497085216,
+          "t_stat": 0.43628840123147666,
+          "p_value": 0.6626372362038718
+        }
+      }
+    },
+    "spearman_betweenness_vs_liq_transition": {
+      "rho": -0.0008403362954299558,
+      "p_value": 0.9341329133306707
+    },
+    "spearman_eigenvector_vs_bad_debt": {
+      "rho": -0.005202828052010797,
+      "p_value": 0.6088639842280799
+    },
+    "degree_preserving_null_network_comparison": {
+      "n_null_networks": 100,
+      "observed_token_network_debtrank": 0.044701656901716603,
+      "null_mean_debtrank": 0.022186709828403803,
+      "null_std_debtrank": 0.0022810756392877803,
+      "z_score_vs_null": 9.870320249591828,
+      "p_value_vs_null": 5.598557840930169e-23
+    }
+  },
+  "B2": {
+    "snapshot_id": "B2",
+    "snapshot_block": 23543615,
+    "power_law_wallet_exposure": {
+      "n_total": 20972,
+      "n_tail": 4195,
+      "xmin": 595876.945885224,
+      "alpha_mle": 1.643887054807391,
+      "ks_distance": 0.03475302201309716,
+      "vuong_z_vs_exponential": 9.480564717274655,
+      "vuong_pvalue": 2.529106126244464e-21,
+      "power_law_preferred_over_exponential": true
+    },
+    "power_law_betweenness_centrality": {
+      "n_total": 20481,
+      "n_tail": 4097,
+      "xmin": 1.4163842034673644e-08,
+      "alpha_mle": 1.3016132208307785,
+      "ks_distance": 0.04614640085753918,
+      "vuong_z_vs_exponential": 23.278897119553317,
+      "vuong_pvalue": 7.253688585220287e-120,
+      "power_law_preferred_over_exponential": true
+    },
+    "top_1pct_wallets_betweenness_share": 0.9693763384390046,
+    "ols_log_bad_debt_on_centrality": {
+      "r_squared": 0.002878602660714158,
+      "coefficients": {
+        "intercept": {
+          "beta": -0.059312134752022766,
+          "std_err": 0.040171363340694696,
+          "t_stat": -1.4764780136784141,
+          "p_value": 0.13983063132973517
+        },
+        "log_weighted_betweenness": {
+          "beta": -0.022672588919154572,
+          "std_err": 0.010095560759277443,
+          "t_stat": -2.2457978768855718,
+          "p_value": 0.024727328612373867
+        },
+        "log_eigenvector_centrality": {
+          "beta": 0.02438726934797511,
+          "std_err": 0.011634460862724808,
+          "t_stat": 2.096123716923448,
+          "p_value": 0.03608317340501207
+        },
+        "log_weighted_degree_usd": {
+          "beta": 0.011481191597955456,
+          "std_err": 0.004028885478166432,
+          "t_stat": 2.8497190253172966,
+          "p_value": 0.0043800509936377735
+        },
+        "is_cross_protocol_bridge": {
+          "beta": 0.0005402658434994349,
+          "std_err": 0.041022587988464004,
+          "t_stat": 0.013169960014501363,
+          "p_value": 0.9894923213017741
+        }
+      }
+    },
+    "spearman_betweenness_vs_liq_transition": {
+      "rho": 0.016124287313202142,
+      "p_value": 0.019538951777124353
+    },
+    "spearman_eigenvector_vs_bad_debt": {
+      "rho": 0.0034324775278790015,
+      "p_value": 0.6191514186576809
+    },
+    "degree_preserving_null_network_comparison": {
+      "n_null_networks": 100,
+      "observed_token_network_debtrank": 0.03147418963990398,
+      "null_mean_debtrank": 0.016934601016904794,
+      "null_std_debtrank": 0.0032719018418431545,
+      "z_score_vs_null": 4.443772865389086,
+      "p_value_vs_null": 8.839492358230696e-06
+    }
+  }
+}

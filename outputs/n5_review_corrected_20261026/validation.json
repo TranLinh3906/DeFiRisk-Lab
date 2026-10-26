@@ -1,0 +1,11 @@
+{
+  "approved_primary_regression_matches": true,
+  "all_runs_terminated": true,
+  "fixed_oracle_newly_eligible_zero": true,
+  "grid_runs": 1368,
+  "expected_grid_runs": 1368,
+  "mc_scenarios_per_snapshot": 10000,
+  "compound_usd_amounts_reconcile": true,
+  "null_network_degrees_preserved": true,
+  "research_acceptance": "pending_external_validation_of_feedback_and_protocol_execution"
+}

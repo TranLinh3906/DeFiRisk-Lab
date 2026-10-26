@@ -1,0 +1,23 @@
+[
+  {
+    "snapshot_id": "A",
+    "wallets": 19664,
+    "nonpositive_equity_wallets": 0,
+    "invalid_equity_losses_are_null": true,
+    "all_scenario_denominators_match": true
+  },
+  {
+    "snapshot_id": "B1",
+    "wallets": 9675,
+    "nonpositive_equity_wallets": 5,
+    "invalid_equity_losses_are_null": true,
+    "all_scenario_denominators_match": true
+  },
+  {
+    "snapshot_id": "B2",
+    "wallets": 20972,
+    "nonpositive_equity_wallets": 0,
+    "invalid_equity_losses_are_null": true,
+    "all_scenario_denominators_match": true
+  }
+]

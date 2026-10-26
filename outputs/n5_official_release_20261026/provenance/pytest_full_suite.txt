@@ -5,11 +5,11 @@
 tests/test_n3_m4_m5.py::DescriptiveTest::test_accept_11_contract_fields_and_zero_hours
 tests/test_n3_m4_m5.py::DescriptiveTest::test_generated_figures
 tests/test_n3_m4_m5.py::DescriptiveTest::test_missing_market_ratio_keeps_null
-  D:\DeFi Lending\DeFiRisk-Lab\src\analysis\descriptive.py:183: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\analysis\descriptive.py:183: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     p = p[(p.timestamp >= t0 - pd.Timedelta(minutes=max_age_min)) & (p.timestamp < t1)].copy()
 
 tests/test_n3_m4_m5.py: 10 warnings
-  D:\DeFi Lending\DeFiRisk-Lab\src\analysis\descriptive.py:131: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\analysis\descriptive.py:131: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     direction="backward", tolerance=pd.Timedelta(minutes=tolerance_min),
 
 tests/test_n3_m4_m5.py::DescriptiveTest::test_accept_11_contract_fields_and_zero_hours
@@ -18,47 +18,47 @@ tests/test_n3_m4_m5.py::DescriptiveTest::test_generated_figures
 tests/test_n3_m4_m5.py::DescriptiveTest::test_generated_figures
 tests/test_n3_m4_m5.py::DescriptiveTest::test_missing_market_ratio_keeps_null
 tests/test_n3_m4_m5.py::DescriptiveTest::test_missing_market_ratio_keeps_null
-  D:\DeFi Lending\DeFiRisk-Lab\src\analysis\descriptive.py:207: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\analysis\descriptive.py:207: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     timeline["hour_end_utc"] = timeline.hour_utc + pd.Timedelta(hours=1) - pd.Timedelta(nanoseconds=1)
 
 tests/test_n3_m4_m5.py::DescriptiveTest::test_accept_11_contract_fields_and_zero_hours
 tests/test_n3_m4_m5.py::DescriptiveTest::test_generated_figures
 tests/test_n3_m4_m5.py::DescriptiveTest::test_missing_market_ratio_keeps_null
-  D:\DeFi Lending\DeFiRisk-Lab\src\analysis\descriptive.py:212: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\analysis\descriptive.py:212: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     timeline.loc[age0 > pd.Timedelta(minutes=90), "eth_return_1h_pct"] = float("nan")
 
 tests/test_n3_m4_m5.py::DescriptiveTest::test_generated_figures
 tests/test_n3_m4_m5.py::DescriptiveTest::test_missing_market_ratio_keeps_null
-  D:\DeFi Lending\DeFiRisk-Lab\src\analysis\descriptive.py:179: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\analysis\descriptive.py:179: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     t1 = pd.Timestamp(end).tz_localize("UTC") if end and pd.Timestamp(end).tzinfo is None else (pd.Timestamp(end).tz_convert("UTC") if end else max(e.event_timestamp.max(), p.timestamp.max()).floor("D") + pd.Timedelta(days=1))
 
 tests/test_n3_m4_m5.py::DescriptiveTest::test_prevent_future_market_price
-  D:\DeFi Lending\DeFiRisk-Lab\tests\test_n3_m4_m5.py:89: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\tests\test_n3_m4_m5.py:89: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     pr.loc[0, "reference_timestamp"] = pr.loc[0, "timestamp"] + pd.Timedelta(hours=1)
 
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
-  D:\DeFi Lending\DeFiRisk-Lab\tests\test_n5_hypothesis_completion.py:15: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\tests\test_n5_hypothesis_completion.py:15: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     eth_quote_utc=dates+pd.Timedelta(hours=23), steth_quote_utc=dates+pd.Timedelta(hours=23)))
 
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
-  D:\DeFi Lending\DeFiRisk-Lab\src\models\n5_hypothesis_methods.py:18: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\models\n5_hypothesis_methods.py:18: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     if (times > cutoff).any() or (times > p.date + pd.Timedelta(days=1) - pd.Timedelta(seconds=1)).any():
 
 tests/test_n5_hypothesis_completion.py::test_calibration_rejects_future_quotes_and_does_not_bridge_calendar_gaps
-  D:\DeFi Lending\DeFiRisk-Lab\src\models\n5_hypothesis_methods.py:24: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\models\n5_hypothesis_methods.py:24: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     complete = p.date.diff(horizon).eq(pd.Timedelta(days=horizon))
 
 tests/test_n5_n3_update.py::N3UpdateTests::test_market_quote_coverage_rejects_future_quote_and_is_not_hit_rate
 tests/test_n5_n3_update.py::N3UpdateTests::test_market_quote_coverage_rejects_future_quote_and_is_not_hit_rate
-  D:\DeFi Lending\DeFiRisk-Lab\src\models\n5_n3_update.py:151: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\models\n5_n3_update.py:151: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     left_on='event_timestamp',right_on='quote_time',direction='backward',tolerance=pd.Timedelta(seconds=max_age_seconds))
 
 tests/test_n5_oracle_validation.py: 24 warnings
-  D:\DeFi Lending\DeFiRisk-Lab\tests\test_n5_oracle_validation.py:13: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\tests\test_n5_oracle_validation.py:13: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     path=pd.DataFrame([dict(snapshot_id='B1',block=b,block_timestamp_utc=pd.Timestamp('2024-01-01T00:00:00Z')+pd.Timedelta(seconds=(b-100)*12),
 
 tests/test_n5_research_protocol.py::ProtocolTests::test_10000_seed42_scenarios_reproducible
@@ -67,14 +67,14 @@ tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
 tests/test_n5_research_protocol.py::ProtocolTests::test_missing_day_rejected
 tests/test_n5_research_protocol.py::ProtocolTests::test_missing_day_rejected
-  D:\DeFi Lending\DeFiRisk-Lab\tests\test_n5_research_protocol.py:25: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\tests\test_n5_research_protocol.py:25: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     usdt_quote_utc=dates+pd.Timedelta(hours=23),steth_quote_utc=dates+pd.Timedelta(hours=23)))
 
 tests/test_n5_research_protocol.py::ProtocolTests::test_10000_seed42_scenarios_reproducible
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
 tests/test_n5_research_protocol.py::ProtocolTests::test_missing_day_rejected
-  D:\DeFi Lending\DeFiRisk-Lab\src\models\n5_research_protocol.py:38: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\models\n5_research_protocol.py:38: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     expected = pd.date_range(last-pd.Timedelta(days=days), last, freq='D')
 
 tests/test_n5_research_protocol.py::ProtocolTests::test_10000_seed42_scenarios_reproducible
@@ -83,8 +83,8 @@ tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
 tests/test_n5_research_protocol.py::ProtocolTests::test_exact_365_returns_and_no_future_quote
-  D:\DeFi Lending\DeFiRisk-Lab\src\models\n5_research_protocol.py:44: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+  C:\Users\Diễm My\AppData\Local\Temp\vscode-agent-codex-sandbox-EvNfoc\defirisklab-main-tree-20261026c\src\models\n5_research_protocol.py:44: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
     day_end = data.index + pd.Timedelta(days=1)-pd.Timedelta(seconds=1)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-198 passed, 74 warnings, 12 subtests passed in 27.36s
+198 passed, 74 warnings, 12 subtests passed in 27.84s

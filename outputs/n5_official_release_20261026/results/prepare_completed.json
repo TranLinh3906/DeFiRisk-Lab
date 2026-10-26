@@ -1,0 +1,36 @@
+{
+  "stage": "prepare",
+  "completed_utc": "2026-10-26T07:17:51.214330+00:00",
+  "code_versions": [
+    {
+      "original_path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_complete_hypotheses.py",
+      "archived_path": "source_versions/0c6941cd298f79ddcf63c4bca8e5a4070029a821107319ba1eed78ad80073276.py",
+      "sha256": "0c6941cd298f79ddcf63c4bca8e5a4070029a821107319ba1eed78ad80073276"
+    },
+    {
+      "original_path": "src\\models\\n5_hypothesis_methods.py",
+      "archived_path": "source_versions/1c3b68841d4a38e1fc9ba3733ed10cf3bb3468b111b8bf24a5393015c2c63e76.py",
+      "sha256": "1c3b68841d4a38e1fc9ba3733ed10cf3bb3468b111b8bf24a5393015c2c63e76"
+    },
+    {
+      "original_path": "src\\models\\n5_corrected_research.py",
+      "archived_path": "source_versions/efa7e33f6a7570fdd49015c4a96840aacbd061cbfe88bf393eb41de0acb32840.py",
+      "sha256": "efa7e33f6a7570fdd49015c4a96840aacbd061cbfe88bf393eb41de0acb32840"
+    },
+    {
+      "original_path": "scripts\\n5_resolve_research_review.py",
+      "archived_path": "source_versions/690ed8ad79941b83cdbee5ecfae13fe5052b0111253ce77d01980ab95bcf1c95.py",
+      "sha256": "690ed8ad79941b83cdbee5ecfae13fe5052b0111253ce77d01980ab95bcf1c95"
+    },
+    {
+      "original_path": "src\\models\\cascade.py",
+      "archived_path": "source_versions/18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe.py",
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe"
+    },
+    {
+      "original_path": "src\\models\\stress_test.py",
+      "archived_path": "source_versions/d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f.py",
+      "sha256": "d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f"
+    }
+  ]
+}

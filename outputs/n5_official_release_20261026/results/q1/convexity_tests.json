@@ -1,0 +1,68 @@
+[
+  {
+    "snapshot_id": "A",
+    "eth_shock": 0.0,
+    "quadratic_curvature_coefficient": 838328.8206577647,
+    "ci95_low": 584590.4921235156,
+    "ci95_high": 1123094.8613549932,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": false,
+    "negative_slope_change_intervals": 1,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  },
+  {
+    "snapshot_id": "A",
+    "eth_shock": -0.2,
+    "quadratic_curvature_coefficient": 664718.5802795182,
+    "ci95_low": 462651.67622147506,
+    "ci95_high": 887999.0017500573,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": false,
+    "negative_slope_change_intervals": 1,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  },
+  {
+    "snapshot_id": "B1",
+    "eth_shock": 0.0,
+    "quadratic_curvature_coefficient": 974922.3290450354,
+    "ci95_low": 724654.4233233663,
+    "ci95_high": 1250354.116271896,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": false,
+    "negative_slope_change_intervals": 2,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  },
+  {
+    "snapshot_id": "B1",
+    "eth_shock": -0.2,
+    "quadratic_curvature_coefficient": 755026.3531937501,
+    "ci95_low": 556522.4487684367,
+    "ci95_high": 977343.0666816235,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": false,
+    "negative_slope_change_intervals": 1,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  },
+  {
+    "snapshot_id": "B2",
+    "eth_shock": 0.0,
+    "quadratic_curvature_coefficient": 754990.475001977,
+    "ci95_low": 521864.36070004496,
+    "ci95_high": 1002781.878782064,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": true,
+    "negative_slope_change_intervals": 0,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  },
+  {
+    "snapshot_id": "B2",
+    "eth_shock": -0.2,
+    "quadratic_curvature_coefficient": 599664.1466577972,
+    "ci95_low": 416491.67798810435,
+    "ci95_high": 794925.3925800731,
+    "positive_quadratic_curvature_supported": true,
+    "discrete_convex_everywhere": true,
+    "negative_slope_change_intervals": 0,
+    "interpretation": "wallet_pair_resampling_on_fixed_deterministic_shock_grid_not_tail_probability_estimation"
+  }
+]

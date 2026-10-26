@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:\\DeFi Lending\\DeFiRisk-Lab\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "pytest",
+    "tests/",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short"
+  ],
+  "exit_code": 0,
+  "stdout_sha256": "42af546ac7fedc830a9267ce07454a9bbe9cfd973ad31aeac5b4bfb1bddcdc52"
+}

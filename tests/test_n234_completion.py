@@ -51,25 +51,28 @@ def test_all_public_research_apis_share_dust_cohort_and_explicit_denominator():
     assert reverse['targets'][0]['target_debt_usd']==5000.
 
 
-def test_empirical_q1_q3_bundle_manifest_and_kpis():
+def test_official_q1_q3_release_manifest_and_scientific_scope():
     from pathlib import Path
     import json
     from src.models.n5_readiness import verify_manifest
-    from src.models.n5_kpis import validate_kpi_artifacts
+    from src.models.n5_release import verify_release, scientific_checks
 
-    out_dir = Path("outputs/n5_q1_q3_empirical_20261026")
+    # The old bundle/18 mapping assertions describe an intermediate 228-run
+    # experiment. Publication now verifies the selected frozen results AND
+    # their local inputs; software success does not accept all hypotheses.
+    pointer=json.loads(Path('config/n5_research_artifacts.json').read_text(encoding='utf-8'))
+    out_dir=Path(pointer['current_bundle'])
     assert out_dir.exists()
     assert verify_manifest(out_dir) == []
-    summary = json.loads((out_dir / "summary.json").read_text(encoding="utf-8"))
-    assert summary["status"] == "empirical_q1_q3_completed_on_approved_cohort"
-    assert summary["cohort_wallets"] == 50311
-    assert summary["q1_mc_scenarios"] == 10000
-    assert summary["q1_stress_scenarios"] == 19
-    assert summary["q2_cf_counterfactual_runs"] == 228
-    assert len(summary["q2_cf_policy_aggregate"]) == 12
-    assert summary["kpi_checks_passed"] == 18
-    assert summary["kpi_checks_total"] == 18
-    mapping = pd.read_csv(out_dir / "kpi_mapping.csv", encoding="utf-8-sig")
-    checks = validate_kpi_artifacts(mapping, out_dir)
-    assert all(r["artifact_check"] == "passed_mapping_only" and not r["errors"] for r in checks)
+    assert verify_release(out_dir)==[]
+    checks=scientific_checks(out_dir)
+    assert checks['mc_scenarios']==120000
+    assert checks['cf_grid_cases']==1458
+    assert sum(s['wallet_snapshot_rows'] for s in checks['snapshot_records'])==50311
+    assert next(s['block'] for s in checks['snapshot_records'] if s['snapshot']=='B1')==20458637
+    assert checks['h3_threshold']==1.10
+    mapping=pd.read_csv(out_dir/'metadata/kpi_release_dictionary.csv')
+    assert set(mapping.kpi_id)=={f'M{i:02}' for i in range(1,19)}
+    assert 'not_original' in mapping.set_index('kpi_id').loc['M17','definition_relation']
+    assert 'not_18_of_18' in mapping.research_acceptance.iloc[0]
 

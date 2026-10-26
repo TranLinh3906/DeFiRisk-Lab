@@ -1,5 +1,7 @@
 # Hoàn thiện kiểm định Q1–Q3 — 26/10/2026
 
+**Bản chốt dùng viết bài:** [báo cáo chính thức](../outputs/n5_official_release_20261026/results/REPORT.md) và [danh sách artifact](../outputs/n5_official_release_20261026/metadata/publication_artifacts.csv). [Biên bản P0.1–P0.5](CHOT_BUNDLE_Q1_Q3_20261026.md) ghi nhận kiểm tra hash/test/định nghĩa. Các liên kết dưới đây giữ nguồn phân tích trước khi đóng gói.
+
 [Báo cáo đầy đủ](../outputs/n5_hypothesis_completion_20261026/REPORT.md) · [Kết luận từng giả thuyết](../outputs/n5_hypothesis_completion_20261026/hypothesis_conclusions.csv) · [Biên bản kiểm tra](../outputs/n5_hypothesis_completion_20261026/validation.json).
 
 ## Phần đã thực hiện

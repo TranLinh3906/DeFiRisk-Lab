@@ -1,0 +1,14 @@
+{
+  "pytest_passed": 194,
+  "pytest_subtests_passed": 12,
+  "mc_scenarios": 120000,
+  "dense_cf_cases": 1458,
+  "source_and_edge_interventions": 69,
+  "compound_cases": 48,
+  "all_input_hashes_match": true,
+  "all_artifact_hashes_match": true,
+  "all_archived_code_versions_match": true,
+  "all_matched_pairs_unique_and_within_caliper": true,
+  "all_calibration_returns_before_own_snapshot": true,
+  "strict_healthy_and_post_exogenous_healthy_transition_checks": true
+}

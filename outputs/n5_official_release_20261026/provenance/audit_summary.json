@@ -1,0 +1,20 @@
+{
+  "audited_manifests": 40,
+  "matched_references": 2078,
+  "mismatched_references": 239,
+  "missing_references": 48,
+  "declared_problem_path_strings": 96,
+  "canonical_problem_files": 95,
+  "canonical_missing_files": 16,
+  "canonical_changed_existing_files": 79,
+  "classification": {
+    "missing_legacy_reference": 16,
+    "live_code_or_configuration_version_drift": 41,
+    "historical_data_or_output_version_drift": 28,
+    "documented_structural_postprocessing_version": 10
+  },
+  "selected_analysis_artifact_mismatches": 0,
+  "selected_analysis_input_mismatches": 0,
+  "exact_recovery_not_claimed_for_unavailable_historical_bytes": true,
+  "resolution": "Preserve historical manifests as evidence; freeze only validated current results and stage source snapshots."
+}

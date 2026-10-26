@@ -1,0 +1,96 @@
+{
+  "version": "n5_hypothesis_completion_v1",
+  "seed": 42,
+  "mc_scenarios": 10000,
+  "mc_distributions": [
+    "pre_event_t4_1d",
+    "pre_event_gaussian_1d",
+    "crisis_joint_1d",
+    "crisis_joint_5d"
+  ],
+  "fixed_cf_grid": [
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "depth_scales": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "key_scenarios": {
+    "eth_drop_20": {
+      "eth_shock": -0.2
+    },
+    "eth_drop_40": {
+      "eth_shock": -0.4
+    },
+    "depeg_4": {
+      "depeg_shock": -0.04
+    },
+    "depeg_5": {
+      "depeg_shock": -0.05
+    },
+    "depeg_10": {
+      "depeg_shock": -0.1
+    },
+    "combined_eth20_depeg5": {
+      "eth_shock": -0.2,
+      "depeg_shock": -0.05
+    }
+  },
+  "equity_log_caliper": 0.1,
+  "matching": "one_to_one_without_replacement_equity_only",
+  "convexity_depeg_grid": [
+    0.0,
+    0.005,
+    0.01,
+    0.015,
+    0.02,
+    0.025,
+    0.03,
+    0.035,
+    0.04,
+    0.045,
+    0.05,
+    0.055,
+    0.06,
+    0.065,
+    0.07,
+    0.075,
+    0.08,
+    0.085,
+    0.09,
+    0.095,
+    0.1,
+    0.105,
+    0.11,
+    0.115,
+    0.12,
+    0.125,
+    0.13,
+    0.135,
+    0.14,
+    0.145,
+    0.15
+  ],
+  "pure_depeg_tests": [
+    0.04,
+    0.05,
+    0.07,
+    0.1
+  ],
+  "healthy_threshold": 1.1,
+  "other_asset_min_share": 0.1,
+  "feedback_training": "B1",
+  "feedback_held_out": "B2",
+  "source_ablation_fraction": 0.01,
+  "matched_random_ablations": 19,
+  "scientific_rule": "do_not_force_hypotheses_true;_observational_feedback_is_not_causal_identification"
+}

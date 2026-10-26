@@ -1,10 +1,25 @@
 # Báo cáo N5 Q1–Q3 sau rà soát ngày 26/10/2026
 
-**Cập nhật kết quả hiện hành:** [gói hoàn thiện kiểm định sáu giả thuyết](../outputs/n5_hypothesis_completion_20261026/REPORT.md). Nội dung dưới đây ghi nhận bản rà soát trước; các kiểm định bổ sung và kết luận mới nằm trong gói cập nhật.
+**Nguồn duy nhất dùng viết bài:** [bản phát hành chính thức Q1–Q3](../outputs/n5_official_release_20261026/results/REPORT.md), đóng gói nguyên byte từ `n5_hypothesis_completion_20261026`: 120.000 draw MC, 1.458 ô CF, B1 = `20458637`, [kết luận H1a–H3b](../outputs/n5_official_release_20261026/results/hypothesis_conclusions.csv). Xem [biên bản chốt bundle](CHOT_BUNDLE_Q1_Q3_20261026.md) để đối chiếu hash, test và KPI.
+
+## Trạng thái các bundle Q1–Q3
+
+| Bundle | Trạng thái | Được trích số vào bài? |
+|---|---|---|
+| `n5_official_release_20261026` | **Chính thức** — bản đóng gói của `n5_hypothesis_completion_20261026` | Có |
+| `n5_hypothesis_completion_20261026` | Lần chạy phân tích gốc của bản chính thức | Chỉ qua bản chính thức |
+| `n5_review_corrected_20261026` | Lịch sử — bước rà soát trung gian, bị thay bởi gói kiểm định sáu giả thuyết | Không |
+| `n5_q1_q3_empirical_20261026` | **Thăm dò, đã bị thay thế** — 228 lượt CF/4 quy tắc, lưới 432 ô, ANOVA giả định ô mô phỏng độc lập, khớp power-law/Vuong; không theo thiết kế đóng trước, không ghép equity 1:1 | Không. Các số như ES99 looping `\$2.542/100k`, p-value ANOVA hay “top 1% giữ 99% betweenness” **không được dùng** để kết luận H1a, H2b hoặc power-law |
+
+Kết luận đã khóa: H1a không được ủng hộ; H1b chỉ có độ cong dương ở một số điều kiện; H2a ủng hộ có điều kiện (17/54); H2b chữ U không được ủng hộ (0/9); H3a không có ví khỏe bị kích hoạt dưới proxy đã kiểm định (dự báo ngoài mẫu B2 không cải thiện so với baseline); H3b chỉ là chẩn đoán cấu trúc có điều kiện, chưa xác nhận power-law hay lây lan nhân quả.
+
+---
+
+*Phần dưới đây là ghi nhận lịch sử của bước rà soát trước (`n5_review_corrected_20261026`), giữ để truy nguyên; không phải nguồn số liệu hiện hành.*
 
 Bản này thay thế các tuyên bố “hoàn thành 100%” và “18/18 KPI đã được nghiệm thu” trong báo cáo trước. Bản trước được giữ tại `outputs/research_review_fix_20261026/source_before/BAO_CAO_HOAN_THANH_N5_Q1_Q3_20261026.md` để truy nguyên.
 
-**Gói hiện hành:** [Báo cáo sinh từ artifact đã sửa](../outputs/n5_review_corrected_20261026/REPORT.md).
+**Gói của bước rà soát này (lịch sử):** [Báo cáo sinh từ artifact đã sửa](../outputs/n5_review_corrected_20261026/REPORT.md).
 
 ## Những lỗi đã sửa
 
@@ -22,7 +37,7 @@ Bản này thay thế các tuyên bố “hoàn thành 100%” và “18/18 KPI 
 | Q3 — Mạng null | Double-edge swap từng lớp, kiểm giữ bậc từng ví và từng token | Không giữ tổng trọng số token; chưa kết luận power-law hoặc nhân quả centrality |
 | P2 — Hình/bảng | Sinh từ CSV/Parquet mới và khóa SHA-256 | Hình không nâng mức nghiệm thu |
 
-## Nguồn kết quả hiện hành
+## Nguồn kết quả của bước rà soát (lịch sử)
 
 - [Giả định nghiên cứu](../outputs/n5_review_corrected_20261026/research_settings.json).
 - [Kiểm số học và hồi quy](../outputs/n5_review_corrected_20261026/validation.json).

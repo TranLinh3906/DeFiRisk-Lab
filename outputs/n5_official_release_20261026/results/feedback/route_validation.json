@@ -1,0 +1,97 @@
+[
+  {
+    "pool_address": "0x109830a1aaad605bbf02a9dfa7b0b92ec2fb7daa",
+    "token_in_address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+    "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "route": "wstETH->WETH",
+    "training_rows": 296,
+    "held_out_rows": 296,
+    "train": "B1",
+    "test": "B2",
+    "feature_before_target": true,
+    "summed_DEX_coefficient": 2.5287334634190347e-12,
+    "hac_ci95": [
+      -7.188661781170463e-13,
+      5.776333104955115e-12
+    ],
+    "held_out_rmse": 2.4315541364446645e-13,
+    "zero_change_rmse": 2.426873739331409e-13,
+    "target_std": 6.171810509348697e-13,
+    "assumed_USD_quote_resolution_floor": 1.665525189335294e-11,
+    "features_retained": [
+      "dex_return",
+      "dex_lag1",
+      "dex_lag2",
+      "oracle_lag1",
+      "out_oracle_return"
+    ],
+    "design_rank": 6,
+    "target_variation_above_resolution": false,
+    "positive_predictive_transmission_supported": false,
+    "calibrated_predictive_proxy": 0.0,
+    "causal_identification": "not_established;_relative_pair_predictability_not_randomized_liquidation_impact"
+  },
+  {
+    "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+    "token_in_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "token_out_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "route": "WETH->USDC",
+    "training_rows": 296,
+    "held_out_rows": 296,
+    "train": "B1",
+    "test": "B2",
+    "feature_before_target": true,
+    "summed_DEX_coefficient": 0.00877149301362618,
+    "hac_ci95": [
+      -0.1293636644723959,
+      0.14690665049964824
+    ],
+    "held_out_rmse": 0.005923374878450431,
+    "zero_change_rmse": 0.0058950381920284955,
+    "target_std": 0.0030937680986119413,
+    "assumed_USD_quote_resolution_floor": 2.000968991324551e-08,
+    "features_retained": [
+      "dex_return",
+      "dex_lag1",
+      "dex_lag2",
+      "oracle_lag1"
+    ],
+    "design_rank": 5,
+    "target_variation_above_resolution": true,
+    "positive_predictive_transmission_supported": false,
+    "calibrated_predictive_proxy": 0.0,
+    "causal_identification": "not_established;_relative_pair_predictability_not_randomized_liquidation_impact"
+  },
+  {
+    "pool_address": "0xcbcdf9626bc03e24f779434178a73a0b4bad62ed",
+    "token_in_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+    "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "route": "WBTC->WETH",
+    "training_rows": 296,
+    "held_out_rows": 296,
+    "train": "B1",
+    "test": "B2",
+    "feature_before_target": true,
+    "summed_DEX_coefficient": 0.0008183674514659848,
+    "hac_ci95": [
+      -0.31241439477735233,
+      0.31405112968028426
+    ],
+    "held_out_rmse": 0.006106514644755442,
+    "zero_change_rmse": 0.00603055317882412,
+    "target_std": 0.003492754977340989,
+    "assumed_USD_quote_resolution_floor": 9.369139151102287e-12,
+    "features_retained": [
+      "dex_return",
+      "dex_lag1",
+      "dex_lag2",
+      "oracle_lag1",
+      "out_oracle_return"
+    ],
+    "design_rank": 6,
+    "target_variation_above_resolution": true,
+    "positive_predictive_transmission_supported": false,
+    "calibrated_predictive_proxy": 0.0,
+    "causal_identification": "not_established;_relative_pair_predictability_not_randomized_liquidation_impact"
+  }
+]

@@ -1,0 +1,11 @@
+﻿question,version,classification,selection,artifact
+Q1,official_release_v1,primary,pre_event_t4_1d; one-to-one equity matching; post liquidation fixed oracle,outputs/n5_official_release_20261026/results/q1/paired_hypothesis_tests_adjusted.json
+Q1,official_release_v1,sensitivity,pre_event_gaussian_1d; crisis_joint_1d; crisis_joint_5d; deterministic convexity stress,outputs/n5_official_release_20261026/results/q1/convexity_tests.json
+Q2,official_release_v1,primary_counterfactual,1458 cells; reference depth1 predictive_proxy and fixed (identical proxy0); 9 fixed CF; 6 shocks,outputs/n5_official_release_20261026/results/q2/dense_cf_grid.csv
+Q2,official_release_v1,sensitivity_counterfactual,"depth0.5/2 and full_sensitivity, not observed policy outcomes",outputs/n5_official_release_20261026/results/q2/h2a_paired_contrasts.csv
+Q3,official_release_v1,primary_observational_prediction,B1 training -> B2 held-out; three pair-relative oracle routes,outputs/n5_official_release_20261026/results/feedback/route_validation.json
+Q3,official_release_v1,model_output_under_predictive_fallback,"12 pure depeg cases predictive_proxy=0, not observed contagion outcomes",outputs/n5_official_release_20261026/results/q3/direct_induced_summary.csv
+Q3,official_release_v1,sensitivity_counterfactual,12 full-feedback cases; network null/regression;69 interventions;48 total Comet cases,outputs/n5_official_release_20261026/results/q3/node_edge_interventions.csv
+ALL,n5_hypothesis_completion_20261026,parent_analysis_run,"196 exact original artifacts, quoted through frozen release only",outputs/n5_official_release_20261026/provenance/analysis_manifest.json
+ALL,n5_review_corrected_20261026,historical_superseded,intermediate corrected analysis; not current six-hypothesis evidence,outputs/n5_review_corrected_20261026/manifest.json
+ALL,n5_q1_q3_empirical_20261026,historical_exploratory_superseded,228 CF runs/4 policies;432-cell exploratory grid;earlier shock-only and post-cascade Q1 variants,outputs/n5_q1_q3_empirical_20261026/manifest.json

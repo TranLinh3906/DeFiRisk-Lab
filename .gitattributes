@@ -1,0 +1,5 @@
+# Preserve the exact bytes recorded by sealed research manifests, including
+# CSV/JSON/Markdown and archived Python source on Windows core.autocrlf=true.
+outputs/n5_official_release_20261026/** -text
+outputs/n5_hypothesis_completion_20261026/** -text
+outputs/n5_citation_pack_20261026/** -text

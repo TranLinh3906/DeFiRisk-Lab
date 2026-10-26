@@ -831,6 +831,7 @@ def source_context():
     except (OSError, ValueError):
         bundle = 'Not configured'
     with st.expander('Nguồn dữ liệu & phạm vi', expanded=False):
+        st.caption('App theme build: warm-orange-cloud-v2 · Plotly theme override enabled')
         st.write(f'**Release chính thức:** `{bundle}`')
         st.write('Overview / Stress: N4 research stress summary. Cascade: N5 approved_package_with27. '
                  'Đây là các đầu ra chẩn đoán/mô phỏng tính sẵn; không đại diện toàn bộ kết luận release.')

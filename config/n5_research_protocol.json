@@ -1,0 +1,19 @@
+{
+  "version": "20261025_user_confirmed",
+  "confirmed_on_local_date": "2026-10-25",
+  "confirmed_snapshot_blocks": {
+    "B1": 20458637
+  },
+  "holdout": {
+    "primary_peak_selection": "maximum_liquidation_event_count",
+    "peak_window_blocks": 300,
+    "tie_break": "earliest_event_start",
+    "secondary_peak_selection": "first_oracle_eth_decline",
+    "secondary_eth_return_threshold": -0.05,
+    "full_event_windows_source": "config/snapshots.json",
+    "price_source": "chainlink_oracle_and_aligned_depeg",
+    "report_wallet_and_initial_debt_weighted_hit_rates": true,
+    "source_completeness_status": "pending_independent_verification"
+  },
+  "note": "User confirmed B1=20458637 and max-event-count primary peak; oracle -5% remains secondary. These decisions do not approve data completeness or model acceptance."
+}

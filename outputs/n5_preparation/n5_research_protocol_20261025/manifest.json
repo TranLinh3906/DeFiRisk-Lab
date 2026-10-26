@@ -1,0 +1,153 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-25T15:43:29.675574+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\n3_daily_steth_eth_reference.csv",
+      "bytes": 263843,
+      "sha256": "53d318e9e91e2bab020e013850438149489588582ebfb28e53b9c1d95b8c17bc",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\n3_history_2024_2026\\final\\n3_liquidations_observed.parquet",
+      "bytes": 537124,
+      "sha256": "20d67d570585df11755c62d91262da01efe8c692c62c51b7506e4934ea453f07",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_prepare_research_protocol.py",
+      "bytes": 3764,
+      "sha256": "2d59926d8089706fc196b58c61559ca88a4c2b8e1ca7da96a82ca695f2b1299b",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research_protocol.py",
+      "bytes": 5524,
+      "sha256": "e4e5fb8cc17bf8dc920acbb70a7a5934e5d073795d67543bb104af4e5d402262",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research.py",
+      "bytes": 10713,
+      "sha256": "5e2f2dd0da399671a5457ec34842e67b8d5e7354679e841b0699350bdb4ef814",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "calibration_returns.parquet",
+      "bytes": 20060,
+      "sha256": "a62a9d870d0108eafb7a5986be3312112ba34de69bc01418f2cf3bce251bb96b",
+      "data_kind": "calibration_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "mc_scenarios_candidate.parquet",
+      "bytes": 263322,
+      "sha256": "b42fb5ecb6f53ec4e1c302275e23b0ab44b2f88d6716d1fc2c299edf083e0c78",
+      "data_kind": "scenario_input_candidate",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "readiness.json",
+      "bytes": 3093,
+      "sha256": "88c76bb3833a49f6cb6450fab064c1c450754ca455171d562600c8d72f09b396",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "prepared_not_simulated",
+    "estimation": {
+      "df": 4,
+      "seed": 42,
+      "scenarios": 10000,
+      "rho": 0.09449334346449424,
+      "calibration_pairs": 365,
+      "method": "Pearson correlation of rank-transformed t quantiles; empirical simple-return marginals",
+      "validation_status": "candidate_pending_N3_price_confirmation"
+    },
+    "calibration_first_return": "2025-10-13 00:00:00+00:00",
+    "calibration_last_return": "2026-10-12 00:00:00+00:00",
+    "calibration_source": "Daily market reference, asynchronous STETH/USDT quotes; pending N3 confirmation",
+    "peak_300_block_candidates": {
+      "B1": {
+        "status": "retrospective_candidate",
+        "start_block": 20459042,
+        "end_block": 20459341,
+        "event_count": 644,
+        "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+        "duration": "300 blocks is not assumed to equal exactly one hour"
+      },
+      "B2": {
+        "status": "retrospective_candidate",
+        "start_block": 23549924,
+        "end_block": 23550223,
+        "event_count": 648,
+        "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+        "duration": "300 blocks is not assumed to equal exactly one hour"
+      }
+    },
+    "full_event_windows": {
+      "B1": {
+        "events": 1830,
+        "unique_wallets": 1152,
+        "first_hour_wallets": 177,
+        "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+        "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+        "duration_hours": 24.00027777777778,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      },
+      "B2": {
+        "events": 902,
+        "unique_wallets": 623,
+        "first_hour_wallets": 0,
+        "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+        "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+        "duration_hours": 48.000277777777775,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      }
+    },
+    "decisions_pending": [
+      "B1 image 20458692 vs state/config 20458637",
+      "Primary peak-window selection: max event count vs first oracle ETH decline >=5%",
+      "Daily close timing/source confirmation by N3; DebtRank node capacities/topology"
+    ],
+    "missing_inputs": [
+      "Chainlink AnswerUpdated history and feed/proxy/decimals provenance for holdout",
+      "Timestamp/block-aligned stETH/ETH depeg history during holdout",
+      "Evidence distinguishing gas/liquidator freezes from prediction failures"
+    ],
+    "rules": {
+      "min_debt_usd": 100,
+      "mc_samples": 10000,
+      "seed": 42,
+      "df": 4,
+      "equity_normalization_usd": 100000,
+      "es99_tail_scenarios": 100,
+      "looping": "category1 + enabled LST collateral + WETH debt + leverage>=3",
+      "collateral_priority": "max(liquidation_bonus - DEX_slippage)",
+      "hit_rate": "report wallet count AND t0 debt-weighted; do not remove misses without evidence"
+    },
+    "output_simulation_results": "NOT_GENERATED: scenarios are inputs, not simulated losses or acceptance"
+  }
+}

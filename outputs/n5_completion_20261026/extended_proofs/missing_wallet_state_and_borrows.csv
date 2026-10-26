@@ -1,0 +1,7 @@
+snapshot_id,snapshot_block,wallet_address,call_ok,total_collateral_base_usd,total_debt_base_usd,health_factor_reported,classification,borrow_events_after_snapshot,first_borrow_block_after_snapshot
+B2,23543615,0x00dbcc59e6bb596cf2a1cff9326c5f80618875c3,True,3e-05,0.0,,no_debt_at_snapshot,1,23555714
+B2,23543615,0x5895d114a4992f4ce71d61293f7d4fde93fcd695,True,0.0,0.0,,no_debt_at_snapshot,2,23549984
+B2,23543615,0xa98e339f5a0f135792286d481b4e23d91a667d3f,True,0.0,0.0,,no_debt_at_snapshot,2,23549983
+B2,23543615,0xb2633e23645fcf4857567c90e96f82e1c7ba6725,True,2.64223355,0.0,,no_debt_at_snapshot,1,23551389
+B2,23543615,0xb3445d5413abf63df1112a4a517de2602f249785,True,0.0,0.0,,no_debt_at_snapshot,1,23549984
+B2,23543615,0xfa0253943c3ff0e43898cba5a7a0da9d17c27995,True,0.0,0.0,,no_debt_at_snapshot,2,23549984

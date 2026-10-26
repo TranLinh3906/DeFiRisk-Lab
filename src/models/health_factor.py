@@ -239,7 +239,7 @@ def build_overview(risk_df: pd.DataFrame) -> dict[str, Any]:
     return {"snapshots": snapshots}
 
 
-def main() -> None:
+def _legacy_main() -> None:
     """Load processed Aave inputs, normalize contract keys, and write the mart."""
     position_path = PROCESSED / "borrower_positions.parquet"
     if not position_path.exists():
@@ -252,7 +252,8 @@ def main() -> None:
     # to blocks only if the official block column is absent.
     positions, config, prices = (normalize_input(d) for d in (positions, config, prices))
     # Attach E-Mode user category from account reference on the official wallet keys.
-    account_path = PROCESSED / "account_reference.parquet"
+    from src.models.n5_inputs import resolve_account_reference
+    account_path = resolve_account_reference(PROCESSED)
     if account_path.exists():
         account = normalize_input(pd.read_parquet(account_path))
         account = account.rename(columns={"wallet_address": "wallet_address"})
@@ -284,6 +285,11 @@ def main() -> None:
     )
     print(f"Wrote {MARTS / 'borrower_risk.parquet'} ({len(risk):,} wallet snapshots)")
     print(f"Wrote {MARTS / 'overview_metrics.json'}")
+
+
+def main() -> None:
+    from src.models.n4_research import main as research_main
+    research_main()
 
 
 if __name__ == "__main__":

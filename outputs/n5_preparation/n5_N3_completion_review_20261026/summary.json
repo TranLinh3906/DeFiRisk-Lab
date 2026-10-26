@@ -1,0 +1,99 @@
+{
+  "status": "partial_completion_verified",
+  "depeg": {
+    "rows": 96,
+    "formula_verified": true,
+    "start": "2026-10-12 00:00:00+00:00",
+    "end": "2026-10-15 23:00:00+00:00",
+    "unit": "percentage_points_relative_to_parity_1",
+    "holdout_scope": {
+      "B1": {
+        "depeg_rows_in_holdout": 0,
+        "status": "no_holdout_depeg_rows"
+      },
+      "B2": {
+        "depeg_rows_in_holdout": 0,
+        "status": "no_holdout_depeg_rows"
+      }
+    }
+  },
+  "gas": {
+    "original_flagged_frozen_events": 24,
+    "original_events": 42,
+    "start": "2026-10-12 09:17:11+00:00",
+    "end": "2026-10-15 17:16:35+00:00",
+    "assumed_gas_cost_usd": 60.0,
+    "observed_holdout_event_key_overlap": 0,
+    "reviewed_assumptions": {
+      "generated_at_utc": "2026-10-25T18:04:38.381257+00:00",
+      "total_analyzed_events": 42,
+      "analysis_status": "assumption_diagnostic_not_freeze_proof",
+      "frozen_events_count": null,
+      "frozen_events_pct": null,
+      "unprofitable_under_assumptions_count": 24,
+      "unprofitable_under_assumptions_pct": 57.14,
+      "assumptions": {
+        "avg_gas_units_per_liquidation": 400000,
+        "assumed_gas_price_gwei": 50.0,
+        "assumed_eth_price_usd": 3000.0
+      },
+      "conclusion": "These events executed. Negative estimated margin indicates assumption limitations, not confirmed freezes. Actual gas, DEX proceeds, fees and eligible-but-unexecuted positions are needed."
+    },
+    "acceptance": "not_freeze_proof; observed executed events cannot demonstrate nonexecution"
+  },
+  "valuation_coverage": {
+    "status": "fact-ready subset; full event coverage NOT guaranteed",
+    "created_utc": "2026-10-25T18:04:38.404033+00:00",
+    "source_price_type": "DefiLlama historical market reference; NOT Aave oracle",
+    "study_scope": "Aave V3 Ethereum; B1/B2 holdouts require approved N1/N2 blocks and verified event windows",
+    "research_design_alignment": {
+      "Q1": "background market liquidation evidence, not looping identification",
+      "Q2": "realized debt repaid and collateral seized; NOT counterfactual CF/bad debt",
+      "Q3": "realized token liquidation events for depeg validation; needs price and N2 position joins"
+    },
+    "total_events_in_input": 42,
+    "fact_ready_events": 42,
+    "fact_ready_pct": 100.0,
+    "valuation_coverage_pct": 100.0,
+    "valuation_coverage_status": "PASS",
+    "coverage_interpretation": "Priced share of supplied events, not independent chain-log completeness or predictive hit-rate",
+    "events_excluded": 0,
+    "reasons": {
+      "ok": 42
+    },
+    "unique_event_pk": true,
+    "min_time_utc": "2026-10-12 09:17:11+00:00",
+    "max_time_utc": "2026-10-15 17:16:35+00:00",
+    "fact_fields": [
+      "tx_hash",
+      "log_index",
+      "event_block",
+      "event_timestamp",
+      "protocol_id",
+      "wallet_address",
+      "liquidator_address",
+      "collateral_token_address",
+      "debt_token_address",
+      "debt_repaid_usd",
+      "collateral_seized_usd"
+    ],
+    "total_debt_repaid_usd_priced_subset": 4190879.8515807292,
+    "total_collateral_seized_usd_priced_subset": 4392171.927269707,
+    "max_quote_lag_minutes": 60,
+    "caveat": "Event-time USD uses market reference. Do not treat collateral_seized_usd as execution proceeds or claim system totals without independent block-window coverage and N2/N1 snapshot checks.",
+    "event_collection_coverage": "NOT_VERIFIED_INDEPENDENTLY",
+    "canonical_contract_written": false
+  },
+  "source_repairs": [
+    "Restored complete finalizer after upstream IndentationError; pricing coverage is not chain-log completeness",
+    "Allow signed depeg metrics in QA, retain positive-only constraints for actual prices/ratios",
+    "Gas estimate marked assumption-only with nullable freeze labels; unknown monetary inputs rejected",
+    "Price integration guards restored and quality-output/overwrite backup honored"
+  ],
+  "remaining": [
+    "B1/B2-aligned depeg series",
+    "Independent on-chain log collection completeness evidence",
+    "Actual transaction gas/effective price, ETH quote, execution costs and eligible-but-unexecuted positions",
+    "Missing oracle token/feed history and full Q1/Q3 simulation gates"
+  ]
+}

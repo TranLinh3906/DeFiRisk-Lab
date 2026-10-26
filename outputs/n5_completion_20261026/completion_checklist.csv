@@ -1,0 +1,18 @@
+﻿owner,task,status,evidence_or_limit
+N2,All-active-token oracle every block,complete,history/B1; history/B2
+N2,Six missing B2 initial accounts and later Borrow evidence,complete,extended_proofs/missing_wallet_state_and_borrows.csv
+N2,Snapshot oracle sources/prices and initial tolerance gates,complete,feed_metadata; n4_research/summary.json
+N2/N4,"Feed metadata, dependency getters, AnswerUpdated and upgrade queries",complete_observed_interfaces,extended_proofs; feed_metadata
+N3,"27 added quotes, 84 base quotes, 24 anchors",complete_independent_replay,all_quote_replay
+N3,Historical depeg hourly full B1/B2 plus every peak block,complete_at_declared_resolution,history; depeg_peak
+N3,Independent full-window liquidation log rescan,complete,history/B1/log_coverage.json; history/B2/log_coverage.json
+N3,1988 actual executed-transaction receipts and gas,complete,history_validation/*_actual_gas_costs.parquet
+N3,366 as-of market levels / 365 paired returns / 10000 scenario inputs,complete_inputs_not_losses,calibration_market
+N4,Shared filtered HF/Stress/Heatmap/Cliff/Reverse cohort and CLI/API,complete,n4_research
+N4,"Explicit depeg assets, cohort/protocol denominators and reverse targets",complete,n4_research; config/n4_research.json
+N4,155 reserve configs and 307 E-Mode membership records replayed,complete,extended_proofs; emode_replay
+N4,Five equity strata and nonpositive-equity normalization flags,complete_inputs_not_losses,emode_replay/wallet_equity_strata.parquet
+N5 integration,Approved 570 scoped executions with all 27 quotes,complete,approved_package_with27
+Research,Causal historical freeze from gas/profit,not_identifiable_from_successful_receipts_alone,Actual receipts provided; unexecuted counterfactual opportunities need separate inference
+Research,"Full contract emulation, expanded routes and extreme trade sizes",outside_user_selected_scope,"Three routes, fixed shocked oracle, explicit research execution policy"
+N5 research,"Full empirical Monte Carlo losses, ES99, DebtRank and Comet Q3",subsequent_research_work_not_N234_input_blocker,Fresh market calibration and N4 equity strata are now available

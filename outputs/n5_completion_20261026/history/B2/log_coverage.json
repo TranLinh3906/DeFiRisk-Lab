@@ -1,0 +1,87 @@
+{
+  "first_block": 23543616,
+  "last_block": 23557920,
+  "chunk_count": 15,
+  "events": 902,
+  "source": "independent Ethereum archive eth_getLogs rescan vs local Etherscan history",
+  "missing_local_events": 0,
+  "missing_rpc_events": 0,
+  "chunks": [
+    {
+      "first_block": 23543616,
+      "last_block": 23544615,
+      "events": 0
+    },
+    {
+      "first_block": 23544616,
+      "last_block": 23545615,
+      "events": 1
+    },
+    {
+      "first_block": 23545616,
+      "last_block": 23546615,
+      "events": 0
+    },
+    {
+      "first_block": 23546616,
+      "last_block": 23547615,
+      "events": 0
+    },
+    {
+      "first_block": 23547616,
+      "last_block": 23548615,
+      "events": 27
+    },
+    {
+      "first_block": 23548616,
+      "last_block": 23549615,
+      "events": 30
+    },
+    {
+      "first_block": 23549616,
+      "last_block": 23550615,
+      "events": 722
+    },
+    {
+      "first_block": 23550616,
+      "last_block": 23551615,
+      "events": 61
+    },
+    {
+      "first_block": 23551616,
+      "last_block": 23552615,
+      "events": 16
+    },
+    {
+      "first_block": 23552616,
+      "last_block": 23553615,
+      "events": 6
+    },
+    {
+      "first_block": 23553616,
+      "last_block": 23554615,
+      "events": 0
+    },
+    {
+      "first_block": 23554616,
+      "last_block": 23555615,
+      "events": 0
+    },
+    {
+      "first_block": 23555616,
+      "last_block": 23556615,
+      "events": 3
+    },
+    {
+      "first_block": 23556616,
+      "last_block": 23557615,
+      "events": 36
+    },
+    {
+      "first_block": 23557616,
+      "last_block": 23557920,
+      "events": 0
+    }
+  ],
+  "completeness": "all_declared_block_chunks_returned; conditional_on_RPC_provider"
+}

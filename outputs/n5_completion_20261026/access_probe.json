@@ -1,0 +1,28 @@
+[
+  {
+    "environment": "root",
+    "present": {
+      "ETHEREUM_ARCHIVE_RPC_URL": false,
+      "ALCHEMY_RPC_URL": false,
+      "ETH_RPC_URL": false,
+      "ETHERSCAN_API_KEY": false,
+      "COINGECKO_API_KEY": false
+    }
+  },
+  {
+    "environment": "compound",
+    "present": {
+      "ETHEREUM_ARCHIVE_RPC_URL": true,
+      "ALCHEMY_RPC_URL": false,
+      "ETH_RPC_URL": false,
+      "ETHERSCAN_API_KEY": false,
+      "COINGECKO_API_KEY": false
+    },
+    "probes": [
+      {
+        "variable": "ETHEREUM_ARCHIVE_RPC_URL",
+        "failure_type": "ProxyError"
+      }
+    ]
+  }
+]

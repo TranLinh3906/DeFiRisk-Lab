@@ -1,0 +1,13 @@
+﻿snapshot_id,window,cohort,hit_wallets,observed_wallets,wallet_hit_rate,debt_weighted_hit_rate,unscorable_wallets,missing_state_wallets,incomplete_token_price_wallets,wallet_target_85_met,debt_target_85_met,timing
+B1,full,all_observed_wallets,1149,1152,0.9973958333333334,0.9986058319841178,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B1,full,initial_cohort_debt_ge_100,1139,1142,0.9973730297723292,0.9986058297906085,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B1,primary_peak_300,all_observed_wallets,467,467,1.0,1.0,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B1,primary_peak_300,initial_cohort_debt_ge_100,467,467,1.0,1.0,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B1,secondary_sampled_eth_minus5,all_observed_wallets,402,402,1.0,1.0,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B1,secondary_sampled_eth_minus5,initial_cohort_debt_ge_100,402,402,1.0,1.0,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,full,all_observed_wallets,586,623,0.9406099518459069,0.9062945189598889,6,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,full,initial_cohort_debt_ge_100,570,601,0.9484193011647255,0.9062943453819775,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,primary_peak_300,all_observed_wallets,406,434,0.9354838709677419,0.9061681561584495,4,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,primary_peak_300,initial_cohort_debt_ge_100,406,430,0.9441860465116279,0.9061681561584495,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,secondary_sampled_eth_minus5,all_observed_wallets,13,14,0.9285714285714286,0.9616642439796731,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application
+B2,secondary_sampled_eth_minus5,initial_cohort_debt_ge_100,13,14,0.9285714285714286,0.9616642439796731,0,0,0,True,True,strictly prior block; frozen t0 quantities; no market-depeg double application

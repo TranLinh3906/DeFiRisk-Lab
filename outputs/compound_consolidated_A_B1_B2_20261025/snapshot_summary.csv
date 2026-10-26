@@ -1,4 +1,0 @@
-snapshot_id,snapshot_block,target_wallets,expected_queries,covered_queries,missing_queries,coverage_pct,positions_rows,accounts_rows,config_rows,overlap_rows
-A,26179841,28493,56986,56986,0,100.0,960,686,32,631
-B1,20458637,12047,24094,20108,3986,83.45646218975679,839,483,16,444
-B2,23543615,27985,55970,47086,8884,84.12721100589602,1056,693,29,636

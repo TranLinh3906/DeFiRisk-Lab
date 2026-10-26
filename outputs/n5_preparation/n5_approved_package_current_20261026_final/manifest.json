@@ -1,0 +1,540 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T01:31:34.979473+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_execution_scope_approved.json",
+      "bytes": 2894,
+      "sha256": "c7d36472505852566d6bc724cfaebd99f7accb51bb550858389b076d8cec7a62",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "bytes": 1392,
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\scenarios.yaml",
+      "bytes": 880,
+      "sha256": "2a3fb3368d4937881ac5b455d3543d0db76111b6517f617f6962f7dcaece0875",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v1\\n3_multivolume_rpc_verified_only.parquet",
+      "bytes": 19163,
+      "sha256": "fdca59ccbc4a71ff6f1330eb2aa4f5a7a821ebda1987fd3292bd252588b68724",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n3_priority2_quote_grid_v1\\n3_2pct_observed_anchors.parquet",
+      "bytes": 8606,
+      "sha256": "23371ad47a5cc57dcbe0b7c53b3cd56c6b01d0c0f2104adeb2d69bdc84aec613",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\staging\\n3_dex_liquidity_A_B1_B2.parquet",
+      "bytes": 23961,
+      "sha256": "da35729009bfd7b85aea2ebe7f9cb24fc2e7f348ef9ca0c173cfd62622adf896",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n3_quote_handoff_20261026\\n3_quote_first_batch_27.csv",
+      "bytes": 14039,
+      "sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\account_referenceAB1B2.parquet",
+      "bytes": 10362651,
+      "sha256": "0b4a324f773f1b5256c76c3a8522371d2bb808cefed02a6cc78c97f4a6e58e13",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_tolerances.json",
+      "bytes": 573,
+      "sha256": "8c676167b1b5c2b815a5d566b87436b66b499e759fb8021eb26fafd9e2030dec",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\fetch_dex_liquidity.py",
+      "bytes": 31253,
+      "sha256": "91cff3e97a845dd3c26da8313baed850434ef42f05cffd487335c85cee9bf79a",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_priority2_multivolume_quotes.py",
+      "bytes": 15429,
+      "sha256": "366d8e849697b747a13b267744335ed9f5a9f98900f5fb16847c810cd2deee90",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\positions_long.parquet",
+      "bytes": 12538550,
+      "sha256": "5d68a6c7808c0fd53829a51594a2fd09646144558b658253d6962f2da3451fe9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "bytes": 20340,
+      "sha256": "92da30b2ba2361ef78f347930f3120a6863df5125ba95169a3da829c18a467aa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\oracle_prices.parquet",
+      "bytes": 23372,
+      "sha256": "08ab31c76f1b4285d394f69de2119b47dd564fefc84a326faecf03e94dcda386",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\emode_membership.parquet",
+      "bytes": 16043,
+      "sha256": "13830b776dba80619cd13d216b53e627a637380c4e1c42d5d0b132a0919ef9df",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\protocol_reconciliation.parquet",
+      "bytes": 23204,
+      "sha256": "0d3de699edfd96fbadcc3f09fbba5e84becfc448939dbb24835219ef45ec71b9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_run_approved_package.py",
+      "bytes": 12319,
+      "sha256": "f1a2eccb4dcdda78eefa9064748205cc7a226ecf6320a35b1799bb0e329e8348",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_inputs.py",
+      "bytes": 10405,
+      "sha256": "ffebec4aaa62cba7c60145131bb6a9cdf663dc64e0d5b04fd6eaa8d92e2ed90e",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_n3_update.py",
+      "bytes": 10150,
+      "sha256": "c27139801b4f4c1272e8e927de3c54eedbdae05c554fa5203432b9a6f0279a84",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_impact_review.py",
+      "bytes": 11995,
+      "sha256": "a431b1bc4c4885bafaafd02f71750492a036e8f0956525f999e10e832d136c86",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_execution_scope.py",
+      "bytes": 2372,
+      "sha256": "a576d2714f8e78c6be32ae5b57eff2895741a04071a0a6b81a060a363d4bfcce",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\research_tolerances.py",
+      "bytes": 7845,
+      "sha256": "59ad73aabd6eb8504d84570d1956b9618cd051b3c2da2b61aafde25b2fe1af70",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\stress_test.py",
+      "bytes": 22883,
+      "sha256": "bd74b751de2cbb26d9f5256398efbd04603a8437a1427800c430582f0b518fd9",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cascade.py",
+      "bytes": 17261,
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "planned_quote_inventory.csv",
+      "bytes": 14643,
+      "sha256": "841443787bb35ad0adbeb4e072c84f78e821911f0f4f94f44e88ece586eeac63",
+      "data_kind": "receipt_inventory",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "quote_domain_limits.parquet",
+      "bytes": 6001,
+      "sha256": "031ea5ec8d5e97e8674bf03e924b0670a3ddeb64704c4b1b684552751a64f67b",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "heldout_quote_predictions.parquet",
+      "bytes": 13285,
+      "sha256": "11bec6549a084b6db36c861d503eedef0842189bebf766c3f0501159ed1990e6",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "unsupported_attempts.parquet",
+      "bytes": 54259654,
+      "sha256": "b29fa1694f18bacadf682adc693bbe4ceb557cd9de8d72182de940f2cf122c3b",
+      "data_kind": "unknown_execution_candidates_not_freeze",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "execution_summary.parquet",
+      "bytes": 25542,
+      "sha256": "b19e5aead2a05b6666f267dc96f21ca07052eb47ddeeb625b0da1269e9708320",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "execution_rounds.parquet",
+      "bytes": 59474,
+      "sha256": "46b710d5916cb3ce1503e67ec7afd0c46ebe77dce9060ab5dd9ba5ff0223fa00",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "execution_transactions.parquet",
+      "bytes": 2113702,
+      "sha256": "9e3e6d2c93f3ff2634aaaceb7046d1b3dfce4054bb0cdb68a8f8cdbf48ff4c93",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "unsupported_candidate_summary.parquet",
+      "bytes": 11389,
+      "sha256": "dba4d42e547f337828ec7028403d5226c65fea30ccdc03e457a3ccd5daa587d1",
+      "data_kind": "bounded_counterfactual_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "primary_results.csv",
+      "bytes": 10834,
+      "sha256": "1fc78e05c8663fb19c98ac460afc4209e1f12ffe7ac35786b69819261cbf7e84",
+      "data_kind": "readable_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "sensitivity_vs_primary.csv",
+      "bytes": 150605,
+      "sha256": "67f8036f714befc7b48e1587e760dfe3b45ee924b7c021c519c588bc563c4e89",
+      "data_kind": "readable_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "unsupported_candidates.csv",
+      "bytes": 75476,
+      "sha256": "dca2023753a24da2c31a33799799286d6ac628d38eb52c03fc7ac5893d49fe76",
+      "data_kind": "readable_diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 10429,
+      "sha256": "af8c76bb62d93aa1bf9ebe9fc3e56bb2ebafdcbbb6398fcdbfa4f0f1b9662411",
+      "data_kind": "run_status",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "approved_package_run_complete_quotes_pending",
+    "scope": {
+      "version": "20261026_user_approved_research_package",
+      "snapshots": {
+        "A": 26179841,
+        "B1": 20458637,
+        "B2": 23543615
+      },
+      "routes": [
+        {
+          "token_in_address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+          "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "pool_address": "0x109830a1aaad605bbf02a9dfa7b0b92ec2fb7daa"
+        },
+        {
+          "token_in_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "token_out_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+        },
+        {
+          "token_in_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+          "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "pool_address": "0xcbcdf9626bc03e24f779434178a73a0b4bad62ed"
+        }
+      ],
+      "primary_method": "linear",
+      "sensitivity_method": "power",
+      "max_rounds": 100,
+      "domain_policy": "validated_observation_bounds_only",
+      "outside_domain_policy": "unknown_do_not_split_or_extrapolate",
+      "same_token_repayment": "identity_no_dex_required",
+      "oracle_feedback": false,
+      "gas_cost_usd_assumed": 5.0,
+      "pool_state": "cumulative_across_rounds",
+      "pending_quote_requests": "outputs/n5_preparation/n3_quote_handoff_20261026/n3_quote_first_batch_27.csv",
+      "pending_quote_requests_sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+      "research_acceptance": "pending_separate_protocol_liquidity_gas_oracle_validation",
+      "ordering": "lowest_hf",
+      "pair_rule": "bonus_minus_impact",
+      "seed": 42,
+      "fee_status": "N3 raw metadata: WSTETH/WETH=100, WETH/USDC=500, WBTC/WETH=3000 ppm; source code confirms fee-inclusive reference; zero DEX/oracle basis remains assumed",
+      "experiments": [
+        {
+          "variant": "primary",
+          "method": "linear"
+        },
+        {
+          "variant": "curve_power",
+          "method": "power"
+        },
+        {
+          "variant": "pool_reset",
+          "method": "linear",
+          "pool_state": "reset_each_round"
+        },
+        {
+          "variant": "gas_0",
+          "method": "linear",
+          "gas": 0
+        },
+        {
+          "variant": "gas_20",
+          "method": "linear",
+          "gas": 20
+        },
+        {
+          "variant": "gas_60",
+          "method": "linear",
+          "gas": 60
+        },
+        {
+          "variant": "random_42",
+          "method": "linear",
+          "ordering": "random",
+          "seed": 42
+        },
+        {
+          "variant": "random_43",
+          "method": "linear",
+          "ordering": "random",
+          "seed": 43
+        },
+        {
+          "variant": "random_44",
+          "method": "linear",
+          "ordering": "random",
+          "seed": 44
+        },
+        {
+          "variant": "fee_zero",
+          "method": "linear",
+          "fee": 0.0,
+          "use_route_fees": false
+        }
+      ],
+      "fee_policy": "verified_pool_fee_tier_relative_to_fee_inclusive_marginal_reference"
+    },
+    "runs": 570,
+    "primary_runs": 57,
+    "input_gates": {
+      "A": {
+        "status": "passed",
+        "snapshot_block": 26179841,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 7.818007409899549e-11,
+            "absolute_error_usd": 0.7370414733886719,
+            "calculated_full_t0_debt_usd": 9427484969.034634,
+            "protocol_debt_usd": 9427484968.297592,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 1.1920928955078125e-07,
+            "max_collateral_absolute_error_usd": 5.960464477539063e-08
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.779465463869201e-12,
+            "individual_wallets_ge_005": 0
+          }
+        },
+        "included_wallets": 19664,
+        "excluded_dust_wallets": 8829,
+        "excluded_reference_debt_usd": 69527.24243968999,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+      },
+      "B1": {
+        "status": "passed",
+        "snapshot_block": 20458637,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 5.980060192270619e-13,
+            "absolute_error_usd": 0.003509521484375,
+            "calculated_full_t0_debt_usd": 5868705952.005379,
+            "protocol_debt_usd": 5868705952.008888,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 4.470348358154297e-08,
+            "max_collateral_absolute_error_usd": 5.960464477539063e-08
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.801447879756779e-12,
+            "individual_wallets_ge_005": 2
+          }
+        },
+        "included_wallets": 9675,
+        "excluded_dust_wallets": 2372,
+        "excluded_reference_debt_usd": 25342.30730185,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+      },
+      "B2": {
+        "status": "passed",
+        "snapshot_block": 23543615,
+        "protocol_id": "aave_v3_ethereum",
+        "policy": {
+          "version": "20261025_user_supplied",
+          "min_simulation_debt_usd": 100.0,
+          "dust_basis": "aave_reference_initial_debt",
+          "wallet_balance_max_absolute_error_usd": 100.0,
+          "protocol_debt_max_relative_error": 0.01,
+          "protocol_comparison": "strictly_less_than",
+          "hf_max_median_absolute_error": 0.005,
+          "hf_comparison": "strictly_less_than",
+          "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+        },
+        "gates": {
+          "protocol_debt": {
+            "status": "passed",
+            "relative_error": 1.0088755983891774e-12,
+            "absolute_error_usd": 0.021881103515625,
+            "calculated_full_t0_debt_usd": 21688604175.320942,
+            "protocol_debt_usd": 21688604175.342823,
+            "scope": "full pre-dust initial borrower universe"
+          },
+          "wallet_balances": {
+            "status": "passed",
+            "failed_debt_wallets": 0,
+            "failed_collateral_wallets": 0,
+            "max_debt_absolute_error_usd": 0.0036466818694407266,
+            "max_collateral_absolute_error_usd": 1.1920928955078125e-07
+          },
+          "hf_median": {
+            "status": "passed",
+            "median_absolute_error": 1.0292322549787514e-11,
+            "individual_wallets_ge_005": 0
+          }
+        },
+        "included_wallets": 20972,
+        "excluded_dust_wallets": 7013,
+        "excluded_reference_debt_usd": 61261.27792747,
+        "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates"
+      }
+    },
+    "planned_quotes_pending": 27,
+    "planned_quotes_received": 0,
+    "quote_qa": {
+      "status": "passed_internal_quote_checks",
+      "verified_quotes": 84,
+      "directions": 12,
+      "max_raw_recalculation_error_pct": 0.0,
+      "rpc_requeried": false,
+      "checkpoint_present": false,
+      "limitation": "Verifies supplied raw quote fields; no independent RPC replay or provenance beyond supplied files"
+    },
+    "round_limits_by_variant": {
+      "curve_power": 0,
+      "fee_zero": 0,
+      "gas_0": 0,
+      "gas_20": 0,
+      "gas_60": 0,
+      "pool_reset": 0,
+      "primary": 0,
+      "random_42": 0,
+      "random_43": 0,
+      "random_44": 0
+    },
+    "max_rounds_by_variant": {
+      "curve_power": 5,
+      "fee_zero": 5,
+      "gas_0": 6,
+      "gas_20": 4,
+      "gas_60": 4,
+      "pool_reset": 90,
+      "primary": 5,
+      "random_42": 5,
+      "random_43": 5,
+      "random_44": 5
+    },
+    "pair_rule_definition": "Among supported positive-USD-profit candidates maximize bonus premium minus incremental average execution slippage, both fractions; ties by USD profit then sorted token iteration",
+    "random_order_definition": "Same seed and full initial-wallet permutation schedule per round across paired runs",
+    "fee_status": "N3 raw metadata: WSTETH/WETH=100, WETH/USDC=500, WBTC/WETH=3000 ppm; source code confirms fee-inclusive reference; zero DEX/oracle basis remains assumed",
+    "oracle_feedback": false,
+    "freeze_proven": false,
+    "interpretation": "Bounded execution under fixed shocked oracle and zero DEX/oracle basis assumption. Unknown alternatives can coexist with executed pairs. Reset is sensitivity only; no observed gas or causal freeze claims. A completed planned-quote run requires all 27 observations."
+  }
+}

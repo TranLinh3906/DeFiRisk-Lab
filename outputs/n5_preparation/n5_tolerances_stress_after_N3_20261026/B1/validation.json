@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "snapshot_block": 20458637,
+  "protocol_id": "aave_v3_ethereum",
+  "policy": {
+    "version": "20261025_user_supplied",
+    "min_simulation_debt_usd": 100.0,
+    "dust_basis": "aave_reference_initial_debt",
+    "wallet_balance_max_absolute_error_usd": 100.0,
+    "protocol_debt_max_relative_error": 0.01,
+    "protocol_comparison": "strictly_less_than",
+    "hf_max_median_absolute_error": 0.005,
+    "hf_comparison": "strictly_less_than",
+    "note": "100 USD per-wallet absolute balance tolerance is distinct from the 100 USD dust cutoff and the earlier 0.01 USD proposal. Protocol reconciliation uses full pre-dust t0 debt, not post-liquidation debt."
+  },
+  "gates": {
+    "protocol_debt": {
+      "status": "passed",
+      "relative_error": 5.980060192270619e-13,
+      "absolute_error_usd": 0.003509521484375,
+      "calculated_full_t0_debt_usd": 5868705952.005379,
+      "protocol_debt_usd": 5868705952.008888,
+      "scope": "full pre-dust initial borrower universe"
+    },
+    "wallet_balances": {
+      "status": "passed",
+      "failed_debt_wallets": 0,
+      "failed_collateral_wallets": 0,
+      "max_debt_absolute_error_usd": 4.470348358154297e-08,
+      "max_collateral_absolute_error_usd": 5.960464477539063e-08
+    },
+    "hf_median": {
+      "status": "passed",
+      "median_absolute_error": 1.801447879756779e-12,
+      "individual_wallets_ge_005": 2
+    },
+    "n4_hf_median": {
+      "status": "passed",
+      "median_absolute_error": 1.801447879756779e-12,
+      "invalid_or_missing_wallets": 0
+    }
+  },
+  "included_wallets": 9675,
+  "excluded_dust_wallets": 2372,
+  "excluded_reference_debt_usd": 25342.30730185,
+  "full_research_acceptance": "pending_other_liquidity_holdout_and_execution_gates",
+  "stress_scenarios_run": 19
+}

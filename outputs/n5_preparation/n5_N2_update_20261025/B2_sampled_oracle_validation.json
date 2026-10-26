@@ -1,0 +1,181 @@
+{
+  "windows": {
+    "full": {
+      "start_block": 23543615,
+      "end_block": 23557920,
+      "events": 902,
+      "pre_event_sampled_oracle": {
+        "observed_wallets": 623,
+        "hit_wallets": 182,
+        "wallet_hit_rate": 0.29213483146067415,
+        "missing_state_wallets": 6,
+        "incomplete_token_price_wallets": 405,
+        "initial_debt_known_usd": 466740657.21690637,
+        "debt_weighted_hit_rate": null,
+        "known_state_debt_weighted_hit_rate": 0.5931191940608411,
+        "unknown_debt_wallets": 6,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "retrospective_coherent_trough": {
+        "observed_wallets": 623,
+        "hit_wallets": 208,
+        "wallet_hit_rate": 0.33386837881219905,
+        "missing_state_wallets": 6,
+        "incomplete_token_price_wallets": 405,
+        "initial_debt_known_usd": 466740657.21690637,
+        "debt_weighted_hit_rate": null,
+        "known_state_debt_weighted_hit_rate": 0.6900372188025636,
+        "unknown_debt_wallets": 6,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "debt_ge_100_sensitivity": {
+        "observed_wallets": 601,
+        "hit_wallets": 172,
+        "wallet_hit_rate": 0.28618968386023297,
+        "missing_state_wallets": 0,
+        "incomplete_token_price_wallets": 399,
+        "initial_debt_known_usd": 466739792.63868964,
+        "debt_weighted_hit_rate": 0.5931191144338261,
+        "known_state_debt_weighted_hit_rate": 0.5931191144338261,
+        "unknown_debt_wallets": 0,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "acceptance": "pending_complete_feeds_depeg_coverage_and_validation",
+      "limitation": "Sampled Aave oracle only; no separately supplied depeg; missing tokens excluded from hits but retained as misses"
+    },
+    "primary_peak_300": {
+      "start_block": 23549924,
+      "end_block": 23550223,
+      "events": 648,
+      "pre_event_sampled_oracle": {
+        "observed_wallets": 434,
+        "hit_wallets": 100,
+        "wallet_hit_rate": 0.2304147465437788,
+        "missing_state_wallets": 4,
+        "incomplete_token_price_wallets": 306,
+        "initial_debt_known_usd": 461382446.0533758,
+        "debt_weighted_hit_rate": null,
+        "known_state_debt_weighted_hit_rate": 0.5934909729630786,
+        "unknown_debt_wallets": 4,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "retrospective_coherent_trough": {
+        "observed_wallets": 434,
+        "hit_wallets": 124,
+        "wallet_hit_rate": 0.2857142857142857,
+        "missing_state_wallets": 4,
+        "incomplete_token_price_wallets": 306,
+        "initial_debt_known_usd": 461382446.0533758,
+        "debt_weighted_hit_rate": null,
+        "known_state_debt_weighted_hit_rate": 0.6908566258229212,
+        "unknown_debt_wallets": 4,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "debt_ge_100_sensitivity": {
+        "observed_wallets": 430,
+        "hit_wallets": 100,
+        "wallet_hit_rate": 0.23255813953488372,
+        "missing_state_wallets": 0,
+        "incomplete_token_price_wallets": 306,
+        "initial_debt_known_usd": 461382446.0533758,
+        "debt_weighted_hit_rate": 0.5934909729630786,
+        "known_state_debt_weighted_hit_rate": 0.5934909729630786,
+        "unknown_debt_wallets": 0,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "acceptance": "pending_complete_feeds_depeg_coverage_and_validation",
+      "limitation": "Sampled Aave oracle only; no separately supplied depeg; missing tokens excluded from hits but retained as misses"
+    },
+    "secondary_sampled_eth_minus5": {
+      "start_block": 23548245,
+      "end_block": 23548544,
+      "events": 13,
+      "pre_event_sampled_oracle": {
+        "observed_wallets": 13,
+        "hit_wallets": 8,
+        "wallet_hit_rate": 0.6153846153846154,
+        "missing_state_wallets": 0,
+        "incomplete_token_price_wallets": 5,
+        "initial_debt_known_usd": 1066150.9483733904,
+        "debt_weighted_hit_rate": 0.42327248617319774,
+        "known_state_debt_weighted_hit_rate": 0.42327248617319774,
+        "unknown_debt_wallets": 0,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "retrospective_coherent_trough": {
+        "observed_wallets": 13,
+        "hit_wallets": 8,
+        "wallet_hit_rate": 0.6153846153846154,
+        "missing_state_wallets": 0,
+        "incomplete_token_price_wallets": 5,
+        "initial_debt_known_usd": 1066150.9483733904,
+        "debt_weighted_hit_rate": 0.42327248617319774,
+        "known_state_debt_weighted_hit_rate": 0.42327248617319774,
+        "unknown_debt_wallets": 0,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "debt_ge_100_sensitivity": {
+        "observed_wallets": 13,
+        "hit_wallets": 8,
+        "wallet_hit_rate": 0.6153846153846154,
+        "missing_state_wallets": 0,
+        "incomplete_token_price_wallets": 5,
+        "initial_debt_known_usd": 1066150.9483733904,
+        "debt_weighted_hit_rate": 0.42327248617319774,
+        "known_state_debt_weighted_hit_rate": 0.42327248617319774,
+        "unknown_debt_wallets": 0,
+        "freeze_status": "not_classified_no_gas_execution_evidence"
+      },
+      "acceptance": "pending_complete_feeds_depeg_coverage_and_validation",
+      "limitation": "Sampled Aave oracle only; no separately supplied depeg; missing tokens excluded from hits but retained as misses"
+    }
+  },
+  "secondary_window": {
+    "status": "first_sample_at_or_below_minus5_not_exact_update",
+    "start_block": 23548245,
+    "end_block": 23548544
+  },
+  "oracle_tokens": [
+    "WETH",
+    "wstETH",
+    "WBTC",
+    "USDC",
+    "DAI",
+    "cbETH",
+    "USDT",
+    "rETH",
+    "GHO",
+    "weETH",
+    "cbBTC"
+  ],
+  "missing_active_tokens": [
+    "0x111111111117dc0aa78b770fa6a738034120c302",
+    "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+    "0x1abaea1f7c830bd89acc67ec4af516284b1bc33c",
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "0x514910771af9ca656af840dff83e8264ecf986ca",
+    "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+    "0x5f98805a4e8be255a32880fdec7f6728c6568ba0",
+    "0x657e8c867d8b37dcc18fa4caead9c45eb088c642",
+    "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+    "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+    "0x8236a87084f8b84306f72007f36f2618a5634494",
+    "0x8292bb45bf1ee4d140127049757c2e0ff06317ed",
+    "0x853d955acef822db058eb8505911ed77f175b99e",
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+    "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+    "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+    "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+    "0xba100000625a3754423978a60c9317c58a424e3d",
+    "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
+    "0xc139190f447e929f090edeb554d95abb8b18ac1c",
+    "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+    "0xc96de26018a54d51c097160568752c4e3bd6c364",
+    "0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8",
+    "0xd533a949740bb3306d119cc777fa900ba034cd52",
+    "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+    "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+    "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "readable_review_not_model_acceptance",
+  "request_rows": 496,
+  "request_counts": {
+    "missing_exact_route": 461,
+    "sparse_interval_overlapping_candidate_demand": 18,
+    "below_minimum_observed_quote": 9,
+    "above_maximum_observed_quote": 8
+  },
+  "changed_repayment_pairs": 36,
+  "changed_profit_pairs": 47,
+  "changed_round_pairs": 14,
+  "pairs_either_method_hit_round_limit": 11,
+  "changed_round_pairs_without_round_limit": 14,
+  "max_absolute_repayment_difference_usd": 71099398.32748775,
+  "max_absolute_profit_difference_usd": 283646.0343847117,
+  "caveat": "Comparisons use restricted exact routes with fixed shocked oracle, assumed gas/fee and unknown unsupported execution; no official cascade or observed freeze claims"
+}

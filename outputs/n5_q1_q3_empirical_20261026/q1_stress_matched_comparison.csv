@@ -1,0 +1,7 @@
+﻿snapshot_id,snapshot_block,is_recursive_loop,common_strata,mean_loss_per_100k,es99_loss_per_100k,probability_bad_debt,matching,acceptance
+A,26179841,False,5,127.276025704958,1562.123985639068,0.00491284903116822,equal_common_equity_strata,fixture_or_conditional_scenario_only
+A,26179841,True,5,242.5221128678993,2708.284760857087,0.014413081885040471,equal_common_equity_strata,fixture_or_conditional_scenario_only
+B1,20458637,False,5,894.5478655738997,9393.161234030678,0.0244489960629004,equal_common_equity_strata,fixture_or_conditional_scenario_only
+B1,20458637,True,5,211.9344556131484,2354.490697951033,0.0073883572567783095,equal_common_equity_strata,fixture_or_conditional_scenario_only
+B2,23543615,False,5,175.7921861766904,2120.4719583299106,0.0065218943440290555,equal_common_equity_strata,fixture_or_conditional_scenario_only
+B2,23543615,True,5,213.26066111158835,2206.476794756436,0.007725634135151076,equal_common_equity_strata,fixture_or_conditional_scenario_only

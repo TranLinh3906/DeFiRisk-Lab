@@ -1,0 +1,8 @@
+{
+  "emode_rows_replayed": 307,
+  "parameter_membership_mismatches": 0,
+  "categories": 77,
+  "equity_wallets": 50311,
+  "nonpositive_equity_wallets": 5,
+  "scope": "Initial cohort equity strata only. Normalized loss/ES require actual scenario losses; negative or zero equity is not normalized."
+}

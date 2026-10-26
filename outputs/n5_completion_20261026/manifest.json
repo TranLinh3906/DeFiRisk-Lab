@@ -1,0 +1,745 @@
+{
+  "bundle_version": "N234_handoff_v1",
+  "validation_status": "input_and_execution_checks_passed_not_full_research_acceptance",
+  "files": [
+    {
+      "path": "history/B1/answer_updated.parquet",
+      "bytes": 140312,
+      "sha256": "c89b7968d10f3f6f23dcf2ec873f3a1e33e9ffb00dd85166133a41df93eddd87"
+    },
+    {
+      "path": "history/B1/answer_updated_raw.json",
+      "bytes": 962797,
+      "sha256": "515831565dc3f3636cd4c949b0708fc81811943052af95be98d8b9298cfef30c"
+    },
+    {
+      "path": "history/B1/depeg_curve_observed.parquet",
+      "bytes": 8534,
+      "sha256": "71ee4a8343a2aabc625a8640fdbbb58a83eee58011b3a902117b1e65bf3c4a4b"
+    },
+    {
+      "path": "history/B1/executed_receipts.parquet",
+      "bytes": 168754,
+      "sha256": "42f3cfcac295d5dc71b5a91b78cc71bbb432308e15ffe7fe666efb8cf832d73c"
+    },
+    {
+      "path": "history/B1/feed_metadata.csv",
+      "bytes": 7620,
+      "sha256": "37150d42702269a75f286d1b4a41ead2c0d2be8c3b833a37228b2e3a122bcce1"
+    },
+    {
+      "path": "history/B1/liquidations_rpc.parquet",
+      "bytes": 219672,
+      "sha256": "e11ef4f02c9bd6f1a211f3d7b8d61fe6ce385c21f4a3437aa6310ac8bcd3f81d"
+    },
+    {
+      "path": "history/B1/log_coverage.json",
+      "bytes": 1139,
+      "sha256": "744de3cfb6c88277e549054f6c43a38c657330def90ddbead8118f30551f1077"
+    },
+    {
+      "path": "history/B1/oracle_all_active_tokens.parquet",
+      "bytes": 748725,
+      "sha256": "4ba8d00eb8028cff499d4737b35dcae5e22f06bf9f68e6cded20e326280f0c2a"
+    },
+    {
+      "path": "history/B2/answer_updated.parquet",
+      "bytes": 192642,
+      "sha256": "2854ad3d483abfe4fe341b244b57d592cef24a937755040ad45c869f8331df16"
+    },
+    {
+      "path": "history/B2/answer_updated_raw.json",
+      "bytes": 1324330,
+      "sha256": "993ff7c2816390e9bfd3d4f91dddfdb610c6498e2d82e8ef14b89f6e83f1ff28"
+    },
+    {
+      "path": "history/B2/depeg_curve_observed.parquet",
+      "bytes": 9681,
+      "sha256": "1be686d59952fb5fb2c63b84b79030118cf4551c804a22bde9aea66df1071b60"
+    },
+    {
+      "path": "history/B2/executed_receipts.parquet",
+      "bytes": 87565,
+      "sha256": "ecfae1ebff371355eecc260af1c8b2d4facee83f8007d3d841d31b5f340bb762"
+    },
+    {
+      "path": "history/B2/feed_metadata.csv",
+      "bytes": 12422,
+      "sha256": "a71f0aa1068c66f1f170f0f76a275603259ef36914c4e2503729f337951965c4"
+    },
+    {
+      "path": "history/B2/four_wallet_borrow_logs.json",
+      "bytes": 7092,
+      "sha256": "8abf87557f3a12167b22f939a477f0deb50a4e052136ddc6a94c5e911c8c4d8a"
+    },
+    {
+      "path": "history/B2/four_wallet_snapshot_state.csv",
+      "bytes": 495,
+      "sha256": "c193604207853a7979b72dc9cd27f72141b838e2fdd60993ca578db229568789"
+    },
+    {
+      "path": "history/B2/liquidations_rpc.parquet",
+      "bytes": 124837,
+      "sha256": "ca2cc7fbd2bd2c472933dad309bdf67a2c13828ce90722baeb3714a53924ac23"
+    },
+    {
+      "path": "history/B2/log_coverage.json",
+      "bytes": 1815,
+      "sha256": "c5894c6bb986afdb5589861cc39928db31dc94370f2952c522d4f4480a339fe4"
+    },
+    {
+      "path": "history/B2/oracle_all_active_tokens.parquet",
+      "bytes": 1875393,
+      "sha256": "e56db1abdd6423c11fe25c927c6fec8a13339590e1764677d2a99c19f58d9790"
+    },
+    {
+      "path": "history/collection_summary.json",
+      "bytes": 880,
+      "sha256": "d9dcdae0e5848fa3dc3e74492a4a0ee005f480b1c5122abf28f330ae086b594d"
+    },
+    {
+      "path": "history_validation/account_reference_supplemented.parquet",
+      "bytes": 10366235,
+      "sha256": "10522be020df16e0a09ec830fc8150cd24bd2c5674e0625bcd0e0e9ec89f164a"
+    },
+    {
+      "path": "history_validation/B1_actual_gas_costs.parquet",
+      "bytes": 216263,
+      "sha256": "2ed8d5fe15a2544a977bb055867ea65f715ed0d0eef0da35be1bfd7701aae56e"
+    },
+    {
+      "path": "history_validation/B1_depeg_hourly_qa.parquet",
+      "bytes": 8003,
+      "sha256": "9f1d6f2997ec42e280f8fa5390b53d3796345cc672fcca288ed95cc485c8135b"
+    },
+    {
+      "path": "history_validation/B1_oracle_event_evidence.parquet",
+      "bytes": 179614,
+      "sha256": "23e1d864dcddb81e05149e36a2ce8012e5f6f9debd86155e1ec2af96cd1b8ab4"
+    },
+    {
+      "path": "history_validation/B1_oracle_wallet_evidence.parquet",
+      "bytes": 116896,
+      "sha256": "db652e10b80415f0d5a76710b0624bd6d346bfdc92213c4f31c4dd4ae2276a59"
+    },
+    {
+      "path": "history_validation/B2_actual_gas_costs.parquet",
+      "bytes": 112976,
+      "sha256": "2b68a06c2160fd9290530872dd7b58c6b595c5eb8ed8f7be9fc74a34551a548c"
+    },
+    {
+      "path": "history_validation/B2_depeg_hourly_qa.parquet",
+      "bytes": 9062,
+      "sha256": "9416b9a31c78f158b5b1043ffd8244d4578574b255823618a2235d4284bee7d7"
+    },
+    {
+      "path": "history_validation/B2_oracle_event_evidence.parquet",
+      "bytes": 98352,
+      "sha256": "9f1c8587eb0736afa3c259f676b2dbb51ab11f9d0a112f56dd7e5e4f0cd8a274"
+    },
+    {
+      "path": "history_validation/B2_oracle_wallet_evidence.parquet",
+      "bytes": 60976,
+      "sha256": "1d3f789305981f46676b70625bf579817d5d93b9a2f0595fa9a0ebf92511593f"
+    },
+    {
+      "path": "history_validation/manifest.json",
+      "bytes": 36644,
+      "sha256": "c51e82010030a020c3e0564aa2c112c1a0258fc0058d3a35636aacb6b19b6d78"
+    },
+    {
+      "path": "history_validation/summary.json",
+      "bytes": 25397,
+      "sha256": "35ef403165531e7a3c2ce69c80269e782c35994f60fef4f8e42c6703245dcc1c"
+    },
+    {
+      "path": "n4_research/borrower_risk.parquet",
+      "bytes": 3973241,
+      "sha256": "6f549501b5cc5746f6b26995b0a6d16482c1697f6a8d693581c69b1f9385959b"
+    },
+    {
+      "path": "n4_research/cliff_curve.parquet",
+      "bytes": 18739,
+      "sha256": "2fc468f23b7ff26c87d7147aaccc2532c7760f24ddabee426c2a679a1d062dca"
+    },
+    {
+      "path": "n4_research/manifest.json",
+      "bytes": 15343,
+      "sha256": "299d21cf4ab4c486a99bad652f06e6702607c2422a39616da52264c1ec3a21e5"
+    },
+    {
+      "path": "n4_research/overview_metrics.json",
+      "bytes": 953,
+      "sha256": "cf3c31e59a51e6a5aa6145d520ea27ad0b21f5e46534b2354a74a20f1e2dfaed"
+    },
+    {
+      "path": "n4_research/reverse_stress.json",
+      "bytes": 5226,
+      "sha256": "9a678c1d85ac30ddc4a0c5a2bc75ea622f8c6c6889c4c64071d64aebe4f28cbc"
+    },
+    {
+      "path": "n4_research/reverse_stress.parquet",
+      "bytes": 7834,
+      "sha256": "5da2f26b92118adf96c3f87f0b75d6e0ab8180130670da430f0b1e85478907d2"
+    },
+    {
+      "path": "n4_research/simulation_positions.parquet",
+      "bytes": 4936788,
+      "sha256": "9ead73c77e88233d7eec6e1bfef53f5c3aeaaba7af5952035b815cca7272b49f"
+    },
+    {
+      "path": "n4_research/stress_heatmap.parquet",
+      "bytes": 5128,
+      "sha256": "27ffd16b7794385afa58b91ca0fdac31180edb4aee373f9ee633699b35d27e43"
+    },
+    {
+      "path": "n4_research/stress_positions.parquet",
+      "bytes": 53175426,
+      "sha256": "523d5e44b28739f97e70dbf560990b315bfde7d8a3c3211349da6a2d8375fc06"
+    },
+    {
+      "path": "n4_research/stress_summary.parquet",
+      "bytes": 8060,
+      "sha256": "c0d3a434e103b70581c09a92c45439f2a2626c9c5b399fd99add113a10456b38"
+    },
+    {
+      "path": "n4_research/summary.json",
+      "bytes": 6866,
+      "sha256": "525b5d04d162bbdebaae647fdb951d00005b6fcefda153f945e707ee77529b8d"
+    },
+    {
+      "path": "n4_research/wallet_checks.parquet",
+      "bytes": 6886117,
+      "sha256": "a78b6c6bb70100c1f91c019fa43046167454f563bc5ef6d0a17d7e819d670dc3"
+    },
+    {
+      "path": "n4_research/wallet_cohort.parquet",
+      "bytes": 3362344,
+      "sha256": "cb45b6730b980033293710543a6c2234392ed395537b76596f113ad9a8b670f4"
+    },
+    {
+      "path": "approved_package_with27/curve_points_with_quantization_audit.parquet",
+      "bytes": 9402,
+      "sha256": "454a551e3df7a93146517578a5b11f92195f40a30b52990773c631fbfa780236"
+    },
+    {
+      "path": "approved_package_with27/execution_rounds.parquet",
+      "bytes": 58178,
+      "sha256": "fa20d8ffb93956cd804cb4098ed2e26985a103826774125c28b92bd00c5aa71d"
+    },
+    {
+      "path": "approved_package_with27/execution_summary.parquet",
+      "bytes": 25276,
+      "sha256": "f32fe084bbb22ca60f6e51f52e6dcf1f888e4fc7f13419f82290428e02f42174"
+    },
+    {
+      "path": "approved_package_with27/execution_transactions.parquet",
+      "bytes": 2140381,
+      "sha256": "cb1c496da1e6d7a1a1db592e3e8612481001061a138f44fc889cab3c24177aea"
+    },
+    {
+      "path": "approved_package_with27/heldout_quote_predictions.parquet",
+      "bytes": 14984,
+      "sha256": "8b847ade8995f522df098d8f2dbca38eb4d074d7475fb7584d7a64daab9b90af"
+    },
+    {
+      "path": "approved_package_with27/manifest.json",
+      "bytes": 23673,
+      "sha256": "c496a277b719b72bdda6d1d2f83af99689e4ae59903f31e63a5ad2fd7de43f52"
+    },
+    {
+      "path": "approved_package_with27/planned_quote_inventory.csv",
+      "bytes": 14643,
+      "sha256": "7ff49b6526eaf27dcfe3b2713a3d0e89c7a4f33e16c4e15c2b430345e0d42791"
+    },
+    {
+      "path": "approved_package_with27/primary_results.csv",
+      "bytes": 10711,
+      "sha256": "234a26a48c6fa295a2f44492ce0be888003063716a8d5a6ef939584180975e99"
+    },
+    {
+      "path": "approved_package_with27/quote_domain_limits.parquet",
+      "bytes": 6075,
+      "sha256": "72985544fdb8ba935f3ab62947466cfc8848bdec1c9637a432f07c8dd5eb7880"
+    },
+    {
+      "path": "approved_package_with27/sensitivity_vs_primary.csv",
+      "bytes": 148539,
+      "sha256": "9a50fcfc9f59a1958818dc29b9e49622b366a5bf577b6090caf3db514ef4c2f4"
+    },
+    {
+      "path": "approved_package_with27/summary.json",
+      "bytes": 11573,
+      "sha256": "e632ef900388dc8940aa055369528f16c6326b6d7e9774223b8be4d2bb06e738"
+    },
+    {
+      "path": "approved_package_with27/unsupported_attempts.parquet",
+      "bytes": 51754845,
+      "sha256": "1e79dbe4c153191f6ef48eac5ed1e8f6bc1041d5f9cd0b95c23bbd0e1a616f16"
+    },
+    {
+      "path": "approved_package_with27/unsupported_candidate_summary.parquet",
+      "bytes": 11024,
+      "sha256": "0f4d585b8a177c6e3cc296ef66ff7dd522934b2899de83376521bf5a84100afd"
+    },
+    {
+      "path": "approved_package_with27/unsupported_candidates.csv",
+      "bytes": 73649,
+      "sha256": "1d884e7d466d4f0b3ae1c61dd03ac10a7964ae14fce219bc542698a653cd29e8"
+    },
+    {
+      "path": "extended_proofs/B1_answer_updated_dependencies.parquet",
+      "bytes": 184363,
+      "sha256": "cf289e05b49a8b2f9be905f4233a2dfdc85fe000fde17bf6e29e2dbb981db5db"
+    },
+    {
+      "path": "extended_proofs/B1_feed_dependencies.csv",
+      "bytes": 10327,
+      "sha256": "cb5370f25ebb2a2a8df5351c6b2beafabca7c95c52474104021e6dc4425fbdb9"
+    },
+    {
+      "path": "extended_proofs/B1_feed_logs_raw.json",
+      "bytes": 1291529,
+      "sha256": "20b909ad9c5cc5ff21f95889410126a80458c3a58493bc02d3f133cd96ba244c"
+    },
+    {
+      "path": "extended_proofs/B1_source_upgrade_logs.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "extended_proofs/B2_answer_updated_dependencies.parquet",
+      "bytes": 207251,
+      "sha256": "d46178ff47f8f448f10638ba6fa1027ef747827c2920585269e565e85851fe3b"
+    },
+    {
+      "path": "extended_proofs/B2_feed_dependencies.csv",
+      "bytes": 18279,
+      "sha256": "8b46110a123b8660bcd9d0c36b8ec43eee988d29f023ff8f67f9b0f959da451e"
+    },
+    {
+      "path": "extended_proofs/B2_feed_logs_raw.json",
+      "bytes": 1418352,
+      "sha256": "33d37de54dbea5b4468b0edd8d2f2e5ec52cb988780c4e02fd787f5d5ddc34d0"
+    },
+    {
+      "path": "extended_proofs/B2_source_upgrade_logs.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "extended_proofs/borrow_logs.json",
+      "bytes": 8278,
+      "sha256": "32918860e101a7b7fa2f1e77b93a45710e6779368c1fbe4067bff6d60d281f4a"
+    },
+    {
+      "path": "extended_proofs/missing_wallet_state_and_borrows.csv",
+      "bytes": 813,
+      "sha256": "d40df011e49c889d23027f0f4c9ceaa3f192aec4c64a874517920c2bc141fec1"
+    },
+    {
+      "path": "extended_proofs/pool_implementations.csv",
+      "bytes": 481,
+      "sha256": "3461a0e555bcbb8e4bfff30fdf1f17883bdaf46644aaf916c994a2cc2bea9546"
+    },
+    {
+      "path": "extended_proofs/reserve_parameter_replay.csv",
+      "bytes": 26157,
+      "sha256": "1fecb4e382e8eba8eba2525ba8c88fc09eddca5509dd501c6473b66ed4229e9b"
+    },
+    {
+      "path": "extended_proofs/summary.json",
+      "bytes": 3546,
+      "sha256": "85b60ebc51feb304761b86b002c03ca11a992a002dd8d5d7fd5338fe8f75e1dd"
+    },
+    {
+      "path": "feed_metadata/historical_feed_metadata.parquet",
+      "bytes": 18078,
+      "sha256": "35f5c50fa2653151711f8bb3e38263e5b32e8367a3d63d5b00c79b722c0cc239"
+    },
+    {
+      "path": "feed_metadata/snapshot_oracle_replay.parquet",
+      "bytes": 14799,
+      "sha256": "7dfe77e2724d3082c9f7feff01bf333d79b939b56f89028d53c383b16d74a205"
+    },
+    {
+      "path": "feed_metadata/summary.json",
+      "bytes": 88,
+      "sha256": "2325b8468fbb2f99aa28633b0a9bbecc5e07471f3a556e8a89656e22d3406386"
+    },
+    {
+      "path": "emode_replay/emode_parameter_membership_replay.parquet",
+      "bytes": 10327,
+      "sha256": "8ab945c00ff4b3190ba7f8f2e55a3c411afbf88e35294cf96d69df1a10904284"
+    },
+    {
+      "path": "emode_replay/summary.json",
+      "bytes": 304,
+      "sha256": "dd617caf626f2b94b8a46a25bc8da07ac34395943d43108dbb15f67059ed5809"
+    },
+    {
+      "path": "emode_replay/wallet_equity_strata.parquet",
+      "bytes": 4997935,
+      "sha256": "c0c8a700f87c3c0664424586f5ff434e38d42fe11b4fa3b8e4ac5f80bf68567a"
+    },
+    {
+      "path": "all_quote_replay/all_quote_anchor_replay.parquet",
+      "bytes": 16464,
+      "sha256": "0b8524e79d02fda62941d76e162102edc1d5519cd973f1b2553f73898458f1bd"
+    },
+    {
+      "path": "all_quote_replay/summary.json",
+      "bytes": 283,
+      "sha256": "da7d8a4028e0dbad2157e4d53d80cf46dfe81c1ad0be5a05146f4fea939c8eed"
+    },
+    {
+      "path": "depeg_peak/depeg_every_peak_block.parquet",
+      "bytes": 20502,
+      "sha256": "ee80c7d7de28e3a068ca5b6d8cfb5505cb94f8ab98c859cf0670340341a8f4e5"
+    },
+    {
+      "path": "depeg_peak/summary.json",
+      "bytes": 135,
+      "sha256": "285a939b477982b3a1faf2e4edfd89b1c15d3115a7378588918daf45166ff19a"
+    },
+    {
+      "path": "calibration_market/calibration_levels.parquet",
+      "bytes": 24239,
+      "sha256": "06dbc44189551a35dbc097003950fed9e408749ba9cc4228ff6147512e0986ea"
+    },
+    {
+      "path": "calibration_market/calibration_returns.parquet",
+      "bytes": 32052,
+      "sha256": "8481baf5ab665c85dd8fb9ef4fd07a54ed1136d10626b7c632e57f8907a15b51"
+    },
+    {
+      "path": "calibration_market/mc_scenario_inputs.parquet",
+      "bytes": 263322,
+      "sha256": "98935bfb5db3dedce0936261a87fbfad125766ebd77a6f13c3c0a4f601486ca8"
+    },
+    {
+      "path": "calibration_market/observed_market_quotes.parquet",
+      "bytes": 16510,
+      "sha256": "f0526ad365c0e186e562ed1a8a5de76b2eafc67b21261d4c455c618d45e12dd6"
+    },
+    {
+      "path": "calibration_market/raw_batch_000.json",
+      "bytes": 6192,
+      "sha256": "80dd42c205f301d2c2611097aaf26eb1ffd8bd7dd3e0dca2e6cc326beb57e5f4"
+    },
+    {
+      "path": "calibration_market/raw_batch_040.json",
+      "bytes": 6188,
+      "sha256": "86ca8560e5bc8d482c0235a342f32fa7ec4cd540b24930f400f3cc5edaff1a21"
+    },
+    {
+      "path": "calibration_market/raw_batch_080.json",
+      "bytes": 6191,
+      "sha256": "33c05e226c7a4bf421776b2fbbedb52b02a531fdde0acee0b477faa2198c3eee"
+    },
+    {
+      "path": "calibration_market/raw_batch_120.json",
+      "bytes": 6207,
+      "sha256": "7f81a3ce68605171a38bff76ed5f77b775483da0f3945611c1641cb926771f7e"
+    },
+    {
+      "path": "calibration_market/raw_batch_160.json",
+      "bytes": 6195,
+      "sha256": "e63a9d92eed0c40499b2ff71f86c7ee69368d878d83dac7193fb67b4fceefc01"
+    },
+    {
+      "path": "calibration_market/raw_batch_200.json",
+      "bytes": 6193,
+      "sha256": "c7f96749f1902f7bdd587ace1b47428fc69c50783f70a3f1721915be94a00a30"
+    },
+    {
+      "path": "calibration_market/raw_batch_240.json",
+      "bytes": 6218,
+      "sha256": "54d923c6b1630c7423f5c38701bc4c7dcee91a7b778c39b913e3e7160a23a20e"
+    },
+    {
+      "path": "calibration_market/raw_batch_280.json",
+      "bytes": 6201,
+      "sha256": "835fcb8af1db9b86df046d6737d66a0b7abddfd527a3a83a48fc135c33f4b088"
+    },
+    {
+      "path": "calibration_market/raw_batch_320.json",
+      "bytes": 6186,
+      "sha256": "630312b00d91068641d561a31c25400a5e065fba1f23405d24cd1eb8b4ca55d4"
+    },
+    {
+      "path": "calibration_market/raw_batch_360.json",
+      "bytes": 1059,
+      "sha256": "416af0aa2c1d63356e5aeeed063bc8e1f51a35a914f93ebfeaead4dad4f9ce34"
+    },
+    {
+      "path": "calibration_market/summary.json",
+      "bytes": 603,
+      "sha256": "6d572b706636e8acee4edda32a9741c3d5d07399c491468810e10fc6bae58322"
+    },
+    {
+      "path": "completion_summary.json",
+      "bytes": 19995,
+      "sha256": "5a35ded95c19ea4e01a35ad55364cbd48cf629f2b2d511b4b90f803675f9d42d"
+    },
+    {
+      "path": "completion_checklist.csv",
+      "bytes": 2154,
+      "sha256": "712074658d8f8da5233f5b845218774b1c4f8b0fa63f8656abd49583f9262ff1"
+    },
+    {
+      "path": "historical_hit_rates.csv",
+      "bytes": 2329,
+      "sha256": "c6b4c6285a3cefd6ef43f78dce3620116fc04570f8c79eee98166c9be905029c"
+    },
+    {
+      "path": "primary_model_misses.csv",
+      "bytes": 4965,
+      "sha256": "691f6d2ecc2f88c01c02d9d69aa76fcdbb2260779fda544ec94ce153c1bcc9ea"
+    }
+  ],
+  "raw_rpc_checkpoints": [
+    {
+      "path": "history/rpc_checkpoint.jsonl",
+      "bytes": 923530318,
+      "sha256": "e62f2c48afa884cb58af9883c988d4e691d3d4de9fa2c02e913c20cae5c72f15"
+    },
+    {
+      "path": "extended_proofs/rpc_checkpoint.jsonl",
+      "bytes": 3343801,
+      "sha256": "5b43fbeb667ae244e52567bbf49f69e16a873fe4369eb4adabd3ca20af34f017"
+    },
+    {
+      "path": "feed_metadata/rpc_checkpoint.jsonl",
+      "bytes": 465785,
+      "sha256": "6ef0a8fec17df675fe0add8cc837b50558045761c353c95c88eef83dfaa776a4"
+    },
+    {
+      "path": "emode_replay/rpc_checkpoint.jsonl",
+      "bytes": 166667,
+      "sha256": "996850b8f6472a0080e3787f23bcfd95734628002c7fb25dc78453ccbb3614cd"
+    },
+    {
+      "path": "all_quote_replay/rpc_checkpoint.jsonl",
+      "bytes": 105435,
+      "sha256": "516f60573ad33e972f5346749b2d77bcd6f42eec75d978faa675cab96b94f387"
+    },
+    {
+      "path": "depeg_peak/rpc_checkpoint.jsonl",
+      "bytes": 514800,
+      "sha256": "d668e650d2b634b1adae6cadbfa55b1f72afe2ee1e5f757cf161f8a14db43a84"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n234_handoff_sources.json",
+      "bytes": 1168,
+      "sha256": "0475b399b7a1e4dd19d687fe90cbe4acc06a70099686980920c49d7e61314745"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\docs\\N234_KET_QUA_HOAN_THANH_20261026.md",
+      "bytes": 8855,
+      "sha256": "251c69a76a69a6cf518ec6c7f79a9bc98f44453a0ea272117a3f712c34d8b279"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_collect_history.py",
+      "bytes": 18001,
+      "sha256": "008f5cd3351c15de376542ec3feedfc3a3d6fa3b5db2cbe0df10154a99be1c53"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_enrich_proofs.py",
+      "bytes": 7820,
+      "sha256": "7513c1d13277d0c6f472eca81e926a638e200799257e711cceede1a769ecc4a7"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_feed_metadata.py",
+      "bytes": 3999,
+      "sha256": "528294a9c646897b512c2125f8ab5db9a74c921cc7fe4671c616d4c710fdbd32"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_network_probe.py",
+      "bytes": 1769,
+      "sha256": "22bed1a9fc2266d68464535fc10297a319cfcf49fe6f21719d6c58177bf28189"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_publish_handoff.py",
+      "bytes": 19540,
+      "sha256": "310e5f7d1acd08653ec31954b82af03d0203f34b9499b02ebc7f5f844dcad5b3"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_validate_handoff.py",
+      "bytes": 10394,
+      "sha256": "5b35bde74f4e88211e34239edc632977742fc0d633a0a62c5b2f476ade94131a"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_verify_all_quotes.py",
+      "bytes": 3438,
+      "sha256": "bda03689896bf0d85217137c66c431ec9ce0d61a4463214f970311932556fa3e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n234_verify_targeted_quotes.py",
+      "bytes": 2658,
+      "sha256": "7d05c8cc2bc8e4c9c8f338b826cacfef68042b6123beb58d2a0362e4ceba6ee8"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_collect_calibration_market.py",
+      "bytes": 4563,
+      "sha256": "1bc7e02209dc078829a9646bef7e5654d3c5d8e03a0596491cdff5dcfb351b5f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_collect_peak_depeg.py",
+      "bytes": 1872,
+      "sha256": "5d7103ddc5da5b62e5ca3d38c3936f3bcab10c71a5c2f0c924411ea06265aa13"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n4_verify_emode.py",
+      "bytes": 4030,
+      "sha256": "9c329effdc2e901c238f0708dca97d7d0ba98f1df0b878604494a2d1edddfcd6"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n4_research.json",
+      "bytes": 342,
+      "sha256": "a54b9d0858289e2728d3c6bb73c08e18a7fee262521c60b19797dec578792cdc"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\n5_execution_scope_approved.json",
+      "bytes": 2948,
+      "sha256": "9fe35a51c4f4a89cc67e15d86023beef9379c9688814ef6cb857b56778299421"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cascade.py",
+      "bytes": 17261,
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\cliff_reverse.py",
+      "bytes": 12424,
+      "sha256": "6b2a7e67a3b4ef10eb3d1405ab8bbc66476f167ce382962891cabe1c20cbd213"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\health_factor.py",
+      "bytes": 16545,
+      "sha256": "77a395119f3c0c1db70778813053d9720f5a9a74ee74e622dde4f7af0a2390ea"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n4_research.py",
+      "bytes": 6685,
+      "sha256": "ec2448b67af9b5b959bdec6cddb5fc5b55a89f31e97c2e967ee655a9adbbfac6"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_diagnostics.py",
+      "bytes": 8842,
+      "sha256": "308086c20561f07d7e3dc31f6d710692bbfc1317fed5d3cd68934ada7ead3479"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_execution_scope.py",
+      "bytes": 2372,
+      "sha256": "a576d2714f8e78c6be32ae5b57eff2895741a04071a0a6b81a060a363d4bfcce"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_experiments.py",
+      "bytes": 7704,
+      "sha256": "581e2cc4c1d05d26175fe9d15315f5a2d6693a2fd2a126ba34c33ac0f54293f0"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_impact_review.py",
+      "bytes": 11995,
+      "sha256": "a431b1bc4c4885bafaafd02f71750492a036e8f0956525f999e10e832d136c86"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_inputs.py",
+      "bytes": 10405,
+      "sha256": "ffebec4aaa62cba7c60145131bb6a9cdf663dc64e0d5b04fd6eaa8d92e2ed90e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_integration.py",
+      "bytes": 16131,
+      "sha256": "ead7271ece1ed5b8f02037fdb7a26b8506c43018fe08b602ab13d1a8172c7703"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_kpis.py",
+      "bytes": 8103,
+      "sha256": "f533ca1b4cd6156d988b395021815009d13e6e5f881fcf1b5f3f87f966cb53f4"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_n3_update.py",
+      "bytes": 12173,
+      "sha256": "9e61cf1dad070d01be9c5c2c07ee875631135573ab61d3095e38950c6e840740"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_oracle_validation.py",
+      "bytes": 11819,
+      "sha256": "15d31c885e099e57d8fdeb944d4239328178e1f4670b57070798a881089aad4b"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research.py",
+      "bytes": 10713,
+      "sha256": "5e2f2dd0da399671a5457ec34842e67b8d5e7354679e841b0699350bdb4ef814"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_research_protocol.py",
+      "bytes": 6480,
+      "sha256": "30da10e333e2e7322a152bb60af56f94adad8dd73e58972b04e54fa3e1b7a8dc"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_snapshots.py",
+      "bytes": 4993,
+      "sha256": "96ec1d28a84bcd0fe197b9f077d5de12d0701fe4bee4170e63aa4778a44683a2"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_validation.py",
+      "bytes": 18018,
+      "sha256": "1d0df78c911263a1e656ce950cff57723acda61fe25e7631d697b02a8a122262"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\research_tolerances.py",
+      "bytes": 7845,
+      "sha256": "59ad73aabd6eb8504d84570d1956b9618cd051b3c2da2b61aafde25b2fe1af70"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\stress_test.py",
+      "bytes": 23409,
+      "sha256": "d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\fetch_liquidations.py",
+      "bytes": 15592,
+      "sha256": "81783910a1ec63f5eb1703f9c87d8867d017f3480c8f75427411db6fba555139"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\data\\fetch_dex_liquidity.py",
+      "bytes": 31253,
+      "sha256": "91cff3e97a845dd3c26da8313baed850434ef42f05cffd487335c85cee9bf79a"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_fetch_targeted_27_quotes.py",
+      "bytes": 9632,
+      "sha256": "067737ec0fa8dce9c7a2d0e2c49252f7285b145ed7936baf199e5fe53cba9140"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n3_priority2_multivolume_quotes.py",
+      "bytes": 15429,
+      "sha256": "366d8e849697b747a13b267744335ed9f5a9f98900f5fb16847c810cd2deee90"
+    }
+  ],
+  "summary": {
+    "oracle_rows": 1023440,
+    "oracle_blocks": 21476,
+    "liquidation_events": 2732,
+    "receipts": 1988,
+    "quote_grid_replays": 111,
+    "anchor_replays": 24,
+    "planned_quotes_pending": 0,
+    "reserve_configs_replayed": 155,
+    "emode_membership_replayed": 307,
+    "cohort_wallets": 50311,
+    "research_runs": 570,
+    "daily_levels": 366,
+    "paired_returns": 365
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "rpc_configured": true,
+  "http_status": 200,
+  "responses": [
+    {
+      "id": 1,
+      "error_code": null,
+      "chain_id": 1,
+      "archive_code_available": null
+    },
+    {
+      "id": 2,
+      "error_code": null,
+      "chain_id": null,
+      "archive_code_available": true
+    }
+  ]
+}

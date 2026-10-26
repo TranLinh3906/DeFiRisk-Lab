@@ -1,0 +1,255 @@
+{
+  "snapshots": {
+    "B1": {
+      "oracle_blocks": 7170,
+      "oracle_tokens": 33,
+      "oracle_rows": 236610,
+      "independent_log_coverage": {
+        "first_block": 20458638,
+        "last_block": 20465806,
+        "chunk_count": 8,
+        "events": 1830,
+        "source": "independent Ethereum archive eth_getLogs rescan vs local Etherscan history",
+        "missing_local_events": 0,
+        "missing_rpc_events": 0,
+        "chunks": [
+          {
+            "first_block": 20458638,
+            "last_block": 20459637,
+            "events": 1235
+          },
+          {
+            "first_block": 20459638,
+            "last_block": 20460637,
+            "events": 333
+          },
+          {
+            "first_block": 20460638,
+            "last_block": 20461637,
+            "events": 102
+          },
+          {
+            "first_block": 20461638,
+            "last_block": 20462637,
+            "events": 86
+          },
+          {
+            "first_block": 20462638,
+            "last_block": 20463637,
+            "events": 9
+          },
+          {
+            "first_block": 20463638,
+            "last_block": 20464637,
+            "events": 21
+          },
+          {
+            "first_block": 20464638,
+            "last_block": 20465637,
+            "events": 35
+          },
+          {
+            "first_block": 20465638,
+            "last_block": 20465806,
+            "events": 9
+          }
+        ],
+        "completeness": "all_declared_block_chunks_returned; conditional_on_RPC_provider"
+      },
+      "peak": {
+        "status": "retrospective_candidate",
+        "start_block": 20459042,
+        "end_block": 20459341,
+        "event_count": 644,
+        "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+        "duration": "300 blocks is not assumed to equal exactly one hour"
+      },
+      "rates": {
+        "full": {
+          "all_observed_wallets": {
+            "observed_wallets": 1152,
+            "hit_wallets": 1149,
+            "wallet_hit_rate": 0.9973958333333334,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 0,
+            "scorable_wallets": 1152,
+            "scorable_wallet_hit_rate": 0.9973958333333334,
+            "wallet_hit_rate_upper_bound": 0.9973958333333334,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 453135919.2661031,
+            "debt_weighted_hit_rate": 0.9986058319841178,
+            "known_state_debt_weighted_hit_rate": 0.9986058319841178,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence",
+            "no_initial_debt_wallets": 0
+          },
+          "initial_cohort_debt_ge_100": {
+            "observed_wallets": 1142,
+            "hit_wallets": 1139,
+            "wallet_hit_rate": 0.9973730297723292,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 0,
+            "scorable_wallets": 1142,
+            "scorable_wallet_hit_rate": 0.9973730297723292,
+            "wallet_hit_rate_upper_bound": 0.9973730297723292,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 453135206.3274524,
+            "debt_weighted_hit_rate": 0.9986058297906085,
+            "known_state_debt_weighted_hit_rate": 0.9986058297906085,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "retrospective_coherent_trough_initial_cohort": {
+            "observed_wallets": 1142,
+            "hit_wallets": 1139,
+            "wallet_hit_rate": 0.9973730297723292,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 0,
+            "scorable_wallets": 1142,
+            "scorable_wallet_hit_rate": 0.9973730297723292,
+            "wallet_hit_rate_upper_bound": 0.9973730297723292,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 453135206.3274524,
+            "debt_weighted_hit_rate": 0.9986058297906085,
+            "known_state_debt_weighted_hit_rate": 0.9986058297906085,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "scope": "Raw observed events retained; verified zero-initial-debt and dust wallets are outside initial research cohort, not silently dropped"
+        },
+        "primary_peak_300": {
+          "all_observed_wallets": {
+            "observed_wallets": 467,
+            "hit_wallets": 465,
+            "wallet_hit_rate": 0.9957173447537473,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 2,
+            "scorable_wallets": 465,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 321912564.72689867,
+            "debt_weighted_hit_rate": 0.9247185220466966,
+            "known_state_debt_weighted_hit_rate": 0.9247185220466966,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence",
+            "no_initial_debt_wallets": 0
+          },
+          "initial_cohort_debt_ge_100": {
+            "observed_wallets": 467,
+            "hit_wallets": 465,
+            "wallet_hit_rate": 0.9957173447537473,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 2,
+            "scorable_wallets": 465,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 321912564.72689867,
+            "debt_weighted_hit_rate": 0.9247185220466966,
+            "known_state_debt_weighted_hit_rate": 0.9247185220466966,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "retrospective_coherent_trough_initial_cohort": {
+            "observed_wallets": 467,
+            "hit_wallets": 467,
+            "wallet_hit_rate": 1.0,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 0,
+            "scorable_wallets": 467,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 321912564.72689867,
+            "debt_weighted_hit_rate": 1.0,
+            "known_state_debt_weighted_hit_rate": 1.0,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "scope": "Raw observed events retained; verified zero-initial-debt and dust wallets are outside initial research cohort, not silently dropped"
+        },
+        "secondary_sampled_eth_minus5": {
+          "all_observed_wallets": {
+            "observed_wallets": 402,
+            "hit_wallets": 397,
+            "wallet_hit_rate": 0.9875621890547264,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 5,
+            "scorable_wallets": 397,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 366229022.4915932,
+            "debt_weighted_hit_rate": 0.9915545357312815,
+            "known_state_debt_weighted_hit_rate": 0.9915545357312815,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence",
+            "no_initial_debt_wallets": 0
+          },
+          "initial_cohort_debt_ge_100": {
+            "observed_wallets": 402,
+            "hit_wallets": 397,
+            "wallet_hit_rate": 0.9875621890547264,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 5,
+            "scorable_wallets": 397,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 366229022.4915932,
+            "debt_weighted_hit_rate": 0.9915545357312815,
+            "known_state_debt_weighted_hit_rate": 0.9915545357312815,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "retrospective_coherent_trough_initial_cohort": {
+            "observed_wallets": 402,
+            "hit_wallets": 402,
+            "wallet_hit_rate": 1.0,
+            "wallet_hit_rate_interpretation": "conservative lower bound; unscorable observations retained, not proven model misses",
+            "unscorable_wallets": 0,
+            "scorable_wallets": 402,
+            "scorable_wallet_hit_rate": 1.0,
+            "wallet_hit_rate_upper_bound": 1.0,
+            "missing_state_wallets": 0,
+            "incomplete_token_price_wallets": 0,
+            "initial_debt_known_usd": 366229022.4915932,
+            "debt_weighted_hit_rate": 1.0,
+            "known_state_debt_weighted_hit_rate": 1.0,
+            "unknown_debt_wallets": 0,
+            "freeze_status": "not_classified_no_gas_execution_evidence"
+          },
+          "scope": "Raw observed events retained; verified zero-initial-debt and dust wallets are outside initial research cohort, not silently dropped"
+        }
+      },
+      "depeg_qa": {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "snapshot_utc": "2024-08-04T23:59:59+00:00",
+        "window_hours": 24,
+        "market_obs_near_window": 24,
+        "suspected_non_market_obs": 0,
+        "expected_hour_bins": 25,
+        "covered_hour_bins": 25,
+        "coverage_pct": 100.0,
+        "market_ratio_asof_snapshot_available": true,
+        "status": "PASS_OBSERVATION_QA"
+      },
+      "actual_receipts": 1269,
+      "gas_usd_oracle_total": 751092.9158377389,
+      "oracle_scope": "Direct Aave getAssetPrice observed every block, not reconstructed from market prices",
+      "execution_limits": "Strictly earlier block prediction; same-block update ordering not inferred; frozen t0 quantities ignore borrower changes; market depeg is separate, not multiplied onto already observed oracle prices",
+      "freeze_classification": "not_proven_from_executed_receipts"
+    }
+  },
+  "status": "historical_handoff_diagnostic_not_acceptance"
+}

@@ -146,6 +146,9 @@ def _asset_multiplier(symbol: str, params: dict[str, Any]) -> float:
     eth = float(params.get("eth_shock", 0.0))
     btc = float(params.get("btc_shock", 0.0))
     depeg = float(params.get("depeg_shock", params.get("lst_depeg_shock", 0.0)))
+    depeg_assets = params.get('depeg_assets')
+    if depeg_assets is not None and symbol.upper() not in {str(s).upper() for s in depeg_assets}:
+        depeg = 0.0
     stable_shock = params.get("stablecoin_shocks", params.get("stablecoin_shock", 0.0))
     if isinstance(stable_shock, dict):
         stable_shock = stable_shock.get(symbol, 0.0)
@@ -217,7 +220,8 @@ def _calculate_wallets(data: pd.DataFrame, params: dict[str, Any], scenario_id: 
                       "debt_usd", "debt_at_risk_usd", "is_recursive_loop"]]
 
 
-def run_stress_test(positions_df: pd.DataFrame, scenario_params: dict[str, Any]) -> pd.DataFrame:
+def run_stress_test(positions_df: pd.DataFrame, scenario_params: dict[str, Any], *,
+                    tolerances=None, account_reference=None) -> pd.DataFrame:
     """Return one stressed HF and debt-risk row per wallet and snapshot.
 
     Input is position-grain data with normalized token amounts, price and LT;
@@ -225,21 +229,32 @@ def run_stress_test(positions_df: pd.DataFrame, scenario_params: dict[str, Any])
     shock fields. A ``scenario_id`` can be supplied or is generated.
     """
     data = _prepare_positions(positions_df)
+    if tolerances is not None:
+        if account_reference is None:
+            raise ValueError('Research dust filtering requires initial account references')
+        from src.models.research_tolerances import filter_simulation_positions
+        data, _ = filter_simulation_positions(data, account_reference, tolerances)
     params = dict(scenario_params)
     scenario_id = str(params.pop("scenario_id", "custom_scenario"))
     return _calculate_wallets(data, params, scenario_id)
 
 
 def generate_stress_heatmap(
-    positions_df: pd.DataFrame, eth_steps: list[float], depeg_steps: list[float]
+    positions_df: pd.DataFrame, eth_steps: list[float], depeg_steps: list[float], *,
+    tolerances=None, account_reference=None, scenario_params=None
 ) -> pd.DataFrame:
     """Calculate risk for every ETH/depeg pair, separately by snapshot block."""
     prepared = _prepare_positions(positions_df)
+    if tolerances is not None:
+        if account_reference is None:
+            raise ValueError('Research dust filtering requires initial account references')
+        from src.models.research_tolerances import filter_simulation_positions
+        prepared, _ = filter_simulation_positions(prepared, account_reference, tolerances)
     rows: list[dict[str, Any]] = []
     for eth in eth_steps:
         for depeg in depeg_steps:
             result = _calculate_wallets(
-                prepared, {"eth_shock": eth, "depeg_shock": depeg},
+                prepared, dict(scenario_params or {}, eth_shock=eth, depeg_shock=depeg),
                 f"heatmap_eth_{abs(eth):g}_depeg_{abs(depeg):g}",
             )
             for block, snap in result.groupby("snapshot_block", sort=True):
@@ -256,8 +271,12 @@ def generate_stress_heatmap(
     ])
 
 
-def _load_model_inputs() -> tuple[pd.DataFrame, pd.DataFrame]:
+def _load_model_inputs(*, research=True) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load underlying positions and attach baseline HF and looping labels."""
+    if research:
+        from src.models.n4_research import load_research_inputs
+        positions,risk,*_=load_research_inputs()
+        return _prepare_positions(positions),risk
     positions_path = PROCESSED / "borrower_positions.parquet"
     if not positions_path.exists():
         positions_path = ROOT / "data/processed/fact_wallet_positions.parquet"
@@ -327,10 +346,25 @@ def _summary_row(scenario_id: str, params: dict[str, Any], result: pd.DataFrame)
     }
 
 
-def main() -> None:
+def _legacy_main() -> None:
     """Run configured scenarios and write all three stress-test marts."""
     config = load_scenarios()
     positions, baseline = _load_model_inputs()
+    from src.models.research_tolerances import load_tolerances, evaluate_research_gate
+    policy = load_tolerances()
+    from src.models.n5_inputs import resolve_account_reference
+    references = pd.read_parquet(resolve_account_reference(PROCESSED))
+    reserve_debt = pd.read_parquet(PROCESSED / 'protocol_reconciliation.parquet')
+    retained = []
+    for block, group in positions.groupby('snapshot_block'):
+        totals = dict(snapshot_block=int(block), protocol_debt_usd=float(
+            reserve_debt.loc[reserve_debt.snapshot_block.eq(block), 'protocol_debt_usd'].sum()))
+        filtered, _, _, gate = evaluate_research_gate(group, references, totals, policy, n4_risk=baseline)
+        if gate['status'] != 'passed':
+            raise ValueError(f'Research input tolerance gate failed: {gate}')
+        retained.append(filtered)
+    positions = pd.concat(retained, ignore_index=True)
+    baseline = baseline.merge(positions[WALLET_KEYS].drop_duplicates(), on=WALLET_KEYS, how='inner', validate='one_to_one')
     summary_rows = []
     position_rows = []
     for scenario_id, params_raw in config["scenarios"].items():
@@ -385,6 +419,11 @@ def main() -> None:
     print(f"Wrote {MARTS / 'stress_positions.parquet'} ({len(position_output):,} wallet-scenarios)")
     print(f"Wrote {MARTS / 'stress_heatmap.parquet'} ({len(heatmap)} shock-snapshot pairs)")
     print(f"Wrote {MARTS / 'overview_metrics.json'} (metrics separated by snapshot block)")
+
+
+def main() -> None:
+    from src.models.n4_research import main as research_main
+    research_main()
 
 
 if __name__ == "__main__":

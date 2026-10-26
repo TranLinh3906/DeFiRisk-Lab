@@ -1,0 +1,17 @@
+{
+  "version": "20261026_N234_completed_bounded_scope",
+  "scope_config": "config/n5_execution_scope_approved.json",
+  "scenario_policy": "config/n4_research.json",
+  "oracle_paths": {
+    "B1": "outputs/n5_completion_20261026/history/B1/oracle_all_active_tokens.parquet",
+    "B2": "outputs/n5_completion_20261026/history/B2/oracle_all_active_tokens.parquet"
+  },
+  "account_reference": "outputs/n5_completion_20261026/history_validation/account_reference_supplemented.parquet",
+  "historical_validation": "outputs/n5_completion_20261026/history_validation",
+  "n4_candidate_marts": "outputs/n5_completion_20261026/n4_research",
+  "historical_metric_table": "outputs/n5_completion_20261026/historical_hit_rates.csv",
+  "targeted_quotes": "outputs/n3_priority2_quote_grid_v2_with_27/n3_targeted_27_rpc_verified_only.parquet",
+  "annual_calibration": "outputs/n5_completion_20261026/calibration_market",
+  "approved_execution": "outputs/n5_completion_20261026/approved_package_with27",
+  "note": "Use these sources together. Original data/marts and old bundles are preserved; do not silently mix full borrower universe and filtered research cohort."
+}

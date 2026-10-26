@@ -1,5 +1,37 @@
 # N5 — Kiểm định đầu vào, adapter và khung thí nghiệm
 
+**Nguồn hiện hành sau khi hoàn tất N2/N3/N4:** [báo cáo và checklist bàn giao](N234_KET_QUA_HOAN_THANH_20261026.md).
+Catalog `config/n234_handoff_sources.json`; đã có đủ 27 quote, oracle mỗi block B1/B2, log/receipt độc lập và các bảng N4 cùng cohort. Dùng `scripts.n234_validate_handoff` cho kiểm định mới; các báo cáo cũ giữ để tái lập lịch sử.
+
+**Gói giả định đã chốt:** [cộng dồn xuyên vòng, ưu tiên HF và max(bonus−impact)](N5_GOI_GIA_DINH_DA_CHOT_20261026.md).
+Runner mới `scripts.n5_run_approved_package`, config `config/n5_execution_scope_approved.json`; các bản trước giữ làm lịch sử.
+
+**Phạm vi chạy đã chọn:** [ba route, giới hạn quote và cách nhận 27 quote mới](N5_PHAM_VI_CHAY_GIOI_HAN_20261026.md).
+Config `config/n5_execution_scope.json`; không coi quote dự kiến là quan sát và không mở rộng sang quy mô/route chưa chốt.
+
+**Price impact ngày 26/10:** [lượng bán thật, quote giữ lại và đối chiếu thực thi](N5_PRICE_IMPACT_REVIEW_20261026.md).
+Đã chạy 171 lần đối chiếu, tách đề xuất bổ sung quote theo đúng vùng thiếu; chưa nghiệm thu cascade chính thức.
+
+**Sau commit N3 `6bba2a7`:** xem [rà soát depeg/coverage/gas](N5_RA_SOAT_N3_DEPEG_COVERAGE_GAS_20261026.md).
+Công thức depeg đã có nhưng thiếu kỳ B1/B2; gas 60 USD là giả định, không chứng nhận freeze.
+Đã sửa finalizer lỗi cú pháp và tạo bundle rà soát mới, không sửa dữ liệu nguồn.
+
+**Sau pull N3 ngày 26/10:** xem [kiểm tra quote/coverage và tích hợp mới](N5_TIEP_NHAN_N3_20261026.md).
+Đã chọn đúng `account_referenceAB1B2.parquet` khi file mặc định là A/B cũ, kiểm quote grid
+và chạy lại gate/Stress. Dữ liệu nguồn N3 được giữ nguyên.
+
+**Tolerance/dust đã chốt:** [kết quả và cách chạy](N5_CHOT_TOLERANCE_20261025.md).
+Policy chung: `config/n5_tolerances.json`; bundle Stress sau lọc:
+`outputs/n5_preparation/n5_tolerances_stress_20261025/`.
+
+**Sau cập nhật N2:** [kết quả oracle lấy mẫu và dust](N5_TIEP_NHAN_N2_20261025.md).
+Chạy `python -B -X utf8 -m scripts.n5_review_n2_update --output-dir outputs/n5_preparation/n5_N2_NEW`
+để dựng bundle mới; không chạy lại crawler và không ghi đè dữ liệu N2.
+
+**Bộ hiện tại sau khi nhận shard 001:** [Compound đã đủ coverage](CAP_NHAT_N5_COMPOUND_DU_SHARD_001_20261025.md).
+Runner mặc định dùng `outputs/compound_consolidated_A_B1_B2_20261025_complete`.
+Kết quả N5 mới: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete/`.
+
 **Cập nhật 25/10/2026:** dùng [kết quả A/B1/B2](KET_QUA_N5_AB1B2_20261025.md)
 và bundle `outputs/n5_preparation/n5_AB1B2_20261025_final/`.
 Runner mặc định đọc DEX A/B1/B2 và bộ Compound gộp 25/10, hỗ trợ coverage Parquet.

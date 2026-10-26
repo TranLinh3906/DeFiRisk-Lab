@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-10-25T18:04:38.376006+00:00",
+  "rows_by_price_type": {
+    "aave_oracle": 155,
+    "depeg_metric": 96,
+    "lido_contract_conversion": 3,
+    "market_ratio": 288,
+    "market_reference": 576
+  },
+  "validation_passed": true
+}

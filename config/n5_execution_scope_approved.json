@@ -1,0 +1,97 @@
+{
+  "version": "20261026_user_approved_research_package",
+  "snapshots": {
+    "A": 26179841,
+    "B1": 20458637,
+    "B2": 23543615
+  },
+  "routes": [
+    {
+      "token_in_address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+      "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "pool_address": "0x109830a1aaad605bbf02a9dfa7b0b92ec2fb7daa"
+    },
+    {
+      "token_in_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "token_out_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "pool_address": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+    },
+    {
+      "token_in_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      "token_out_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "pool_address": "0xcbcdf9626bc03e24f779434178a73a0b4bad62ed"
+    }
+  ],
+  "primary_method": "linear",
+  "sensitivity_method": "power",
+  "max_rounds": 100,
+  "domain_policy": "validated_observation_bounds_only",
+  "outside_domain_policy": "unknown_do_not_split_or_extrapolate",
+  "same_token_repayment": "identity_no_dex_required",
+  "oracle_feedback": false,
+  "gas_cost_usd_assumed": 5.0,
+  "pool_state": "cumulative_across_rounds",
+  "pending_quote_requests": "outputs/n5_preparation/n3_quote_handoff_20261026/n3_quote_first_batch_27.csv",
+  "pending_quote_requests_sha256": "53448d943034b356508c825ef9d413b1176314d6a3905e08ce0dbcba5233230b",
+  "research_acceptance": "pending_separate_protocol_liquidity_gas_oracle_validation",
+  "ordering": "lowest_hf",
+  "pair_rule": "bonus_minus_impact",
+  "seed": 42,
+  "fee_status": "N3 raw metadata: WSTETH/WETH=100, WETH/USDC=500, WBTC/WETH=3000 ppm; source code confirms fee-inclusive reference; zero DEX/oracle basis remains assumed",
+  "experiments": [
+    {
+      "variant": "primary",
+      "method": "linear"
+    },
+    {
+      "variant": "curve_power",
+      "method": "power"
+    },
+    {
+      "variant": "pool_reset",
+      "method": "linear",
+      "pool_state": "reset_each_round"
+    },
+    {
+      "variant": "gas_0",
+      "method": "linear",
+      "gas": 0
+    },
+    {
+      "variant": "gas_20",
+      "method": "linear",
+      "gas": 20
+    },
+    {
+      "variant": "gas_60",
+      "method": "linear",
+      "gas": 60
+    },
+    {
+      "variant": "random_42",
+      "method": "linear",
+      "ordering": "random",
+      "seed": 42
+    },
+    {
+      "variant": "random_43",
+      "method": "linear",
+      "ordering": "random",
+      "seed": 43
+    },
+    {
+      "variant": "random_44",
+      "method": "linear",
+      "ordering": "random",
+      "seed": 44
+    },
+    {
+      "variant": "fee_zero",
+      "method": "linear",
+      "fee": 0.0,
+      "use_route_fees": false
+    }
+  ],
+  "fee_policy": "verified_pool_fee_tier_relative_to_fee_inclusive_marginal_reference",
+  "scenario_policy_path": "config/n4_research.json"
+}

@@ -1,0 +1,30 @@
+{
+  "B1": {
+    "start_block": 20458637,
+    "end_block": 20465806,
+    "events": 1830,
+    "active_tokens": 33,
+    "peak": {
+      "status": "retrospective_candidate",
+      "start_block": 20459042,
+      "end_block": 20459341,
+      "event_count": 644,
+      "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+      "duration": "300 blocks is not assumed to equal exactly one hour"
+    }
+  },
+  "B2": {
+    "start_block": 23543615,
+    "end_block": 23557920,
+    "events": 902,
+    "active_tokens": 55,
+    "peak": {
+      "status": "retrospective_candidate",
+      "start_block": 23549924,
+      "end_block": 23550223,
+      "event_count": 648,
+      "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+      "duration": "300 blocks is not assumed to equal exactly one hour"
+    }
+  }
+}

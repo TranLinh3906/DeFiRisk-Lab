@@ -92,6 +92,41 @@ def snapshot_config(metadata: dict) -> dict[int, dict]:
     return result
 
 
+def compute_depeg_metrics(market: pd.DataFrame) -> pd.DataFrame:
+    """Tinh toan % Depeg theo chuoi thoi gian: (Price - Parity) / Parity."""
+    steth = market.loc[(market["asset"].str.upper() == "STETH") & (market["quote_asset"].str.upper() == "ETH")
+                       & market["price_type"].eq("market_ratio")].copy()
+    if steth.empty:
+        return pd.DataFrame(columns=REQUIRED_COLUMNS)
+    steth['price_value'] = pd.to_numeric(steth.price_value, errors='raise')
+    if not steth.price_value.map(lambda v: math.isfinite(v) and v > 0).all():
+        raise ValueError('stETH/ETH requires finite positive market ratios')
+    stamps = pd.to_datetime(steth.timestamp, utc=True, errors='raise')
+    refs = pd.to_datetime(steth.reference_timestamp, utc=True, errors='coerce')
+    if refs.isna().any() or (refs > stamps).any():
+        raise ValueError('Missing/future ratio timestamp cannot support depeg metric')
+
+    depeg_rows = []
+    for _, row in steth.iterrows():
+        # Baseline parity value for stETH/ETH is 1.0
+        ratio = row["price_value"]
+        depeg_pct = (ratio - 1.0) * 100.0
+
+        depeg_rows.append({
+            "timestamp": row["timestamp"],
+            "asset": "STETH",
+            "token_address": row["token_address"],
+            "quote_asset": "ETH",
+            "price_value": depeg_pct,
+            "price_type": "depeg_metric",
+            "source": f"Derived from {row['price_type']}",
+            "snapshot_block": row["snapshot_block"],
+            "reference_timestamp": row["reference_timestamp"],
+            "staleness_seconds": row["staleness_seconds"],
+            "note": f"stETH/ETH Depeg Percentage: {depeg_pct:.4f}% (Negative = Discount); percentage points, NOT USD price or simple return",
+        })
+    return pd.DataFrame(depeg_rows)[REQUIRED_COLUMNS]
+
 def market_input(df: pd.DataFrame) -> pd.DataFrame:
     """Existing N3 full price table; or legacy fetch_prices market-only parquet."""
     if set(REQUIRED_COLUMNS).issubset(df.columns):
@@ -323,16 +358,20 @@ def integrate(existing: pd.DataFrame, oracle: pd.DataFrame, lido: pd.DataFrame,
     market = market_input(existing)
     oracle_rows, oracle_info = build_oracle(oracle, reg, configs)
     lido_rows = build_lido(lido, configs)
+    depeg_rows = compute_depeg_metrics(market)
     market_checks = validate_market(market, configs, max_market_lag_min)
-    merged = pd.concat([market, oracle_rows, lido_rows], ignore_index=True)[REQUIRED_COLUMNS]
+    merged = pd.concat([market, oracle_rows, lido_rows, depeg_rows], ignore_index=True)[REQUIRED_COLUMNS]
     merged["timestamp"] = pd.to_datetime(merged["timestamp"], utc=True)
     merged["reference_timestamp"] = pd.to_datetime(merged["reference_timestamp"], utc=True)
     merged["snapshot_block"] = pd.array(merged["snapshot_block"], dtype="Int64")
     merged["price_value"] = pd.to_numeric(merged["price_value"], errors="coerce")
     merged["staleness_seconds"] = pd.to_numeric(merged["staleness_seconds"], errors="coerce")
     merged = merged.sort_values(["timestamp", "price_type", "asset", "quote_asset"], kind="stable").reset_index(drop=True)
-    if merged["price_value"].isna().any() or not merged["price_value"].map(lambda v: math.isfinite(v) and v > 0).all():
-        raise ValueError("Price output co gia thieu/<=0")
+    if merged["price_value"].isna().any() or not merged["price_value"].map(math.isfinite).all():
+        raise ValueError("Price output co gia thieu/khong huu han")
+    positive_prices = merged.loc[merged["price_type"] != "depeg_metric", "price_value"]
+    if (positive_prices <= 0).any():
+        raise ValueError("Non-depeg price output co gia <=0")
     if (merged.loc[merged["reference_timestamp"].notna(), "reference_timestamp"] > merged.loc[merged["reference_timestamp"].notna(), "timestamp"]).any():
         raise ValueError("Output co timestamp cua tuong lai")
     report = {

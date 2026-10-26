@@ -1,0 +1,125 @@
+{
+  "bundle_version": "n5_offline_preparation_v1",
+  "created_utc": "2026-10-26T00:28:51.866713+00:00",
+  "validation_status": "unvalidated",
+  "research_acceptance": "pending",
+  "scope": "Offline preparation; observed candidates and synthetic demo kept separate",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\heldout_summary.parquet",
+      "bytes": 6951,
+      "sha256": "1f4a4fe955b4053e570e53c04480dbfe6bc0e579a543cb98159e1bde5417f1f1",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\targeted_quote_requests.parquet",
+      "bytes": 25842,
+      "sha256": "98960f68ee7ea4d6414a4e609394404ba20ff39db8fcc8059a6ce356766e0a11",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\pool_round_sale_demand.parquet",
+      "bytes": 162732,
+      "sha256": "aaf93d041473fd39e1a94897a058ee3b9eb926182d322af6f35d3b2949d25ec6",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\paired_execution_comparison.parquet",
+      "bytes": 17559,
+      "sha256": "ae2113d35a94f0a3976f9227ead8ca849b369eab00bac0d2bc081b54a6061b26",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\summary.json",
+      "bytes": 7313,
+      "sha256": "2c36a56d206fb0d3dd09c2ddeec7405cd60a155fe21d3780a7df8869916a1826",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_preparation\\n5_price_impact_review_20261026\\manifest.json",
+      "bytes": 16467,
+      "sha256": "dbcb0b49a7025e585b1a938a2f498af4d90de165c410d3b3f6373a2d8ec9e484",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "bytes": 20340,
+      "sha256": "92da30b2ba2361ef78f347930f3120a6863df5125ba95169a3da829c18a467aa",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_summarize_price_impact.py",
+      "bytes": 4000,
+      "sha256": "08dc25745fd7d7d23c22110983c18259dec7ea4804375a240861b4938b2c4042",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\src\\models\\n5_readiness.py",
+      "bytes": 15218,
+      "sha256": "a4568e310ac2db0e3a44ad3d479f70d61ae4674c6b002d7b94393d15b77d413d",
+      "data_kind": "source",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "files": [
+    {
+      "path": "heldout_methods.csv",
+      "bytes": 6976,
+      "sha256": "40dd15bf340e09f19309b0021fc2ae5126ed2bebfe7fe38d0393e4c3941c58e9",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "targeted_quote_requests.csv",
+      "bytes": 180791,
+      "sha256": "9df02aa632ee48c808d1c29ff1509506ba61e2fae775e30bfc34756143d79ef4",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "sale_demand_by_direction.csv",
+      "bytes": 34733,
+      "sha256": "646eea2fd20c9d6eecc2c9b931cc8f8e6bf5122b4bd26ec94956b8ef45b5ac84",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "paired_execution_comparison.csv",
+      "bytes": 8725,
+      "sha256": "2c4d3065af95565eadbcda1f768434229e30a8d2366052720c988d4d4f8bdbae",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 676,
+      "sha256": "c1f9d719cbb2638b8f436afcb0a48aa6972b704bbef82e986819decf4e8cd021",
+      "data_kind": "diagnostic",
+      "validation_status": "unvalidated"
+    }
+  ],
+  "summary": {
+    "status": "readable_review_not_model_acceptance",
+    "request_rows": 496,
+    "request_counts": {
+      "missing_exact_route": 461,
+      "sparse_interval_overlapping_candidate_demand": 18,
+      "below_minimum_observed_quote": 9,
+      "above_maximum_observed_quote": 8
+    },
+    "changed_repayment_pairs": 36,
+    "changed_profit_pairs": 47,
+    "changed_round_pairs": 14,
+    "max_absolute_repayment_difference_usd": 71099398.32748775,
+    "max_absolute_profit_difference_usd": 283646.0343847117,
+    "caveat": "Comparisons use restricted exact routes with fixed shocked oracle, assumed gas/fee and unknown unsupported execution; no official cascade or observed freeze claims"
+  }
+}

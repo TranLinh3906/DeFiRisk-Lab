@@ -14,12 +14,13 @@ import pyarrow.parquet as pq
 from scripts.n5_audit import finite_json, stable_read
 from src.models.cascade import CascadeConfig, POLICIES, synthetic_portfolio
 from src.models.n5_experiments import compare_static_cascade, run_sensitivity_analysis, scenario_shocks
-from src.models.n5_inputs import prepare_portfolio
+from src.models.n5_inputs import prepare_portfolio,resolve_account_reference
 from src.models.n5_validation import validate_inputs, assess_historical_readiness, check_schema, flag
 from src.models.n5_integration import (attribute_hf_differences, adapt_compound_partial,
                                        track_compound_flows, validate_zero_shock, check_reconstructed_hf)
 from src.models.n5_snapshots import audit_snapshots, select_event_windows
 from src.models.n5_kpis import baseline_wallet_kpis, kpi_mapping, graph_conservation_report, validate_kpi_artifacts
+from src.models.research_tolerances import load_tolerances, evaluate_research_gate
 from src.models.n5_diagnostics import (tiny_shock_diagnostics, balance_policy_diagnostics,
     anchor_price_impact, historical_open_price_validation)
 from src.models.n5_research import (compound_price_stress, student_t_copula_shocks,
@@ -35,7 +36,8 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
     output = Path(output)
     if output.exists():
         raise FileExistsError('Choose a new output directory')
-    input_paths = [aave / f'{name}.parquet' for name in
+    reference_path=resolve_account_reference(aave)
+    input_paths = [reference_path if name=='account_reference' else aave / f'{name}.parquet' for name in
                    ['positions_long', 'reserve_config', 'oracle_prices', 'emode_membership',
                     'account_reference', 'protocol_reconciliation']]
     input_paths += [aave / 'snapshot_metadata.json', marts / 'borrower_risk.parquet',
@@ -46,6 +48,7 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
                     Path('data/processed/fact_historical_liquidations.parquet'),
                     compound / 'merge_report.json']
     input_paths += [snapshot_config, aave / 'hf_reconciliation.parquet', Path('src/models/n5_snapshots.py')]
+    input_paths += [Path('config/n5_tolerances.json'), Path('src/models/research_tolerances.py')]
     modern_compound = (compound / 'query_coverage.parquet').is_file()
     input_paths += [compound / ('query_coverage.parquet' if modern_compound else 'compound_consolidated_partial.sqlite')]
     ending = '' if modern_compound else '_partial'
@@ -68,7 +71,7 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
     # Exact hashes before reading allow detecting concurrent source updates.
     import hashlib
     fingerprints = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in input_paths}
-    raw = {name: stable_read(aave / f'{name}.parquet') for name in
+    raw = {name: stable_read(reference_path if name=='account_reference' else aave / f'{name}.parquet') for name in
            ['positions_long', 'reserve_config', 'oracle_prices', 'emode_membership',
             'account_reference', 'protocol_reconciliation']}
     metadata = json.loads((aave / 'snapshot_metadata.json').read_text(encoding='utf-8'))
@@ -99,7 +102,10 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
         path.parent.mkdir(parents=True, exist_ok=True)
         frame.to_csv(path, index=False, encoding='utf-8-sig')
         artifacts[relative] = kind
-    summary = {'snapshots': {}, 'research_acceptance': 'pending'}
+    summary = {'snapshots': {}, 'research_acceptance': 'pending','account_reference_source':str(reference_path)}
+    tolerance = load_tolerances()
+    summary['research_tolerance_policy'] = tolerance
+    summary['research_input_gates'] = {}
     audit_tables = {name: pd.DataFrame(rows) for name, rows in raw.items()}
     audit_tables['borrower_positions'] = pd.read_parquet(aave / 'borrower_positions.parquet')
     audit_tables['account_reference'] = pd.DataFrame(raw['account_reference'])
@@ -132,6 +138,13 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
                     depth_usd={r['token_address']: 1_000_000 for r in raw['reserve_config']})
         validation = validate_inputs(portfolio, raw['account_reference'])
         debt_rows, debt_report = reconcile_debt(portfolio, raw['protocol_reconciliation'])
+        filtered, cohort, wallet_checks, gate = evaluate_research_gate(pd.DataFrame(portfolio.positions),
+            pd.DataFrame(raw['account_reference']), debt_report, tolerance, n4_risk=risk)
+        summary['research_input_gates'][label] = gate
+        write_json(f'{label}/research_tolerance_validation.json', gate)
+        write_table(f'{label}/simulation_positions_dust_filtered.parquet', filtered, 'simulation_input_candidate')
+        write_table(f'{label}/simulation_wallet_cohort.parquet', cohort, 'diagnostic')
+        write_table(f'{label}/research_wallet_checks.parquet', wallet_checks, 'diagnostic')
         validation['total_debt_only_reconciliation'] = debt_report
         validation['audit_only_depth_note'] = 'Placeholder depth for construction only; no real-data simulation run'
         if label == 'B':
@@ -442,7 +455,8 @@ def build_bundle(output, *, aave, marts, dex_path, history, holdout, compound,
         'Zero-shock đơn thuần không thay kiểm HF tái dựng và tiny-shock: xem reconstructed_hf_validation.json.\n'
         'Graph giữ toàn bộ ví đầu vào, chưa lọc dust; membership là cạnh thông tin, không cộng vào exposure.\n'
         'Historical: proxy dùng hourly open có sẵn trước sự kiện, không phải dự báo oracle đã nghiệm thu.\n'
-        'Compound: A đủ truy vấn mục tiêu; B1/B2 partial, phần chưa truy vấn là unknown.\n'
+        f"Compound: complete_target_queries={compound_report['complete']}; missing_queries={compound_report['missing_queries']}.\n"
+        'Coverage áp dụng tập ví Aave trên hai market Comet, không phải toàn bộ người dùng Compound.\n'
         'Synthetic: 8 ví giả lập; Parquet và biểu đồ chỉ phục vụ tích hợp/kiểm thử.\n'
         'N4 summary tách snapshot dùng marts hiện tại; mọi gate chưa đạt vẫn giữ nguyên.\n'
         'Manifest unvalidated; không tự đưa bộ này vào data/marts chính thức.\n'
@@ -468,7 +482,7 @@ def main():
     parser.add_argument('--history', type=Path, default=Path('data/n3_history_2024_2026/final/n3_liquidations_observed.parquet'))
     parser.add_argument('--holdout', type=Path, default=Path('data/staging/n3_liquidations_holdout_24h.parquet'))
     parser.add_argument('--compound-dir', type=Path,
-        default=Path('outputs/compound_consolidated_A_B1_B2_20261025'))
+        default=Path('outputs/compound_consolidated_A_B1_B2_20261025_complete'))
     parser.add_argument('--snapshot-config', type=Path, default=Path('config/snapshots.json'))
     args = parser.parse_args()
     build_bundle(args.output_dir, aave=args.aave_dir, marts=args.n4_marts, dex_path=args.dex,

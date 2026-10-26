@@ -213,7 +213,8 @@ def inspect_compound(directory):
                 missing_unique_wallets=(pd.read_parquet(directory / 'query_coverage.parquet').loc[lambda d: ~d.covered, 'wallet_address'].nunique()
                                        if modern else report['missing_unique_wallets']),
                 validation_status='unvalidated',
-                limitation='Partial coverage; unqueried wallets are unknown, never zero. No bridge simulation.'), tables
+                limitation=('Complete target-query coverage; not all Compound users. No bridge simulation.'
+                            if report['complete'] else 'Partial coverage; unqueried wallets are unknown, never zero. No bridge simulation.')), tables
 
 
 def write_manifest(directory, inputs, artifacts, summary):

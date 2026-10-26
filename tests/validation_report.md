@@ -1,5 +1,44 @@
 # N5 — Báo cáo kiểm định
 
+## N3 bổ sung depeg/coverage/gas — commit 6bba2a7
+
+Xem [kết quả rà soát](../docs/N5_RA_SOAT_N3_DEPEG_COVERAGE_GAS_20261026.md).
+96 depeg metrics khớp công thức nhưng đều ở 2026, không có B1/B2. 24/42 event âm lợi nhuận
+theo gas giả định không chứng minh freeze. Finalizer bị cắt cụt/IndentationError đã sửa và kiểm CLI.
+Bundle `outputs/n5_preparation/n5_N3_completion_review_20261026/` giữ trạng thái diagnostic/unvalidated;
+không dùng các nhãn mới để loại model miss khỏi hit-rate.
+
+## Sau cập nhật N3 ngày 26/10/2026
+
+Xem [tiếp nhận N3](../docs/N5_TIEP_NHAN_N3_20261026.md).
+Đã kiểm 84 quote/12 hướng, fit và xuất residual; kiểm lại coverage định giá hai token sự kiện
+B1 1.830/1.830, B2 902/902. Đây không phải hit-rate HF hay xác minh đầy đủ log.
+Gate/Stress đã chạy lại với đúng reference AB1B2, không dùng bản A/B cũ ở đường dẫn mặc định.
+
+## Chính sách tolerance đã chốt bằng ảnh
+
+Xem [kết quả N4/N5 sau lọc dust](../docs/N5_CHOT_TOLERANCE_20261025.md).
+Đã áp dụng nợ >=100 USD, sai số số dư <=100 USD/ví, protocol debt <1%, median HF error <0,005.
+Cả A/B1/B2 đạt input gate; chạy 19 kịch bản/snapshot trong
+`outputs/n5_preparation/n5_tolerances_stress_20261025/`. 131 test và 12 subtest đạt.
+Đây là chốt mới, thay phần “chờ duyệt dung sai” trong các báo cáo cũ; không nghiệm thu thay liquidity/holdout/Q3.
+
+## Sau cập nhật dữ liệu N2 — ngày 25/10/2026
+
+Xem [tiếp nhận N2 và kết quả oracle lấy mẫu](../docs/N5_TIEP_NHAN_N2_20261025.md).
+Bundle chẩn đoán mới: `outputs/n5_preparation/n5_N2_update_20261025_v3/`.
+Đã nhận đủ ba file N2; grid oracle đạt, đã chạy primary/full/secondary theo protocol.
+Primary B1 364/364 ví chấm được, nhưng còn 103/467 ví thiếu giá; B2 100/124 ví chấm được,
+còn 306/434 ví thiếu giá và 4 ví thiếu state. Không công nhận toàn mẫu đạt từ tỷ lệ tập con.
+Đề xuất dung sai kết hợp của N2 cho 0 lỗi nợ/collateral ở ba snapshot, chưa tự duyệt gate.
+
+## Cập nhật sau khi nhận shard 001 B1/B2
+
+Xem [Compound đủ coverage](../docs/CAP_NHAT_N5_COMPOUND_DU_SHARD_001_20261025.md).
+Đã gộp và QA đủ 137.050/137.050 truy vấn mục tiêu A/B1/B2, thiếu 0.
+Bundle hiện tại: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete/`.
+Không còn vướng mắc thiếu shard 001; các giới hạn nghiệm thu mô hình khác vẫn giữ nguyên.
+
 ## Cập nhật 25/10/2026 — dùng cho hiện trạng A/B1/B2
 
 Xem [kết quả triển khai và giới hạn](../docs/KET_QUA_N5_AB1B2_20261025.md).

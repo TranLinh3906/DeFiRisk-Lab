@@ -1,0 +1,77 @@
+{
+  "status": "diagnostic_pending_acceptance",
+  "snapshots": {
+    "B1": {
+      "depeg": {
+        "snapshot_id": "B1",
+        "snapshot_block": 20458637,
+        "snapshot_utc": "2024-08-04T23:59:59+00:00",
+        "window_hours": 24,
+        "market_obs_near_window": 25,
+        "suspected_non_market_obs": 0,
+        "expected_hour_bins": 25,
+        "covered_hour_bins": 25,
+        "coverage_pct": 100.0,
+        "market_ratio_asof_snapshot_available": true,
+        "status": "PASS_OBSERVATION_QA"
+      },
+      "ratio_values": [
+        0.995
+      ],
+      "last_ratio_utc": "2024-08-05T23:00:00+00:00",
+      "approved_peak": {
+        "status": "retrospective_candidate",
+        "start_block": 20459042,
+        "end_block": 20459341,
+        "event_count": 644,
+        "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+        "duration": "300 blocks is not assumed to equal exactly one hour"
+      },
+      "local_peak_event_rows": 644,
+      "local_peak_wallets": 467,
+      "delivered_peak_matches": false,
+      "independent_log_completeness": "not_proven_by_local_count_agreement"
+    },
+    "B2": {
+      "depeg": {
+        "snapshot_id": "B2",
+        "snapshot_block": 23543615,
+        "snapshot_utc": "2025-10-09T23:59:59+00:00",
+        "window_hours": 48,
+        "market_obs_near_window": 26,
+        "suspected_non_market_obs": 0,
+        "expected_hour_bins": 49,
+        "covered_hour_bins": 26,
+        "coverage_pct": 53.061,
+        "market_ratio_asof_snapshot_available": true,
+        "status": "INCOMPLETE_MARKET_SERIES"
+      },
+      "ratio_values": [
+        0.995
+      ],
+      "last_ratio_utc": "2025-10-11T00:00:00+00:00",
+      "approved_peak": {
+        "status": "retrospective_candidate",
+        "start_block": 23549924,
+        "end_block": 23550223,
+        "event_count": 648,
+        "selection": "maximum LiquidationCall event count; earliest event-start on ties",
+        "duration": "300 blocks is not assumed to equal exactly one hour"
+      },
+      "local_peak_event_rows": 648,
+      "local_peak_wallets": 434,
+      "delivered_peak_matches": false,
+      "independent_log_completeness": "not_proven_by_local_count_agreement"
+    }
+  },
+  "ratios_total": 98,
+  "ratios_unique": 1,
+  "provenance": "Source label alone does not verify raw historical quote provenance; constant values require reconciliation",
+  "gas": {
+    "delivered_txs": 16,
+    "rows_with_receipt_fields": 0,
+    "rows_with_usd_gas": 0,
+    "freeze_proven": false
+  },
+  "limitation": "No RPC or external verification. Corrected peak rows are local candidates, not proof of exhaustive logs."
+}

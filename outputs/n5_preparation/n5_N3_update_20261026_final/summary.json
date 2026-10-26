@@ -1,0 +1,118 @@
+{
+  "status": "intake_completed_not_research_accepted",
+  "account_reference_selection": {
+    "path": "data\\processed\\aave\\account_referenceAB1B2.parquet",
+    "reason": "Default account_reference.parquet now holds legacy A/B; selected matching A/B1/B2 file after label/block checks"
+  },
+  "compound_selection_check": {
+    "status": "passed",
+    "queries": 137050,
+    "missing_queries": 0
+  },
+  "multivolume_quotes": {
+    "status": "passed_internal_quote_checks",
+    "verified_quotes": 84,
+    "directions": 12,
+    "max_raw_recalculation_error_pct": 0.0,
+    "rpc_requeried": false,
+    "checkpoint_present": false,
+    "limitation": "Verifies supplied raw quote fields; no independent RPC replay or provenance beyond supplied files",
+    "max_power_fit_residual_percentage_points": 1.4905002230739877,
+    "fit_acceptance": "candidate_only; power-law error can be material, inspect residuals"
+  },
+  "market_event_price_coverage": {
+    "windows": {
+      "B1": {
+        "full_configured_window": {
+          "events": 1830,
+          "events_with_both_quotes": 1830,
+          "two_token_quote_coverage": 1.0,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        },
+        "first_hour_after_snapshot": {
+          "events": 189,
+          "events_with_both_quotes": 189,
+          "two_token_quote_coverage": 1.0,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        },
+        "primary_peak_300": {
+          "events": 644,
+          "events_with_both_quotes": 644,
+          "two_token_quote_coverage": 1.0,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        }
+      },
+      "B2": {
+        "full_configured_window": {
+          "events": 902,
+          "events_with_both_quotes": 902,
+          "two_token_quote_coverage": 1.0,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        },
+        "first_hour_after_snapshot": {
+          "events": 0,
+          "events_with_both_quotes": 0,
+          "two_token_quote_coverage": null,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        },
+        "primary_peak_300": {
+          "events": 648,
+          "events_with_both_quotes": 648,
+          "two_token_quote_coverage": 1.0,
+          "interpretation": "Valuation quote availability, NOT predictive HF hit-rate; NOT independent event completeness"
+        }
+      }
+    },
+    "configured_windows": {
+      "B1": {
+        "events": 1830,
+        "unique_wallets": 1152,
+        "first_hour_wallets": 177,
+        "start_exclusive_utc": "2024-08-04T23:59:59+00:00",
+        "end_exclusive_utc": "2024-08-06T00:00:00+00:00",
+        "duration_hours": 24.00027777777778,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      },
+      "B2": {
+        "events": 902,
+        "unique_wallets": 623,
+        "first_hour_wallets": 0,
+        "start_exclusive_utc": "2025-10-09T23:59:59+00:00",
+        "end_exclusive_utc": "2025-10-12T00:00:00+00:00",
+        "duration_hours": 48.000277777777775,
+        "hit_rate": null,
+        "status": "observations_only",
+        "source_completeness": "unverified"
+      }
+    },
+    "source_origin": "historical_liquidation_priced",
+    "independent_full_wallet_price_path": false,
+    "event_collection_completeness": "unverified"
+  },
+  "new_return_table": {
+    "rows": 600,
+    "eligible_before_A": 138,
+    "timestamp_min": "2026-10-12 00:00:00+00:00",
+    "timestamp_max": "2026-10-15 23:00:00+00:00",
+    "rows_by_asset": {
+      "BTC": 23,
+      "ETH": 23,
+      "STETH": 23,
+      "USDC": 23,
+      "USDT": 23,
+      "WSTETH": 23
+    },
+    "depeg_daily_365_confirmation": "not_supplied_in_new_short_price_return_table",
+    "limitation": "Fresh adjacent returns are not evidence of a complete 365-day paired ETH/USD and stETH/ETH calibration"
+  },
+  "remaining": [
+    "Missing oracle token paths/AnswerUpdated/depeg history for full-wallet holdout",
+    "Independent event-log completeness",
+    "365-day calibration source confirmation",
+    "Apply calibrated execution curves with finite supported trade domain and explicit oracle feedback assumptions",
+    "Aave/Comet execution and behavioral Q3 assumptions",
+    "N4 cohort/depeg/Reverse consistency"
+  ]
+}

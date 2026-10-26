@@ -1,3 +1,5 @@
+> Ghi chú lịch sử: các bundle bàn giao cũ đã được gỡ khỏi cây làm việc; có thể tra cứu hoặc khôi phục từ lịch sử Git trước lần dọn này. Bản bàn giao giữ lại: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete`; release chính thức: `outputs/n5_official_release_20261026`.
+
 # Bàn giao kiểm định cho N4 — sau pull 9b34ff7
 
 Kết quả từ dữ liệu hiện tại, chưa sửa code N4. Thư mục:
@@ -12,8 +14,8 @@ có thể dùng usage_as_collateral cấp reserve thay cho cờ ví.
 Kiểm cột wallet_collateral_enabled/n4_collateral_enabled/adapter_collateral_enabled,
 lượng collateral, weighted contribution trong:
 
-- [Token của 60 ví A](../outputs/n5_preparation/n5_postpull_9b34ff7_20261023/A/hf_disagreement_tokens.csv)
-- [Token của 58 ví B](../outputs/n5_preparation/n5_postpull_9b34ff7_20261023/B/hf_disagreement_tokens.csv)
+- [Token của 60 ví A](https://github.com/TranLinh3906/DeFiRisk-Lab/blob/d756a64f565ec3fae26c1f978ec42151a493515b/outputs/n5_preparation/n5_postpull_9b34ff7_20261023/A/hf_disagreement_tokens.csv)
+- [Token của 58 ví B](https://github.com/TranLinh3906/DeFiRisk-Lab/blob/d756a64f565ec3fae26c1f978ec42151a493515b/outputs/n5_preparation/n5_postpull_9b34ff7_20261023/B/hf_disagreement_tokens.csv)
 
 Ưu tiên cờ theo ví, không fallback sang reserve chỉ vì alias chưa được nhận diện.
 
@@ -32,7 +34,7 @@ từ cùng số dư/giá/LT/cờ với Stress và kiểm độ khớp trước m
 hiện tại: 436 dòng lệch HF tái dựng ≥0,005; 446 dòng có bước nhảy ≥0,005 giữa
 zero/tiny-shock; 118 dòng khác phân loại baseline với phép tái dựng.
 
-File: [HF tái dựng không khớp](../outputs/n5_preparation/n5_postpull_9b34ff7_20261023/reconstructed_hf_failures.csv).
+File: [HF tái dựng không khớp](https://github.com/TranLinh3906/DeFiRisk-Lab/blob/d756a64f565ec3fae26c1f978ec42151a493515b/outputs/n5_preparation/n5_postpull_9b34ff7_20261023/reconstructed_hf_failures.csv).
 
 ## 4. Chặn target NaN/vô cực
 

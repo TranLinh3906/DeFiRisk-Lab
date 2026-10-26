@@ -1,3 +1,5 @@
+> Ghi chú lịch sử: các bundle bàn giao cũ đã được gỡ khỏi cây làm việc; có thể tra cứu hoặc khôi phục từ lịch sử Git trước lần dọn này. Bản bàn giao giữ lại: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete`; release chính thức: `outputs/n5_official_release_20261026`.
+
 # N5 — Kiểm định đầu vào, adapter và khung thí nghiệm
 
 **Nguồn hiện hành sau khi hoàn tất N2/N3/N4:** [báo cáo và checklist bàn giao](N234_KET_QUA_HOAN_THANH_20261026.md).

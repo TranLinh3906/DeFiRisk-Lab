@@ -1,3 +1,5 @@
+> Ghi chú lịch sử: các bundle bàn giao cũ đã được gỡ khỏi cây làm việc; có thể tra cứu hoặc khôi phục từ lịch sử Git trước lần dọn này. Bản bàn giao giữ lại: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete`; release chính thức: `outputs/n5_official_release_20261026`.
+
 # Kết quả các việc N5 tự thực hiện ngày 22/10/2026
 
 Đã chạy công cụ chuẩn bị trên dữ liệu hiện tại và tạo **35 file đầu ra cùng

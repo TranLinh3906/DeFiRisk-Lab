@@ -1,9 +1,0 @@
-{
-  "status": "passed",
-  "errors": [],
-  "rows": 57038,
-  "eligibility_disagreements": 0,
-  "hf_error_ge_tolerance": 0,
-  "tolerance": 0.005,
-  "scope": "Numerical zero-shock consistency; not research acceptance"
-}

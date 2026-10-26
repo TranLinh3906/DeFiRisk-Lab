@@ -39,3 +39,12 @@ data/archive/
 
 # Legacy duplicate directory
 DeFiRisk-Lab-updated-main/
+
+# Generated macOS metadata and Parquet viewer exports
+__MACOSX/
+._*
+*.parquet.as.json
+
+# Local review reports and archives
+/audit_file_review/
+/local_archive/

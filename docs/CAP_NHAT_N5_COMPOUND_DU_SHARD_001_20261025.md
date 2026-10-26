@@ -1,3 +1,5 @@
+> Ghi chú lịch sử: các bundle bàn giao cũ đã được gỡ khỏi cây làm việc; có thể tra cứu hoặc khôi phục từ lịch sử Git trước lần dọn này. Bản bàn giao giữ lại: `outputs/n5_preparation/n5_AB1B2_20261025_compound_complete`; release chính thức: `outputs/n5_official_release_20261026`.
+
 # Cập nhật N5: shard 001 B1/B2 đã đủ
 
 Nguồn `shard_001_of_006/shard_001_of_006/n3_compound_quality.json` hiện ghi đủ A/B/B1/B2, `complete=true`, 30.026 truy vấn thành công, trong đó bổ sung 12.870 truy vấn lịch sử. Đã kiểm tra dữ liệu thực tế, phân công và QA bằng script gộp; không chỉ dựa vào cờ complete.

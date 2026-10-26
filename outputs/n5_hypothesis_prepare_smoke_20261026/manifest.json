@@ -1,0 +1,318 @@
+{
+  "version": "n5_hypothesis_completion_v1",
+  "scientific_acceptance": "hypothesis_specific_not_blanket_acceptance",
+  "inputs": [
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\n4_research\\simulation_positions.parquet",
+      "sha256": "9ead73c77e88233d7eec6e1bfef53f5c3aeaaba7af5952035b815cca7272b49f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\approved_package_with27\\curve_points_with_quantization_audit.parquet",
+      "sha256": "454a551e3df7a93146517578a5b11f92195f40a30b52990773c631fbfa780236"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\calibration_market\\calibration_levels.parquet",
+      "sha256": "06dbc44189551a35dbc097003950fed9e408749ba9cc4228ff6147512e0986ea"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\depeg_peak\\depeg_every_peak_block.parquet",
+      "sha256": "ee80c7d7de28e3a068ca5b6d8cfb5505cb94f8ab98c859cf0670340341a8f4e5"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\config\\snapshots.json",
+      "sha256": "d59d8873b0a6f30da7236b6bc6e85a730c1b986e9cdd7a03f86f7a8c0e6ec391"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\data\\processed\\aave\\reserve_config.parquet",
+      "sha256": "92da30b2ba2361ef78f347930f3120a6863df5125ba95169a3da829c18a467aa"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\levels.parquet",
+      "sha256": "e557ae63958ae220d5745b64dc99dd8cc2847e924159d5b295523a5c2ad9de7f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\observed_quotes.parquet",
+      "sha256": "195d0d9e028b7deeb55a157cab91011e587f0b9dd8b9955e338bad5f54699386"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\levels.parquet",
+      "sha256": "ff67ba63107ab9b54db7497e63189d9853b3e6b8f98c7c8406d153a591fb7c9c"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\observed_quotes.parquet",
+      "sha256": "9cd31334d44d6e999cdb726856bd9c009bc47c76aac86e0b3e7f1351e0f026da"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\levels.parquet",
+      "sha256": "51d8bd3ef6c589ada555866ff8a615f7e8ee58b7f313d035237ab257c554df57"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\observed_quotes.parquet",
+      "sha256": "bfadd6bf2800d8f30c230805dbdf3cfa3e8043f736154aff4b3332ccf1e6e9cb"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_000.json",
+      "sha256": "c6828c0b643111f0fc24e46e4c3c1c8b74db5f3133052b1de792845ee66350ca"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_040.json",
+      "sha256": "1774d3b1400de0264e8b8b33ca642a2806d6c2cb1c8e4b6883205f0a2bbdfb7d"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_080.json",
+      "sha256": "8ca46d79eaab3daf580f2b2e402f5fb989a8fa2af9925633d9c5e3e60c587ba4"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_120.json",
+      "sha256": "0db09e2a5cd5d8c48cf92918e69b63b4949d72ece73a4de8bddc2aa51883dc15"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_160.json",
+      "sha256": "4f5f3b6c755e35bde033d7ffafa78ef6c6c1a1469dfc67ff596fcc4b70809d2d"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_200.json",
+      "sha256": "cf3d39c5dbb66c35a61cc9d955cd9104d7ad37abc4f9a8e7d3e0a0c0bc3142e0"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_240.json",
+      "sha256": "d8ffb7a5a89678edd109d0a8e8e589997bd805b5f068c95f8513bf34360d8351"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_280.json",
+      "sha256": "3f73a51f541154fab16974fbb4c931b6c7b7dc7df5d7ba8a9c05b2ec98dfaae7"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_320.json",
+      "sha256": "3a48ee914025ecfa5a81df49d90eabef1a4b2de5f14d75c9166c8844a4d647bf"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\raw_360.json",
+      "sha256": "e6efd71b9bc65728ab9c85437e759af48040dafebe9cf3211c437d644309d1ec"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_000.json",
+      "sha256": "55d45e4fc6e4a1229fd049d67bf213d399591ff3097d2c28d8c817a801f2dd7e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_040.json",
+      "sha256": "0b9825902786fea9069a92a77d027885bbf85331f9e23b254aa7bf2eae281daf"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_080.json",
+      "sha256": "f1fc3373b81f5c827796294407efe3b39cca75f0ac356ad80dd42c4526121679"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_120.json",
+      "sha256": "453dd6e19fb2b24bacc2db1406e2c013ad40d0fdf3557afaef848f7a2d149b83"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_160.json",
+      "sha256": "e35daba6daa345ecedeb7000af56c58fe4a68e8a371d4c3f7abc20af62aed0f3"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_200.json",
+      "sha256": "daf723f664b912ddb3293d311784aaa098e02c9db4ce0378c56b442444543807"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_240.json",
+      "sha256": "a53b7631028d97fe8d075de74fe16b8292339339740871432fcef567f40f7a1b"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_280.json",
+      "sha256": "82dc52c582fbf16f628ca6129f9c115a955217fd77416d715a29407a627e4909"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_320.json",
+      "sha256": "6cb0a513a5662d409fa723708e2ec98d091fc8428477fb7190f33819e7c6689e"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\raw_360.json",
+      "sha256": "7c4a270cdb6144926cb046027ce3d9e5ba8150d75379a10dfb75a0e36e3abe32"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\raw_000.json",
+      "sha256": "b479856fc7603ad495481bcff19c18fe3658b1ca85052a7b6cee430b9c9cf346"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\raw_040.json",
+      "sha256": "be2a0446a1b2cc31cb90b9b736c279f426346910aed3ed404f35e02ba7c973d8"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\raw_080.json",
+      "sha256": "e2e14915d16c03937d8142fb3177fc214c7b009aed8dded031feffbcc7eda7d7"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B1\\coverage.json",
+      "sha256": "a5c5fa86130c1e49de6475d3387e4a84082166cfe2c2b0e1bfdb4a1445436e50"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\B2\\coverage.json",
+      "sha256": "a5c5fa86130c1e49de6475d3387e4a84082166cfe2c2b0e1bfdb4a1445436e50"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_inputs_20261026\\crisis_2022\\coverage.json",
+      "sha256": "c79555399f7d1815b9f707f26439f5a9299aeba7654f3326fc991aad6be0eee1"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_dex_inputs_20261026\\dex_three_route_spots.parquet",
+      "sha256": "3c4700dcb2c1bb698e6b94afd79bc8155a87a636a1c8311e521f4ecb95e01e5d"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_hypothesis_dex_inputs_20261026\\rpc_checkpoint.jsonl",
+      "sha256": "e355809b1da7529afd9b90679480aad5c1f3840b3527ad2234be6ed78c572d66"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\A\\baseline_wallet_kpis.parquet",
+      "sha256": "10626fa93a500bf885f6534e3fcf049e4aa2bcca72ddfc64d8d201e3566ffde5"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\A\\network_wallet_nodes.parquet",
+      "sha256": "ed147cc87da8883ec8ed61cfacdd1c4bdf276314882548b4a6eed208030df94f"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\B1\\baseline_wallet_kpis.parquet",
+      "sha256": "ad3a2b3571ac3dbd496ce8e2faabf5f9add46134a75b3b3bbd322f5f39be0706"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\B1\\network_wallet_nodes.parquet",
+      "sha256": "55cf674c6064af3dd5ad690a1aca5841f57586fb532f3342ba9e3780c38f9876"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\B2\\baseline_wallet_kpis.parquet",
+      "sha256": "b7d479ff3fc6892d8750d202cef206a7418588d08b2c49e186ad889d1c1815e2"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_review_corrected_20261026\\B2\\network_wallet_nodes.parquet",
+      "sha256": "60df51cbb8ebcf03a07591d45a72657ee715105b5939128de8e7ea48e31589aa"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\history\\B1\\oracle_all_active_tokens.parquet",
+      "sha256": "4ba8d00eb8028cff499d4737b35dcae5e22f06bf9f68e6cded20e326280f0c2a"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\history\\B1\\liquidations_rpc.parquet",
+      "sha256": "e11ef4f02c9bd6f1a211f3d7b8d61fe6ce385c21f4a3437aa6310ac8bcd3f81d"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\history\\B2\\oracle_all_active_tokens.parquet",
+      "sha256": "e56db1abdd6423c11fe25c927c6fec8a13339590e1764677d2a99c19f58d9790"
+    },
+    {
+      "path": "D:\\DeFi Lending\\DeFiRisk-Lab\\outputs\\n5_completion_20261026\\history\\B2\\liquidations_rpc.parquet",
+      "sha256": "ca2cc7fbd2bd2c472933dad309bdf67a2c13828ce90722baeb3714a53924ac23"
+    }
+  ],
+  "files": [
+    {
+      "path": "feedback_input_freeze.json",
+      "sha256": "d8006d92b051186c92f2982b6c3c8f7a20552e53c73c38ec4881567643f87b68",
+      "bytes": 424
+    },
+    {
+      "path": "input_freeze.json",
+      "sha256": "f6ba34b89aa51f2c88442734a5d7ecff02ea4b92dea444de650d3c2e819eb563",
+      "bytes": 10245
+    },
+    {
+      "path": "prepare_completed.json",
+      "sha256": "c98642bd03159b3b28cf93d99f03808f85a7748d96782164054d2a8aecb59ec1",
+      "bytes": 3110
+    },
+    {
+      "path": "preregistered_settings.json",
+      "sha256": "81c89577ce5e68bbeea9a31d5a757ce87f45fbd680c56e6c12392abc18b273cb",
+      "bytes": 1640
+    },
+    {
+      "path": "feedback/route_validation.json",
+      "sha256": "e21c63ef7662aea94eb9aaba724f56019580128f9ff16833d350ed0127387553",
+      "bytes": 3402
+    },
+    {
+      "path": "feedback/temporal_observations.parquet",
+      "sha256": "837fc8e12ef9e7ea270a34fa99fab6ad7981e43b71366b52a57a820ac29a981f",
+      "bytes": 51453
+    },
+    {
+      "path": "feedback/three_route_method.json",
+      "sha256": "47a9c75b484d251ea0de4b226adac08ab3fc3a9364e29eb7ff3c949b1d4f6e0f",
+      "bytes": 885
+    },
+    {
+      "path": "feedback/three_route_temporal_observations.parquet",
+      "sha256": "e11a2fd152054c965561e4a5856901f30d93565f6723a15b2906a92fd76c7f99",
+      "bytes": 134953
+    },
+    {
+      "path": "feedback/validation.json",
+      "sha256": "fc9345d14b74b01f8830d60e4ede8b5455e151ad935b0a64858b2c663dd5bae6",
+      "bytes": 818
+    },
+    {
+      "path": "source_versions/18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe.py",
+      "sha256": "18119fc19b185aa0efaaca7ff7fa45c2529fbdbcaf08a7faaae4a80f385efebe",
+      "bytes": 17261
+    },
+    {
+      "path": "source_versions/1c3b68841d4a38e1fc9ba3733ed10cf3bb3468b111b8bf24a5393015c2c63e76.py",
+      "sha256": "1c3b68841d4a38e1fc9ba3733ed10cf3bb3468b111b8bf24a5393015c2c63e76",
+      "bytes": 13433
+    },
+    {
+      "path": "source_versions/2d3cc51e2f717f07e9f2bbd86450ff92cdfcf42ddcd54eb2c92580b0fa77f0fe.py",
+      "sha256": "2d3cc51e2f717f07e9f2bbd86450ff92cdfcf42ddcd54eb2c92580b0fa77f0fe",
+      "bytes": 6068
+    },
+    {
+      "path": "source_versions/30da10e333e2e7322a152bb60af56f94adad8dd73e58972b04e54fa3e1b7a8dc.py",
+      "sha256": "30da10e333e2e7322a152bb60af56f94adad8dd73e58972b04e54fa3e1b7a8dc",
+      "bytes": 6480
+    },
+    {
+      "path": "source_versions/52769ae2cbee713d3c8f66f59d44e49b5141092c4e472503dcb0b25ea81d3dfb.py",
+      "sha256": "52769ae2cbee713d3c8f66f59d44e49b5141092c4e472503dcb0b25ea81d3dfb",
+      "bytes": 25820
+    },
+    {
+      "path": "source_versions/5e2f2dd0da399671a5457ec34842e67b8d5e7354679e841b0699350bdb4ef814.py",
+      "sha256": "5e2f2dd0da399671a5457ec34842e67b8d5e7354679e841b0699350bdb4ef814",
+      "bytes": 10713
+    },
+    {
+      "path": "source_versions/690ed8ad79941b83cdbee5ecfae13fe5052b0111253ce77d01980ab95bcf1c95.py",
+      "sha256": "690ed8ad79941b83cdbee5ecfae13fe5052b0111253ce77d01980ab95bcf1c95",
+      "bytes": 34437
+    },
+    {
+      "path": "source_versions/9e61cf1dad070d01be9c5c2c07ee875631135573ab61d3095e38950c6e840740.py",
+      "sha256": "9e61cf1dad070d01be9c5c2c07ee875631135573ab61d3095e38950c6e840740",
+      "bytes": 12173
+    },
+    {
+      "path": "source_versions/a431b1bc4c4885bafaafd02f71750492a036e8f0956525f999e10e832d136c86.py",
+      "sha256": "a431b1bc4c4885bafaafd02f71750492a036e8f0956525f999e10e832d136c86",
+      "bytes": 11995
+    },
+    {
+      "path": "source_versions/d0e74f18b776546af38e2cd7642b3baabe196ccd01461125c25fcf131121b7d1.py",
+      "sha256": "d0e74f18b776546af38e2cd7642b3baabe196ccd01461125c25fcf131121b7d1",
+      "bytes": 2696
+    },
+    {
+      "path": "source_versions/d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f.py",
+      "sha256": "d4971f4feaa409068b6bd3b27845e120dd8476a990fadcda41071c09ce44446f",
+      "bytes": 23409
+    },
+    {
+      "path": "source_versions/de79cf3a0964ac1c668b5fa06681ee6e6121b9d176732977ddc190a5f7f5c35a.py",
+      "sha256": "de79cf3a0964ac1c668b5fa06681ee6e6121b9d176732977ddc190a5f7f5c35a",
+      "bytes": 26827
+    },
+    {
+      "path": "source_versions/efa7e33f6a7570fdd49015c4a96840aacbd061cbfe88bf393eb41de0acb32840.py",
+      "sha256": "efa7e33f6a7570fdd49015c4a96840aacbd061cbfe88bf393eb41de0acb32840",
+      "bytes": 14145
+    }
+  ]
+}

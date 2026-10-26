@@ -1,0 +1,18 @@
+{
+  "code_versions": [
+    {
+      "original_path": "D:\\DeFi Lending\\DeFiRisk-Lab\\scripts\\n5_compound_hypothesis_evidence.py",
+      "archived_path": "source_versions/9fdee7e010041607c846aeaaadff1ce2fc595090643b0bf3baae7afcb84473bf.py",
+      "sha256": "9fdee7e010041607c846aeaaadff1ce2fc595090643b0bf3baae7afcb84473bf"
+    },
+    {
+      "original_path": "src\\models\\n5_comet_execution.py",
+      "archived_path": "source_versions/5936fe7d0fb01e10ba1f8b30d84eda0c95e31bed63dc543b5cad515ba5ad2b1c.py",
+      "sha256": "5936fe7d0fb01e10ba1f8b30d84eda0c95e31bed63dc543b5cad515ba5ad2b1c"
+    }
+  ],
+  "assumption": "common_market_price_changes_applied_to_Comet_positions;_Comet_feed_response_not_certified",
+  "liquidity": "Comet_inventory_sales_start_from_Aave_cumulative_pool_flow;_no_pool_reset",
+  "direction": "one_way_Aave_price_spillover_to_Comet;_Comet_resales_not_fed_back_into_Aave",
+  "funding_channel": "not_inferred_from_price_losses_or_base_supply_balances"
+}

@@ -1,0 +1,6 @@
+{
+  "observations": 1800,
+  "routes": 3,
+  "peak_blocks_each_snapshot": 300,
+  "all_block_hashes_and_timestamps_verified": true
+}

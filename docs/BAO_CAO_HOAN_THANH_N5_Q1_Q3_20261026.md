@@ -1,5 +1,7 @@
 # Báo cáo N5 Q1–Q3 sau rà soát ngày 26/10/2026
 
+**Cập nhật kết quả hiện hành:** [gói hoàn thiện kiểm định sáu giả thuyết](../outputs/n5_hypothesis_completion_20261026/REPORT.md). Nội dung dưới đây ghi nhận bản rà soát trước; các kiểm định bổ sung và kết luận mới nằm trong gói cập nhật.
+
 Bản này thay thế các tuyên bố “hoàn thành 100%” và “18/18 KPI đã được nghiệm thu” trong báo cáo trước. Bản trước được giữ tại `outputs/research_review_fix_20261026/source_before/BAO_CAO_HOAN_THANH_N5_Q1_Q3_20261026.md` để truy nguyên.
 
 **Gói hiện hành:** [Báo cáo sinh từ artifact đã sửa](../outputs/n5_review_corrected_20261026/REPORT.md).

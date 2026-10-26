@@ -1,12 +1,14 @@
 {
-  "version": "20261026_review_corrected",
-  "current_bundle": "outputs/n5_review_corrected_20261026",
-  "report": "outputs/n5_review_corrected_20261026/REPORT.md",
-  "validation": "outputs/n5_review_corrected_20261026/validation.json",
+  "version": "20261026_hypothesis_completion",
+  "current_bundle": "outputs/n5_hypothesis_completion_20261026",
+  "report": "outputs/n5_hypothesis_completion_20261026/REPORT.md",
+  "validation": "outputs/n5_hypothesis_completion_20261026/validation.json",
+  "hypothesis_conclusions": "outputs/n5_hypothesis_completion_20261026/hypothesis_conclusions.csv",
   "kpi_acceptance": "outputs/n5_review_corrected_20261026/kpi_acceptance.csv",
-  "manifest": "outputs/n5_review_corrected_20261026/manifest.json",
-  "research_acceptance": "pending_external_validation_of_feedback_and_protocol_execution",
+  "manifest": "outputs/n5_hypothesis_completion_20261026/manifest.json",
+  "research_acceptance": "hypothesis_specific_conditional;_causal_feedback_not_identified",
+  "previous_review_bundle": "outputs/n5_review_corrected_20261026",
   "historical_bundle": "outputs/n5_q1_q3_empirical_20261026",
   "historical_bundle_status": "superseded_for_research_conclusions_preserved_for_provenance",
-  "note": "Numerical regression checks, KPI mapping and scientific acceptance are distinct. Read assumptions and limitations in the current report."
+  "note": "All requested hypothesis tests implemented on the declared scope. Hypotheses need not be supported. Software tests, KPI mapping, conditional model evidence and causal identification remain distinct."
 }

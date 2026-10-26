@@ -18,20 +18,20 @@ st.markdown("""<style>
 /* Ice Blue pastel: main content only; original navy sidebar and cards untouched. */
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
 [data-testid="stMain"], [data-testid="stMainBlockContainer"] {
-  background-color:#fdecfc !important;
+  background-color:#ebf4fe !important;
 }
 [data-testid="stMain"] {
-  background:linear-gradient(145deg,#fef6fe 0%,#fdecfc 48%,#fae4f9 100%) !important;
+  background:linear-gradient(145deg,#f6fafe 0%,#ebf4fe 48%,#e3eefb 100%) !important;
 }
 [data-testid="stHeader"] {background:rgba(234,245,255,.94) !important;}
 /* Keep the dark navigation and its scroll region exactly as designed. */
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div,
 [data-testid="stSidebar"] [data-testid="stSidebarContent"] {
-  background-color:#250f2d !important;
+  background-color:#0d1d2f !important;
 }
 
-[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#250f2d!important;border-right:1px solid #522b60!important}
-[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#240e2c 0%,#3e1a4a 52%,#280f31 100%)!important}
+[data-testid="stSidebar"]{width:var(--sidebar-width)!important;min-width:var(--sidebar-width)!important;background:#0d1d2f!important;border-right:1px solid #284363!important}
+[data-testid="stSidebar"] > div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(158deg,#0c1c2e 0%,#18304c 52%,#0d1f33 100%)!important}
 [data-testid="stSidebar"] [data-testid="stSidebarUserContent"]{padding-top:0!important}
 /* Brand is sticky inside the SAME sidebar scroll flow: it cannot cover Overview. */
 [data-testid="stSidebar"] .st-key-brand_fixed{
@@ -41,169 +41,169 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"],
   width:100%!important;
   height:auto!important;
   z-index:100!important;
-  background:linear-gradient(160deg,#240e2c,#3b1a46)!important;
+  background:linear-gradient(160deg,#0c1c2e,#182e48)!important;
   padding:12px 12px 16px!important;
   box-sizing:border-box!important;
-  border-bottom:1px solid #5c326b!important;
+  border-bottom:1px solid #2f4c6e!important;
 }
 [data-testid="stSidebar"] .st-key-brand_fixed > div{background:transparent!important}
-.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #c14beb55)}
-.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#fef6fe;margin-top:4px}
-.brand-sub{text-align:center;color:#e3afe1;font-size:.82rem;margin:5px 0 0}
+.brand-logo{width:168px;height:168px;object-fit:contain;display:block;margin:0 auto 6px;border-radius:50%;filter:drop-shadow(0 0 22px #4394f355)}
+.brand-label{text-align:center;font-size:1.45rem;font-weight:800;color:#f6fafe;margin-top:4px}
+.brand-sub{text-align:center;color:#acc7e6;font-size:.82rem;margin:5px 0 0}
 /* No spacer: brand occupies its natural height, menu follows immediately. */
 .nav-spacer{height:0!important;display:none!important}
-.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#daa1d8;font-weight:800;margin:0 0 10px 8px}
-[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #18081e66;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.nav-heading{font-size:.76rem;letter-spacing:.17em;color:#9ebbdd;font-weight:800;margin:0 0 10px 8px}
+[data-testid="stSidebar"] .stButton>button{width:100%;min-height:72px;justify-content:flex-start;text-align:left;border-radius:15px;padding:13px 18px;font-size:1.12rem;font-weight:750;color:#fff!important;border:1px solid #ffffff22;box-shadow:0 6px 16px #07121f66;transition:filter .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 [data-testid="stSidebar"] .stButton>button:before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#ffffff24,transparent 60%);pointer-events:none}
 [data-testid="stSidebar"] .stButton>button p{font-size:1.12rem!important;font-weight:750!important;color:white!important}
 [data-testid="stSidebar"] .stButton>button:hover{filter:brightness(1.12);transform:translateX(4px);box-shadow:0 8px 22px #0008}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #f288ee;outline-offset:2px;box-shadow:0 0 0 4px #f17dec2a,0 8px 22px #0008}
-[data-testid="stSidebar"] .st-key-nav_0 button{background:#9a26c2!important}
-[data-testid="stSidebar"] .st-key-nav_1 button{background:#620e80!important}
-[data-testid="stSidebar"] .st-key-nav_2 button{background:#a956c6!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{outline:2px solid #83b8f7;outline-offset:2px;box-shadow:0 0 0 4px #77b2f72a,0 8px 22px #0008}
+[data-testid="stSidebar"] .st-key-nav_0 button{background:#1e6dca!important}
+[data-testid="stSidebar"] .st-key-nav_1 button{background:#084286!important}
+[data-testid="stSidebar"] .st-key-nav_2 button{background:#5089cc!important}
 [data-testid="stSidebar"] .st-key-nav_3 button{background:#C47A14!important}
-[data-testid="stSidebar"] .st-key-nav_4 button{background:#C3445B!important}
-[data-testid="stSidebar"] .st-key-nav_5 button{background:#704d7c!important}
-[data-testid="stSidebar"] hr{border-color:#5d376b}
-[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#dfafdd!important}
-.status-panel{background:#421e4f;border:1px solid #643c72;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#fde9fc}
+[data-testid="stSidebar"] .st-key-nav_4 button{background:#3e7ec9!important}
+[data-testid="stSidebar"] .st-key-nav_5 button{background:#4b627e!important}
+[data-testid="stSidebar"] hr{border-color:#344f6e}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#adc5e1!important}
+.status-panel{background:#1c3451;border:1px solid #395575;border-radius:14px;padding:13px 14px;margin:12px 0 8px;color:#e8f2fe}
 .status-title{font-weight:750;font-size:.95rem;margin-bottom:5px}
-.status-desc{font-size:.76rem;color:#dfbade;line-height:1.5}
-.status-pill{display:inline-block;background:#3b1847;color:#79f1d1;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
+.status-desc{font-size:.76rem;color:#b8cbe1;line-height:1.5}
+.status-pill{display:inline-block;background:#162d49;color:#79f1d1;border-radius:20px;font-size:.66rem;padding:3px 8px;margin-left:5px}
 .block-container{padding-top:1.5rem;max-width:1450px}
-[data-testid="stMetric"]{background:#28182d;border:1px solid #462e4e;padding:16px;border-radius:12px}
-[data-testid="stMetricLabel"] p{color:#ddbcdc!important}
-[data-testid="stMetricValue"] div{color:#fef9fe!important}
+[data-testid="stMetric"]{background:#17222e;border:1px solid #2c3d50;padding:16px;border-radius:12px}
+[data-testid="stMetricLabel"] p{color:#bacbdf!important}
+[data-testid="stMetricValue"] div{color:#f9fbfe!important}
 h1,h2,h3{letter-spacing:-.025em}
 .demo{padding:10px 14px;border-radius:9px;background:#493c19;color:#ffe5a2;border:1px solid #796028;margin-bottom:18px}
-.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #35183f1a}
+.page-banner{width:100%;border-radius:14px;padding:21px 25px;margin:4px 0 18px;box-shadow:0 7px 18px #162a411a}
 .page-banner-title{color:white!important;font-size:2rem;font-weight:800;line-height:1.2;letter-spacing:-.025em}
 .page-banner-sub{color:#fff!important;opacity:.9;font-size:.97rem;margin-top:7px}
 
 /* Aurora Risk Intelligence data explorer */
-.risk-shell{background:linear-gradient(150deg,#250f2c,#34163e 75%,#260f2e);border:1px solid #573064;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #270e3033;color:#fdecfc}
+.risk-shell{background:linear-gradient(150deg,#0e1c2d,#142840 75%,#0d1d30);border:1px solid #2d4867;border-radius:20px;padding:21px;margin:16px 0;box-shadow:0 18px 38px #0c1e3233;color:#ebf4fe}
 .risk-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.risk-title{font-size:1.38rem;font-weight:800;color:#fef8fe}.risk-kicker{font-size:.73rem;color:#ce97cc;letter-spacing:.1em;margin-top:3px}
-.risk-tag{background:#50275f;border:1px solid #723f84;border-radius:30px;padding:6px 12px;color:#f1a8ee;font-size:.74rem;font-weight:700}
+.risk-title{font-size:1.38rem;font-weight:800;color:#f8fbfe}.risk-kicker{font-size:.73rem;color:#94b0d1;letter-spacing:.1em;margin-top:3px}
+.risk-tag{background:#244162;border:1px solid #3c5e87;border-radius:30px;padding:6px 12px;color:#a4c9f5;font-size:.74rem;font-weight:700}
 .risk-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:17px}
-.risk-kpi{background:#3a1e43;border:1px solid #51315d;border-radius:13px;padding:14px;min-width:0}
-.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#d2a6d0;letter-spacing:.06em;margin-top:5px}
-.risk-composition{background:#361a40;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #51315d}
-.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#fadef9}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#53385c}
-.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#e5c4e4}
-.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #543360;background:#2c1435}
-.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#fdeafc;font-size:.82rem}
-.risk-table th{background:#43224e;color:#e0acde;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
-.risk-table td{padding:13px 12px;border-top:1px solid #4d2f58;white-space:nowrap;font-variant-numeric:tabular-nums}
-.risk-table tbody tr:nth-child(even){background:#361a3f}.risk-table tbody tr:hover{background:#4e275c}
-.risk-wallet{color:#f17eec;font-weight:700}.risk-muted{color:#c196bf;font-size:.72rem;margin-top:4px}
-.risk-hf-track{height:5px;background:#573a61;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
+.risk-kpi{background:#1c2f45;border:1px solid #2f455f;border-radius:13px;padding:14px;min-width:0}
+.risk-number{font-size:1.65rem;font-weight:800;font-variant-numeric:tabular-nums}.risk-label{font-size:.69rem;color:#a4bad4;letter-spacing:.06em;margin-top:5px}
+.risk-composition{background:#182b42;border-radius:13px;padding:14px 16px;margin-bottom:18px;border:1px solid #2f455f}
+.risk-comp-title{font-size:.82rem;font-weight:700;margin-bottom:10px;color:#ddebfb}.risk-track{height:11px;display:flex;border-radius:50px;overflow:hidden;background:#36485e}
+.risk-legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:#c2d3e7}
+.risk-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #314862;background:#122337}
+.risk-table{border-collapse:collapse;width:100%;min-width:800px;color:#e9f3fe;font-size:.82rem}
+.risk-table th{background:#203650;color:#a9c4e3;letter-spacing:.06em;text-transform:uppercase;font-size:.67rem;text-align:left;padding:14px 12px;white-space:nowrap}
+.risk-table td{padding:13px 12px;border-top:1px solid #2d425a;white-space:nowrap;font-variant-numeric:tabular-nums}
+.risk-table tbody tr:nth-child(even){background:#182b41}.risk-table tbody tr:hover{background:#243f5f}
+.risk-wallet{color:#78b2f7;font-weight:700}.risk-muted{color:#94aac3;font-size:.72rem;margin-top:4px}
+.risk-hf-track{height:5px;background:#384c63;border-radius:20px;overflow:hidden;margin-top:6px;width:88px}
 .risk-pill{padding:5px 9px;border-radius:20px;font-weight:800;font-size:.68rem;display:inline-block}
-.risk-footer{color:#c393c1;font-size:.76rem;margin-top:12px}
-.risk-shell .risk-empty{padding:25px;text-align:center;color:#dcbddb}
+.risk-footer{color:#91a9c5;font-size:.76rem;margin-top:12px}
+.risk-shell .risk-empty{padding:25px;text-align:center;color:#bbcbde}
 @media(max-width:760px){.risk-kpis{grid-template-columns:1fr}.risk-number{font-size:1.4rem}.risk-shell{padding:12px}}
 
 /* Reusable Aurora tables across every dashboard page */
-.aurora-table-shell{background:linear-gradient(145deg,#250f2c,#371942);border:1px solid #563064;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #2d143630;color:#fdeffd}
-.aurora-table-title{font-size:1.25rem;font-weight:800;color:#fef6fe;margin-bottom:5px}
-.aurora-table-sub{font-size:.77rem;color:#d6a8d4;margin-bottom:17px}
-.aurora-scroll{overflow:auto;border:1px solid #5c3c67;border-radius:12px;max-height:530px}
-.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#fdecfc;font-variant-numeric:tabular-nums}
-.aurora-data th{position:sticky;top:0;background:#492755;color:#eabee8;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
-.aurora-data td{padding:13px;border-top:1px solid #4f2e5a;white-space:nowrap}
-.aurora-data tbody tr:nth-child(even){background:#381a42}.aurora-data tbody tr:hover{background:#4e295b}
-.aurora-table-footer{font-size:.74rem;color:#cfa6cd;margin-top:12px}
+.aurora-table-shell{background:linear-gradient(145deg,#0e1c2d,#172c44);border:1px solid #2d4867;border-radius:19px;padding:20px;margin:16px 0 22px;box-shadow:0 15px 35px #12243830;color:#eef5fe}
+.aurora-table-title{font-size:1.25rem;font-weight:800;color:#f6fafe;margin-bottom:5px}
+.aurora-table-sub{font-size:.77rem;color:#a6bdd8;margin-bottom:17px}
+.aurora-scroll{overflow:auto;border:1px solid #3a5069;border-radius:12px;max-height:530px}
+.aurora-data{border-collapse:collapse;min-width:720px;width:100%;font-size:.84rem;color:#ebf4fe;font-variant-numeric:tabular-nums}
+.aurora-data th{position:sticky;top:0;background:#253c57;color:#bcd2ec;padding:14px 13px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.aurora-data td{padding:13px;border-top:1px solid #2c425c;white-space:nowrap}
+.aurora-data tbody tr:nth-child(even){background:#182c44}.aurora-data tbody tr:hover{background:#27405e}
+.aurora-table-footer{font-size:.74rem;color:#a4b9d1;margin-top:12px}
 
 /* Bloomberg x Aurora | TABLE-ONLY OVERRIDES: original navigation, logo and charts untouched */
-.aurora-table-shell,.risk-shell{background:#452550!important;border:1px solid #916b9e!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #1f0a2724!important;padding:17px!important}
-.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#fef4fd!important}
+.aurora-table-shell,.risk-shell{background:#233952!important;border:1px solid #6882a1!important;border-top-width:3px!important;border-radius:13px!important;box-shadow:0 12px 26px #09172824!important;padding:17px!important}
+.aurora-table-title,.risk-title{font-family:Inter,Arial,sans-serif!important;font-size:1.13rem!important;letter-spacing:.005em!important;color:#f4f9fe!important}
 .aurora-table-title:before{content:'▮';color:#f3ae4d;margin-right:9px}
-.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#c097be!important;letter-spacing:.045em!important}
-.aurora-scroll,.risk-table-wrap{border:1px solid #4c2e57!important;border-radius:7px!important;background:#4e2c5a!important;scrollbar-color:#bf93bd #4e2c5a}
-.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#f8eaf8!important;font-variant-numeric:tabular-nums!important}
-.aurora-data th,.risk-table th{background:#643b72!important;color:#fde9fc!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #9e78ab!important}
-.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #734f7f!important;line-height:1.45!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#553162!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#6e427d!important}
-.aurora-data td.terminal-num{text-align:right;color:#fcf2fb}
+.aurora-table-sub,.risk-kicker{font-size:.71rem!important;color:#95aac2!important;letter-spacing:.045em!important}
+.aurora-scroll,.risk-table-wrap{border:1px solid #2c4159!important;border-radius:7px!important;background:#2a415c!important;scrollbar-color:#91a7c1 #2a415c}
+.aurora-data,.risk-table{font-family:'Cascadia Code','Consolas','SFMono-Regular',monospace!important;font-size:.78rem!important;color:#e9f0f9!important;font-variant-numeric:tabular-nums!important}
+.aurora-data th,.risk-table th{background:#385475!important;color:#e8f2fe!important;padding:11px 13px!important;font-size:.67rem!important;letter-spacing:.055em!important;position:sticky!important;top:0!important;z-index:2!important;border-bottom:1px solid #758fae!important}
+.aurora-data td,.risk-table td{padding:10px 13px!important;border-top:1px solid #4d6581!important;line-height:1.45!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#2f4764!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#3f5d80!important}
+.aurora-data td.terminal-num{text-align:right;color:#f2f7fc}
 .aurora-data th.terminal-num{text-align:right}
-.aurora-data td.terminal-identity{color:#ec85e8;font-weight:650}
-.aurora-data td.terminal-alert{color:#ff899a;font-weight:700}
+.aurora-data td.terminal-identity{color:#80b4f1;font-weight:650}
+.aurora-data td.terminal-alert{color:#89bfff;font-weight:700}
 .aurora-data td.terminal-safe{color:#75dfb4;font-weight:650}
-.aurora-data td.terminal-muted{color:#d0accf}
-.aurora-table-footer,.risk-footer{color:#c196bf!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
-.risk-kpis{gap:8px!important}.risk-kpi{background:#5d376b!important;border:1px solid #8e6a9b!important;border-radius:7px!important;padding:11px!important}
+.aurora-data td.terminal-muted{color:#aabcd2}
+.aurora-table-footer,.risk-footer{color:#94aac3!important;font-family:'Cascadia Code',Consolas,monospace;font-size:.69rem!important}
+.risk-kpis{gap:8px!important}.risk-kpi{background:#344f6e!important;border:1px solid #68809d!important;border-radius:7px!important;padding:11px!important}
 .risk-number{font-family:'Cascadia Code',Consolas,monospace;font-size:1.35rem!important}
-.risk-composition{background:#5d376b!important;border-radius:7px!important;border-color:#4c2f56!important}
+.risk-composition{background:#344f6e!important;border-radius:7px!important;border-color:#2d4158!important}
 .risk-pill{border-radius:4px!important;padding:4px 7px!important;letter-spacing:.03em!important}
-.risk-tag{border-radius:4px!important;background:#301a38!important;border-color:#276a55!important;color:#78e2b6!important}
+.risk-tag{border-radius:4px!important;background:#18283a!important;border-color:#276a55!important;color:#78e2b6!important}
 .risk-wallet{font-family:'Cascadia Code',Consolas,monospace!important}
 /* Native widgets outside terminal tables retain the existing design. */
 
 /* CONCEPT 01 · CLASSIC CLEAN / all six pages. Sidebar, data and logic unchanged. */
 [data-testid="stMain"]{
- background:radial-gradient(ellipse at 90% 0%,#fbddfa 0%,transparent 46%),
- linear-gradient(160deg,#fef5fe 0%,#fdecfc 60%,#fae9f9 100%)!important;
+ background:radial-gradient(ellipse at 90% 0%,#dbebfd 0%,transparent 46%),
+ linear-gradient(160deg,#f5f9fe 0%,#ebf4fe 60%,#e8f1fb 100%)!important;
 }
 .block-container{max-width:1450px;padding-top:1.55rem}
 .page-banner{background-image:linear-gradient(110deg,rgba(255,255,255,.13),transparent 70%)!important;
- border-radius:18px!important;box-shadow:0 10px 24px #9658ac2B!important;padding:23px 28px!important}
+ border-radius:18px!important;box-shadow:0 10px 24px #547eb02B!important;padding:23px 28px!important}
 .page-banner-title{font-size:1.83rem!important;letter-spacing:-.025em!important}
 .page-banner-sub{font-size:.96rem!important}
 [data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{
- color:#411d4e!important;letter-spacing:-.03em!important;font-weight:800!important}
+ color:#1b3350!important;letter-spacing:-.03em!important;font-weight:800!important}
 [data-testid="stMain"] h2{font-size:1.55rem!important}
 [data-testid="stMain"] h3{font-size:1.25rem!important}
 [data-testid="stMetric"]{
- background:linear-gradient(155deg,#FFFFFF,#fdeffd)!important;
- border:1px solid #eecded!important;border-radius:15px!important;
- box-shadow:0 7px 20px #9059a314!important;padding:19px 21px!important;
+ background:linear-gradient(155deg,#FFFFFF,#eef5fe)!important;
+ border:1px solid #cbdcf0!important;border-radius:15px!important;
+ box-shadow:0 7px 20px #557ba714!important;padding:19px 21px!important;
  min-height:112px!important}
-[data-testid="stMetricLabel"] p{color:#7b5a87!important;font-size:.85rem!important;font-weight:650!important}
-[data-testid="stMetricValue"] div{color:#4c1d5d!important;font-weight:800!important;font-size:2rem!important}
-[data-testid="stMetricDelta"]{color:#64167f!important}
+[data-testid="stMetricLabel"] p{color:#586f89!important;font-size:.85rem!important;font-weight:650!important}
+[data-testid="stMetricValue"] div{color:#1a3a60!important;font-weight:800!important;font-size:2rem!important}
+[data-testid="stMetricDelta"]{color:#114684!important}
 [data-testid="stMain"] [data-testid="stRadio"]>label,
 [data-testid="stMain"] [data-testid="stSelectbox"]>label,
 [data-testid="stMain"] [data-testid="stMultiSelect"]>label{
- color:#623c6f!important;font-weight:650!important}
+ color:#395372!important;font-weight:650!important}
 [data-testid="stMain"] [data-baseweb="select"]>div,
 [data-testid="stMain"] [data-testid="stNumberInput"] input{
- background:#FFFFFF!important;border:1px solid #ebccea!important;border-radius:10px!important}
+ background:#FFFFFF!important;border:1px solid #cadaed!important;border-radius:10px!important}
 [data-testid="stMain"] .stButton>button:not([kind="primary"]){
- border-radius:10px!important;border-color:#e6c0e5!important;
- background:#fef8fe!important;color:#6b327f!important}
+ border-radius:10px!important;border-color:#bed1e8!important;
+ background:#f8fbfe!important;color:#2e5583!important}
 .aurora-table-shell,.risk-shell{
- background:linear-gradient(160deg,#5a2e6a,#663975)!important;
- border:1px solid #ab82ba!important;border-radius:17px!important;
- box-shadow:0 12px 26px #87519a2B!important}
+ background:linear-gradient(160deg,#2b496d,#365478)!important;
+ border:1px solid #7f9cbd!important;border-radius:17px!important;
+ box-shadow:0 12px 26px #4d729e2B!important}
 .aurora-table-title,.risk-title{color:#FFFFFF!important;font-size:1.17rem!important}
-.aurora-scroll,.risk-table-wrap{background:#582f66!important;border-color:#a680b4!important}
-.aurora-data th,.risk-table th{background:#704380!important;color:#fef2fd!important}
-.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#653c73!important}
-.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#7c4f8c!important}
-.aurora-data td,.risk-table td{border-top-color:#805a8d!important}
-.risk-kpi,.risk-composition{background:#673d76!important;border-color:#9e79ab!important}
-.aurora-table-footer,.risk-footer{color:#f4d9f3!important}
+.aurora-scroll,.risk-table-wrap{background:#2c4869!important;border-color:#7d98b7!important}
+.aurora-data th,.risk-table th{background:#405f83!important;color:#f1f7ff!important}
+.aurora-data tbody tr:nth-child(even),.risk-table tbody tr:nth-child(even){background:#395576!important}
+.aurora-data tbody tr:hover,.risk-table tbody tr:hover{background:#4c6b8f!important}
+.aurora-data td,.risk-table td{border-top-color:#577190!important}
+.risk-kpi,.risk-composition{background:#3a5779!important;border-color:#7690ad!important}
+.aurora-table-footer,.risk-footer{color:#d8e5f5!important}
 @media(max-width:780px){.page-banner-title{font-size:1.5rem!important}[data-testid="stMetricValue"] div{font-size:1.5rem!important}}
 
 
 /* MICRO PATCH: section titles + filter labels ONLY (no layout/data changes). */
 [data-testid="stMain"] [data-testid="stHeadingWithActionElements"] h3 {
   display:inline-block!important;
-  background:linear-gradient(90deg,#fbddfa,#fef2fd)!important;
-  border-left:5px solid #9736b9!important;
-  border-bottom:1px solid #eac5e9!important;
+  background:linear-gradient(90deg,#dbebfd,#f1f7ff)!important;
+  border-left:5px solid #2f72c0!important;
+  border-bottom:1px solid #c3d6ec!important;
   border-radius:0 12px 12px 0!important;
   padding:11px 18px!important;
-  color:#4e1b5f!important;
+  color:#183a62!important;
   font-size:1.52rem!important;
   font-weight:850!important;
-  box-shadow:0 4px 14px #975dab1B!important;
+  box-shadow:0 4px 14px #5981af1B!important;
 }
 [data-testid="stMain"] [data-testid="stSelectbox"] > label p,
 [data-testid="stMain"] [data-testid="stMultiSelect"] > label p,
 [data-testid="stMain"] [data-testid="stRadio"] > label p {
-  color:#632379!important;
+  color:#1f4a7d!important;
   font-weight:800!important;
   font-size:.94rem!important;
   letter-spacing:.012em!important;
@@ -217,12 +217,12 @@ def dollars(x):
 # HF < 1 is the Aave liquidation eligibility threshold; sub-bands are illustrative.
 def risk_level(hf):
     if hf < 0.8:
-        return 'Critical', '#ff7794', '#55283c'
+        return 'Critical', '#77b6ff', '#263d57'
     if hf < 1.0:
         return 'High', '#ffbd65', '#57402b'
     if hf < 1.2:
-        return 'Watch', '#f28aee', '#4d265a'
-    return 'Healthy', '#67dfbd', '#3b1d45'
+        return 'Watch', '#85b9f7', '#233e5d'
+    return 'Healthy', '#67dfbd', '#1b2f47'
 
 
 def compact_money(value):
@@ -243,7 +243,7 @@ def _sync_table_page(page_key, selector_key):
     st.session_state[page_key] = int(st.session_state[selector_key])
 
 
-def render_aurora_table(df, title, key, accent='#9a26c2', subtitle='', formats=None):
+def render_aurora_table(df, title, key, accent='#1e6dca', subtitle='', formats=None):
     """Reusable styled table for all non-wallet datasets, preserving full data for export."""
     df = df.copy().reset_index(drop=True)
     formats = formats or {}
@@ -392,23 +392,23 @@ def render_risk_explorer(data, key='borrower', hf_col='health_factor', title='Bo
     pct = lambda n: 100*n/total if total else 0
     composition = ''.join(
         f'<div style="width:{pct(n):.4f}%;background:{color}"></div>'
-        for n, color in [(critical, '#f16b85'), (high, '#f5b451'), (watch, '#f07aeb'), (healthy, '#9038af')]
+        for n, color in [(critical, '#64a8f8'), (high, '#f5b451'), (watch, '#74b0f6'), (healthy, '#326eb5')]
     )
-    accent = '#a956c6' if key == 'borrower' else '#C47A14'
+    accent = '#5089cc' if key == 'borrower' else '#C47A14'
     html = f'''<div class="risk-shell" style="border-top:4px solid {accent}">
       <div class="risk-head"><div><div class="risk-title">▮ {escape(title)}</div>
       <div class="risk-kicker">BORROWER ANALYTICS / AAVE V3</div></div><span class="risk-tag">● RESEARCH DATA</span></div>
       <div class="risk-kpis">
-        <div class="risk-kpi"><div class="risk-number" style="color:#f17eec">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
-        <div class="risk-kpi"><div class="risk-number" style="color:#ff8ca1">{at_risk:,}</div><div class="risk-label">HF BELOW 1</div></div>
+        <div class="risk-kpi"><div class="risk-number" style="color:#78b2f7">{total:,}</div><div class="risk-label">FILTERED POSITIONS</div></div>
+        <div class="risk-kpi"><div class="risk-number" style="color:#8cc1ff">{at_risk:,}</div><div class="risk-label">HF BELOW 1</div></div>
         <div class="risk-kpi"><div class="risk-number" style="color:#ffc37a">{compact_money(debt_at_risk)}</div><div class="risk-label">DEBT WITH HF < 1</div></div>
       </div>
       <div class="risk-composition"><div class="risk-comp-title">Portfolio risk composition · Current filter</div>
         <div class="risk-track">{composition}</div>
-        <div class="risk-legend"><span style="color:#ff8ba0">● Critical {pct(critical):.0f}%</span>
+        <div class="risk-legend"><span style="color:#8bc0ff">● Critical {pct(critical):.0f}%</span>
         <span style="color:#ffc37a">● High {pct(high):.0f}%</span>
-        <span style="color:#f498f0">● Watch {pct(watch):.0f}%</span>
-        <span style="color:#d87ed4">● Healthy {pct(healthy):.0f}%</span></div></div>
+        <span style="color:#93c2f9">● Watch {pct(watch):.0f}%</span>
+        <span style="color:#7aa7dc">● Healthy {pct(healthy):.0f}%</span></div></div>
       <div class="risk-table-wrap"><table class="risk-table"><thead><tr>
         <th>Wallet</th><th>Debt</th><th>Collateral</th><th>Health factor</th><th>E-Mode</th><th>Strategy</th><th>Risk</th>
       </tr></thead><tbody>'''
@@ -511,7 +511,7 @@ elif page.startswith(('04','05')):
     page=PAGES[4] if section=='Thực thi cascade' else PAGES[3]
 
 
-PAGE_COLORS = ['#9a26c2','#620e80','#a956c6','#C47A14','#C3445B','#704d7c']
+PAGE_COLORS = ['#1e6dca','#084286','#5089cc','#C47A14','#3e7ec9','#4b627e']
 PAGE_SUBTITLES = [
     'The Observatory / ecosystem & borrower exposure',
     'The Crisis Time Machine / observed market replay',
@@ -523,49 +523,49 @@ PAGE_SUBTITLES = [
 # Pastel rose/lilac preview theme.
 st.markdown("""<style>
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
- background:linear-gradient(135deg,#FFF5FA 0%,#F5EDFF 48%,#faeaf9 100%)!important;
+ background:linear-gradient(135deg,#f5faff 0%,#edf5ff 48%,#e9f1fb 100%)!important;
 }
 [data-testid="stHeader"]{background:rgba(248,240,253,.94)!important}
-[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#453157!important}
-[data-testid="stMain"] p,[data-testid="stMain"] label{color:#584565}
-[data-testid="stMetric"]{background:linear-gradient(145deg,#FFFDFE,#F5EDFC)!important;border-color:#DECEE9!important;box-shadow:0 6px 20px #7B539D0D!important}
-[data-testid="stMetricValue"] div{color:#513469!important}
-[data-testid="stMetricLabel"] p{color:#70567F!important}
-[data-testid="stExpander"]{background:#FFF9FE88;border-radius:12px}
-[data-testid="stMultiSelect"]{border-left-color:#AF80BF!important}
-[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#FFFAFD,#EFE3FA)!important;border-color:#DAC5E6!important}
-[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#FCE8F2,#EDE0FA 65%,#E3D7F6)!important;border-color:#D9C2E7!important}
-[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#C494E270,#F1C8DF20)!important;border-color:#CBA6E1!important}
-[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#FFFAFDEB!important;border-color:#DFCCE8!important}
+[data-testid="stMain"] h1,[data-testid="stMain"] h2,[data-testid="stMain"] h3{color:#2f4259!important}
+[data-testid="stMain"] p,[data-testid="stMain"] label{color:#435467}
+[data-testid="stMetric"]{background:linear-gradient(145deg,#fdfeff,#ecf4fd)!important;border-color:#cddaea!important;box-shadow:0 6px 20px #4f75a10D!important}
+[data-testid="stMetricValue"] div{color:#314c6c!important}
+[data-testid="stMetricLabel"] p{color:#546981!important}
+[data-testid="stExpander"]{background:#f9fcff88;border-radius:12px}
+[data-testid="stMultiSelect"]{border-left-color:#7d9dc2!important}
+[data-testid="stMain"] .terminal-hero{background:linear-gradient(115deg,#fafcff,#e2edfb)!important;border-color:#c3d4e8!important}
+[data-testid="stMain"] .research-front{background:linear-gradient(130deg,#e7f1fd,#dfecfb 65%,#d5e5f8)!important;border-color:#c0d3e9!important}
+[data-testid="stMain"] .research-front:after{background:linear-gradient(170deg,#90b8e670,#c6dbf320)!important;border-color:#a3c1e4!important}
+[data-testid="stMain"] .signal-panel,[data-testid="stMain"] .explore-card,[data-testid="stMain"] .transmission{background:#fafcffEB!important;border-color:#cbd9e9!important}
 [data-testid="stMain"] .signal-panel{border-left-color:var(--signal)!important}
 [data-testid="stMain"] .explore-card{border-top-color:var(--accent)!important}
-[data-testid="stMain"] .front-copy,[data-testid="stMain"] .terminal-hero p{color:#70567F!important}
-[data-testid="stMain"] .front-tags span{color:#684B7D!important;background:#FFFFFFA0!important}
-[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#E0CCE9!important}
+[data-testid="stMain"] .front-copy,[data-testid="stMain"] .terminal-hero p{color:#546981!important}
+[data-testid="stMain"] .front-tags span{color:#49627f!important;background:#FFFFFFA0!important}
+[data-testid="stMain"] [data-testid="stPlotlyChart"]{border-color:#cbd9ea!important}
 </style>""",unsafe_allow_html=True)
 
 page_index = PAGES.index(page)
 st.markdown("""<style>
-.terminal-nav-group{color:#c098be;font-size:10px;font-weight:700;letter-spacing:1.6px;margin:20px 0 8px}
-.terminal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#fef9fe,#f8e2f7);border:1px solid #e5bde3;border-top:3px solid #974fb1;border-radius:6px 6px 18px 18px;padding:26px 28px;margin-bottom:18px;box-shadow:0 10px 28px #6e3c8012}
-.terminal-eyebrow{font:700 11px monospace;letter-spacing:2px;color:#7b5a87;margin-bottom:10px}
-.terminal-hero h1{margin:0!important;font-size:29px!important;color:#411c4e!important}
-.terminal-hero p{margin:8px 0 0;color:#775783;font-size:14px}
-.terminal-mode{font:700 11px monospace;letter-spacing:1px;border:1px solid #d9b6d7;padding:9px 12px;border-radius:6px;color:#663a76;white-space:nowrap;background:#ffffff90}
-.signal-panel{border:1px solid #e6c8e5;border-left:4px solid var(--signal);background:#fefafe;border-radius:10px;display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 21px;margin:12px 0 20px;box-shadow:0 6px 20px #5f2f7008}
-.signal-kicker{font:700 10px monospace;letter-spacing:1.5px;color:#7c5d87;margin-bottom:6px}
-.signal-title{font-weight:750;font-size:18px;color:#492356}.signal-value{font:700 28px monospace;color:var(--signal);align-self:center}
-.signal-detail{font-size:12px;color:#7c5e87;line-height:1.6;margin-top:6px}
-.terminal-legend{font-size:11px;color:#775782;display:flex;gap:18px;flex-wrap:wrap;margin:-5px 0 20px}
+.terminal-nav-group{color:#96aac2;font-size:10px;font-weight:700;letter-spacing:1.6px;margin:20px 0 8px}
+.terminal-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#f9fbfe,#e1ecf9);border:1px solid #bbcfe7;border-top:3px solid #4a7cb6;border-radius:6px 6px 18px 18px;padding:26px 28px;margin-bottom:18px;box-shadow:0 10px 28px #395b8312}
+.terminal-eyebrow{font:700 11px monospace;letter-spacing:2px;color:#586f89;margin-bottom:10px}
+.terminal-hero h1{margin:0!important;font-size:29px!important;color:#193351!important}
+.terminal-hero p{margin:8px 0 0;color:#556b85;font-size:14px}
+.terminal-mode{font:700 11px monospace;letter-spacing:1px;border:1px solid #b4c6db;padding:9px 12px;border-radius:6px;color:#375579;white-space:nowrap;background:#ffffff90}
+.signal-panel{border:1px solid #c6d6e8;border-left:4px solid var(--signal);background:#fafcfe;border-radius:10px;display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 21px;margin:12px 0 20px;box-shadow:0 6px 20px #2c4d7308}
+.signal-kicker{font:700 10px monospace;letter-spacing:1.5px;color:#5b7089;margin-bottom:6px}
+.signal-title{font-weight:750;font-size:18px;color:#203a59}.signal-value{font:700 28px monospace;color:var(--signal);align-self:center}
+.signal-detail{font-size:12px;color:#5c7189;line-height:1.6;margin-top:6px}
+.terminal-legend{font-size:11px;color:#556b84;display:flex;gap:18px;flex-wrap:wrap;margin:-5px 0 20px}
 .terminal-dot{width:7px;height:7px;display:inline-block;border-radius:50%;margin-right:5px;box-shadow:0 0 7px currentColor}
-[data-testid="stPlotlyChart"]{border:1px solid #eecaec;border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
-[data-testid="stMultiSelect"]{border-left:2px solid #9670d1;padding-left:9px}
+[data-testid="stPlotlyChart"]{border:1px solid #c8daf0;border-top:0;border-radius:0 0 12px 12px;overflow:hidden}
+[data-testid="stMultiSelect"]{border-left:2px solid #6b9cd6;padding-left:9px}
 @media(max-width:650px){.terminal-hero{padding:20px;align-items:flex-start;flex-direction:column}.signal-panel{grid-template-columns:1fr}.terminal-hero h1{font-size:24px!important}}
 </style>""", unsafe_allow_html=True)
 mode = 'SIMULATION / PRECOMPUTED' if page_index in (3, 4) else 'OBSERVED / SNAPSHOTS' if page_index in (1, 2) else 'RESEARCH / CONTEXT'
-hero_accent = '#9270cf' if page_index in (3, 4) else '#974fb1'
+hero_accent = '#6b9bd4' if page_index in (3, 4) else '#4a7cb6'
 st.markdown(f'<div class="terminal-hero" style="border-top-color:{hero_accent}"><div><div class="terminal-eyebrow">DEFIRISK LAB / ETHEREUM LENDING</div><h1>{escape(page.split(" · ",1)[-1])}</h1><p>{escape(PAGE_SUBTITLES[page_index])}</p></div><div class="terminal-mode" style="color:{hero_accent}">{mode}</div></div>', unsafe_allow_html=True)
-st.markdown('<div class="terminal-legend"><span><i class="terminal-dot" style="color:#218b88;background:#218b88"></i>Ổn định tương đối</span><span><i class="terminal-dot" style="color:#aa751b;background:#aa751b"></i>Cần theo dõi</span><span><i class="terminal-dot" style="color:#c34963;background:#c34963"></i>Vị thế có nguy cơ</span><span><i class="terminal-dot" style="color:#8460c0;background:#8460c0"></i>Kết quả mô phỏng</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="terminal-legend"><span><i class="terminal-dot" style="color:#218b88;background:#218b88"></i>Ổn định tương đối</span><span><i class="terminal-dot" style="color:#aa751b;background:#aa751b"></i>Cần theo dõi</span><span><i class="terminal-dot" style="color:#c34963;background:#c34963"></i>Vị thế có nguy cơ</span><span><i class="terminal-dot" style="color:#5b8cc5;background:#5b8cc5"></i>Kết quả mô phỏng</span></div>', unsafe_allow_html=True)
 
 # All research tables are read locally. No synthetic fallback.
 ROOT = Path(__file__).resolve().parent
@@ -609,7 +609,7 @@ def numeric(df, names):
 def show_table(df, filename):
     """Shared terminal renderer for Stress / Cascade, preserving raw export and filters."""
     key = 'terminal_' + ''.join(ch if ch.isalnum() else '_' for ch in filename)
-    accent = '#C47A14' if 'stress' in filename else '#C3445B' if 'cascade' in filename else '#9a26c2'
+    accent = '#C47A14' if 'stress' in filename else '#3e7ec9' if 'cascade' in filename else '#1e6dca'
     render_aurora_table(df, filename.replace('_', ' ').removesuffix('.csv').title(),
                         key, accent=accent, subtitle='')
 
@@ -623,23 +623,23 @@ def kpi_sum(df, candidates, title, money=False):
 
 
 # Bloomberg × Aurora chart system. Presentation only; all values come from loaded data.
-def quant_style(fig, height=390, accent='#ee66e9'):
+def quant_style(fig, height=390, accent='#5fa4f5'):
     fig.update_layout(
-        template='plotly_white', paper_bgcolor='#FFF9FD', plot_bgcolor='#FFF9FD',
-        font=dict(family='Arial, sans-serif', color='#624A73', size=12),
+        template='plotly_white', paper_bgcolor='#f9fcff', plot_bgcolor='#f9fcff',
+        font=dict(family='Arial, sans-serif', color='#485d75', size=12),
         height=height, margin=dict(l=42,r=40,t=38,b=48),
-        hoverlabel=dict(bgcolor='#592c68',font_color='#FFFFFF',font_size=12),
+        hoverlabel=dict(bgcolor='#29476b',font_color='#FFFFFF',font_size=12),
         legend=dict(orientation='h',y=1.13,x=0,font=dict(size=11)),
-        xaxis=dict(gridcolor='#EBDFF1',zeroline=False,showline=False),
-        yaxis=dict(gridcolor='#EBDFF1',zeroline=False,showline=False),
+        xaxis=dict(gridcolor='#dee7f2',zeroline=False,showline=False),
+        yaxis=dict(gridcolor='#dee7f2',zeroline=False,showline=False),
     )
     return fig
 
-def quant_chart(fig, title, accent='#ee66e9', height=390):
+def quant_chart(fig, title, accent='#5fa4f5', height=390):
     st.markdown(
-        f'<div style="background:linear-gradient(120deg,#FFFDFE,#F1E6FA);border:1px solid #DECCE9;'
+        f'<div style="background:linear-gradient(120deg,#fdfeff,#e5effb);border:1px solid #cbd9ea;'
         f'border-left:4px solid {accent};border-radius:15px 15px 0 0;'
-        f'padding:16px 20px 10px;color:#4b205a;font-weight:800;font-size:1.08rem">'
+        f'padding:16px 20px 10px;color:#1d3a5d;font-weight:800;font-size:1.08rem">'
         f'{escape(title)}</div>',unsafe_allow_html=True)
     quant_style(fig,height,accent)
     st.plotly_chart(fig,use_container_width=True,config={'displaylogo':False})
@@ -657,7 +657,7 @@ def quant_stress(df, title='Stress · Debt at risk ranking', max_bars=19):
     x=x.nlargest(max_bars,'debt_at_risk_usd').sort_values('debt_at_risk_usd')
     vals=x['debt_at_risk_usd'].to_numpy()
     q1,q2=np.quantile(vals,[.5,.8])
-    colors=['#FF7890' if v>=q2 else '#F4B65F' if v>=q1 else '#ee64e8' for v in vals]
+    colors=['#FF7890' if v>=q2 else '#F4B65F' if v>=q1 else '#5da3f5' for v in vals]
     fig=go.Figure(go.Bar(x=vals,y=x['scenario_id'].astype(str),orientation='h',
         marker=dict(color=colors,line=dict(width=0)),
         customdata=np.array(x['scenario_id'].astype(str))[:,None],
@@ -675,17 +675,17 @@ def quant_historical(df,time_col,value_col,count_col,selected):
     if value_col:
         x[value_col]=pd.to_numeric(x[value_col],errors='coerce')
         fig=go.Figure(go.Scatter(x=x[time_col],y=x[value_col],mode='lines+markers',
-            line=dict(color='#a747c9',width=3),marker=dict(size=7,color='#ef88eb'),
+            line=dict(color='#4082d0',width=3),marker=dict(size=7,color='#83b7f4'),
             fill='tozeroy',fillcolor='rgba(55,217,194,.10)',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_yaxes(title='Debt repaid (USD)',tickformat='~s')
-        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#a747c9',380)
+        quant_chart(fig,f'Historical · Liquidation volume ({selected.lower()})','#4082d0',380)
     if count_col:
         x[count_col]=pd.to_numeric(x[count_col],errors='coerce')
-        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#ee66e9',
+        fig=go.Figure(go.Bar(x=x[time_col],y=x[count_col],marker_color='#5fa4f5',
             hovertemplate='%{x|%d %b %Y %H:%M} UTC<br>Events: %{y:,.0f}<extra></extra>'))
         fig.update_yaxes(title='Liquidation events',rangemode='tozero')
-        quant_chart(fig,'Historical · Liquidation events','#ee66e9',320)
+        quant_chart(fig,'Historical · Liquidation events','#5fa4f5',320)
 
 def quant_cascade(df):
     x=df.copy().sort_values('round')
@@ -695,7 +695,7 @@ def quant_cascade(df):
     if 'executed_liquidations' in x:
         vals=pd.to_numeric(x['executed_liquidations'],errors='coerce')
         fig=go.Figure(go.Bar(x=x['round'],y=vals,
-            marker=dict(color=['#F5A84C' if v>0 else '#775882' for v in vals]),
+            marker=dict(color=['#F5A84C' if v>0 else '#566b84' for v in vals]),
             hovertemplate='Round %{x}<br>Liquidations: %{y:,.0f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Executed liquidations',rangemode='tozero')
@@ -703,42 +703,42 @@ def quant_cascade(df):
     if 'repaid_debt_usd' in x:
         vals=pd.to_numeric(x['repaid_debt_usd'],errors='coerce')
         fig=go.Figure(go.Scatter(x=x['round'],y=vals,mode='lines+markers',
-            line=dict(color='#D79BFF',width=3),marker=dict(size=8,color='#E5BDFF'),
+            line=dict(color='#9bc9ff',width=3),marker=dict(size=8,color='#bddbff'),
             fill='tozeroy',fillcolor='rgba(175,112,255,.12)',
             hovertemplate='Round %{x}<br>Debt repaid: $%{y:,.2f}<extra></extra>'))
         fig.update_xaxes(title='Execution round',dtick=1)
         fig.update_yaxes(title='Repaid debt (USD)',tickformat='~s')
-        quant_chart(fig,'Cascade · Debt repaid by round','#C3445B',360)
+        quant_chart(fig,'Cascade · Debt repaid by round','#3e7ec9',360)
 
 def quant_hf(df,hf):
     values=pd.to_numeric(df[hf],errors='coerce').dropna()
     if values.empty:return
-    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#f288ee',
+    fig=go.Figure(go.Histogram(x=values,nbinsx=40,marker_color='#83b8f7',
         hovertemplate='Health Factor: %{x:.2f}<br>Positions: %{y}<extra></extra>'))
     fig.add_vline(x=1,line=dict(color='#FF7890',width=2,dash='dash'))
     fig.update_xaxes(title='Health Factor')
     fig.update_yaxes(title='Borrower positions')
-    quant_chart(fig,'Borrower · Health Factor distribution','#f288ee',360)
+    quant_chart(fig,'Borrower · Health Factor distribution','#83b8f7',360)
 
 SNAPSHOT_NAMES = {26179841: 'A · Calibration', 20458637: 'B1 · Aug 2024', 23543615: 'B2 · Oct 2025'}
 
 
 def overview_launchpad():
     st.markdown("""<style>
-.research-front{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8e7f7,#f4d9f3 65%,#f9eaf8);border:1px solid #ebcbea;border-radius:26px;padding:32px 34px;margin:10px 0 22px;min-height:215px}
-.research-front:after{content:'';position:absolute;right:-25px;bottom:-235px;width:440px;height:440px;border-radius:50%;background:linear-gradient(170deg,#e07edc70,#fbdcfa10);border:1px solid #db95d8;pointer-events:none}
+.research-front{position:relative;overflow:hidden;background:linear-gradient(135deg,#e6eff9,#d8e5f5 65%,#e9f1fa);border:1px solid #c9daed;border-radius:26px;padding:32px 34px;margin:10px 0 22px;min-height:215px}
+.research-front:after{content:'';position:absolute;right:-25px;bottom:-235px;width:440px;height:440px;border-radius:50%;background:linear-gradient(170deg,#79abe570,#daeafd10);border:1px solid #92b5de;pointer-events:none}
 .research-front h2{font-size:36px!important;letter-spacing:-1.2px!important;max-width:650px;position:relative;z-index:1;margin:12px 0!important}
-.front-copy{max-width:590px;font-size:14px;color:#765881;line-height:1.7;position:relative;z-index:1}
-.front-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}.front-tags span{background:#ffffffa0;border:1px solid #ffffff;padding:6px 12px;border-radius:30px;font-size:11px;color:#6b4479}
-.explore-card{border:1px solid #ecceeb;border-radius:18px;padding:21px;background:#ffffffa0;min-height:145px;border-top:3px solid var(--accent);margin-bottom:7px}
-.explore-card small{font:11px monospace;color:#8b7195}.explore-card h3{margin:12px 0 8px!important;font-size:23px!important}.explore-card p{font-size:13px;color:#82668c;line-height:1.6;margin-bottom:0}
-.transmission{border:1px solid #ead4e9;background:#fefafeb0;border-radius:20px;padding:22px 26px;margin:22px 0}.transmission-label{font:11px monospace;letter-spacing:1.5px;color:#866692}.transmission-flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}.transmission-node{text-align:center;font-size:13px;font-weight:650;color:#5b3867}.transmission-node b{display:block;font-size:24px;color:var(--accent);margin-bottom:9px}.transmission-arrow{color:#c1a2c0}.transmission-note{font-size:11px;color:#897391}
+.front-copy{max-width:590px;font-size:14px;color:#566b83;line-height:1.7;position:relative;z-index:1}
+.front-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1}.front-tags span{background:#ffffffa0;border:1px solid #ffffff;padding:6px 12px;border-radius:30px;font-size:11px;color:#415c7c}
+.explore-card{border:1px solid #ccdcee;border-radius:18px;padding:21px;background:#ffffffa0;min-height:145px;border-top:3px solid var(--accent);margin-bottom:7px}
+.explore-card small{font:11px monospace;color:#6f8197}.explore-card h3{margin:12px 0 8px!important;font-size:23px!important}.explore-card p{font-size:13px;color:#64778e;line-height:1.6;margin-bottom:0}
+.transmission{border:1px solid #d3deeb;background:#fafcfeb0;border-radius:20px;padding:22px 26px;margin:22px 0}.transmission-label{font:11px monospace;letter-spacing:1.5px;color:#647a94}.transmission-flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}.transmission-node{text-align:center;font-size:13px;font-weight:650;color:#364d69}.transmission-node b{display:block;font-size:24px;color:var(--accent);margin-bottom:9px}.transmission-arrow{color:#a0b0c3}.transmission-note{font-size:11px;color:#728192}
 @media(max-width:650px){.research-front{padding:24px}.research-front h2{font-size:28px!important}.transmission-flow{flex-wrap:wrap}.transmission-node{font-size:11px}.research-front:after{opacity:.3}}
 </style>
 <div class="research-front"><div class="terminal-eyebrow">DEFIRISK LAB / RESEARCH TERMINAL</div><h2>Explore the risk<br>behind DeFi.</h2><div class="front-copy">Từ vị thế người vay đến cú sốc thị trường và thực thi thanh lý. Khám phá bằng chứng theo snapshot, đối chiếu các kịch bản và lần theo cơ chế truyền rủi ro.</div><div class="front-tags"><span>Aave V3</span><span>Compound III · nghiên cứu</span><span>Historical snapshots</span><span>Precomputed scenarios</span></div></div>
 """, unsafe_allow_html=True)
     cards = [('01 / EXPOSURE', 'Wallet risk', 'Khám phá Health Factor, dư nợ và mức tập trung của mẫu vị thế.', '#279b9c', 2),
-             ('02 / MARKET SHOCK', 'Stress impact', 'Chọn cú sốc có sẵn, so sánh mức phơi nhiễm giữa A / B1 / B2.', '#9770d0', 3),
+             ('02 / MARKET SHOCK', 'Stress impact', 'Chọn cú sốc có sẵn, so sánh mức phơi nhiễm giữa A / B1 / B2.', '#6b9cd5', 3),
              ('03 / EXECUTION', 'Cascade', 'Theo dõi thanh lý theo vòng và so sánh cấu hình thực thi.', '#d17e59', 4)]
     for col, (tag, title, text, color, target) in zip(st.columns(3), cards):
         with col:
@@ -747,7 +747,7 @@ def overview_launchpad():
                 st.session_state['_requested_target']=target
                 st.session_state.selected_page = PAGES[target]
                 st.rerun()
-    st.markdown("""<div class="transmission"><div class="transmission-label">RISK TRANSMISSION / CONCEPTUAL FRAMEWORK</div><div class="transmission-flow"><div class="transmission-node" style="--accent:#279b9c"><b>◈</b>Borrowers</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#c39744"><b>≋</b>Liquidations</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#ce6178"><b>▥</b>DEX impact</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#9371c7"><b>⌘</b>Contagion</div></div><div class="transmission-note">Sơ đồ cơ chế nghiên cứu, không phải kết quả chứng minh lây lan thực tế. Xem Methodology để đọc giả định và giới hạn.</div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="transmission"><div class="transmission-label">RISK TRANSMISSION / CONCEPTUAL FRAMEWORK</div><div class="transmission-flow"><div class="transmission-node" style="--accent:#279b9c"><b>◈</b>Borrowers</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#c39744"><b>≋</b>Liquidations</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#ce6178"><b>▥</b>DEX impact</div><span class="transmission-arrow">→</span><div class="transmission-node" style="--accent:#6d98cb"><b>⌘</b>Contagion</div></div><div class="transmission-note">Sơ đồ cơ chế nghiên cứu, không phải kết quả chứng minh lây lan thực tế. Xem Methodology để đọc giả định và giới hạn.</div></div>""", unsafe_allow_html=True)
 
 
 def scenario_explorer(stress):
@@ -799,10 +799,10 @@ def scenario_explorer(stress):
 
 
 def terminal_signal(title, value, detail, tone='neutral', simulation=False):
-    colors = {'stable':'#218b88', 'watch':'#aa751b', 'risk':'#c34963', 'neutral':'#865a96'}
+    colors = {'stable':'#218b88', 'watch':'#aa751b', 'risk':'#c34963', 'neutral':'#577599'}
     color = colors.get(tone, colors['neutral'])
     kind = 'SIMULATED / ' if simulation else 'OBSERVED / '
-    st.markdown(f'<div class="signal-panel" style="--signal:{color}"><div><div class="signal-kicker" style="color:{"#8460c0" if simulation else "#7c5d87"}">{kind}SELECTION INTELLIGENCE</div><div class="signal-title">{escape(title)}</div><div class="signal-detail">{escape(detail)}</div></div><div class="signal-value">{escape(str(value))}</div></div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="signal-panel" style="--signal:{color}"><div><div class="signal-kicker" style="color:{"#5b8cc5" if simulation else "#5b7089"}">{kind}SELECTION INTELLIGENCE</div><div class="signal-title">{escape(title)}</div><div class="signal-detail">{escape(detail)}</div></div><div class="signal-value">{escape(str(value))}</div></div>', unsafe_allow_html=True)
 
 
 def stress_signal(frame):
@@ -871,7 +871,7 @@ def snapshot_comparison(frame):
     x['Snapshot'] = x.snapshot_block.map(SNAPSHOT_NAMES).fillna(x.snapshot_block.astype(str))
     # Keep each scenario and snapshot distinct; do not sum alternative scenarios.
     fig = px.bar(x, x='scenario_id', y='debt_at_risk_usd', color='Snapshot',
-                 barmode='group', color_discrete_sequence=['#a043c0', '#9866CE', '#E59A3D'],
+                 barmode='group', color_discrete_sequence=['#3d7cc6', '#6195d3', '#E59A3D'],
                  labels={'scenario_id': 'Scenario', 'debt_at_risk_usd': 'Debt at risk (USD)'})
     fig.update_xaxes(tickangle=-40)
     quant_chart(fig, 'Cùng cú sốc · khác thời điểm', height=450)
@@ -933,7 +933,7 @@ def stress_heatmap(frame):
     x = frame.pivot(index='scenario_id', columns='snapshot_block', values='debt_at_risk_pct')
     x = x.rename(columns=SNAPSHOT_NAMES)
     fig = go.Figure(go.Heatmap(z=x.to_numpy(), x=x.columns.tolist(), y=x.index.tolist(),
-        colorscale=[[0, '#fbf0fa'], [.45, '#a76cbc'], [1, '#CE5873']],
+        colorscale=[[0, '#eff5fc'], [.45, '#6890c0'], [1, '#528ed4']],
         colorbar=dict(title='Debt at risk %'),
         hovertemplate='Snapshot: %{x}<br>Scenario: %{y}<br>Debt at risk: %{z:.2f}%<extra></extra>'))
     quant_chart(fig, 'Stress landscape · tỷ lệ dư nợ có nguy cơ', height=max(360, 26*len(x)+100))
@@ -948,7 +948,7 @@ def market_timeline(frame):
     x['hour_utc'] = pd.to_datetime(x.hour_utc, utc=True, errors='coerce')
     x = x.dropna(subset=['hour_utc']).sort_values('hour_utc')
     fig = make_subplots(specs=[[{'secondary_y': True}]])
-    fig.add_trace(go.Bar(x=x.hour_utc, y=x.debt_repaid_usd, name='Liquidation debt repaid', marker_color='#a35dbc'), secondary_y=False)
+    fig.add_trace(go.Bar(x=x.hour_utc, y=x.debt_repaid_usd, name='Liquidation debt repaid', marker_color='#5888c1'), secondary_y=False)
     fig.add_trace(go.Scatter(x=x.hour_utc, y=x.eth_usd_price, name='ETH price', line=dict(color='#DA9543', width=2)), secondary_y=True)
     fig.update_yaxes(title_text='Debt repaid (USD)', secondary_y=False)
     fig.update_yaxes(title_text='ETH price (USD)', secondary_y=True, showgrid=False)
@@ -1013,31 +1013,31 @@ def method_comparison(summary, selected_row):
         st.caption('Chưa có nhiều method với cùng toàn bộ điều kiện để so sánh trực tiếp.')
         return
     fig = px.bar(view, x='method', y='simulated_repaid_usd', color='method',
-                 color_discrete_sequence=['#a043c0', '#9866CE', '#E59A3D'],
+                 color_discrete_sequence=['#3d7cc6', '#6195d3', '#E59A3D'],
                  labels={'method': 'Method', 'simulated_repaid_usd': 'Simulated repaid debt (USD)'})
     quant_chart(fig, 'Cùng điều kiện · so sánh phương pháp thực thi', height=330)
     st.caption('Giữ nguyên snapshot, scenario, variant, seed, phí, gas và các điều kiện đã chọn. Không diễn giải chênh lệch method thành bằng chứng causal feedback.')
 
 
 st.markdown("""<style>
-[data-testid="stSidebar"], [data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(155deg,#28172F,#402346 55%,#30203D)!important;border-right-color:#6D4277!important}
-[data-testid="stSidebar"] .st-key-brand_fixed{background:linear-gradient(150deg,#2B1935,#46274B)!important;border-bottom-color:#805184!important}
-[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#684481,#88528F)!important;border-color:#B18ABC55!important}
-[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#B24E90,#8654B8)!important;outline-color:#E9B0DB!important;box-shadow:0 0 0 4px #C783C529,0 8px 22px #1D0F2922!important}
-[data-testid="stSidebar"] .st-key-space_nav_1 button{background:linear-gradient(110deg,#8050A3,#A86B9D)!important}
-[data-testid="stSidebar"] .st-key-space_nav_2 button{background:linear-gradient(110deg,#965176,#7954A0)!important}
-[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#DDBEE5!important}
-[data-testid="stSidebar"] .status-panel{background:#503357!important;border-color:#81598A!important}
-[data-testid="stSidebar"] .status-desc{color:#E0CEE7!important}
-.brand-logo{filter:hue-rotate(65deg) drop-shadow(0 0 18px #D4A0DD55)!important}
-[data-testid="stMain"] .stButton>button{background:#F4E5F4!important;color:#6C3E77!important;border-color:#D6B7DC!important}
-[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:linear-gradient(155deg,#55345F,#6C4271)!important;border-color:#AC84B4!important}
-[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#805589!important;color:#FFF6FD!important}
-[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#68436E!important}
-[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#734D7A!important}
-[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{border-top-color:#926A99!important}
-[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#8C6094!important}
-[data-testid="stMain"] .aurora-data td.terminal-identity{color:#F0BEE7!important}
+[data-testid="stSidebar"], [data-testid="stSidebar"]>div,[data-testid="stSidebar"] [data-testid="stSidebarContent"]{background:linear-gradient(155deg,#162230,#213348 55%,#1f2d3e)!important;border-right-color:#3f5a7a!important}
+[data-testid="stSidebar"] .st-key-brand_fixed{background:linear-gradient(150deg,#182636,#25374d)!important;border-bottom-color:#4e6887!important}
+[data-testid="stSidebar"] .stButton>button{background:linear-gradient(115deg,#416084,#4f6e92)!important;border-color:#87a1be55!important}
+[data-testid="stSidebar"] .stButton>button[kind="primary"]{background:linear-gradient(110deg,#497cb7,#4f82bd)!important;outline-color:#adcaec!important;box-shadow:0 0 0 4px #80a2ca29,0 8px 22px #0e1b2a22!important}
+[data-testid="stSidebar"] .st-key-space_nav_1 button{background:linear-gradient(110deg,#4c76a7,#6887ab)!important}
+[data-testid="stSidebar"] .st-key-space_nav_2 button{background:linear-gradient(110deg,#4e7099,#5077a4)!important}
+[data-testid="stSidebar"] .brand-sub,[data-testid="stSidebar"] .nav-heading,[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:#bcd0e7!important}
+[data-testid="stSidebar"] .status-panel{background:#314359!important;border-color:#576f8c!important}
+[data-testid="stSidebar"] .status-desc{color:#cdd9e8!important}
+.brand-logo{filter:drop-shadow(0 0 18px #9dbce055)!important}
+[data-testid="stMain"] .stButton>button{background:#e4ecf5!important;color:#3b587a!important;border-color:#b5c8de!important}
+[data-testid="stMain"] .aurora-table-shell,[data-testid="stMain"] .risk-shell{background:linear-gradient(155deg,#324861,#405773)!important;border-color:#829ab6!important}
+[data-testid="stMain"] .aurora-data th,[data-testid="stMain"] .risk-table th{background:#526d8c!important;color:#f6faff!important}
+[data-testid="stMain"] .aurora-scroll,[data-testid="stMain"] .risk-table-wrap{background:#415770!important}
+[data-testid="stMain"] .aurora-data tbody tr:nth-child(even),[data-testid="stMain"] .risk-table tbody tr:nth-child(even){background:#4b627c!important}
+[data-testid="stMain"] .aurora-data td,[data-testid="stMain"] .risk-table td{border-top-color:#687f9b!important}
+[data-testid="stMain"] .aurora-data tbody tr:hover,[data-testid="stMain"] .risk-table tbody tr:hover{background:#5d7897!important}
+[data-testid="stMain"] .aurora-data td.terminal-identity{color:#bcd5f2!important}
 </style>""",unsafe_allow_html=True)
 
 source_context()
@@ -1116,16 +1116,16 @@ elif page.startswith('02'):
                 pass  # Rendered together below with Bloomberg × Aurora styling
             quant_historical(graph,time_col,value_col,count_col,selected) if time_col else None
         with st.expander('Chi tiết · historical liquidation'):
-            render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#620e80',subtitle='')
+            render_aurora_table(frame,'Historical liquidation · '+selected,'historical_'+selected.lower(),accent='#084286',subtitle='')
     if historical is not None:
         with st.expander('🔎 Raw historical liquidation records'):
-            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#620e80',subtitle='')
+            render_aurora_table(historical.head(5000),'Historical event records','historical_raw',accent='#084286',subtitle='')
     st.subheader('Market alignment evidence')
     market=get_data('tables/n3_liquidation_market_hourly.csv')
     if market is not None:
         market_timeline(market)
         with st.expander('Chi tiết · market alignment & quote age'):
-            render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#620e80',subtitle='')
+            render_aurora_table(market,'Hourly liquidation & market alignment','historical_market',accent='#084286',subtitle='')
 
 elif page.startswith('03'):
     st.subheader('🛡 Aurora Borrower Risk Intelligence')
@@ -1135,7 +1135,7 @@ elif page.startswith('03'):
         if top is not None:
             borrower_map(top, sampled=True)
             with st.expander('Chi tiết · N3 top-wallet sample'):
-                render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#a956c6',subtitle='')
+                render_aurora_table(top,'N3 · Top 50 wallets','borrower_top50',accent='#5089cc',subtitle='')
     else:
         aliases={'wallet':['wallet','wallet_address','user_address','address','borrower'],
                  'health_factor':['health_factor','hf_calculated_t0','hf','health_factor_current'],
@@ -1155,7 +1155,7 @@ elif page.startswith('03'):
                 render_risk_explorer(view,key='borrower',title='Observed borrower positions')
         else:
             st.warning('Thiếu cột cần thiết để phân tích Health Factor.')
-            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#a956c6',subtitle='')
+            render_aurora_table(view,'Borrower snapshot · raw columns','borrower_raw',accent='#5089cc',subtitle='')
     st.subheader('N3 · Health Factor & leverage evidence')
     hf_evidence=get_data('tables/n3_m6_hf_AB1B2.csv')
     if hf_evidence is not None:
@@ -1163,7 +1163,7 @@ elif page.startswith('03'):
                      labels={'hf_group': 'Health Factor group', 'wallet_share_pct': 'Wallet share (%)', 'snapshot_id': 'Snapshot'})
         quant_chart(fig, 'Phân bố người vay · đối chiếu A / B1 / B2')
         with st.expander('Chi tiết · Health Factor evidence'):
-            render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#a956c6',subtitle='')
+            render_aurora_table(hf_evidence,'Health Factor evidence','borrower_n3_hf',accent='#5089cc',subtitle='')
 
 elif page.startswith('04'):
     st.subheader('Stress Simulator · precomputed research scenarios')
@@ -1255,7 +1255,7 @@ elif page.startswith('05'):
                     format_func=lambda x:{'simulated_repaid_usd':'Nợ hoàn trả (USD)','executed_liquidations':'Số thanh lý','liquidator_profit_usd':'Lợi nhuận liquidator (USD)','rounds':'Số vòng'}[x],horizontal=True,key='cascade_comparison_metric')
                 fig=px.bar(view,x=metric,y='Configuration',orientation='h',color='method',
                            hover_data=[k for k in dimensions if k in view],labels={metric:metric.replace('_',' '),'Configuration':'Cấu hình'},
-                           color_discrete_sequence=['#8d72c6','#7e3f94'])
+                           color_discrete_sequence=['#6e98ca','#3b6698'])
                 fig.update_traces(width=.55)
                 fig.update_yaxes(automargin=False)
                 quant_chart(fig,'Cascade · so sánh các cấu hình đã chọn',height=max(330,30*len(view)+140))
@@ -1301,22 +1301,22 @@ else:
     # Methodology: Research Command Center + Quant Blueprint (presentation only).
     st.markdown("""
     <style>
-    .method-intro{background:linear-gradient(120deg,#f8dcf7,#fdecfc);border:1px solid #e8bde6;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
-    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#7e4093;text-transform:uppercase}
-    .method-heading{font-size:29px;font-weight:850;color:#411d4d;margin:9px 0}
-    .method-copy{font-size:15px;line-height:1.75;color:#6a4c75;max-width:800px}
+    .method-intro{background:linear-gradient(120deg,#dbe9f9,#ebf4fe);border:1px solid #bbd1ea;border-radius:18px;padding:24px 28px;margin:12px 0 20px;box-shadow:0 10px 26px rgba(30,80,130,.07)}
+    .method-eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#3c6697;text-transform:uppercase}
+    .method-heading{font-size:29px;font-weight:850;color:#1b334f;margin:9px 0}
+    .method-copy{font-size:15px;line-height:1.75;color:#4a5f77;max-width:800px}
     .method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}
-    .method-card{background:#fef9fe;border:1px solid #e9c1e7;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
+    .method-card{background:#f9fbfe;border:1px solid #bfd3eb;border-radius:16px;padding:20px;box-shadow:0 7px 18px rgba(27,74,119,.06)}
     .method-tag{font-size:12px;letter-spacing:1px;font-weight:850;margin-bottom:12px}
-    .method-card h3{font-size:18px;color:#411d4d;margin:0 0 10px}
-    .method-card p{color:#785883;line-height:1.65;font-size:14px;margin:0}
-    .method-section{font-size:21px;font-weight:800;color:#482156;margin:25px 0 12px}
+    .method-card h3{font-size:18px;color:#1b334f;margin:0 0 10px}
+    .method-card p{color:#566c85;line-height:1.65;font-size:14px;margin:0}
+    .method-section{font-size:21px;font-weight:800;color:#1e3959;margin:25px 0 12px}
     .method-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 20px}
-    .method-step{background:#f8e4f7;border:1px solid #e4bee3;border-radius:13px;padding:15px 12px;color:#562d65;font-size:13px;line-height:1.5}
-    .method-step b{display:block;font-size:15px;color:#461f53;margin-bottom:5px}
+    .method-step{background:#e3edf9;border:1px solid #bccfe6;border-radius:13px;padding:15px 12px;color:#2a4768;font-size:13px;line-height:1.5}
+    .method-step b{display:block;font-size:15px;color:#1c3756;margin-bottom:5px}
     .method-notes{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0}
-    .method-note{background:#fef9fe;border:1px solid #e9cae8;border-left:4px solid #b176c6;border-radius:12px;padding:16px 18px;color:#6c4b78;line-height:1.65;font-size:14px}
-    .method-note strong{color:#572868}
+    .method-note{background:#f9fbfe;border:1px solid #c8d8eb;border-left:4px solid #729aca;border-radius:12px;padding:16px 18px;color:#49607a;line-height:1.65;font-size:14px}
+    .method-note strong{color:#25456b}
     @media(max-width:850px){.method-grid,.method-flow{grid-template-columns:1fr 1fr}.method-notes{grid-template-columns:1fr}}
     @media(max-width:560px){.method-grid,.method-flow{grid-template-columns:1fr}}
     </style>
@@ -1326,9 +1326,9 @@ else:
       <div class="method-copy">DeFiRisk-Lab nghiên cứu rủi ro thanh lý trong DeFi lending (Aave V3 / Compound), kết hợp dữ liệu thanh lý quan sát với kết quả mô phỏng stress và cascade đã tính sẵn.</div>
     </div>
     <div class="method-grid">
-      <div class="method-card"><div class="method-tag" style="color:#8056d4">01 / Q1 · BORROWER</div><h3>Borrower Risk</h3><p>Health Factor, tài sản thế chấp, dư nợ và nhóm vị thế khi dữ liệu hỗ trợ.</p></div>
+      <div class="method-card"><div class="method-tag" style="color:#508fda">01 / Q1 · BORROWER</div><h3>Borrower Risk</h3><p>Health Factor, tài sản thế chấp, dư nợ và nhóm vị thế khi dữ liệu hỗ trợ.</p></div>
       <div class="method-card"><div class="method-tag" style="color:#ce8726">02 / Q2 · STRESS</div><h3>Stress Scenarios</h3><p>Cú sốc ETH, BTC và depeg; đánh giá vị thế và dư nợ có nguy cơ theo các kịch bản sẵn có.</p></div>
-      <div class="method-card"><div class="method-tag" style="color:#c24c72">03 / Q3 · CASCADE</div><h3>Liquidation Cascade</h3><p>Thực thi thanh lý theo vòng, nợ hoàn trả, lợi nhuận liquidator và slippage mô phỏng.</p></div>
+      <div class="method-card"><div class="method-tag" style="color:#4682c8">03 / Q3 · CASCADE</div><h3>Liquidation Cascade</h3><p>Thực thi thanh lý theo vòng, nợ hoàn trả, lợi nhuận liquidator và slippage mô phỏng.</p></div>
     </div>
     <div class="method-section">Research workflow</div>
     <div class="method-flow">
@@ -1357,4 +1357,4 @@ else:
     for name,relative in paths.items():
         p=locate(relative,Path(relative).name)
         records.append({'Dataset':name,'File':relative,'Available':bool(p),'Bytes':p.stat().st_size if p else None})
-    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#704d7c',subtitle='')
+    render_aurora_table(pd.DataFrame(records),'Research data provenance','methodology_sources',accent='#4b627e',subtitle='')

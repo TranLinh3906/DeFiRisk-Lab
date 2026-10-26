@@ -32,7 +32,7 @@ def ecosystem(root):
             angle = 2*np.pi*i/max(1,len(group))
             coords[node]=(radius*np.cos(angle), radius*np.sin(angle))
     fig = go.Figure()
-    for kind, color in [('collateral_exposure','#8e58a1'),('debt_exposure','#a385cb')]:
+    for kind, color in [('collateral_exposure','#5479a5'),('debt_exposure','#82a5ce')]:
         xx=[]; yy=[]
         for row in links.loc[links.edge_type == kind].itertuples():
             if row.source_node_id in coords and row.target_node_id in coords:
@@ -48,11 +48,11 @@ def ecosystem(root):
             text.append(f'Wallet: {n[7:]}<br>HF: {row.hf_value:.3f}<br>Debt: ${row.debt_usd:,.0f}<br>Collateral: ${row.counted_collateral_usd:,.0f}<br>Snapshot: {sid}<br>Source: n3_m6_top50_wallets_AB1B2.csv')
             colors.append('#c44d69' if row.hf_value < 1 else '#bb8b34' if row.hf_value < 1.1 else '#319c9b')
         else:
-            text.append(n+'<br>Token exposure node; address from source graph'); colors.append('#ab7abc')
+            text.append(n+'<br>Token exposure node; address from source graph'); colors.append('#7798bf')
     fig.add_trace(go.Scatter(x=[coords[n][0] for n in visible],y=[coords[n][1] for n in visible],
         mode='markers',marker=dict(size=[17 if n.startswith('wallet:') else 12 for n in visible],color=colors,line=dict(width=2,color='white')),
         customdata=visible,text=text,hovertemplate='%{text}<extra></extra>',name='Wallets / tokens'))
-    fig.update_layout(height=500,paper_bgcolor='#FFF9FD',plot_bgcolor='#FFF9FD',margin=dict(l=10,r=10,t=25,b=10),
+    fig.update_layout(height=500,paper_bgcolor='#f9fcff',plot_bgcolor='#f9fcff',margin=dict(l=10,r=10,t=25,b=10),
         xaxis=dict(visible=False),yaxis=dict(visible=False,scaleanchor='x'),legend=dict(orientation='h'),clickmode='event+select')
     left,right=st.columns([2,1])
     with left:
@@ -106,7 +106,7 @@ def crisis_replay(root):
             frames.append(go.Frame(name=str(t),data=traces(prices.loc[prices.timestamp_utc<=t],hourly.loc[hourly.hour<=t]),traces=[0,1]))
     fig.frames=frames
     fig.update_xaxes(range=[moments[0],moments[-1]])
-    fig.update_layout(height=530,paper_bgcolor='#FFF9FD',plot_bgcolor='#FFF9FD',margin=dict(t=70,b=80),
+    fig.update_layout(height=530,paper_bgcolor='#f9fcff',plot_bgcolor='#f9fcff',margin=dict(t=70,b=80),
         legend=dict(orientation='h',y=1.2),updatemenus=[dict(type='buttons',direction='left',x=0,y=-.18,buttons=[
             dict(label='▶ Phát lại',method='animate',args=[None,dict(frame=dict(duration=180,redraw=True),transition=dict(duration=0),fromcurrent=False)]),
             dict(label='Ⅱ Dừng',method='animate',args=[[None],dict(mode='immediate',frame=dict(duration=0,redraw=False))])])])
@@ -145,11 +145,11 @@ def scenario_journey(root):
                   ('MARKET SHOCK','Đối chiếu Health Factor trước và sau cú sốc đã tính.'),
                   ('LIQUIDATION EXECUTION','Xem thanh lý được thực thi theo cơ chế và cấu hình đã chọn.'),
                   ('CASCADE ROUNDS','Theo dõi diễn biến theo vòng; không đồng nhất nhiều vòng với bằng chứng lây lan nhân quả.')]
-    colors=['#61b6a5','#b59ae5','#e4b16b','#ed8cae']
+    colors=['#61b6a5','#96bce9','#e4b16b','#ed8cae']
     steps=''.join(f'<div class="journey-node {"journey-active" if i==phase else ""}" style="--phase:{colors[i]}"><b>{["◉","↘","≋","⌘"][i]}</b><span>{t}</span></div>'+('<span class="journey-arrow">›</span>' if i<3 else '') for i,t in enumerate(titles))
     st.markdown('''<style>
-.journey-shell{background:linear-gradient(125deg,#291e35,#382440);border:1px solid #765283;border-radius:22px;padding:26px 30px;margin:16px 0 12px;animation:journeyReveal .35s ease-out}
-.journey-top{display:flex;justify-content:space-between;font:12px monospace;letter-spacing:1.4px;color:#d6bce2}.journey-steps{display:flex;align-items:center;justify-content:space-between;margin:24px 0 28px}.journey-node{text-align:center;color:#c3adc9;font-size:13px}.journey-node b{display:block;border-radius:50%;width:58px;height:58px;line-height:58px;margin:0 auto 9px;background:#503c5d;font-size:24px;border:1px solid #7d6389;transition:all .3s}.journey-active{color:#fff!important}.journey-active b{background:var(--phase);color:#291e35;box-shadow:0 0 24px #d0a0d638;transform:scale(1.08)}.journey-arrow{color:#9a7da7}.journey-body{border-top:1px solid #765283;padding-top:22px}.journey-body h3{color:var(--phase)!important;font-size:24px!important;margin:0 0 10px!important}.journey-body p{color:#ead9f0!important;font-size:14px!important;line-height:1.7}
+.journey-shell{background:linear-gradient(125deg,#1d2836,#233141);border:1px solid #506885;border-radius:22px;padding:26px 30px;margin:16px 0 12px;animation:journeyReveal .35s ease-out}
+.journey-top{display:flex;justify-content:space-between;font:12px monospace;letter-spacing:1.4px;color:#bacde4}.journey-steps{display:flex;align-items:center;justify-content:space-between;margin:24px 0 28px}.journey-node{text-align:center;color:#acbaca;font-size:13px}.journey-node b{display:block;border-radius:50%;width:58px;height:58px;line-height:58px;margin:0 auto 9px;background:#3a4b5f;font-size:24px;border:1px solid #61748b;transition:all .3s}.journey-active{color:#fff!important}.journey-active b{background:var(--phase);color:#1d2836;box-shadow:0 0 24px #9db9d938;transform:scale(1.08)}.journey-arrow{color:#7b90a9}.journey-body{border-top:1px solid #506885;padding-top:22px}.journey-body h3{color:var(--phase)!important;font-size:24px!important;margin:0 0 10px!important}.journey-body p{color:#d8e3f1!important;font-size:14px!important;line-height:1.7}
 @keyframes journeyReveal{from{opacity:.65;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.journey-shell{animation:none}.journey-node b{transition:none;transform:none}}
 @media(max-width:600px){.journey-shell{padding:20px 14px}.journey-node b{width:40px;height:40px;line-height:40px}.journey-node{font-size:11px}}
@@ -175,12 +175,12 @@ def scenario_journey(root):
         c2.metric('HF < 1',f'{(hf_values<1).sum():,}')
         c3.metric('Dư nợ mẫu (USD)',f'${pd.to_numeric(positions.debt_usd,errors="coerce").sum():,.0f}')
         fig=go.Figure()
-        fig.add_trace(go.Histogram(x=positions.hf_before,nbinsx=60,name='Trước shock',marker_color='#bba1d3',opacity=.6))
+        fig.add_trace(go.Histogram(x=positions.hf_before,nbinsx=60,name='Trước shock',marker_color='#9eb8d5',opacity=.6))
         if phase==1:
             fig.add_trace(go.Histogram(x=positions.hf_after,nbinsx=60,name='Sau shock',marker_color='#cf81a6',opacity=.6))
             st.caption('Sau shock là kết quả N4, chưa phải trạng thái ví sau từng vòng cascade.')
         fig.add_vline(x=1,line_color='#c54d72',line_dash='dash')
-        fig.update_layout(barmode='overlay',height=340,paper_bgcolor='#FFF9FD',plot_bgcolor='#FFF9FD',xaxis_title='Health Factor',yaxis_title='Số vị thế')
+        fig.update_layout(barmode='overlay',height=340,paper_bgcolor='#f9fcff',plot_bgcolor='#f9fcff',xaxis_title='Health Factor',yaxis_title='Số vị thế')
         st.plotly_chart(fig,width='stretch',key='journey_hf')
     else:
         c1,c2,c3=st.columns(3)
@@ -198,11 +198,11 @@ def scenario_journey(root):
                 cutoff=st.select_slider('Dừng tại vòng',rounds['round'].tolist(),value=rounds['round'].max(),key='journey_round_'+identity)
                 rounds=rounds.loc[rounds['round']<=cutoff]
             fig=make_subplots(specs=[[{'secondary_y':True}]])
-            fig.add_trace(go.Bar(x=rounds['round'],y=rounds.executed_liquidations,name='Số thanh lý',marker_color='#bc82b7'),secondary_y=False)
-            fig.add_trace(go.Scatter(x=rounds['round'],y=rounds.repaid_debt_usd,name='Nợ hoàn trả USD',mode='lines+markers',line_color='#9271ba'),secondary_y=True)
+            fig.add_trace(go.Bar(x=rounds['round'],y=rounds.executed_liquidations,name='Số thanh lý',marker_color='#7f9cbf'),secondary_y=False)
+            fig.add_trace(go.Scatter(x=rounds['round'],y=rounds.repaid_debt_usd,name='Nợ hoàn trả USD',mode='lines+markers',line_color='#6d92be'),secondary_y=True)
             fig.update_yaxes(title_text='Số thanh lý',secondary_y=False);fig.update_yaxes(title_text='USD',secondary_y=True)
             fig.update_xaxes(title='Vòng thực thi',dtick=1)
-            fig.update_layout(height=350,paper_bgcolor='#FFF9FD',plot_bgcolor='#FFF9FD',legend=dict(orientation='h'))
+            fig.update_layout(height=350,paper_bgcolor='#f9fcff',plot_bgcolor='#f9fcff',legend=dict(orientation='h'))
             st.plotly_chart(fig,width='stretch',key='journey_execution')
         if phase==3:
             st.info('Chưa có danh tính ví được thanh lý theo từng vòng và cạnh DEX/Compound đã ghép cho panel này. Không tô mạng như thể đã chứng minh truyền nhiễm; hiện chỉ phát lại kết quả thực thi theo vòng.')

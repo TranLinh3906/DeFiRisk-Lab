@@ -1,0 +1,67 @@
+{
+  "bundle": "outputs\\n5_official_release_20261026",
+  "release_state": "sealed",
+  "manifest_sha256": "5434c3ab1f6f4b2b13434b3eeed0b477b81846e8f29af8c23620303e48397717",
+  "inventory_count": 269,
+  "input_count": 53,
+  "verify_release_errors": [],
+  "verify_manifest_errors": [],
+  "previously_missing_files": [
+    {
+      "path": "inputs/e355809b1da7529afd9b90679480aad5c1f3840b3527ad2234be6ed78c572d66/rpc_checkpoint.jsonl",
+      "exists": true,
+      "hash_matches": true
+    },
+    {
+      "path": "results/q2/A_checkpoint.csv",
+      "exists": true,
+      "hash_matches": true
+    },
+    {
+      "path": "results/q2/B1_checkpoint.csv",
+      "exists": true,
+      "hash_matches": true
+    },
+    {
+      "path": "results/q2/B2_checkpoint.csv",
+      "exists": true,
+      "hash_matches": true
+    }
+  ],
+  "scientific_checks": {
+    "mc_scenarios": 120000,
+    "cf_grid_cases": 1458,
+    "es99_comparisons": 24,
+    "es99_rule": "largest_100_of_all_10000_including_zero_losses",
+    "max_es99_absolute_error": 1.8189894035458565e-12,
+    "snapshot_records": [
+      {
+        "snapshot": "A",
+        "block": 26179841,
+        "wallet_snapshot_rows": 19664
+      },
+      {
+        "snapshot": "B1",
+        "block": 20458637,
+        "wallet_snapshot_rows": 9675
+      },
+      {
+        "snapshot": "B2",
+        "block": 23543615,
+        "wallet_snapshot_rows": 20972
+      }
+    ],
+    "six_hypotheses_reconciled": true,
+    "primary_q1_population": "one_to_one_equity_pairs",
+    "h3_threshold": 1.1,
+    "h3_requires_post_exogenous_hf_at_least": 1.0,
+    "scientific_acceptance": "conditional_hypothesis_specific_not_blanket_acceptance"
+  },
+  "git_inventory_files_untracked": [
+    "inputs/e355809b1da7529afd9b90679480aad5c1f3840b3527ad2234be6ed78c572d66/rpc_checkpoint.jsonl",
+    "results/q2/A_checkpoint.csv",
+    "results/q2/B1_checkpoint.csv",
+    "results/q2/B2_checkpoint.csv"
+  ],
+  "git_ignore_cause": ".gitignore:24:*checkpoint*"
+}

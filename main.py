@@ -501,7 +501,7 @@ st.markdown(f'<div class="page-banner" style="background:{PAGE_COLORS[page_index
 
 # All research tables are read locally. No synthetic fallback.
 ROOT = Path(__file__).resolve().parent
-OUTPUTS = ROOT / 'repo_data' / 'outputs'
+OUTPUTS = ROOT / 'outputs'
 N5 = OUTPUTS / 'n5_completion_20261026'
 EXEC = N5 / 'approved_package_with27'
 
